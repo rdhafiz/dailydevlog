@@ -1,0 +1,33 @@
+$mb-breakpoints: (
+    xs: 576px,
+    sm: 769px,
+    md: 992px,
+    md-1: 1200px,
+    lg: 1290px,
+    xl: 1367px,
+    xml: 1500px,
+    xxl: 1980px,
+);
+
+
+@mixin breakpoint($name, $direction: up) {
+    $valid-name: map-has-key($mb-breakpoints, $name);
+
+    @if not $valid-name {
+        @warn "Warning: `#{$name}` is not a valid breakpoint name. Valid names are #{map-keys($mb-breakpoints)}.";
+    } @else {
+        $value: map-get($mb-breakpoints, $name);
+
+        @if $direction == up {
+            @media (min-width: $value) {
+                @content;
+            }
+        } @else if $direction == down {
+            @media (max-width: $value - 1) {
+                @content;
+            }
+        } @else {
+            @warn "Warning: Invalid direction. Please use 'up' or 'down' with the `breakpoint` mixin.";
+        }
+    }
+}

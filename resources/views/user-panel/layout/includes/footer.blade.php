@@ -1,5 +1,5 @@
 <footer class="container mx-auto py-10">
-    <div class="w-full flex flex-wrap border border-gray-300 p-10 rounded-3xl bg-blue-50">
+    <div class="w-full flex flex-wrap border border-gray-300 p-10 rounded-3xl bg-blue-50 dark:bg-gray-200">
         <div class="w-full sm:w-1/2 xl:w-1/3">
 
             <div class="my-5">

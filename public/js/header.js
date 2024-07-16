@@ -13,3 +13,15 @@ function modeDropdown() {
     let searchDropDownMenu = document.querySelector('#search-dropdown-menu #search-dropdown');
     searchDropDownMenu.classList.add('hidden');
 }
+
+/* Function of scrolling header */
+
+function onscroll() {
+    if (window.scrollY > 50) {
+        document.querySelector('.header').classList.add('border-effect');
+    } else {
+        document.querySelector('.header').classList.remove('border-effect');
+    }
+}
+
+window.addEventListener('scroll', onscroll)

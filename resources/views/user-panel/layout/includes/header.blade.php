@@ -1,4 +1,4 @@
-<header class="start-0 end-0 sticky top-0 bg-white dark:border dark:border-gray-700 dark:bg-gray-900 w-full">
+<header class="start-0 sticky end-0 top-0 bg-white dark:border-gray-700 dark:bg-gray-900 w-full header">
     <div class="container mx-auto">
         <div class="w-full flex items-center h-[90px] px-10 sm:px-0 justify-between">
             <div class="w-1/2 text-3xl font-bold">

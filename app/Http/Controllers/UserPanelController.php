@@ -12,4 +12,9 @@ class UserPanelController extends BaseController
         return view('user-panel.home.home');
     }
 
+    public function blogDetails(Request $request)
+    {
+        return view('user-panel.blog-details.blog-details');
+    }
+
 }

@@ -193,7 +193,7 @@
         </div>
     </div>
 
-    <div class="my-4 flex justify-center items-center">
+    <div class="py-4 flex justify-center items-center">
         <a href="javascript:void(0)" class="btn-theme px-10 rounded-3xl">
             <span class="flex justify-center items-center">
                 Show more post

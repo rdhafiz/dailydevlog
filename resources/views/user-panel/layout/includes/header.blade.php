@@ -1,4 +1,4 @@
-<header class="container mx-auto">
+<header class="container mx-auto sticky top-0 bg-white">
     <div class="flex items-center h-[90px] px-3 sm:px-0 justify-between">
         <div class="w-1/2 text-3xl font-bold">
             <a href="javascript:void(0)" class="decoration-0 text-gray-600">

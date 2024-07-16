@@ -1,1 +1,27 @@
-@layer components {  }
+.btn-theme {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    font-size: 16px !important;
+    text-decoration: none !important;
+    text-rendering: auto;
+    height: 45px;
+    text-align: center !important;
+    transition: 0.5s !important;
+    background-size: 200% auto;
+    color: #ffffff !important;
+    display: inline-block !important;
+    border: 0 !important;
+    font-weight: 400 !important;
+    background-image: linear-gradient(60deg, #0ea5ea 0%, #0bd1d1 45%, #0ea5ea 100%);
+    cursor: pointer !important;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    background-position: right center;
+}
+
+.btn-theme:hover {
+    text-decoration: none;
+    background-position: initial;
+    color: #ffffff;
+}

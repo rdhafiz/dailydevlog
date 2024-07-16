@@ -1,60 +1,86 @@
 <header class="container mx-auto">
-    <div class="flex items-center h-[90px] px-3 sm:px-0">
-        <div class="w-full lg:w-1/5 text-3xl font-bold flex justify-between items-center">
+    <div class="flex items-center h-[90px] px-3 sm:px-0 justify-between">
+        <div class="w-1/2 text-3xl font-bold">
             <a href="javascript:void(0)" class="decoration-0 text-gray-600">
                 <img src="{{asset('/images/logo-dark.svg')}}" class="w-[120px]" alt="logo-dark">
             </a>
-            <button type="button" class="outline-0 border-0 bg-transparent visible lg:hidden" onclick="sidebar()">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                    <g id="SVGRepo_iconCarrier">
-                        <path d="M5 7H19" stroke="#000000" stroke-width="3" stroke-linecap="round"
-                              stroke-linejoin="round"></path>
-                        <path d="M10 12L19 12" stroke="#000000" stroke-width="3" stroke-linecap="round"
-                              stroke-linejoin="round"></path>
-                        <path d="M5 17L19 17" stroke="#000000" stroke-width="3" stroke-linecap="round"
-                              stroke-linejoin="round"></path>
-                    </g>
-                </svg>
-            </button>
         </div>
-        <div
-            class="fixed lg:static -right-full -right-[360px] top-0 bottom-0 shadow lg:shadow-none bg-white lg:bg-transparent w-full sm:w-[360px] lg:w-3/5 block lg:flex lg:justify-center lg:items-center gap-x-7 font-medium p-3 lg:p-0">
-            <a href="javascript:void(0)" class="decoration-0 text-gray-600 block lg:inline-block p-3 lg:p-1">
-                Home
-            </a>
-            <a href="javascript:void(0)" class="decoration-0 text-gray-600 block lg:inline-block p-3 lg:p-1">
-                About Me
-            </a>
-            <a href="javascript:void(0)" class="decoration-0 text-gray-600 block lg:inline-block p-3 lg:p-1">
-                Category
-            </a>
-            <a href="javascript:void(0)" class="decoration-0 text-gray-600 block lg:inline-block p-3 lg:p-1">
-                Single Post
-            </a>
-            <a href="javascript:void(0)" class="decoration-0 text-gray-600 block lg:inline-block p-3 lg:p-1">
-                Pages
-            </a>
-            <a href="javascript:void(0)" class="decoration-0 text-gray-600 block lg:inline-block p-3 lg:p-1">
-                Contact
-            </a>
-        </div>
-        <div class="hidden w-1/5 lg:flex justify-center items-center gap-x-10">
-            <button type="button" class="outline-0 border-0">
-                <svg viewBox="0 0 24 24" width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                    <g id="SVGRepo_iconCarrier">
-                        <path
-                            d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z"
-                            stroke="#344161" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </g>
-                </svg>
-            </button>
-            <button type="button" class="outline-0 border-0 transition duration-500 ease-in-out bg-gradient-to-r from-blue-500 to-cyan-400 hover:from-cyan-400 hover:to-blue-500 px-7 py-3 text-white rounded-2xl">
-                Subscribe
+        <div class="w-1/2 flex justify-end items-center gap-x-3">
+            <div class="relative inline-block text-left" id="search-dropdown-menu">
+                <div>
+                    <button type="button" class="outline-0 border-0" onclick="searchDropdown()">
+                        <img src="{{asset('/images/header/search.svg')}}" class="w-[24px] h-[24px]" alt="search">
+                    </button>
+                </div>
+                <div
+                    class="hidden absolute -right-[150px] md:right-0 z-10 mt-4 w-[340px] origin-top-right p-0 bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none rounded-2xl overflow-hidden"
+                    id="search-dropdown">
+                    <div role="none" class="p-4">
+                        <div class="relative">
+                            <input type="text" placeholder="Search" class="py-3 px-5 rounded-2xl outline-0 w-full border">
+                            <div class="absolute top-0 bottom-0 end-0 pe-3 flex items-center h-full">
+                                <img src="{{asset('/images/header/search.svg')}}" class="w-[24px] h-[24px]" alt="search">
+                            </div>
+                        </div>
+                        <div class="mt-2 text-sm">
+                            Popular topic
+                        </div>
+                        <div class="mt-2 text-sm flex justify-start items-center gap-x-2">
+                            <a href="javascript:void(0)" class="decoration-0 text-cyan-600"># Lifestyle</a>
+                            <a href="javascript:void(0)" class="decoration-0 text-cyan-600"># Travel</a>
+                            <a href="javascript:void(0)" class="decoration-0 text-cyan-600"># Space</a>
+                            <a href="javascript:void(0)" class="decoration-0 text-cyan-600"># Business</a>
+                            <a href="javascript:void(0)" class="decoration-0 text-cyan-600"># Food</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="relative inline-block text-left" id="dropdown-menu">
+                <div>
+                    <button type="button" class="px-3 py-2 inline-flex gap-2" onclick="toggleDropdown()">
+                        <img src="{{asset('/images/header/light.svg')}}" class="w-[24px] h-[24px]" alt="light">
+                        <img src="{{asset('/images/header/caret-down.svg')}}" class="w-[18px] h-[18px]" alt="caret">
+                    </button>
+                </div>
+                <div
+                    class="hidden absolute right-0 z-10 mt-4 w-[150px] origin-top-right p-0 bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none rounded-2xl overflow-hidden"
+                    id="dropdown">
+                    <div role="none">
+                        <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+                        <a href="#" class="flex justify-start p-3 transition duration-500 hover:bg-gray-300"
+                           role="menuitem" tabindex="-1" id="menu-item-0" onclick="toggleTheme()">
+                            <img src="{{asset('/images/header/light.svg')}}" class="w-[24px] h-[24px]" alt="light">
+                            <span class="ms-3">Light </span>
+                        </a>
+                        <a href="#" class="flex justify-start p-3 transition duration-500 hover:bg-gray-300"
+                           role="menuitem" tabindex="-1" id="menu-item-1" onclick="toggleTheme()">
+                            <img src="{{asset('/images/header/dark.svg')}}" class="w-[24px] h-[24px]" alt="dark">
+                            <span class="ms-3">Dark </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn-theme rounded-2xl px-5">
+                Login
             </button>
         </div>
     </div>
 </header>
+
+<script>
+
+    function searchDropdown() {
+        let searchDropDownMenu = document.querySelector('#search-dropdown-menu #search-dropdown');
+        searchDropDownMenu.classList.toggle('hidden');
+        let dropDownMenu = document.querySelector('#dropdown-menu #dropdown');
+        dropDownMenu.classList.add('hidden');
+    }
+
+    function toggleDropdown() {
+        let dropDownMenu = document.querySelector('#dropdown-menu #dropdown');
+        dropDownMenu.classList.toggle('hidden');
+        let searchDropDownMenu = document.querySelector('#search-dropdown-menu #search-dropdown');
+        searchDropDownMenu.classList.add('hidden');
+    }
+
+</script>

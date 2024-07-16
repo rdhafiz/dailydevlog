@@ -104,7 +104,7 @@
                 margin: 0 !important;
             }
             .mobile-text-center {text-align: center !important;}
-            .mobile-text-left   {text-align: left !important;}
+            .mobile-text-left   {text-align: right !important;}
             .mobile-text-right  {text-align: right !important;}
 
             .mobile-valign-top  {vertical-align: top !important;}
@@ -116,14 +116,6 @@
 
             .spacer                     {height: 30px; line-height: 100% !important; font-size: 100% !important;}
             .divider th                 {height: 60px;}
-            .mobile-padding-top         {padding-top: 30px !important;}
-            .mobile-padding-top-mini    {padding-top: 10px !important;}
-            .mobile-padding-bottom      {padding-bottom: 30px !important;}
-            .mobile-padding-bottom-mini {padding-bottom: 10px !important;}
-            .mobile-margin-top          {margin-top: 30px !important;}
-            .mobile-margin-top-mini     {margin-top: 10px !important;}
-            .mobile-margin-bottom       {margin-bottom: 30px !important;}
-            .mobile-margin-bottom-mini  {margin-bottom: 10px !important;}
         }
     </style>
 </head>
@@ -139,7 +131,7 @@
                     <td class="spacer" height="40" style="line-height: 40px;">&nbsp;</td>
                 </tr>
                 <tr>
-                    <th class="column" width="640" style="padding-left: 30px; padding-right: 30px; text-align: right;">
+                    <th class="column" width="640" style="padding-left: 30px; padding-right: 30px; text-align: left;">
                         <a href="http://wahajcm.com" style="text-decoration: none;">
                             <img class="mobile-center" src="https://www.wahjcm.com/images/logo.png" alt="Header Logo" width="105">
                         </a>
@@ -157,9 +149,9 @@
                     <td class="spacer" height="80" style="line-height: 80px;">&nbsp;</td>
                 </tr>
                 <tr>
-                    <th class="column sans-serif" width="640" style="padding-left: 30px; padding-right: 30px; font-weight: 400; text-align: right;">
-                        <div class="serif" style="color: #1F2225; font-size: 28px; font-weight: 700; line-height: 50px; margin-bottom: 30px;">مرحباً، عضونا العزيز</div>
-                        <div style="color: #969AA1; font-size: 18px; line-height: 28px; margin-bottom: 40px;">الكود السري لإعادة تعيين كلمة المرور الخاص بك هو</div>
+                    <th class="column sans-serif" width="640" style="padding-left: 30px; padding-right: 30px; font-weight: 400; text-align: left;">
+                        <div class="serif" style="color: #1F2225; font-size: 28px; font-weight: 700; line-height: 50px; margin-bottom: 30px;">Hello, our dear member</div>
+                        <div style="color: #969AA1; font-size: 18px; line-height: 28px; margin-bottom: 40px;">The secret code to reset your password is</div>
                         <table align="center" cellpadding="0" cellspacing="0" width="100%" style="margin: 0 auto; word-break: break-all;" role="presentation">
                             <tr>
                                 <th class="sans-serif" bgcolor="#FFFFFF" style="padding: 20px; border-radius: 3px;">

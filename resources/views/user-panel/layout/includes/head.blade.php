@@ -8,4 +8,5 @@
     @vite('resources/scss/style.scss')
     <!--JS-->
     <script src="{{'/js/theme.js'}}"></script>
+    <script src="{{'/js/header.js'}}"></script>
 </head>

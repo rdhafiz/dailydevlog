@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ArticleController;
 use App\Http\Controllers\Api\UserAuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,8 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('logout', [UserAuthController::class, 'Logout'])->name('API.USER.LOGOUT');
 });
 
+/*Article API*/
+Route::apiResource('articles', ArticleController::class );
 
 
 

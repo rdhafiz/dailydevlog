@@ -24,6 +24,7 @@
         </div>
         <hr class="w-full border border-cyan-300 my-5 px-5 md:px-[120px]">
     </section>
+
     <section class="w-full py-10 px-5 md:px-[120px]">
         <div class="text-center flex justify-center mb-5">
             <div

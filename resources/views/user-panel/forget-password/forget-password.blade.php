@@ -21,13 +21,13 @@
                 <div class="text-2xl font-semibold mb-2"> Reset your account </div>
                 <div class="mb-5 text-sm"> After fill form to click in reset button </div>
                 <div class="mb-5">
-                    <label for="reset-email" class="block dark:text-cyan-600 font-semibold"> Email </label>
-                    <input id="reset-email" type="text" name="email" class="outline-0 w-full py-3 border border-transparent border-b-2 border-b-cyan-200 dark:border-b-gray-600 bg-transparent" disabled placeholder="Enter your email">
+                    <label for="email" class="block dark:text-cyan-600 font-semibold"> Email </label>
+                    <input id="email" type="email" name="email" class="outline-0 w-full py-3 border border-transparent border-b-2 border-b-cyan-200 dark:border-b-gray-600 bg-transparent" disabled placeholder="Enter your email">
                     <div class="text-red-500 text-sm mt-2" id="reset-email-error"></div>
                 </div>
                 <div class="mb-5">
-                    <label for="reset_code" class="block dark:text-cyan-600 font-semibold"> Reset code </label>
-                    <input id="reset_code" type="text" name="reset_code" class="outline-0 w-full py-3 border border-transparent border-b-2 border-b-cyan-200 dark:border-b-gray-600 bg-transparent" placeholder="Enter your reset code">
+                    <label for="code" class="block dark:text-cyan-600 font-semibold"> Reset code </label>
+                    <input id="code" type="text" name="code" class="outline-0 w-full py-3 border border-transparent border-b-2 border-b-cyan-200 dark:border-b-gray-600 bg-transparent" placeholder="Enter your reset code">
                     <div class="text-red-500 text-sm mt-2" id="reset-code-error"></div>
                 </div>
                 <div class="mb-5">
@@ -57,7 +57,8 @@
 
         const resetForm = document.querySelector('#resetForm');
         let resetContent = document.querySelector('.resetContent');
-        let resetEmail = document.getElementById('reset-email');
+
+        let email = document.getElementById('email');
         let resetEmailError = document.querySelector('#reset-email-error');
         let resetCodeError = document.querySelector('#reset-code-error');
         let resetPasswordError = document.querySelector('#reset-password-error');
@@ -72,8 +73,7 @@
                 });
                 const res = await response.json();
                 if(res.status === 200) {
-                    console.log(forgetEmail)
-                    resetEmail = forgetEmail
+                    email.value = forgetEmail.value
                     forgetContent.classList.add('hidden');
                     resetContent.classList.remove('hidden');
                 } else {
@@ -93,6 +93,7 @@
 
         async function resetData() {
             const formData = new FormData(resetForm)
+            formData.set('email',email.value)
             try {
                 const response = await fetch('{{route('API.USER.RESET')}}', {
                     method: 'post',
@@ -100,7 +101,7 @@
                 });
                 const res = await response.json();
                 if(res.status === 200) {
-
+                    window.location.href = '{{route('user.panel.login')}}'
                 } else {
                     if(res.error && res.error.email) {
                         resetEmailError.innerText = res?.error.email[0]

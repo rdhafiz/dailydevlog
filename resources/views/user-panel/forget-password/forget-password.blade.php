@@ -10,9 +10,9 @@
                     <label for="email" class="block dark:text-cyan-600 font-semibold"> Email </label>
                     <input id="email" type="text" name="email" class="outline-0 w-full py-3 border border-transparent border-b-2 border-b-cyan-200 dark:border-b-gray-600 bg-transparent" placeholder="Enter your email">
                 </div>
-                <button type="submit" class="btn-theme rounded-md w-[120px]">
+                <a href="{{route('user.panel.reset.account')}}" class="btn-theme rounded-md w-[120px]">
                     Forget
-                </button>
+                </a>
             </form>
         </div>
     </section>

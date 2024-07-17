@@ -18,4 +18,3 @@ Route::get('', [UserPanelController::class, 'index'])->name('user.panel.home');
 Route::get('/blog-details', [UserPanelController::class, 'blogDetails'])->name('user.panel.blog.details');
 Route::get('/login', [UserPanelController::class, 'login'])->name('user.panel.login');
 Route::get('/forget-password', [UserPanelController::class, 'forgetPassword'])->name('user.panel.forget.password');
-Route::get('/reset-account', [UserPanelController::class, 'resetAccount'])->name('user.panel.reset.account');

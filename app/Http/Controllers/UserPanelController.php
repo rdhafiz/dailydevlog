@@ -27,9 +27,4 @@ class UserPanelController extends BaseController
         return view('user-panel.forget-password.forget-password');
     }
 
-    public function resetAccount()
-    {
-        return view('user-panel.forget-password.reset-password');
-    }
-
 }

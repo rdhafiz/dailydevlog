@@ -33,7 +33,7 @@
 @layer components{
 
     .border-effect {
-        @apply border border-gray-100 shadow-2xl dark:border;
+        @apply border border-gray-100 shadow-2xl dark:border transition-all duration-500;
     }
 
 }

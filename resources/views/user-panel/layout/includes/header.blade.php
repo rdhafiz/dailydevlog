@@ -2,7 +2,7 @@
     <div class="container mx-auto">
         <div class="w-full flex items-center h-[90px] px-10 sm:px-0 justify-between">
             <div class="w-1/2 text-3xl font-bold">
-                <a href="javascript:void(0)" class="decoration-0 text-gray-600">
+                <a href="{{route('user.panel.home')}}" class="decoration-0 text-gray-600">
                     <img src="{{asset('/images/logo-dark.svg')}}" class="w-[120px]" alt="logo-dark">
                 </a>
             </div>

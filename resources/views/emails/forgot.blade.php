@@ -50,38 +50,6 @@
                 word-break: break-word;
                 -webkit-text-size-adjust: 100%;
             }
-            .mobile-1  {max-width: 8.33333%;}
-            .mobile-2  {max-width: 16.66667%;}
-            .mobile-3  {max-width: 25%;}
-            .mobile-4  {max-width: 33.33333%;}
-            .mobile-5  {max-width: 41.66667%;}
-            .mobile-6  {max-width: 50%;}
-            .mobile-7  {max-width: 58.33333%;}
-            .mobile-8  {max-width: 66.66667%;}
-            .mobile-9  {max-width: 75%;}
-            .mobile-10 {max-width: 83.33333%;}
-            .mobile-11 {max-width: 91.66667%;}
-            .mobile-12 {
-                padding-right: 30px !important;
-                padding-left: 30px !important;
-            }
-
-            .mobile-offset-1  {margin-left: 8.33333% !important;}
-            .mobile-offset-2  {margin-left: 16.66667% !important;}
-            .mobile-offset-3  {margin-left: 25% !important;}
-            .mobile-offset-4  {margin-left: 33.33333% !important;}
-            .mobile-offset-5  {margin-left: 41.66667% !important;}
-            .mobile-offset-6  {margin-left: 50% !important;}
-            .mobile-offset-7  {margin-left: 58.33333% !important;}
-            .mobile-offset-8  {margin-left: 66.66667% !important;}
-            .mobile-offset-9  {margin-left: 75% !important;}
-            .mobile-offset-10 {margin-left: 83.33333% !important;}
-            .mobile-offset-11 {margin-left: 91.66667% !important;}
-
-            .has-columns {
-                padding-right: 20px !important;
-                padding-left: 20px !important;
-            }
 
             .has-columns .column {
                 padding-right: 10px !important;
@@ -99,21 +67,6 @@
                 margin-left: auto !important;
                 margin-right: auto !important;
             }
-            .mobile-left {
-                float: none;
-                margin: 0 !important;
-            }
-            .mobile-text-center {text-align: center !important;}
-            .mobile-text-left   {text-align: right !important;}
-            .mobile-text-right  {text-align: right !important;}
-
-            .mobile-valign-top  {vertical-align: top !important;}
-
-            .mobile-full-width {
-                display: table;
-                width: 100% !important;
-            }
-
             .spacer                     {height: 30px; line-height: 100% !important; font-size: 100% !important;}
             .divider th                 {height: 60px;}
         }
@@ -133,7 +86,7 @@
                 <tr>
                     <th class="column" width="640" style="padding-left: 30px; padding-right: 30px; text-align: left;">
                         <a href="http://wahajcm.com" style="text-decoration: none;">
-                            <img class="mobile-center" src="https://www.wahjcm.com/images/logo.png" alt="Header Logo" width="105">
+                            <img class="mobile-center" src="https://dailydevblog.thethemeai.com/images/logo-dark.svg" alt="Header Logo" width="105">
                         </a>
                     </th>
                 </tr>

@@ -61,9 +61,9 @@
                         </div>
                     </div>
                 </div>
-                <button type="button" class="btn-theme rounded-2xl px-5">
+                <a href="{{route('user.panel.login')}}" class="btn-theme rounded-2xl px-5">
                     Login
-                </button>
+                </a>
             </div>
         </div>
     </div>

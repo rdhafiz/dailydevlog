@@ -17,4 +17,14 @@ class UserPanelController extends BaseController
         return view('user-panel.blog-details.blog-details');
     }
 
+    public function login()
+    {
+        return view('user-panel.login.login');
+    }
+
+    public function forgetPassword()
+    {
+        return view('user-panel.forget-password.forget-password');
+    }
+
 }

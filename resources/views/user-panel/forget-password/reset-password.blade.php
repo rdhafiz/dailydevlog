@@ -4,7 +4,8 @@
     <section class="h-dvh flex justify-center items-center p-3 md:p-5">
         <div class="border p-5 md:p-10  bg-gray-50 dark:bg-gray-800 border-cyan-200 dark:border-gray-700 w-full md:w-[565px] rounded-md">
             <form class="w-full">
-                <div class="text-center text-2xl font-semibold mb-5"> Reset your account </div>
+                <div class="text-2xl font-semibold mb-2"> Reset your account </div>
+                <div class="mb-5 text-sm"> After fill form to click in reset button </div>
                 <div class="mb-5">
                     <label for="email" class="block dark:text-cyan-600 font-semibold"> Email </label>
                     <input id="email" type="text" name="email" class="outline-0 w-full py-3 border border-transparent border-b-2 border-b-cyan-200 dark:border-b-gray-600 bg-transparent" placeholder="Enter your email">

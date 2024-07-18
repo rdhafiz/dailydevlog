@@ -73,14 +73,14 @@
                 <div class="absolute top-0 bottom-0 start-0 flex justify-start items-center h-full">
                     <img src="{{asset('/images/footer/person.svg')}}" class="w-[24px]" alt="person">
                 </div>
-                <input type="text" name="" class="bg-transparent w-full outline-0 border-0 border-b-2 border-b-gray-300 py-4 ps-7" placeholder="Enter your name here">
+                <input type="text" name="name" class="bg-transparent w-full outline-0 border-0 border-b-2 border-b-gray-300 py-4 ps-7" placeholder="Enter your name here">
             </div>
 
             <div class="relative mb-5">
                 <div class="absolute top-0 bottom-0 start-0 flex justify-start items-center h-full">
                     <img src="{{asset('/images/footer/envelope.svg')}}" class="w-[24px]" alt="person">
                 </div>
-                <input type="text" name="" class="bg-transparent w-full outline-0 border-0 border-b-2 border-b-gray-300 py-4 ps-7" placeholder="Enter your name here">
+                <input type="text" name="email" class="bg-transparent w-full outline-0 border-0 border-b-2 border-b-gray-300 py-4 ps-7" placeholder="Enter your email here">
             </div>
 
             <a href="javascript:void(0)" class="btn-theme px-5 rounded-md">
@@ -93,8 +93,10 @@
             </a>
 
         </div>
-        <div class="w-full xl:w-1/2 py-10 text-gray-600 font-semibold dark:text-cyan-500">
-            © 2023 Created by Jthemes.com
+        <div class="w-full xl:w-1/2 py-10">
+            <a href="https://redishketch.com/" class="decoration-0 text-gray-600 font-semibold dark:text-cyan-500">
+                © 2023 Created by Redishketch.com
+            </a>
         </div>
         <div class="w-full xl:w-1/2 pb-10 flex flex-wrap justify-start xl:justify-end gap-5">
             <a href="javascript:void(0)" class="decoration-0 text-gray-800 dark:text-gray-400 flex justify-start items-center font-semibold gap-x-2">

@@ -9,12 +9,12 @@
                     <div class="mb-5 text-sm"> Please sign-in to your account and start the adventure </div>
                     <div class="mb-5">
                         <label for="username" class="block dark:text-cyan-600 font-semibold"> Email </label>
-                        <input id="username" type="text" name="username" class="outline-0 w-full py-3 border border-transparent border-b-2 border-b-cyan-200 dark:border-b-gray-600 bg-transparent" placeholder="Enter your username">
+                        <input id="username" type="text" name="username" class="outline-0 w-full py-3 border border-transparent border-b-2 border-b-cyan-200 dark:border-b-gray-600 bg-transparent" v-model="loginParam.username" placeholder="Enter your username">
                         <div class="error-report text-red-500 text-sm mt-2" v-if="error != null && error.username !== undefined" v-text="error.username[0]"></div>
                     </div>
                     <div class="mb-5">
                         <label for="password" class="block dark:text-cyan-600 font-semibold"> Password </label>
-                        <input id="password" type="password" name="password" class="outline-0 w-full py-3 border border-transparent border-b-2 border-b-cyan-200 dark:border-b-gray-600 bg-transparent" placeholder="Enter your password">
+                        <input id="password" type="password" name="password" class="outline-0 w-full py-3 border border-transparent border-b-2 border-b-cyan-200 dark:border-b-gray-600 bg-transparent" v-model="loginParam.password" placeholder="Enter your password">
                         <div class="error-report text-red-500 text-sm mt-2" v-if="error != null && error.password !== undefined" v-text="error.password[0]"></div>
                     </div>
                     <div class="flex justify-between items-center font-medium flex-wrap mb-5">

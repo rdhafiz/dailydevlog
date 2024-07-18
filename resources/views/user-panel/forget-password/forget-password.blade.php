@@ -1,147 +1,83 @@
 @extends('user-panel.layout.layout')
 @section('content')
 
-    <section class="h-full md:h-dvh flex justify-center items-center p-3 md:p-5">
-        <div
-            class="border p-5 md:p-10 bg-gray-50 dark:bg-gray-800 border-cyan-200 dark:border-gray-700 w-full md:w-[565px] rounded-md">
+    <div id="forgot">
+        <section class="h-full md:h-dvh flex justify-center items-center p-3 md:p-5">
+            <div
+                class="border p-5 md:p-10 bg-gray-50 dark:bg-gray-800 border-cyan-200 dark:border-gray-700 w-full md:w-[565px] rounded-md">
 
-            <form class="w-full forgetContent" id="forgetForm">
-                <div class=" text-2xl font-semibold mb-2"> Forgot Password 🔒</div>
-                <div class="mb-5 text-sm"> Enter your email and we'll send you instructions to reset your password</div>
-                <div class="mb-5">
-                    <label for="forget-email" class="block dark:text-cyan-600 font-semibold"> Email </label>
-                    <input id="forget-email" type="email" name="email"
-                           class="outline-0 w-full py-3 border border-transparent border-b-2 border-b-cyan-200 dark:border-b-gray-600 bg-transparent"
-                           placeholder="Enter your email">
-                    <div class="text-red-500 text-sm mt-2" id="email-error"></div>
-                </div>
-                <div class="flex justify-start items-center">
-                    <button type="submit" class="btn-theme rounded-md w-[120px]">
-                        Submit
-                    </button>
-                </div>
-            </form>
+                <form @submit.prevent="forgot()" class="w-full forgetContent" v-if="tab === 'forgot'">
+                    <div class=" text-2xl font-semibold mb-2"> Forgot Password 🔒</div>
+                    <div class="mb-5 text-sm"> Enter your email and we'll send you instructions to reset your password</div>
+                    <div class="mb-5">
+                        <label for="forget-email" class="block dark:text-cyan-600 font-semibold"> Email </label>
+                        <input id="forget-email" type="email" name="email"
+                               class="outline-0 w-full py-3 border border-transparent border-b-2 border-b-cyan-200 dark:border-b-gray-600 bg-transparent"
+                               v-model="forgetParam.email" placeholder="Enter your email">
+                        <div class="error-report text-red-500 text-sm mt-2" v-if="error != null && error.email !== undefined" v-text="error.email[0]"></div>
+                    </div>
+                    <div class="flex justify-start items-center">
+                        <button type="submit" class="btn-theme rounded-md w-[120px]" v-if="!forgotLoading">
+                            Submit
+                        </button>
+                        <button type="button" class="btn-theme rounded-md w-[120px] flex justify-center items-center h-[45px] text-white" disabled v-if="forgotLoading">
+                            <svg class="h-5 mx-auto w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
 
-            <form class="w-full resetContent hidden" id="resetForm">
-                <div class="text-2xl font-semibold mb-2"> Reset your account</div>
-                <div class="mb-5 text-sm"> After fill form to click in reset button</div>
-                <div class="mb-5">
-                    <label for="email" class="block dark:text-cyan-600 font-semibold"> Email </label>
-                    <input id="email" type="email" name="email"
-                           class="outline-0 w-full py-3 border border-transparent border-b-2 border-b-cyan-200 dark:border-b-gray-600 bg-transparent"
-                           disabled placeholder="Enter your email">
-                    <div class="text-red-500 text-sm mt-2" id="reset-email-error"></div>
-                </div>
-                <div class="mb-5">
-                    <label for="code" class="block dark:text-cyan-600 font-semibold"> Reset code </label>
-                    <input id="code" type="text" name="code"
-                           class="outline-0 w-full py-3 border border-transparent border-b-2 border-b-cyan-200 dark:border-b-gray-600 bg-transparent"
-                           placeholder="Enter your reset code">
-                    <div class="text-red-500 text-sm mt-2" id="reset-code-error"></div>
-                </div>
-                <div class="mb-5">
-                    <label for="password" class="block dark:text-cyan-600 font-semibold"> Password </label>
-                    <input id="password" type="password" name="password"
-                           class="outline-0 w-full py-3 border border-transparent border-b-2 border-b-cyan-200 dark:border-b-gray-600 bg-transparent"
-                           placeholder="Enter your password">
-                    <div class="text-red-500 text-sm mt-2" id="reset-password-error"></div>
-                </div>
-                <div class="mb-5">
-                    <label for="password_confirmation" class="block dark:text-cyan-600 font-semibold"> Password
-                        confirmation </label>
-                    <input id="password_confirmation" type="password" name="password_confirmation"
-                           class="outline-0 w-full py-3 border border-transparent border-b-2 border-b-cyan-200 dark:border-b-gray-600 bg-transparent"
-                           placeholder="Enter your password confirmation">
-                    <div class="text-red-500 text-sm mt-2" id="reset-password-confirmation-error"></div>
-                </div>
-                <div class="flex justify-start items-center">
-                    <button type="submit" class="btn-theme rounded-md w-[120px]">
-                        Submit
-                    </button>
-                </div>
-            </form>
+                <form @submit.prevent="reset()" class="w-full" v-if="tab === 'reset'">
+                    <div class="text-2xl font-semibold mb-2"> Reset your account</div>
+                    <div class="mb-5 text-sm"> After fill form to click in reset button</div>
+                    <div class="mb-5">
+                        <label for="email" class="block dark:text-cyan-600 font-semibold"> Email </label>
+                        <input id="email" type="email" name="email"
+                               class="outline-0 w-full py-3 border border-transparent border-b-2 border-b-cyan-200 dark:border-b-gray-600 bg-transparent"
+                               v-model="resetParam.email" disabled placeholder="Enter your email">
+                        <div class="error-report text-red-500 text-sm mt-2" v-if="error != null && error.email !== undefined" v-text="error.email[0]"></div>
+                    </div>
+                    <div class="mb-5">
+                        <label for="code" class="block dark:text-cyan-600 font-semibold"> Reset code </label>
+                        <input id="code" type="text" name="code"
+                               class="outline-0 w-full py-3 border border-transparent border-b-2 border-b-cyan-200 dark:border-b-gray-600 bg-transparent"
+                               v-model="resetParam.code" placeholder="Enter your reset code">
+                        <div class="error-report text-red-500 text-sm mt-2" v-if="error != null && error.code !== undefined" v-text="error.code[0]"></div>
+                    </div>
+                    <div class="mb-5">
+                        <label for="password" class="block dark:text-cyan-600 font-semibold"> Password </label>
+                        <input id="password" type="password" name="password"
+                               class="outline-0 w-full py-3 border border-transparent border-b-2 border-b-cyan-200 dark:border-b-gray-600 bg-transparent"
+                               v-model="resetParam.password" placeholder="Enter your password">
+                        <div class="error-report text-red-500 text-sm mt-2" v-if="error != null && error.password !== undefined" v-text="error.password[0]"></div>
+                    </div>
+                    <div class="mb-5">
+                        <label for="password_confirmation" class="block dark:text-cyan-600 font-semibold"> Password
+                            confirmation </label>
+                        <input id="password_confirmation" type="password" name="password_confirmation"
+                               class="outline-0 w-full py-3 border border-transparent border-b-2 border-b-cyan-200 dark:border-b-gray-600 bg-transparent"
+                               v-model="resetParam.password_confirmation" placeholder="Enter your password confirmation">
+                        <div class="error-report text-red-500 text-sm mt-2" v-if="error != null && error.password_confirmation !== undefined" v-text="error.password_confirmation[0]"></div>
+                    </div>
+                    <div class="flex justify-start items-center">
+                        <button type="submit" class="btn-theme rounded-md w-[120px]" v-if="!resetLoading">
+                            Submit
+                        </button>
+                        <button type="button" class="btn-theme rounded-md w-[120px] flex justify-center items-center h-[45px] text-white" disabled v-if="resetLoading">
+                            <svg class="h-5 mx-auto w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
 
-        </div>
-    </section>
+            </div>
+        </section>
+    </div>
 
-    <script>
-
-        let forgetContent = document.querySelector('.forgetContent');
-        let resetContent = document.querySelector('.resetContent');
-
-        const forgetForm = document.getElementById('forgetForm');
-        const resetForm = document.getElementById('resetForm');
-
-        let emailError = document.getElementById('email-error');
-        let forgetEmail = document.getElementById('forget-email');
-        let email = document.getElementById('email');
-        let resetEmailError = document.getElementById('reset-email-error');
-        let resetCodeError = document.getElementById('reset-code-error');
-        let resetPasswordError = document.getElementById('reset-password-error');
-        let resetPasswordConfirmationError = document.getElementById('reset-password-confirmation-error');
-
-        async function forgetData() {
-            const formData = new FormData(forgetForm)
-            try {
-                const response = await fetch('{{route('API.USER.FORGOT')}}', {
-                    method: 'post',
-                    body: formData,
-                });
-                const res = await response.json();
-                if (res.status === 200) {
-                    email.value = forgetEmail.value
-                    forgetContent.classList.add('hidden');
-                    resetContent.classList.remove('hidden');
-                } else {
-                    if (res.error && res.error.email) {
-                        emailError.innerText = res?.error.email[0]
-                    }
-                }
-            } catch (err) {
-                console.log(err)
-            }
-        }
-
-        forgetForm.addEventListener("submit", (event) => {
-            event.preventDefault();
-            forgetData();
-        });
-
-        async function resetData() {
-            const formData = new FormData(resetForm)
-            formData.set('email', email.value)
-            try {
-                const response = await fetch('{{route('API.USER.RESET')}}', {
-                    method: 'post',
-                    body: formData,
-                });
-                const res = await response.json();
-                if (res.status === 200) {
-                    window.location.href = '{{route('user.panel.login')}}'
-                } else {
-                    if (res.error && res.error.email) {
-                        resetEmailError.innerText = res?.error.email[0]
-                    }
-                    if (res.error && res.error.code) {
-                        resetCodeError.innerText = res?.error.code[0]
-                    }
-                    if (res.error && res.error.password) {
-                        resetPasswordError.innerText = res?.error.password[0]
-                    }
-                    if (res.error && res.error.password_confirmation) {
-                        resetPasswordConfirmationError.innerText = res?.error.password_confirmation[0]
-                    }
-                }
-            } catch (err) {
-                console.log(err)
-            }
-        }
-
-        resetForm.addEventListener("submit", (event) => {
-            event.preventDefault();
-            resetData();
-        });
-
-    </script>
+    <script src="{{asset('/js/forgot.js')}}"></script>
 
 @endsection

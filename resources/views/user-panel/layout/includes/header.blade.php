@@ -1,4 +1,4 @@
-<header class="start-0 sticky end-0 top-0 bg-white dark:border-gray-700 dark:bg-gray-900 w-full header border-effect">
+<header class="start-0 sticky end-0 top-0 bg-white dark:border-gray-700 dark:bg-gray-900 w-full header border-effect" id="header">
     <div class="container mx-auto">
         <div class="w-full flex items-center h-[90px] px-3 sm:px-2 justify-between">
             <div class="w-auto sm:w-1/2 text-3xl font-bold">
@@ -8,8 +8,8 @@
             </div>
             <div class="w-auto sm:w-1/2 flex justify-end items-center gap-x-3">
                 <div class="relative inline-block text-left" id="search-dropdown-menu">
-                    <div>
-                        <button type="button" class="outline-0 border-0" onclick="searchDropdown()">
+                    <div id="searchBtn">
+                        <button type="button" class="outline-0 border-0" @click="searchDropdown">
                             <img src="{{asset('/images/header/search.svg')}}" class="w-[24px] h-[24px]" alt="search">
                         </button>
                     </div>
@@ -37,8 +37,8 @@
                     </div>
                 </div>
                 <div class="relative inline-block text-left" id="dropdown-menu">
-                    <div>
-                        <button type="button" class="px-3 py-2 inline-flex gap-2" onclick="modeDropdown()">
+                    <div id="themeSwitch">
+                        <button type="button" class="px-3 py-2 inline-flex gap-2" @click="modeDropdown">
                             <img src="{{asset('/images/header/light.svg')}}" class="w-[24px] h-[24px]" alt="light">
                             <img src="{{asset('/images/header/caret-down.svg')}}" class="w-[18px] h-[18px]" alt="caret">
                         </button>
@@ -68,3 +68,5 @@
         </div>
     </div>
 </header>
+
+<script src="{{asset('js/header.js')}}"></script>

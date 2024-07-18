@@ -85,8 +85,8 @@
                 </tr>
                 <tr>
                     <th class="column" width="640" style="padding-left: 30px; padding-right: 30px; text-align: left;">
-                        <a href="http://daillydevlog.test/" style="text-decoration: none;">
-                            <img class="mobile-center" src="https://www.wahjcm.com/images/logo.png" alt="Header Logo" width="105">
+                        <a href="https://dailydevblog.thethemeai.com" style="text-decoration: none;">
+                            <img class="mobile-center" src="https://dailydevblog.thethemeai.com/images/logo-dark.svg" alt="Header Logo" width="105">
                         </a>
                     </th>
                 </tr>

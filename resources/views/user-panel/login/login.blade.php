@@ -16,14 +16,14 @@
                     <input id="password" type="password" name="password" class="outline-0 w-full py-3 border border-transparent border-b-2 border-b-cyan-200 dark:border-b-gray-600 bg-transparent" placeholder="Enter your password">
                     <div class="text-red-500 text-sm mt-2" id="user-password-error"></div>
                 </div>
-                <div class="flex justify-between items-center mb-5 font-medium">
-                    <div>
+                <div class="flex justify-between items-center font-medium flex-wrap">
+                    <div class="mb-3">
                         <label for="remember-me" class="flex justify-start items-center cursor-pointer">
                             <input id="remember-me" type="checkbox" class="me-2 form-checkbox">
                             Remember me
                         </label>
                     </div>
-                    <div>
+                    <div class="mb-3">
                         <a href="{{route('user.panel.forget.password')}}" class="decoration-0 text-red-500">
                             Forget password
                         </a>

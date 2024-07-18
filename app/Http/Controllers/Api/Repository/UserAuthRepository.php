@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\Repository;
 
 
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -145,6 +146,82 @@ class UserAuthRepository
             $userInfo->save();
             DB::commit();
             return ['status' => 200, 'msg' => 'The password has been reset successfully.'];
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return ['status' => 500, 'error' => $e->getMessage()];
+        }
+    }
+
+    public static function GetProfile($request)
+    {
+        try {
+            $user = Auth::user();
+            $rv = User::where('id', $user['id'])->first();
+            return ['status' => 200, 'data' => $rv];
+        } catch (\Exception $e) {
+            return ['status' => 500, 'error' => $e->getMessage()];
+        }
+    }
+
+    public static function UpdateProfile($request)
+    {
+        try {
+            DB::beginTransaction();
+            $input = $request->input();
+            $validator = Validator::make($input, [
+                'name' => 'required',
+                'username' => 'required',
+                'email' => 'required',
+            ]);
+            if ($validator->fails()) {
+                return ['status' => 500, 'error' => $validator->errors()];
+            }
+            $user_id = Auth::id();
+            $user = User::where('id', $user_id)->first();
+            if ($user == null) {
+                return ['status' => 500, 'error' => ['error' => ['Invalid Request!']]];
+            }
+            $user->name = $input['name'];
+            $user->username = $input['username'];
+            $user->email = $input['email'];
+            $user->updated_at = Carbon::now('UTC');
+            $user->save();
+            DB::commit();
+            return ['status' => 200, 'msg' => 'The profile has been updated successfully.'];
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return ['status' => 500, 'error' => $e->getMessage()];
+        }
+    }
+
+    public static function ChangePassword($request)
+    {
+        try {
+            DB::beginTransaction();
+            $input = $request->input();
+            $validator = Validator::make($input, [
+                'current_password' => 'required|min:8',
+                'password' => 'required|min:8|confirmed',
+            ]);
+            if ($validator->fails()) {
+                return ['status' => 400, 'error' => $validator->errors()];
+            }
+            $user_id = Auth::id();
+            $user = User::where('id', $user_id)->first();
+            if ($user == null) {
+                return ['status' => 500, 'error' => ['error' => ['Invalid Request!']]];
+            }
+            if (!(Hash::check($input['current_password'], $user->password))) {
+                return ['status' => 400, 'error' => ['current_password' => ['Please enter the current correct password.']]];
+            }
+            if ((Hash::check($input['password'], $user->password))) {
+                return ['status' => 400, 'error' => ['password' => ['Your new password must be different from your previous password.']]];
+            }
+            $user->password = bcrypt($input['password']);
+            $user->updated_at = Carbon::now('UTC');
+            $user->save();
+            DB::commit();
+            return ['status' => 200, 'msg' => 'The password has been changed successfully.'];
         } catch (\Exception $e) {
             DB::rollBack();
             return ['status' => 500, 'error' => $e->getMessage()];

@@ -12,8 +12,8 @@ class UsersTableSeeder extends Seeder
         // Create an admin user
         User::create([
             'username' => 'dailydevlog',
-            'name' => 'Test User',
-            'email' => 'dailydevlog@mailinator.com',
+            'name' => 'Dev User',
+            'email' => 'dailydevlog@gmail.com',
             'password' => '12345678', // This will be hashed automatically
             // Add other user fields if needed
         ]);

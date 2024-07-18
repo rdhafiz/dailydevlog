@@ -35,5 +35,19 @@ class UserAuthController extends Controller
         return response()->json($rv, 200);
     }
 
-
+    public function GetProfile(Request $request)
+    {
+        $rv = UserAuthRepository::GetProfile($request);
+        return response()->json($rv, 200);
+    }
+    public function UpdateProfile(Request $request)
+    {
+        $rv = UserAuthRepository::UpdateProfile($request);
+        return response()->json($rv, 200);
+    }
+    public function ChangePassword(Request $request)
+    {
+        $rv = UserAuthRepository::ChangePassword($request);
+        return response()->json($rv, 200);
+    }
 }

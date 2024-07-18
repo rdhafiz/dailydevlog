@@ -57,18 +57,10 @@ new Vue({
         /* --- --- --- function of two word --- --- --- */
         // Function of name control
         nameControl() {
-            console.log(343)
             if (this.profileData && this.profileData.name) {
-
-                console.log(345659896)
                 let fullName = this.profileData.name;
                 let words = fullName.split(' ');
-                let initials = '';
-                words.forEach(word => {
-                    initials += word.charAt(0).toUpperCase();
-                });
-
-                console.log(345656)
+                let initials = ` ${words[0][0].toUpperCase()}${ words[words.length - 1][0].toUpperCase()}`;
                 return initials;
             }
         },

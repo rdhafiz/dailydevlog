@@ -65,10 +65,7 @@ new Vue({
             if (this.profileData && this.profileData.name) {
                 let fullName = this.profileData.name;
                 let words = fullName.split(' ');
-                let initials = '';
-                words.forEach(word => {
-                    initials += word.charAt(0).toUpperCase();
-                });
+                let initials = ` ${words[0][0].toUpperCase()}${ words[words.length - 1][0].toUpperCase()}`;
                 return initials;
             }
         },
@@ -89,6 +86,7 @@ new Vue({
                     this.error = response.data.error
                 } else {
                     this.profileUpdateLoading = false;
+                    this.profileDetails();
                     _this.msg = response?.data?.msg
                     setTimeout(function(){
                         _this.msg = null;

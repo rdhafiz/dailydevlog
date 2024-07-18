@@ -16,7 +16,7 @@
                         </div>
                     </div>
                     <div
-                        class="p-5 w-full border border-cyan-100 dark:border-cyan-900 bg-cyan-100 dark:bg-cyan-800 rounded-3xl mt-5">
+                        class="p-5 w-full border border-cyan-100 dark:border-cyan-900 bg-cyan-100 dark:bg-cyan-800 rounded-3xl mt-5 mb-5">
                         <a href="javascript:void(0)" @click="logout" v-if="!logoutLoading"
                            class="decoration-0 text-gray-700 hover:text-cyan-800 dark:text-white dark:hover:text-cyan-300 duration-500 block font-semibold p-3">
                             Logout

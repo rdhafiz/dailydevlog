@@ -108,7 +108,7 @@
 
         </div>
         <div class="w-full xl:w-1/2 lg:py-10 order-2 lg:order-1">
-            <a href="https://redishketch.com/" class="decoration-0 text-gray-600 font-semibold dark:text-cyan-500">
+            <a href="https://redishketch.com/" class="decoration-0 text-gray-600 font-semibold dark:text-cyan-500 max-[500px]:text-[14px]">
                 © 2023 Created by Redishketch.com
             </a>
         </div>

@@ -7,6 +7,7 @@ new Vue({
             password: '',
         },
         error: '',
+        logoutLoading:false,
     },
     mounted() {  },
     methods: {
@@ -33,7 +34,7 @@ new Vue({
                     this.error = response.data.error
                 } else {
                     this.loading = false;
-                    window.location.href = `/login`;
+                    window.location.href = `/profile`;
                     this.loginParam = {
                         email: '',
                         password: '',

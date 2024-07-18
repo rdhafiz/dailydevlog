@@ -3,10 +3,10 @@
         <div class="w-full flex items-center h-[90px] px-3 sm:px-2 justify-between">
             <div class="w-auto sm:w-1/2 text-3xl font-bold">
                 <a href="{{route('user.panel.home')}}" class="decoration-0 text-gray-600">
-                    <img src="{{asset('/images/logo-dark.svg')}}" class="w-auto md:w-[120px]" alt="logo-dark">
+                    <img src="{{asset('/images/logo-dark.svg')}}" class="w-[75px] sm:w-auto md:w-[120px]" alt="logo-dark">
                 </a>
             </div>
-            <div class="w-auto sm:w-1/2 flex justify-end items-center gap-x-3">
+            <div class="w-auto sm:w-1/2 flex justify-end items-center gap-x-1 md:gap-x-3">
                 <div class="relative inline-block text-left" id="search-dropdown-menu">
                     <div id="searchBtn" class="flex">
                         <button type="button" class="outline-0 border-0" @click="searchDropdown">
@@ -14,7 +14,7 @@
                         </button>
                     </div>
                     <div
-                        class="hidden absolute -right-[180px] md:right-0 z-10 mt-4 w-[340px] origin-top-right p-0 bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none rounded-2xl overflow-hidden dark:bg-gray-900 dark:border dark:border-gray-70"
+                        class="hidden absolute -right-[223px] md:right-0 z-10 mt-4 w-[340px] origin-top-right p-0 bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none rounded-2xl overflow-hidden dark:bg-gray-900 dark:border dark:border-gray-70"
                         id="search-dropdown">
                         <div role="none" class="p-4">
                             <div class="relative">
@@ -61,9 +61,26 @@
                         </div>
                     </div>
                 </div>
-                <a href="{{route('user.panel.login')}}" class="btn-theme rounded-2xl px-5">
-                    Login
-                </a>
+                @if(\Illuminate\Support\Facades\Auth::check())
+                    <a href="{{route('user.panel.profile')}}"
+                        class="w-[45px] h-[45px] dark:bg-cyan-600 bg-gray-400 rounded-full flex justify-center items-center">
+                        @{{nameControl()}}
+                    </a>
+                    <a href="javascript:void(0)" class="btn-theme rounded-2xl px-5" v-if="!logoutLoading" @click="logout">
+                        Logout
+                    </a>
+                    <a href="javascript:void(0)" class="btn-theme rounded-2xl px-5 w-[90px]" disabled v-if="logoutLoading">
+                        <svg class="h-5 mx-auto w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                    </a>
+                @else
+                    <a href="{{route('user.panel.login')}}" class="btn-theme rounded-2xl px-5">
+                        Login
+                    </a>
+                @endif
+
             </div>
         </div>
     </div>

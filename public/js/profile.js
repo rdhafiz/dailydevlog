@@ -17,7 +17,6 @@ new Vue({
         profileData: null,
         error: '',
         logoutLoading: false,
-        toaster: false,
         msg: null,
     },
     mounted() {
@@ -76,25 +75,24 @@ new Vue({
 
         /* --- --- --- function of profile update api --- --- --- */
         profileUpdate() {
+            let _this = this;
             this.ClearErrorHandler();
             this.profileUpdateLoading = true;
             let headerContent = {
                 'Content-Type': 'application/json; charset=utf-8',
             }
             this.error = null;
-            this.msg = null;
-            this.toaster = true;
+            _this.msg = null;
             axios.post(`/api/front/user/update-profile`, this.profileParam, {headers: headerContent}).then((response) => {
                 if (response.data.error) {
                     this.profileUpdateLoading = false;
                     this.error = response.data.error
                 } else {
                     this.profileUpdateLoading = false;
-                    this.msg = response?.data?.msg
+                    _this.msg = response?.data?.msg
                     setTimeout(function(){
-                        this.toaster = false;
-                        console.log(this.toaster)
-                    }, 1000);
+                        _this.msg = null;
+                    }, 3000);
                 }
             }).catch(err => {
                 this.profileUpdateLoading = false;
@@ -107,13 +105,14 @@ new Vue({
 
         /* --- --- --- function of change password api --- --- --- */
         changePassword() {
+            let _this = this;
             this.ClearErrorHandler();
             this.changePasswordLoading = true;
             let headerContent = {
                 'Content-Type': 'application/json; charset=utf-8',
             }
             this.error = null;
-            this.msg = null;
+            _this.msg = null;
             axios.post(`/api/front/user/change-password`, this.passwordParam, {headers: headerContent}).then((response) => {
                 if (response.data.error) {
                     this.changePasswordLoading = false;
@@ -121,6 +120,10 @@ new Vue({
                 } else {
                     this.msg = response?.data?.msg
                     this.changePasswordLoading = false;
+                    _this.msg = response?.data?.msg
+                    setTimeout(function(){
+                        _this.msg = null;
+                    }, 3000);
                     this.passwordParam = {
                         current_password: '',
                         password: '',

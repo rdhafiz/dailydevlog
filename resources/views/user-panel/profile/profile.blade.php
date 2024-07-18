@@ -16,10 +16,7 @@
                         </div>
                     </div>
                     <div
-                        class="p-5 w-full border border-cyan-100 dark:border-cyan-900 bg-cyan-100 dark:bg-cyan-800 rounded-3xl mt-5">                        <a href="{{route('user.panel.articles')}}"
-                           class="decoration-0 text-gray-700 hover:text-cyan-800 dark:text-white dark:hover:text-cyan-300 duration-500 block font-semibold p-3 hover:ps-10">
-                            Article
-                        </a>
+                        class="p-5 w-full border border-cyan-100 dark:border-cyan-900 bg-cyan-100 dark:bg-cyan-800 rounded-3xl mt-5">
                         <a href="javascript:void(0)" @click="logout" v-if="!logoutLoading"
                            class="decoration-0 text-gray-700 hover:text-cyan-800 dark:text-white dark:hover:text-cyan-300 duration-500 block font-semibold p-3">
                             Logout
@@ -37,7 +34,7 @@
                         class="p-10 w-full border border-cyan-100 dark:border-cyan-900 bg-cyan-100 dark:bg-cyan-800 rounded-3xl mb-5">
 
                         <form @submit.prevent="profileUpdate">
-                            <div class="mb-7 text-4xl font-bold"> Edit Profile</div>
+                            <div class="mb-7 text-2xl md:text-4xl font-bold"> Edit Profile</div>
                             <div class="mb-5">
                                 <label for="name" class="block font-semibold"> Name </label>
                                 <input id="name" type="text" name="name" v-model="profileParam.name"
@@ -78,7 +75,7 @@
                         class="p-10 w-full border border-cyan-100 dark:border-cyan-900 bg-cyan-100 dark:bg-cyan-800 rounded-3xl">
 
                         <form @submit.prevent="changePassword()">
-                            <div class="mb-7 text-4xl font-bold"> Change Password</div>
+                            <div class="mb-7 text-2xl md:text-4xl font-bold"> Change Password</div>
                             <div class="mb-5">
                                 <label for="current_password" class="block font-semibold"> Current password </label>
                                 <input id="current_password" type="password" name="current_password" v-model="passwordParam.current_password"
@@ -118,7 +115,7 @@
             </div>
         </section>
 
-        <div class="fixed top-0 end-0 p-10 z-50" v-if="toaster">
+        <div class="fixed top-0 end-0 p-10 z-50" v-if="msg" id="msg">
             <div class="px-10 py-5 text-end bg-gradient-to-r from-green-900 to-green-500 rounded-2xl">
                 @{{msg}}
             </div>

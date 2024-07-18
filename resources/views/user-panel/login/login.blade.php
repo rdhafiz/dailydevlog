@@ -1,7 +1,7 @@
 @extends('user-panel.layout.layout')
 @section('content')
 
-    <section class="h-dvh flex justify-center items-center p-3 md:p-5">
+    <section class="h-full md:h-dvh flex justify-center items-center p-3 md:p-5">
         <div class="border p-5 md:p-10  bg-gray-50 dark:bg-gray-800 border-cyan-200 dark:border-gray-700 w-full md:w-[565px] rounded-md">
             <form class="w-full" id="loginForm">
                 <div class="text-2xl font-semibold mb-2"> Welcome to Daily Dev Blog! 👋🏻 </div>
@@ -16,14 +16,14 @@
                     <input id="password" type="password" name="password" class="outline-0 w-full py-3 border border-transparent border-b-2 border-b-cyan-200 dark:border-b-gray-600 bg-transparent" placeholder="Enter your password">
                     <div class="text-red-500 text-sm mt-2" id="user-password-error"></div>
                 </div>
-                <div class="flex justify-between items-center mb-5 font-medium">
-                    <div>
+                <div class="flex justify-between items-center font-medium flex-wrap">
+                    <div class="mb-3">
                         <label for="remember-me" class="flex justify-start items-center cursor-pointer">
                             <input id="remember-me" type="checkbox" class="me-2 form-checkbox">
                             Remember me
                         </label>
                     </div>
-                    <div>
+                    <div class="mb-3">
                         <a href="{{route('user.panel.forget.password')}}" class="decoration-0 text-red-500">
                             Forget password
                         </a>

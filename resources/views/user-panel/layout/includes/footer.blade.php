@@ -73,14 +73,14 @@
                 <div class="absolute top-0 bottom-0 start-0 flex justify-start items-center h-full">
                     <img src="{{asset('/images/footer/person.svg')}}" class="w-[24px]" alt="person">
                 </div>
-                <input type="text" name="" class="bg-transparent w-full outline-0 border-0 border-b-2 border-b-gray-300 py-4 ps-7" placeholder="Enter your name here">
+                <input type="text" name="name" class="bg-transparent w-full outline-0 border-0 border-b-2 border-b-gray-300 py-4 ps-7" placeholder="Enter your name here">
             </div>
 
             <div class="relative mb-5">
                 <div class="absolute top-0 bottom-0 start-0 flex justify-start items-center h-full">
                     <img src="{{asset('/images/footer/envelope.svg')}}" class="w-[24px]" alt="person">
                 </div>
-                <input type="text" name="" class="bg-transparent w-full outline-0 border-0 border-b-2 border-b-gray-300 py-4 ps-7" placeholder="Enter your name here">
+                <input type="text" name="email" class="bg-transparent w-full outline-0 border-0 border-b-2 border-b-gray-300 py-4 ps-7" placeholder="Enter your email here">
             </div>
 
             <a href="javascript:void(0)" class="btn-theme px-5 rounded-md">

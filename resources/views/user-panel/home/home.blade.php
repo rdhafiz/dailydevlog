@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <a href="{{route('user.panel.blog.details')}}" class="decoration-0">
-                        <div class="relative w-[125px] h-[55px] dark:text-cyan-500 text-gray-400 hover:text-blue-400">
+                        <div class="relative w-[100px] h-[55px] dark:text-cyan-500 text-gray-400 hover:text-blue-400">
                             <div class="w-[55px] h-[55px] bg-white rounded-full dark:bg-gray-900"></div>
                             <div
                                 class="absolute top-0 bottom-0 start-0 w-full h-full transition-all duration-500 flex justify-start ps-4 items-center">
@@ -73,7 +73,7 @@
                         </div>
                     </div>
                     <a href="{{route('user.panel.blog.details')}}" class="decoration-0">
-                        <div class="relative w-[125px] h-[55px] dark:text-cyan-500 text-gray-400 hover:text-blue-400">
+                        <div class="relative w-[100px] h-[55px] dark:text-cyan-500 text-gray-400 hover:text-blue-400">
                             <div class="w-[55px] h-[55px] bg-white rounded-full dark:bg-gray-900"></div>
                             <div
                                 class="absolute top-0 bottom-0 start-0 w-full h-full transition-all duration-500 flex justify-start ps-4 items-center">
@@ -117,7 +117,7 @@
                         </div>
                     </div>
                     <a href="{{route('user.panel.blog.details')}}" class="decoration-0">
-                        <div class="relative w-[125px] h-[55px] dark:text-cyan-500 text-gray-400 hover:text-blue-400">
+                        <div class="relative w-[100px] h-[55px] dark:text-cyan-500 text-gray-400 hover:text-blue-400">
                             <div class="w-[55px] h-[55px] bg-white rounded-full dark:bg-gray-900"></div>
                             <div
                                 class="absolute top-0 bottom-0 start-0 w-full h-full transition-all duration-500 flex justify-start ps-4 items-center">
@@ -158,7 +158,7 @@
                         </div>
                     </div>
                     <a href="{{route('user.panel.blog.details')}}" class="decoration-0">
-                        <div class="relative w-[125px] h-[55px] dark:text-cyan-500 text-gray-400 hover:text-blue-400">
+                        <div class="relative w-[100px] h-[55px] dark:text-cyan-500 text-gray-400 hover:text-blue-400">
                             <div class="w-[55px] h-[55px] bg-white rounded-full dark:bg-gray-900"></div>
                             <div
                                 class="absolute top-0 bottom-0 start-0 w-full h-full transition-all duration-500 flex justify-start ps-4 items-center">
@@ -199,7 +199,7 @@
                         </div>
                     </div>
                     <a href="{{route('user.panel.blog.details')}}" class="decoration-0">
-                        <div class="relative w-[125px] h-[55px] dark:text-cyan-500 text-gray-400 hover:text-blue-400">
+                        <div class="relative w-[100px] h-[55px] dark:text-cyan-500 text-gray-400 hover:text-blue-400">
                             <div class="w-[55px] h-[55px] bg-white rounded-full dark:bg-gray-900"></div>
                             <div
                                 class="absolute top-0 bottom-0 start-0 w-full h-full transition-all duration-500 flex justify-start ps-4 items-center">

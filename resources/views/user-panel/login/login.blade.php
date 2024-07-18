@@ -1,7 +1,7 @@
 @extends('user-panel.layout.layout')
 @section('content')
 
-    <section class="h-dvh flex justify-center items-center p-3 md:p-5">
+    <section class="h-full md:h-dvh flex justify-center items-center p-3 md:p-5">
         <div class="border p-5 md:p-10  bg-gray-50 dark:bg-gray-800 border-cyan-200 dark:border-gray-700 w-full md:w-[565px] rounded-md">
             <form class="w-full" id="loginForm">
                 <div class="text-2xl font-semibold mb-2"> Welcome to Daily Dev Blog! 👋🏻 </div>

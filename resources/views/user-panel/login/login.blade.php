@@ -26,7 +26,7 @@
                         </div>
                         <div class="mb-3">
                             <a href="{{route('user.panel.forget.password')}}" class="decoration-0 text-red-500">
-                                Forgot password
+                                Forgot password?
                             </a>
                         </div>
                     </div>

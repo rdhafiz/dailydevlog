@@ -8,7 +8,7 @@
             </div>
             <div class="w-auto sm:w-1/2 flex justify-end items-center gap-x-3">
                 <div class="relative inline-block text-left" id="search-dropdown-menu">
-                    <div id="searchBtn">
+                    <div id="searchBtn" class="flex">
                         <button type="button" class="outline-0 border-0" @click="searchDropdown">
                             <img src="{{asset('/images/header/search.svg')}}" class="w-[24px] h-[24px]" alt="search">
                         </button>

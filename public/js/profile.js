@@ -16,6 +16,9 @@ new Vue({
         changePasswordLoading: false,
         profileData: null,
         error: '',
+        logoutLoading: false,
+        toaster: false,
+        msg: null,
     },
     mounted() {
         this.profileDetails();
@@ -39,7 +42,6 @@ new Vue({
             }
             this.error = null;
             axios.post(`/api/front/user/get-profile`, this.profileParam, {headers: headerContent}).then((response) => {
-                console.log(response)
                 const res = response?.data
                 if(res.status === 200) {
                     this.loading = false;
@@ -80,13 +82,19 @@ new Vue({
                 'Content-Type': 'application/json; charset=utf-8',
             }
             this.error = null;
+            this.msg = null;
+            this.toaster = true;
             axios.post(`/api/front/user/update-profile`, this.profileParam, {headers: headerContent}).then((response) => {
                 if (response.data.error) {
                     this.profileUpdateLoading = false;
                     this.error = response.data.error
                 } else {
                     this.profileUpdateLoading = false;
-                    window.location.href = '/profile';
+                    this.msg = response?.data?.msg
+                    setTimeout(function(){
+                        this.toaster = false;
+                        console.log(this.toaster)
+                    }, 1000);
                 }
             }).catch(err => {
                 this.profileUpdateLoading = false;
@@ -105,11 +113,13 @@ new Vue({
                 'Content-Type': 'application/json; charset=utf-8',
             }
             this.error = null;
+            this.msg = null;
             axios.post(`/api/front/user/change-password`, this.passwordParam, {headers: headerContent}).then((response) => {
                 if (response.data.error) {
                     this.changePasswordLoading = false;
                     this.error = response.data.error
                 } else {
+                    this.msg = response?.data?.msg
                     this.changePasswordLoading = false;
                     this.passwordParam = {
                         current_password: '',
@@ -117,6 +127,26 @@ new Vue({
                         password_confirmation: '',
                     }
                 }
+            }).catch(err => {
+                this.changePasswordLoading = false;
+                let res = err?.response;
+                if (res?.data?.errors !== undefined) {
+                    this.error = res?.data?.errors;
+                }
+            });
+        },
+
+        /* --- --- --- function of logout api --- --- --- */
+        logout() {
+            this.ClearErrorHandler();
+            let headerContent = {
+                'Content-Type': 'application/json; charset=utf-8',
+            }
+            this.logoutLoading = true;
+            this.error = null;
+            axios.post(`/api/front/user/logout`, '', {headers: headerContent}).then((response) => {
+                this.logoutLoading = false;
+                window.location.href = '/login'
             }).catch(err => {
                 this.changePasswordLoading = false;
                 let res = err?.response;

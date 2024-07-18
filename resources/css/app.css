@@ -24,6 +24,10 @@
     background-position: right center;
 }
 
+.button-remove {
+    display: none !important;
+}
+
 .btn-theme:hover {
     text-decoration: none;
     background-position: initial;

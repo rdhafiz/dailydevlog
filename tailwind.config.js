@@ -18,6 +18,9 @@ export default {
                     text: '#ffffff',
                 },
             },
+            animation: {
+                'animate-spin': 'spin 3s linear infinite',
+            }
         },
     },
   plugins: [],

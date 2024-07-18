@@ -18,7 +18,7 @@
                         id="search-dropdown">
                         <div role="none" class="p-4">
                             <div class="relative">
-                                <input type="text" placeholder="Search" class="py-3 px-5 rounded-2xl outline-0 w-full border">
+                                <input type="text" placeholder="Search" class="py-3 px-5 rounded-2xl outline-0 w-full border text-black">
                                 <div class="absolute top-0 bottom-0 end-0 pe-3 flex items-center h-full">
                                     <img src="{{asset('/images/header/search.svg')}}" class="w-[24px] h-[24px]" alt="search">
                                 </div>

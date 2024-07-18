@@ -35,8 +35,8 @@
         <img src="{{asset('/images/blog-details/blog-details.jpg')}}" class="bg-cover w-full h-auto rounded-3xl"
              alt="blog-details">
         <div class="flex justify-center">
-            <div class="w-full md:w-2/3">
-                <div class="flex justify-between items-center mt-10 w-full flex-wrap">
+            <div class="w-full lg:w-2/3">
+                <div class="flex justify-between items-center mt-10 w-full flex-wrap gap-5">
                     <div class="flex items-center justify-start">
                         <img src="{{asset('/images/home/avatar.png')}}" class="w-[45px] h-[45px]" alt="avatar">
                         <div class="ms-3">
@@ -105,7 +105,7 @@
                     Leave a comment
                 </div>
                 <a href="javascript:void(0)" class="text-gray-400 decoration-0">
-                    You must be <span class="text-cyan-400"> logged in </span> to post a comment.
+                    You must be <a href="{{route('user.panel.login')}}" class="text-cyan-400"> logged in </a> to post a comment.
                 </a>
             </div>
         </div>

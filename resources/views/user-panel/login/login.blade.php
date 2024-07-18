@@ -16,7 +16,7 @@
                     <input id="password" type="password" name="password" class="outline-0 w-full py-3 border border-transparent border-b-2 border-b-cyan-200 dark:border-b-gray-600 bg-transparent" placeholder="Enter your password">
                     <div class="text-red-500 text-sm mt-2" id="user-password-error"></div>
                 </div>
-                <div class="flex justify-between items-center font-medium flex-wrap">
+                <div class="flex justify-between items-center font-medium flex-wrap mb-5">
                     <div class="mb-3">
                         <label for="remember-me" class="flex justify-start items-center cursor-pointer">
                             <input id="remember-me" type="checkbox" class="me-2 form-checkbox">

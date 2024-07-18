@@ -30,8 +30,7 @@
                 </form>
 
                 <form @submit.prevent="reset()" class="w-full" v-if="tab === 'reset'">
-                    <div class="text-2xl font-semibold mb-2"> Reset your account</div>
-                    <div class="mb-5 text-sm"> After fill form to click in reset button</div>
+                    <div class="text-2xl font-semibold mb-2"> Reset Password </div>
                     <div class="mb-5">
                         <label for="email" class="block dark:text-cyan-600 font-semibold"> Email </label>
                         <input id="email" type="email" name="email"

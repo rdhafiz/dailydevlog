@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Controllers\Api\ArticleController;
+use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\UserAuthController;
+use App\Http\Controllers\Media\MediaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,11 +28,21 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('get-profile', [UserAuthController::class, 'GetProfile'])->name('API.USER.GET.PROFILE');
     Route::post('update-profile', [UserAuthController::class, 'UpdateProfile'])->name('API.USER.UPDATE.PROFILE');
     Route::post('change-password', [UserAuthController::class, 'ChangePassword'])->name('API.USER.CHANGE.PASSWORD');
+    Route::post('update-avatar', [UserAuthController::class, 'UpdateAvatar'])->name('API.USER.UPDATE.AVATAR');
     Route::post('logout', [UserAuthController::class, 'Logout'])->name('API.USER.LOGOUT');
 });
 
-/*Article API*/
-Route::apiResource('articles', ArticleController::class );
+/*Post API*/
+Route::apiResource('posts', PostController::class );
 
 
+/*Category API*/
+Route::apiResource('categories', CategoryController::class );
 
+
+/*media api*/
+Route::prefix('media')->group(function () {
+    Route::post('/', [MediaController::class, 'store']); // Upload a new media file
+    Route::get('{id}', [MediaController::class, 'show']); // View a media file
+    Route::delete('{id}', [MediaController::class, 'destroy']); // Delete a media file
+});

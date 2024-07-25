@@ -19,22 +19,18 @@ class UserAuthRepository
         try {
             $input = $request->input();
             $validator = Validator::make($input, [
-                'username' => 'required',
+                'email' => 'required',
                 'password' => 'required'
             ]);
             if ($validator->fails()) {
                 return ['status' => 500, 'error' => $validator->errors()];
             }
             $userInfo = User::where(function ($q) use ($input) {
-                $q->where('email', $input['username']);
-                $q->orWhere('username', $input['username']);
+                $q->where('email', $input['email']);
             })->first();
 
 
             if ($userInfo != null) {
-//                if ($userInfo->status == 0) {
-//                    return ['status' => 500, 'error' => ['username' => ['Sorry, this account is temporarily unavailable.']]];
-//                }
                 if (Hash::check($input['password'], $userInfo['password'])) {
                     $credential = [
                         'email' => $userInfo->email,
@@ -42,13 +38,17 @@ class UserAuthRepository
                     ];
                     $remember = isset($input['remember']) && $input['remember'] == 1 ? true : false;
                     if (Auth::attempt($credential, $remember)) {
+                        $userInfo->last_login_at = Carbon::now();
+                        $userInfo->save();
                         return ['status' => 200, 'msg' => 'Login Successful!'];
                     } else {
                         $credential = [
-                            'username' => $userInfo->username,
+                            'email' => $input['email'],
                             'password' => $input['password']
                         ];
                         if (Auth::attempt($credential, $remember)) {
+                            $userInfo->last_login_at = Carbon::now();
+                            $userInfo->save();
                             return ['status' => 200, 'msg' => 'Login Successful!'];
                         } else {
                             return ['status' => 500, 'error' => ['email' => 'Invalid credentials! Try again.']];
@@ -170,8 +170,8 @@ class UserAuthRepository
             $input = $request->input();
             $validator = Validator::make($input, [
                 'name' => 'required',
-                'username' => 'required',
                 'email' => 'required',
+                'website' => 'nullable|url'
             ]);
             if ($validator->fails()) {
                 return ['status' => 500, 'error' => $validator->errors()];
@@ -182,8 +182,10 @@ class UserAuthRepository
                 return ['status' => 500, 'error' => ['error' => ['Invalid Request!']]];
             }
             $user->name = $input['name'];
-            $user->username = $input['username'];
             $user->email = $input['email'];
+            $user->avatar = $input['avatar'] ?? null;
+            $user->bio = $input['bio'] ?? null;
+            $user->website = $input['website'] ?? null;
             $user->updated_at = Carbon::now('UTC');
             $user->save();
             DB::commit();
@@ -224,6 +226,26 @@ class UserAuthRepository
             return ['status' => 200, 'msg' => 'The password has been changed successfully.'];
         } catch (\Exception $e) {
             DB::rollBack();
+            return ['status' => 500, 'error' => $e->getMessage()];
+        }
+    }
+
+
+    public static function UpdateAvatar($request)
+    {
+        try {
+            $input = $request->input();
+            $validator = Validator::make($input, [
+                'avatar' => 'required'
+            ]);
+            if ($validator->fails()) {
+                return ['status' => 500, 'error' => $validator->errors()];
+            }
+            $user = User::where('id', Auth::id())->first();
+            $user->avatar = $input['avatar'];
+            $user->save();
+            return ['status' => 200, 'msg' => 'Avatar has been changed successfully.'];
+        } catch (\Exception $e) {
             return ['status' => 500, 'error' => $e->getMessage()];
         }
     }

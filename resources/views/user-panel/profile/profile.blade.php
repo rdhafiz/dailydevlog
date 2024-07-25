@@ -43,18 +43,24 @@
                                 <div class="error-report text-red-500 text-sm mt-2" v-if="error != null && error.name !== undefined" v-text="error.name[0]"></div>
                             </div>
                             <div class="mb-5">
-                                <label for="username" class="block font-semibold"> Username </label>
-                                <input id="username" type="text" name="username" v-model="profileParam.username"
-                                       class="py-5 pe-5 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white"
-                                       placeholder="Enter your username">
-                                <div class="error-report text-red-500 text-sm mt-2" v-if="error != null && error.username !== undefined" v-text="error.username[0]"></div>
-                            </div>
-                            <div class="mb-5">
                                 <label for="email" class="block font-semibold"> Email </label>
                                 <input id="email" type="email" name="email" v-model="profileParam.email"
                                        class="py-5 pe-5 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white"
                                        placeholder="Enter your email">
                                 <div class="error-report text-red-500 text-sm mt-2" v-if="error != null && error.email !== undefined" v-text="error.email[0]"></div>
+                            </div>
+                            <div class="mb-5">
+                                <label for="bio" class="block font-semibold"> Bio </label>
+                                <textarea name="bio" id="bio"
+                                          class="resize-0 py-5 pe-5 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white" placeholder="Enter your bio" v-model="profileParam.bio"></textarea>
+                                <div class="error-report text-red-500 text-sm mt-2" v-if="error != null && error.bio !== undefined" v-text="error.bio[0]"></div>
+                            </div>
+                            <div class="mb-5">
+                                <label for="website" class="block font-semibold"> Website </label>
+                                <input id="website" type="text" name="website" v-model="profileParam.website"
+                                       class="py-5 pe-5 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white"
+                                       placeholder="Enter website url">
+                                <div class="error-report text-red-500 text-sm mt-2" v-if="error != null && error.website !== undefined" v-text="error.website[0]"></div>
                             </div>
                             <div class="flex justify-start items-center">
                                 <button type="submit" class="btn-theme rounded-md w-[120px]" v-if="!profileUpdateLoading">

@@ -47,7 +47,6 @@
                         class="hidden absolute right-0 z-10 mt-4 w-[150px] origin-top-right p-0 bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none rounded-2xl overflow-hidden"
                         id="dropdown">
                         <div role="none">
-                            <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
                             <a href="#" class="flex justify-start p-3 transition duration-500 hover:bg-gray-300"
                                role="menuitem" tabindex="-1" id="menu-item-0" onclick="lightMode()">
                                 <img src="{{asset('/images/header/light.svg')}}" class="w-[24px] h-[24px]" alt="light">
@@ -62,10 +61,25 @@
                     </div>
                 </div>
                 @if(\Illuminate\Support\Facades\Auth::check())
-                    <a href="{{route('user.panel.profile')}}"
-                        class="w-[45px] h-[45px] dark:bg-cyan-600 bg-gray-400 rounded-full flex justify-center items-center">
-                        @{{nameControl()}}
-                    </a>
+                    <div class="relative inline-block text-left" id="user-menu">
+                        <div id="userToggle">
+                            <div class="w-[45px] h-[45px] dark:bg-cyan-600 bg-gray-400 rounded-full flex justify-center items-center cursor-pointer"  @click="userDropdown">
+                                @{{nameControl()}}
+                            </div>
+                        </div>
+                        <div
+                            class="hidden absolute right-0 z-10 mt-4 w-[150px] origin-top-right p-0 bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none rounded-md overflow-hidden"
+                            id="user-dropdown">
+                            <div role="none">
+                                <a href="{{route('user.panel.profile')}}" class="flex justify-start p-3 transition duration-500 text-cyan-500 hover:bg-gray-300">
+                                    Profile
+                                </a>
+                                <a href="{{route('user.panel.post')}}" class="flex justify-start p-3 transition duration-500 text-cyan-500 hover:bg-gray-300">
+                                    Post
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                     <a href="javascript:void(0)" class="btn-theme rounded-2xl px-5" v-if="!logoutLoading" @click="logout">
                         Logout
                     </a>

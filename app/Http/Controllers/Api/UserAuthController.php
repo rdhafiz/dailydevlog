@@ -50,4 +50,9 @@ class UserAuthController extends Controller
         $rv = UserAuthRepository::ChangePassword($request);
         return response()->json($rv, 200);
     }
+    public function UpdateAvatar(Request $request)
+    {
+        $rv = UserAuthRepository::UpdateAvatar($request);
+        return response()->json($rv, 200);
+    }
 }

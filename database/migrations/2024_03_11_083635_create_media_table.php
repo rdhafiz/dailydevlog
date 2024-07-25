@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('media', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('content');
-            $table->string('slug');
-            $table->string('category');
-            $table->unsignedInteger('author_id')->nullable();
+            $table->string('filename');
+            $table->string('mime_type');
+            $table->string('file_type')->default('image');
+            $table->boolean('is_temporary')->default(true);
+            $table->text('metadata')->nullable(); // New field for serialized and encrypted metadata
             $table->dateTime('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();
         });
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('media');
     }
 };

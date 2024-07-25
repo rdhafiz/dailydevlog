@@ -8,7 +8,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Symfony\Component\HttpFoundation\Response;
 
-class ArticleRequest extends FormRequest
+class CategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,11 +26,10 @@ class ArticleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string',
-            'content' => 'required|string',
+            'name' => 'required|string',
             'slug' => 'required|string',
-            'category' => 'required|string',
-            'author_id' => 'nullable|integer',
+            'description' => 'nullable|string',
+            'parent_id' => 'nullable|integer',
         ];
     }
     /**

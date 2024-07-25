@@ -25,7 +25,8 @@ Route::group(
         Route::get('/forget-password', [UserPanelController::class, 'forgetPassword'])->name('user.panel.forget.password');
 
         Route::get('/profile', [UserPanelController::class, 'profile'])->name('user.panel.profile');
-        Route::get('/articles', [UserPanelController::class, 'articles'])->name('user.panel.articles');
+        Route::get('/post', [UserPanelController::class, 'post'])->name('user.panel.post');
+        Route::get('/post/{id}', [UserPanelController::class, 'managePost'])->name('user.panel.manage.post');
 
     }
 );

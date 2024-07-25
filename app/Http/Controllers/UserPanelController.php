@@ -32,9 +32,14 @@ class UserPanelController extends BaseController
         return view('user-panel.profile.profile');
     }
 
-    public function articles()
+    public function post()
     {
-        return view('user-panel.profile.articles');
+        return view('user-panel.post.post');
+    }
+
+    public function managePost()
+    {
+        return view('user-panel.post.manage');
     }
 
 }

@@ -66,23 +66,23 @@
                                 <td class="w-[250px] py-3"> @{{each.views_count}} </td>
                                 <td class="w-[250px] py-3"> @{{each.is_featured}} </td>
                                 <td class="w-[250px] py-3"> @{{each.allow_comments}} </td>
-                                <td class="w-[250px] py-3"> 
-                                <div class="relative inline-block text-left" id="action-menu">
-                                    <div id="actionToggle" @click="actionDropdown">
-                                        action
-                                    </div>
-                                <div class="hidden absolute right-0 z-10 mt-4 w-[150px] origin-top-right p-0 bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none rounded-md overflow-hidden"
-                                    id="action-dropdown">
-                                        <div role="none">
-                                            <a :href="'/post/'+each.id" class="cursor-pointer flex justify-start p-3 transition duration-500 text-cyan-500 hover:bg-gray-300">
-                                                Edit
-                                            </a>
-                                            <button type="button" @click="deletePost(each.id)" class="w-full cursor-pointer flex justify-start p-3 transition duration-500 text-cyan-500 hover:bg-gray-300">
-                                                Delete
-                                            </a>
+                                <td class="w-[250px] py-3">
+                                    <div class="relative inline-block text-left" id="action-menu">
+                                        <div id="actionToggle" @click="actionDropdown(each.id)">
+                                            action
+                                        </div>
+                                    <div class="hidden absolute right-0 z-10 mt-4 w-[150px] origin-top-right p-0 bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none rounded-md overflow-hidden"
+                                        :id="'action-dropdown'+each.id">
+                                            <div role="none">
+                                                <a :href="'/post/'+each.id" class="cursor-pointer flex justify-start p-3 transition duration-500 text-cyan-500 hover:bg-gray-300">
+                                                    Edit
+                                                </a>
+                                                <button type="button" @click="deletePost(each.id)" class="w-full cursor-pointer flex justify-start p-3 transition duration-500 text-cyan-500 hover:bg-gray-300">
+                                                    Delete
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>    
                                 </td>
                             </tr>
                         </tbody>

@@ -37,9 +37,13 @@ class UserPanelController extends BaseController
         return view('user-panel.post.post');
     }
 
-    public function managePost()
+    public function managePost(Request $request, $id)
     {
-        return view('user-panel.post.manage');
+        $rv = [
+            'id' => $id
+        ];
+
+        return view('user-panel.post.manage', $rv);
     }
 
 }

@@ -3,8 +3,8 @@
 
     <div id="post">
     <div class="border border-cyan-100 dark:border-cyan-900 bg-cyan-100 dark:bg-cyan-800 rounded-3xl p-10">
-        <form @submit.prevent="managePost">
-            <div class="mb-7 text-2xl md:text-4xl font-bold"> <span v-if="postParam.id === undefined"> Create </span> <span v-if="postParam.id !== undefined"> Edit </span> Post </div>
+        <form @submit.prevent="managePost()">
+            <div class="mb-7 text-2xl md:text-4xl font-bold"> <span v-if="this.websiteUrl.pathname.split('/').pop() === 'new'"> Create </span> <span v-if="this.websiteUrl.pathname.split('/').pop() !== 'new'"> Edit </span> Post </div>
             <div class="w-full flex-wrap flex">
                 <div class="mb-5 w-full md:w-1/2 px-4">
                     <label for="title" class="block font-semibold"> Title </label>
@@ -23,7 +23,7 @@
                 </div>
                 <div class="mb-5 w-full md:w-1/2 px-4">
                     <label for="category" class="block font-semibold"> Category </label>
-                    <div class="relative inline-block text-left w-full" id="categoryDropdown" @click="categpryDropdown">
+                    <div class="relative inline-block text-left w-full" id="categoryDropdown" @click="categoryDropdown">
                     <div class="py-5 pe-5 w-full border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white h-[65px]" id="insertToggle">
                         <span class="cursor-pointer border-0 outline-0 bg-cyan-400 py-2 px-5 inline-block duration-500 hover:bg-cyan-700 relative" v-if="insertedData">
                             @{{insertedData}}
@@ -95,15 +95,15 @@
                 <div class="mb-5 w-full md:w-1/2 px-4">
                     <label for="is_featured" class="block font-semibold"> Is Featured? </label>
                     <select name="is_featured" id="is_featured" v-model="postParam.is_featured" class="py-5 pe-5 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white">
-                        <option value="true" class="text-black">Yes</option>
-                        <option value="false" class="text-black">No</option>
+                        <option value="1" class="text-black">Yes</option>
+                        <option value="0" class="text-black">No</option>
                     </select>
                 </div>
                 <div class="mb-5 w-full md:w-1/2 px-4">
                     <label for="allow_comment" class="block font-semibold"> Allow Comment </label>
                     <select name="allow_comments" id="allow_comments" v-model="postParam.allow_comments" class="py-5 pe-5 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white">
-                        <option value="true" class="text-black">Yes</option>
-                        <option value="false" class="text-black">No</option>
+                        <option value="1" class="text-black">Yes</option>
+                        <option value="0" class="text-black">No</option>
                     </select>
                 </div>
                 <div class="mb-5 w-full px-4">
@@ -119,10 +119,10 @@
                 </div>
                 <div class="flex justify-end items-center px-4">
                     <button type="submit" class="btn-theme w-[120px] rounded-lg" v-if="!manageLoading">
-                        <span v-if="postParam.id === undefined">
+                        <span v-if="this.websiteUrl.pathname.split('/').pop() === 'new'">
                             Save
                         </span>
-                        <span v-if="postParam.id !== undefined">
+                        <span v-if="this.websiteUrl.pathname.split('/').pop() !== 'new'">
                             Update
                         </span>
                     </button>
@@ -138,6 +138,6 @@
         </div>
     </div>
 
-    <script src="{{asset('/js/post.js')}}"></script>
+    <script src="{{asset('/js/single-post.js')}}"></script>
 
 @endsection

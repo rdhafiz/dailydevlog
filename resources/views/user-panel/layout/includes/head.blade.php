@@ -7,10 +7,9 @@
     <!--Stylesheets-->
     @vite('resources/scss/style.scss')
     <!--JS-->
-    <script src="{{'/js/theme.js'}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.0.0-alpha.1/axios.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="{{asset('/js/theme.js')}}"></script>
+    {{-- axios --}}
+    <script src="{{asset('/js/axios/dist/axios.min.js')}}"></script>
     {{-- vuejs --}}
     <script src="{{asset('/js/vue.min.js')}}"></script>
 </head>

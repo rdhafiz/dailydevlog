@@ -27,7 +27,7 @@
         </div>
 
         <div class="flex flex-wrap" v-if="tableData.length > 0 && !loading">
-            <div class="w-full sm:w-full md:w-1/2 lg:w-1/3 p-2" v-for="(each) in tableData">
+            <div class="w-full sm:w-full md:w-1/2 lg:w-1/3 p-2 flex" v-for="(each) in tableData">
                 <div class="border dark:border-gray-500 p-5 rounded-2xl group bg-gray-100 dark:bg-gray-800">
                     <img :src="'/storage/media/'+each?.featured_image" class="bg-cover w-full rounded-2xl object-cover h-[350px]"
                          alt="blog">
@@ -73,7 +73,7 @@
             </div>
         </div>
 
-        <div class="mt-5 flex justify-center items-center" v-if="tableData.length > 0 && loading === false">
+        <div class="mt-5 flex justify-center items-center" v-if="tableData.length > 0 && loading === false && last_page > 1">
             <div class="flex justify-center items-center gap-x-1">
                 <div @click="PrevPage()">
                     <a href="javascript:void(0)" class="p-2 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg">

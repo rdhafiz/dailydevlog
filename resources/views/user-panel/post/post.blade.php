@@ -57,16 +57,16 @@
                                     Title
                                 </th>
                                 <th class="w-[250px] p-3 text-start">
+                                    Slug
+                                </th>
+                                <th class="w-[250px] p-3 text-start">
                                     Status
                                 </th>
                                 <th class="w-[250px] p-3 text-start">
-                                    Views count
+                                    Views
                                 </th>
                                 <th class="w-[250px] p-3 text-start">
-                                    featured
-                                </th>
-                                <th class="w-[250px] p-3 text-start">
-                                    comments access
+                                    Created
                                 </th>
                                 <th class="w-[250px] p-3 text-center">
                                     Action
@@ -81,16 +81,16 @@
                                     @{{each.title}}
                                 </td>
                                 <td class="w-[250px] p-3 text-start">
+                                    @{{each.slug}}
+                                </td>
+                                <td class="w-[250px] p-3 text-start">
                                     @{{each.status}}
                                 </td>
                                 <td class="w-[250px] p-3 text-start">
                                     @{{each.views_count}}
                                 </td>
                                 <td class="w-[250px] p-3 text-start">
-                                    @{{each.is_featured}}
-                                </td>
-                                <td class="w-[250px] p-3 text-start">
-                                    @{{each.allow_comments}}
+                                    @{{each.created_at_format}}
                                 </td>
                                 <td class="w-[250px] p-3">
                                     <div class="flex justify-center gap-x-5 items-center">
@@ -156,7 +156,7 @@
                 </div>
 
                 <!-- Pagination Start -->
-                <div class="mt-5 flex justify-center items-center" v-if="tableData.length > 0 && loading === false">
+                <div class="mt-5 flex justify-center items-center" v-if="tableData.length > 0 && loading === false && last_page > 1">
                     <div class="flex justify-center items-center gap-x-1">
                         <div @click="PrevPage()">
                             <a href="javascript:void(0)" class="p-2 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg">

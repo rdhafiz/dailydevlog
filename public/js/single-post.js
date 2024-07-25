@@ -58,7 +58,7 @@ new Vue({
                     this.error = response.data.error
                 } else {
                     this.manageLoading = false;
-                    this.window.location.href = '/post';
+                    window.location.href = '/post';
                 }
             }).catch(err => {
                 this.manageLoading = false;

@@ -34,7 +34,7 @@
                             <div class="absolute top-0 end-0 bottom-0 start-0 flex justify-center items-center rounded-full w-full h-full duration-500 group-hover:bg-black group-hover:bg-opacity-30">
                                 <span class="duration-500 opacity-0 group-hover:opacity-100">
                                                                     <button type="button"
-                                                                            class="outline-0 border-0 flex justify-center items-center duration-500 bg-transparent w-[45px] h-[45px] rounded-lg"
+                                                                            class="outline-0 border-0 flex justify-center items-center duration-500 bg-red-400 hover:bg-red-600 rounded-full w-[45px] h-[45px]"
                                                                             @click="deleteAvatar($event)">
                                     <svg viewBox="0 0 24 24" class="w-[24px] h-[24px]" fill="none"
                                          xmlns="http://www.w3.org/2000/svg">

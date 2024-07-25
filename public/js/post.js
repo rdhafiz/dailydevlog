@@ -5,7 +5,7 @@ new Vue({
         deleteLoading: false,
         formData: {
             keyword: '',
-            limit: 1,
+            limit: 20,
             page: 1,
         },
         total_pages: 0,

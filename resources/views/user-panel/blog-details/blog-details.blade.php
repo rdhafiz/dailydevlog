@@ -39,8 +39,8 @@
                 <div class="w-full lg:w-2/3">
                     <div class="flex justify-between items-center mt-10 w-full flex-wrap gap-5">
                         <div class="flex items-center justify-start">
-                            <img v-if="this.postParam?.author.avatar !== null" :src="'/storage/media/'+this.postParam?.author?.avatar" class="w-[45px] h-[45px] rounded-full object-cover bg-cover" alt="avatar">
-                            <div v-if="this.postParam?.author.avatar === null" class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-cyan-600">
+                            <img v-if="this.postParam?.author?.avatar !== null" :src="'/storage/media/'+this.postParam?.author?.avatar" class="w-[45px] h-[45px] rounded-full object-cover bg-cover" alt="avatar">
+                            <div v-if="this.postParam?.author?.avatar === null" class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-cyan-600">
                                 @{{ nameControl(this.postParam?.author?.name) }}
                             </div>
                             <div class="ms-3">
@@ -48,7 +48,7 @@
                                     @{{ this.postParam?.author?.name }}
                                 </div>
                                 <div class="text-sm dark:text-gray-500 font-semibold text-gray-400">
-                                    @{{ this.postParam?.author?.created_at_formated }}
+                                    @{{ this.postParam?.created_at_format }}
                                 </div>
                             </div>
                         </div>

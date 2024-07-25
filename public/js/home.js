@@ -29,8 +29,8 @@ new Vue({
             let headerContent = {
                 'Content-Type': 'application/json; charset=utf-8',
             }
-            this.tableData.page = this.current_page;
-            axios.get(`/api/front/posts`, {params: this.tableData}, {headers: headerContent}).then((response) => {
+            this.formData.page = this.current_page;
+            axios.get(`/api/front/posts`, {params: this.formData}, {headers: headerContent}).then((response) => {
                 let res = response.data
                 this.loading = false;
                 this.tableData = res.data
@@ -43,6 +43,30 @@ new Vue({
                 let res = err?.response;
             })
         },
+
+        /* Function of previous page call */
+        PrevPage() {
+            if (this.current_page > 1) {
+                this.current_page = this.current_page - 1;
+                this.listBlog()
+            }
+        },
+
+        /* Function of next page call */
+        NextPage() {
+            if (this.current_page < this.total_pages) {
+                this.current_page = this.current_page + 1;
+                this.listBlog()
+            }
+        },
+
+        /* Function of change page call */
+        pageChange(page)
+        {
+            this.current_page = page;
+            this.listBlog()
+        },
+
 
     },
     mounted(){

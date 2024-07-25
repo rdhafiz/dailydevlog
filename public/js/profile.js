@@ -161,7 +161,6 @@ new Vue({
 
         /* --- --- --- function of update avatar api --- --- --- */
         updateAvatar() {
-            this.uploadLoading = true;
             let _this = this;
             let headerContent = {
                 'Content-Type': 'application/json; charset=utf-8',
@@ -176,11 +175,18 @@ new Vue({
                         _this.msg = null;
                     }, 3000);
                 }
-            })
+            }).catch(err => {
+                this.uploadLoading = false;
+                let res = err?.response;
+                if (res?.data?.errors !== undefined) {
+                    this.error = res?.data?.errors;
+                }
+            });
         },
 
         /* F */
         deleteAvatar(event) {
+            this.uploadLoading = true;
             this.profileParam.avatar = null
             this.updateAvatar()
         },

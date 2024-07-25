@@ -25,7 +25,6 @@ new Vue({
                 'Content-Type': 'application/json; charset=utf-8',
             }
             axios.get(`/api/front/posts/`+this.postId, this.postParam, {headers: headerContent}).then((response) => {
-                console.log(response)
                 this.postParam = response?.data
             }).catch(err => {
                 this.manageLoading = false;

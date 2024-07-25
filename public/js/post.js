@@ -5,7 +5,7 @@ new Vue({
         deleteLoading: false,
         formData: {
             keyword: '',
-            limit: 20,
+            limit: 1,
             page: 1,
         },
         total_pages: 0,
@@ -14,7 +14,6 @@ new Vue({
         last_page: 0,
         loading: false,
         searchTimeout: null,
-
     },
     methods: {
 
@@ -38,14 +37,15 @@ new Vue({
             let headerContent = {
                 'Content-Type': 'application/json; charset=utf-8',
             }
-            this.tableData.page = this.current_page;
-            axios.get(`/api/front/posts`, {params: this.tableData}, {headers: headerContent}).then((response) => {
+            this.formData.page = this.current_page;
+            axios.get(`/api/front/posts`, {params: this.formData}, {headers: headerContent}).then((response) => {
                 let res = response.data
                 this.loading = false;
-                this.tableData = res?.data
-                this.total_pages = res?.data?.total < res.data.per_page ? 1 : Math.ceil((res.data.total / res.data.per_page));
-                this.current_page = res?.data?.current_page;
-                this.buttons = [...Array(this.total_pages).keys()].map((i) => i + 1);
+                this.tableData = res.data
+                this.last_page = res.last_page
+                this.total_pages = res.total < res.per_page ? 1 : Math.ceil((res.total / res.per_page))
+                this.current_page = res.current_page;
+                this.buttons = [...Array(this.total_pages).keys()].map(i => i + 1);
             }).catch(err => {
                 this.loading = false;
                 let res = err?.response;
@@ -85,7 +85,7 @@ new Vue({
             });
         },
 
-        /* Function of previous page */
+        /* Function of previous page call */
         PrevPage() {
             if (this.current_page > 1) {
                 this.current_page = this.current_page - 1;
@@ -93,7 +93,7 @@ new Vue({
             }
         },
 
-        /* Function of next page */
+        /* Function of next page call */
         NextPage() {
             if (this.current_page < this.total_pages) {
                 this.current_page = this.current_page + 1;
@@ -101,10 +101,11 @@ new Vue({
             }
         },
 
-        /* Function of page change */
-        pageChange(page) {
+        /* Function of change page call */
+        pageChange(page)
+        {
             this.current_page = page;
-            this.listPost();
+            this.listPost()
         },
 
 

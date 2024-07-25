@@ -32,13 +32,12 @@ new Vue({
             this.tableData.page = this.current_page;
             axios.get(`/api/front/posts`, {params: this.tableData}, {headers: headerContent}).then((response) => {
                 let res = response.data
-                console.log(res)
                 this.loading = false;
-                this.tableData = res?.data
-                this.last_page = res?.data?.last_page
-                this.total_pages = res?.data?.total < res.data.per_page ? 1 : Math.ceil((res.data.total / res.data.per_page));
-                this.current_page = res?.data?.current_page;
-                this.buttons = [...Array(this.total_pages).keys()].map((i) => i + 1);
+                this.tableData = res.data
+                this.last_page = res.last_page
+                this.total_pages = res.total < res.per_page ? 1 : Math.ceil((res.total / res.per_page))
+                this.current_page = res.current_page;
+                this.buttons = [...Array(this.total_pages).keys()].map(i => i + 1);
             }).catch(err => {
                 this.loading = false;
                 let res = err?.response;

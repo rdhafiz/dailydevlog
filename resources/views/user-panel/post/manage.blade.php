@@ -1,7 +1,7 @@
 @extends('user-panel.layout.layout')
 @section('content')
 
-    <div id="post">
+    <div id="post" class="p-4">
         <div class="border border-cyan-100 dark:border-cyan-900 bg-cyan-100 dark:bg-cyan-800 rounded-3xl p-10">
             <form @submit.prevent="managePost()">
                 <div class="mb-7 text-2xl md:text-4xl font-bold"><span
@@ -63,7 +63,7 @@
 
                                 <div v-if="categories.length > 0" v-for="(each, index) in categories">
                                     <span class="cursor-pointer border-0 outline-0 bg-cyan-400 py-1 ps-4 pe-3 inline-block rounded-md duration-500 hover:bg-cyan-700">
-                                        <span class="flex justify-between items-center gap-x-2">
+                                        <span class="flex justify-between items-center gap-x-2 text-white">
                                             @{{ each.name }}
                                             <svg viewBox="0 0 24 24" fill="none" class="w-[16px] h-[16px]" xmlns="http://www.w3.org/2000/svg" @click="removeData(index)">
                                                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>

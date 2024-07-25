@@ -10,7 +10,7 @@
                         class="px-5 py-10 w-full border border-cyan-100 dark:border-cyan-900 bg-cyan-100 dark:bg-cyan-800 rounded-3xl flex justify-center items-center flex-col">
 
                         <label for="upload-profile-avatar" v-if="profileParam.avatar === null && !uploadLoading"
-                               class="cursor-pointer w-[200px] lg:w-[250px] h-[200px] lg:h-[250px] dark:bg-cyan-600 bg-gray-400 rounded-full text-5xl lg:text-7xl flex justify-center items-center">
+                               class="cursor-pointer w-[200px] lg:w-[250px] h-[200px] lg:h-[250px] text-white dark:bg-cyan-600 bg-gray-400 rounded-full text-5xl lg:text-7xl flex justify-center items-center">
                             @{{nameControl()}}
                             <input id="upload-profile-avatar" type="file" name="avatar" hidden="hidden"
                                    @change="uploadFile($event)">

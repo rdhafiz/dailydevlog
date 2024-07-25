@@ -63,7 +63,7 @@
                 @if(\Illuminate\Support\Facades\Auth::check())
                     <div class="relative inline-block text-left" id="user-menu">
                         <div id="userToggle">
-                            <div class="w-[45px] h-[45px] dark:bg-cyan-600 bg-gray-400 rounded-full flex justify-center items-center cursor-pointer"  @click="userDropdown">
+                            <div class="w-[45px] h-[45px] text-white dark:bg-cyan-600 bg-gray-400 rounded-full flex justify-center items-center cursor-pointer"  @click="userDropdown">
                                 @{{nameControl()}}
                             </div>
                         </div>

@@ -30,6 +30,7 @@ class PostRequest extends FormRequest
             'title' => 'required|string',
             'slug' => 'required|string',
             'content' => 'required|string',
+            'category_ids' => 'required|string',
             'featured_image' => 'nullable|string',
             'status' => 'required|string',
             'views_count' => 'nullable|integer',
@@ -44,6 +45,13 @@ class PostRequest extends FormRequest
      *
      * @return array
      */
+
+    public function messages(): array
+    {
+        return [
+            'category_ids.required' => 'The category IDs field is required.',
+        ];
+    }
 
     protected function failedValidation(Validator $validator)
     {

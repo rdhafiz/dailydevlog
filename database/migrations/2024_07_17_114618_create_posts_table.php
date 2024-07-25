@@ -17,9 +17,10 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->longText('content');
+            $table->string('category_ids');
             $table->string('featured_image')->nullable();
             $table->enum('status', ['draft', 'published', 'archived'])->default('draft');
-            $table->dateTime('published_at')->nullable()->useCurrent();
+            $table->dateTime('published_at')->nullable();
             $table->unsignedInteger('views_count')->default(0);
             $table->string('meta_title')->nullable();
             $table->text('meta_description')->nullable();

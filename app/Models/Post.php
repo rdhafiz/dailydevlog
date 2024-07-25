@@ -11,8 +11,10 @@ class Post extends Model
         'title',
         'slug',
         'content',
+        'category_ids',
         'featured_image',
         'status',
+        'published_at',
         'views_count',
         'meta_title',
         'meta_description',
@@ -28,7 +30,6 @@ class Post extends Model
 
 
 
-
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -38,14 +39,14 @@ class Post extends Model
         'created_at',
         'updated_at',
     ];
-    protected $appends = ['categories', 'created_at_format'];
+    protected $appends = ['created_at_format', 'published_at_format', 'categories'];
 
     public function getCategoriesAttribute()
     {
-        $post_categories = PostCategory::with('category')->where('post_id', $this->id)->get()->toArray();
+        $categories = PostCategory::with('category')->where('post_id', $this->id)->get()->toArray();
         $rv = [];
-        foreach ($post_categories as $each){
-            $rv[] = array($each);
+        foreach ($categories as $each){
+            $rv[] = array($each['category']);
         }
         return $rv;
     }
@@ -53,6 +54,14 @@ class Post extends Model
     public function getCreatedAtFormatAttribute()
     {
         if (isset($this->attributes['created_at'])) {
+            return date('d/m/Y', strtotime($this->attributes['created_at']));
+        }
+        return null;
+    }
+
+    public function getPublishedAtFormatAttribute()
+    {
+        if (isset($this->attributes['published_at'])) {
             return date('d/m/Y', strtotime($this->attributes['created_at']));
         }
         return null;

@@ -8,9 +8,9 @@
                     <div class="text-2xl font-semibold mb-2"> Welcome to Daily Dev Blog! 👋🏻 </div>
                     <div class="mb-5 text-sm"> Please sign-in to your account and start the adventure </div>
                     <div class="mb-5">
-                        <label for="username" class="block dark:text-cyan-600 font-semibold"> Email </label>
-                        <input id="username" type="text" name="username" class="outline-0 w-full py-3 border border-transparent border-b-2 border-b-cyan-200 dark:border-b-gray-600 bg-transparent" v-model="loginParam.username" placeholder="Enter your username">
-                        <div class="error-report text-red-500 text-sm mt-2" v-if="error != null && error.username !== undefined" v-text="error.username[0]"></div>
+                        <label for="email" class="block dark:text-cyan-600 font-semibold"> Email </label>
+                        <input id="email" type="text" name="email" class="outline-0 w-full py-3 border border-transparent border-b-2 border-b-cyan-200 dark:border-b-gray-600 bg-transparent" v-model="loginParam.email" placeholder="Enter your email">
+                        <div class="error-report text-red-500 text-sm mt-2" v-if="error != null && error.email !== undefined" v-text="error.email[0]"></div>
                     </div>
                     <div class="mb-5">
                         <label for="password" class="block dark:text-cyan-600 font-semibold"> Password </label>

@@ -3,7 +3,7 @@ new Vue({
     data: {
         loading: false,
         loginParam: {
-            username: '',
+            email: '',
             password: '',
         },
         error: '',

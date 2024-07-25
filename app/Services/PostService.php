@@ -9,20 +9,22 @@ class PostService
 {
     public function createPost(array $data)
     {
-        /*This will update tomorrow
+
         $post = Post::create($data);
+        $category_ids_array = explode(',', $data['category_ids']);
+        $data['category_ids'] = $category_ids_array;
             if(count($data['category_ids']) > 0){
                 foreach ($data['category_ids'] as $each){
-                    $pageSlideData = [
+                    $postCategoryData = [
                         'post_id' => $post->id,
                         'category_id' => $each ?? null,
                     ];
-                    self::createPostCategories($pageSlideData);
+                    self::createPostCategories($postCategoryData);
                 }
             }
-        */
 
-        return Post::create($data);
+
+        return $post;
     }
 
     public function createPostCategories(array $data)
@@ -36,9 +38,15 @@ class PostService
         return $post;
     }
 
-    public function deletePost(Post $slide)
+    public function deletePost(Post $post)
     {
-        $slide->delete();
+        $post->delete();
+        self::deletePostCategories([$post['id']]);
+    }
+
+    public function deletePostCategories(array $ids)
+    {
+        return PostCategory::whereIn('post_id', $ids)->delete();
     }
 
     public function getAllPost(array $filter)

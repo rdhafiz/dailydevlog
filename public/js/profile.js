@@ -63,7 +63,6 @@ new Vue({
         },
 
         /* --- --- --- function of two word --- --- --- */
-        // Function of name control
         nameControl() {
             if (this.profileData && this.profileData.name) {
                 let fullName = this.profileData.name;

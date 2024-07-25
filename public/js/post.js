@@ -14,6 +14,7 @@ new Vue({
         last_page: 0,
         loading: false,
         searchTimeout: null,
+
     },
     methods: {
 
@@ -84,6 +85,29 @@ new Vue({
                 }
             });
         },
+
+        /* Function of previous page */
+        PrevPage() {
+            if (this.current_page > 1) {
+                this.current_page = this.current_page - 1;
+                this.listPost()
+            }
+        },
+
+        /* Function of next page */
+        NextPage() {
+            if (this.current_page < this.total_pages) {
+                this.current_page = this.current_page + 1;
+                this.listPost()
+            }
+        },
+
+        /* Function of page change */
+        pageChange(page) {
+            this.current_page = page;
+            this.listPost();
+        },
+
 
     },
     mounted(){

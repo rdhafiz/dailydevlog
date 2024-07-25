@@ -30,9 +30,12 @@
                 </div>
             </div>
 
-            <div class="px-3" v-if="tableData.length === 0 && !loading">
-                <div class="w-full h-[100vh] flex justify-center items-center text-gray-400">
-                    Do not have any data
+            <div class="px-3 mt-5" v-if="tableData.length === 0 && !loading">
+                <div class="w-full overflow-hidden rounded-3xl h-[100vh] flex justify-center items-center border-2 border-cyan-500 flex-col">
+                    <div class="text-sm mb-3 text-cyan-600 dark:text-gray-500 font-medium">
+                        Do not have any data
+                    </div>
+                    <div class="font-medium text-cyan-600 dark:text-gray-500">Click “New +” to create new post.</div>
                 </div>
             </div>
 
@@ -41,35 +44,35 @@
                     <table class="w-[1510px]">
 
                         <!-- header -->
-                        <thead class="w-full border-b-2 border-b-cyan-400">
+                        <thead class="w-full border-b-2 border-b-cyan-400 dark:bg-gray-800">
                             <tr>
-                                <th class="w-[250px] py-3"> Image </th>
-                                <th class="w-[250px] py-3"> Title </th>
-                                <th class="w-[250px] py-3"> Slug </th>
-                                <th class="w-[250px] py-3"> Content </th>
-                                <th class="w-[250px] py-3"> Status </th>
-                                <th class="w-[250px] py-3"> Views count </th>
-                                <th class="w-[250px] py-3"> featured </th>
-                                <th class="w-[250px] py-3"> comments access </th>
-                                <th class="w-[250px] py-3"> Action </th>
+                                <th class="w-[250px] p-3"> Title </th>
+                                <th class="w-[250px] p-3"> Status </th>
+                                <th class="w-[250px] p-3"> Views count </th>
+                                <th class="w-[250px] p-3"> featured </th>
+                                <th class="w-[250px] p-3"> comments access </th>
+                                <th class="w-[250px] p-3"> Action </th>
                             </tr>
                         </thead>
 
                         <!-- list -->
                         <tbody>
                             <tr class="text-center" v-for="(each) in tableData">
-                                <td class="w-[250px] py-3"> <span v-if="each.featured_image === null"> No Image </span> <span v-if="each.featured_image !== null"> exist image </span> </td>
-                                <td class="w-[250px] py-3 text-start "> @{{each.title}} </td>
-                                <td class="w-[250px] py-3"> @{{each.slug}} </td>
-                                <td class="w-[250px] py-3 text-start "> @{{each.content}} </td>
-                                <td class="w-[250px] py-3"> @{{each.status}} </td>
-                                <td class="w-[250px] py-3"> @{{each.views_count}} </td>
-                                <td class="w-[250px] py-3"> @{{each.is_featured}} </td>
-                                <td class="w-[250px] py-3"> @{{each.allow_comments}} </td>
-                                <td class="w-[250px] py-3">
+                                <td class="w-[250px] p-3 text-start "> @{{each.title}} </td>
+                                <td class="w-[250px] p-3"> @{{each.status}} </td>
+                                <td class="w-[250px] p-3"> @{{each.views_count}} </td>
+                                <td class="w-[250px] p-3"> @{{each.is_featured}} </td>
+                                <td class="w-[250px] p-3"> @{{each.allow_comments}} </td>
+                                <td class="w-[250px] p-3">
                                     <div class="relative inline-block text-left" id="action-menu">
-                                        <div id="actionToggle" @click="actionDropdown(each.id)">
-                                            action
+                                        <div id="actionToggle" class="cursor-pointer" @click="actionDropdown(each.id)">
+                                            <svg class="fill-black dark:fill-white w-[25px]" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                                <g id="SVGRepo_iconCarrier">
+                                                    <path class="cls-1" d="M8,6.5A1.5,1.5,0,1,1,6.5,8,1.5,1.5,0,0,1,8,6.5ZM.5,8A1.5,1.5,0,1,0,2,6.5,1.5,1.5,0,0,0,.5,8Zm12,0A1.5,1.5,0,1,0,14,6.5,1.5,1.5,0,0,0,12.5,8Z"></path>
+                                                </g>
+                                            </svg>
                                         </div>
                                     <div class="hidden absolute right-0 z-10 mt-4 w-[150px] origin-top-right p-0 bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none rounded-md overflow-hidden"
                                         :id="'action-dropdown'+each.id">
@@ -90,37 +93,90 @@
 
                 </div>
 
-
-                        <!-- pagination -->
-                        <div class="mt-5">
-                            <ul class="flex justify-center items-center">
-                                <li>
-                                    <button type="button" class="p-3 border border-cyan-400 outline-0 w-[45px] h-[45px] flex justify-center items-center">
-                                        1
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="p-3 border border-cyan-400 outline-0 w-[45px] h-[45px] flex justify-center items-center">
-                                        2
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="p-3 border border-cyan-400 outline-0 w-[45px] h-[45px] flex justify-center items-center">
-                                        3
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="p-3 border border-cyan-400 outline-0 w-[45px] h-[45px] flex justify-center items-center">
-                                        4
-                                    </button>
-                                </li>
-                                <li>
-                                    <button type="button" class="p-3 border border-cyan-400 outline-0 w-[45px] h-[45px] flex justify-center items-center">
-                                        5
-                                    </button>
-                                </li>
-                            </ul>
+                <!-- Pagination Start -->
+                <div class="mt-5 flex justify-center items-center" v-if="tableData.length > 0 && loading === false">
+                    <div class="flex justify-center items-center">
+                        <div @click="PrevPage()">
+                            <a class="p-3 border border-cyan-400 outline-0 w-[45px] h-[45px] flex justify-center items-center" href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                     fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                     stroke-linejoin="round" class="acorn-icons acorn-icons-chevron-left undefined">
+                                    <path
+                                        d="M13 16L7.35355 10.3536C7.15829 10.1583 7.15829 9.84171 7.35355 9.64645L13 4"></path>
+                                </svg>
+                            </a>
                         </div>
+                        <div v-if="buttons.length <= 6">
+                            <div v-for="(page, index) in buttons"
+                                 :class="{'active': current_page == page}">
+                                <a class="p-3 border border-cyan-400 outline-0 w-[45px] h-[45px] flex justify-center items-center" @click="pageChange(page)" href="javascript:void(0)"
+                                   v-text="page"></a>
+                            </div>
+                        </div>
+                        <div v-if="buttons.length > 6">
+                            <div  :class="{'active': current_page == 1}">
+                                <a class="p-3 border border-cyan-400 outline-0 w-[45px] h-[45px] flex justify-center items-center" @click="pageChange(1)"
+                                   href="javascript:void(0)">1</a>
+                            </div>
+
+                            <div v-if="current_page > 3" >
+                                <a class="p-3 border border-cyan-400 outline-0 w-[45px] h-[45px] flex justify-center items-center" @click="pageChange(current_page - 2)"
+                                   href="javascript:void(0)">...</a>
+                            </div>
+
+                            <div v-if="current_page == buttons.length"
+                                 :class="{'active': current_page == (current_page - 2)}">
+                                <a class="p-3 border border-cyan-400 outline-0 w-[45px] h-[45px] flex justify-center items-center" @click="pageChange(current_page - 2)"
+                                   href="javascript:void(0)" v-text="current_page - 2"></a>
+                            </div>
+
+                            <div v-if="current_page > 2"
+                                 :class="{'active': current_page == (current_page - 1)}">
+                                <a class="p-3 border border-cyan-400 outline-0 w-[45px] h-[45px] flex justify-center items-center" @click="pageChange(current_page - 1)"
+                                   href="javascript:void(0)" v-text="current_page - 1"></a>
+                            </div>
+
+                            <div v-if="current_page != 1 && current_page != buttons.length" active">
+                                <a class="p-3 border border-cyan-400 outline-0 w-[45px] h-[45px] flex justify-center items-center" @click="pageChange(current_page)" href="javascript:void(0)"
+                                   v-text="current_page"></a>
+                            </div>
+
+                            <div v-if="current_page < buttons.length - 1"
+                                 :class="{'active': current_page == (current_page + 1)}">
+                                <a class="p-3 border border-cyan-400 outline-0 w-[45px] h-[45px] flex justify-center items-center" @click="pageChange(current_page + 1)"
+                                   href="javascript:void(0)" v-text="current_page + 1"></a>
+                            </div>
+
+                            <div v-if="current_page == 1"
+                                 :class="{'active': current_page == (current_page + 2)}">
+                                <a class="p-3 border border-cyan-400 outline-0 w-[45px] h-[45px] flex justify-center items-center" @click="pageChange(current_page + 2)"
+                                   href="javascript:void(0)" v-text="current_page + 2"></a>
+                            </div>
+
+                            <div v-if="current_page < buttons.length - 2" >
+                                <a class="p-3 border border-cyan-400 outline-0 w-[45px] h-[45px] flex justify-center items-center" @click="pageChange(current_page + 2)"
+                                   href="javascript:void(0)">...</a>
+                            </div>
+
+                            <div  :class="{'active': current_page == (current_page - buttons.length)}">
+                                <a class="p-3 border border-cyan-400 outline-0 w-[45px] h-[45px] flex justify-center items-center" @click="pageChange(buttons.length)"
+                                   href="javascript:void(0)" v-text="buttons.length"></a>
+                            </div>
+                        </div>
+                        <div  @click="NextPage()">
+                            <a class="page-link" href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                     fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                     stroke-linejoin="round" class="acorn-icons acorn-icons-chevron-right undefined">
+                                    <path
+                                        d="M7 4L12.6464 9.64645C12.8417 9.84171 12.8417 10.1583 12.6464 10.3536L7 16"></path>
+                                </svg>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- Pagination End -->
 
             </div>
 

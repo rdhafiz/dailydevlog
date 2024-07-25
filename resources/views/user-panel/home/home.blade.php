@@ -3,12 +3,12 @@
 
     <div id="home">
 
-        <div class="w-full" v-if="tableData.length === 0 && !loading">
+        <div class="w-full px-4" v-if="tableData.length === 0 && !loading">
             <div class="w-full overflow-hidden rounded-3xl h-[100vh] flex justify-center items-center border-2 border-cyan-500 flex-col">
-                <div class="text-sm mb-3 text-cyan-600 dark:text-gray-700 font-medium">
+                <div class="text-sm md:text-2xl mb-3 text-cyan-600 dark:text-gray-700 font-medium">
                     Do not have any data
                 </div>
-                <div class="font-medium text-cyan-600 dark:text-gray-700">Click “New +” to create new post.</div>
+                <div class="md:text-3xl font-medium text-cyan-600 dark:text-gray-700">Click “New +” to create new post.</div>
             </div>
         </div>
 

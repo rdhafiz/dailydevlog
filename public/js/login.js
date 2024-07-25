@@ -5,6 +5,7 @@ new Vue({
         loginParam: {
             email: '',
             password: '',
+            remember: '',
         },
         error: '',
         logoutLoading:false,
@@ -38,6 +39,7 @@ new Vue({
                     this.loginParam = {
                         email: '',
                         password: '',
+                        remember: '',
                     };
                 }
             }).catch(err => {

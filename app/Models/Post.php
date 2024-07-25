@@ -46,7 +46,7 @@ class Post extends Model
         $categories = PostCategory::with('category')->where('post_id', $this->id)->get()->toArray();
         $rv = [];
         foreach ($categories as $each){
-            $rv[] = array($each['category']);
+            $rv[] = $each['category'];
         }
         return $rv;
     }

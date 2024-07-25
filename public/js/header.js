@@ -107,22 +107,28 @@ new Vue({
             /*hide search container*/
             const searchBtn = document.querySelector('#searchBtn');
             const searchDropDown = document.querySelector('#search-dropdown');
-            if (!searchBtn.contains(e.target) && !searchDropDown.contains(e.target)) {
-                searchDropDown.classList.add('hidden');
+            if(searchBtn && searchDropDown) {
+                if (!searchBtn.contains(e.target) && !searchDropDown.contains(e.target)) {
+                    searchDropDown.classList.add('hidden');
+                }
             }
 
             /*hide theme container*/
             const themeSwitch = document.querySelector('#themeSwitch');
             const dropDown = document.querySelector('#dropdown');
-            if (!themeSwitch.contains(e.target) && !dropDown.contains(e.target)) {
-                dropDown.classList.add('hidden');
+            if(themeSwitch && dropDown) {
+                if (!themeSwitch.contains(e.target) && !dropDown.contains(e.target)) {
+                    dropDown.classList.add('hidden');
+                }
             }
 
             /*hide theme container*/
             const userBtn = document.querySelector('#userToggle');
             const userDropDown = document.querySelector('#user-dropdown');
-            if (!userBtn.contains(e.target) && !userDropDown.contains(e.target)) {
-                userDropDown.classList.add('hidden');
+            if(userBtn && userDropDown) {
+                if (!userBtn.contains(e.target) && !userDropDown.contains(e.target)) {
+                    userDropDown.classList.add('hidden');
+                }
             }
         })
     }

@@ -62,18 +62,17 @@ class UserAuthRepository
 
             if ($userInfo == null) {
                 $userModel = User::whereNull('email_verified_at')->where(function ($q) use ($input) {
-                    $q->where('email', $input['username']);
-                    $q->orWhere('username', $input['username']);
+                    $q->where('email', $input['email']);
                 })->first();
                 if ($userModel == null) {
-                    return ['status' => 500, 'error' => ['username' => ['User not found. Please double-check your credentials.']]];
+                    return ['status' => 500, 'error' => ['email' => ['User not found. Please double-check your credentials.']]];
                 }
 
                 Mail::send('emails.verify', ['user' => $userModel], function ($message) use ($userModel) {
                     $message->to($userModel->email, $userModel->name)->subject('Activate your glow account');
                     $message->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
                 });
-                return ['status' => 500, 'error' => ['username' => ['Your account has not been verified yet. Please check your email to verify your account.']]];
+                return ['status' => 500, 'error' => ['email' => ['Your account has not been verified yet. Please check your email to verify your account.']]];
             }
         } catch (\Exception $e) {
             return ['status' => 500, 'error' => $e->getMessage()];
@@ -236,7 +235,7 @@ class UserAuthRepository
         try {
             $input = $request->input();
             $validator = Validator::make($input, [
-                'avatar' => 'required'
+                'avatar' => 'nullable'
             ]);
             if ($validator->fails()) {
                 return ['status' => 500, 'error' => $validator->errors()];

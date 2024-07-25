@@ -13,12 +13,6 @@ class Category extends Model
         'parent_id',
     ];
 
-
-    public function author()
-    {
-        return $this->belongsTo(User::class,'author_id', 'id');
-    }
-
     /**
      * The attributes that should be hidden for serialization.
      *

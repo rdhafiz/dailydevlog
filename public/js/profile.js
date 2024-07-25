@@ -3,9 +3,11 @@ new Vue({
     data: {
         profileLoading: false,
         profileParam: {
+            avatar: null,
             name: '',
-            username: '',
             email: '',
+            bio: '',
+            website: '',
         },
         passwordParam: {
             current_password: '',
@@ -18,6 +20,7 @@ new Vue({
         error: '',
         logoutLoading: false,
         msg: null,
+        uploadLoading: false,
     },
     mounted() {
         this.profileDetails();
@@ -60,7 +63,6 @@ new Vue({
         },
 
         /* --- --- --- function of two word --- --- --- */
-        // Function of name control
         nameControl() {
             if (this.profileData && this.profileData.name) {
                 let fullName = this.profileData.name;
@@ -155,6 +157,57 @@ new Vue({
                     this.error = res?.data?.errors;
                 }
             });
+        },
+
+        /* --- --- --- function of update avatar api --- --- --- */
+        updateAvatar() {
+            let _this = this;
+            let headerContent = {
+                'Content-Type': 'application/json; charset=utf-8',
+            }
+            _this.msg = null;
+            axios.post(`/api/front/user/update-avatar`, this.profileParam, {headers: headerContent}).then((response) => {
+                if(response.data.status === 200) {
+                    this.uploadLoading = false;
+                    this.msg = response?.data?.msg
+                    _this.msg = response?.data?.msg
+                    setTimeout(function(){
+                        _this.msg = null;
+                    }, 3000);
+                }
+            }).catch(err => {
+                this.uploadLoading = false;
+                let res = err?.response;
+                if (res?.data?.errors !== undefined) {
+                    this.error = res?.data?.errors;
+                }
+            });
+        },
+
+        /* F */
+        deleteAvatar(event) {
+            this.uploadLoading = true;
+            this.profileParam.avatar = null
+            this.updateAvatar()
+        },
+
+        /* --- --- --- function of attach file api --- --- --- */
+        uploadFile(event) {
+            let headerContent = {
+                'Content-Type': 'multipart/form-data',
+            }
+            this.uploadLoading = true;
+            let file = event.target.files[0];
+            let formData = new FormData();
+            formData.append("file", file)
+            axios.post(`/api/front/media`, formData, {headers: headerContent}).then((response) => {
+                if (response) {
+                    this.profileParam.avatar = response?.data?.filename
+                    this.updateAvatar();
+                } else {
+                    this.error = response?.data?.errors
+                }
+            })
         },
 
     },

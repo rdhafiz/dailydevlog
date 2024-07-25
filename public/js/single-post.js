@@ -19,6 +19,7 @@ new Vue({
         insertedData: '',
         searchTimeout: null,
         websiteUrl: new URL(window.location.href),
+        postId: null,
     },
     methods: {
 
@@ -38,10 +39,10 @@ new Vue({
 
         /* --- --- --- manage post api --- --- --- */
         managePost() {
-            if(this.websiteUrl.pathname.split('/').pop() !== 'new') {
-                this.updatePost()
-            }else {
+            if(this.websiteUrl.pathname.split('/').pop() === 'new') {
                 this.createPost()
+            }else {
+                this.updatePost()
             }
         },
 
@@ -53,7 +54,7 @@ new Vue({
                 'Content-Type': 'application/json; charset=utf-8',
             }
             this.error = null;
-            axios.post(`/api/front/posts`, this.postParam, {headers: headerContent}).then((response) => {
+            axios.put(`/api/front/posts/`+this.postId, this.postParam, {headers: headerContent}).then((response) => {
                 if (response.data.error) {
                     this.manageLoading = false;
                     this.error = response.data.error
@@ -101,7 +102,7 @@ new Vue({
             let headerContent = {
                 'Content-Type': 'application/json; charset=utf-8',
             }
-            axios.get(`/api/front/posts/`+id, this.postParam, {headers: headerContent}).then((response) => {
+            axios.get(`/api/front/posts/`+this.postId, this.postParam, {headers: headerContent}).then((response) => {
                 if (response.data.error) {
                     this.manageLoading = false;
                     this.error = response.data.error
@@ -152,6 +153,7 @@ new Vue({
     mounted(){
 
         if(this.websiteUrl.pathname.split('/').pop() !== 'new') {
+            this.postId = this.websiteUrl.pathname.split('/').pop();
             this.singlePost();
         }
 

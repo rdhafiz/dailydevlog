@@ -236,7 +236,7 @@ class UserAuthRepository
         try {
             $input = $request->input();
             $validator = Validator::make($input, [
-                'avatar' => 'required'
+                'avatar' => 'nullable'
             ]);
             if ($validator->fails()) {
                 return ['status' => 500, 'error' => $validator->errors()];

@@ -6,7 +6,7 @@ new Vue({
             slug: '',
             content: '',
             featured_image: null,
-            category: 'category',
+            category_ids: [],
             status: 'draft',
             meta_title: '',
             meta_description: '',
@@ -20,14 +20,12 @@ new Vue({
         searchTimeout: null,
         websiteUrl: new URL(window.location.href),
         postId: null,
+        categoryLoading: false,
+        categoryData: [],
+        categories: [],
+        categoryIds: [],
     },
     methods: {
-
-        /* Function of action dropdown */
-        actionDropdown() {
-            let actionDropDownMenu = document.querySelector('#action-menu #action-dropdown');
-            actionDropDownMenu.classList.toggle('hidden');
-        },
 
         /* --- --- --- function of clear error handler --- --- --- */
         ClearErrorHandler() {
@@ -79,6 +77,7 @@ new Vue({
                 'Content-Type': 'application/json; charset=utf-8',
             }
             this.error = null;
+            this.postParam.category_ids = JSON.parse(JSON.stringify(this.categoryIds)).join(',');
             axios.post(`/api/front/posts`, this.postParam, {headers: headerContent}).then((response) => {
                 if (response.data.error) {
                     this.manageLoading = false;
@@ -139,8 +138,18 @@ new Vue({
         },
 
         /* Function of insert data */
-        insertData(event) {
-            this.insertedData = event.target.innerText
+        insertData(each) {
+            const category = this.categories.find((category) => category.id === each.id);
+            if(!category) {
+                this.categories.push(each)
+                this.categoryIds.push(each.id)
+            }
+        },
+
+        /* Function of remove data */
+        removeData(index) {
+            this.categories.splice(index, 1)
+            this.categoryIds.splice(index, 1)
         },
 
         /* Function of category dropdown */
@@ -149,8 +158,21 @@ new Vue({
             userDropDownMenu.classList.toggle('hidden');
         },
 
+        /* Function of category list */
+        listCategory() {
+            this.categoryLoading = true;
+            let headerContent = {
+                'Content-Type': 'application/json; charset=utf-8',
+            }
+            axios.get(`/api/front/categories`, {headers: headerContent}).then((response) => {
+                this.categoryData = response?.data?.data
+            })
+        },
+
     },
     mounted(){
+
+        this.listCategory()
 
         if(this.websiteUrl.pathname.split('/').pop() !== 'new') {
             this.postId = this.websiteUrl.pathname.split('/').pop();
@@ -158,15 +180,6 @@ new Vue({
         }
 
         window.addEventListener('mouseup', (e) => {
-
-            /*hide action content*/
-            const actionBtn = document.querySelector('#actionToggle');
-            const actionDropDown = document.querySelector('#action-dropdown');
-            if(actionBtn && actionDropDown) {
-                if (!actionBtn.contains(e.target) && !actionDropDown.contains(e.target)) {
-                    actionDropDown.classList.add('hidden');
-                }
-            }
 
             /*hide action content*/
             const categoryBtn = document.querySelector('#insertToggle');

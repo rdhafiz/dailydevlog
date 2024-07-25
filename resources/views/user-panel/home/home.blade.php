@@ -3,6 +3,15 @@
 
     <div id="home">
 
+        <div class="w-full" v-if="tableData.length === 0 && !loading">
+            <div class="w-full overflow-hidden rounded-3xl h-[100vh] flex justify-center items-center border-2 border-cyan-500 flex-col">
+                <div class="text-sm mb-3 text-cyan-600 dark:text-gray-700 font-medium">
+                    Do not have any data
+                </div>
+                <div class="font-medium text-cyan-600 dark:text-gray-700">Click “New +” to create new post.</div>
+            </div>
+        </div>
+
         <div class="flex flex-wrap" v-if="tableData.length > 0 && !loading">
             <div class="w-full sm:w-full md:w-1/2 lg:w-1/3 p-2" v-for="(each) in tableData">
                 <div class="border dark:border-gray-500 p-5 rounded-2xl group bg-gray-100 dark:bg-gray-800">
@@ -36,7 +45,7 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="{{route('user.panel.blog.details')}}" class="decoration-0">
+                        <a :href="'/blog-details/'+each.id" class="decoration-0">
                             <div class="relative w-[100px] h-[55px] text-gray-400 hover:text-blue-400 dark:text-blue-400 dark:hover:text-cyan-400">
                                 <div class="w-[55px] h-[55px] bg-white rounded-full dark:bg-gray-900"></div>
                                 <div
@@ -48,17 +57,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="py-4 flex justify-center items-center">
-            <a href="javascript:void(0)" class="btn-theme px-10 rounded-2xl">
-            <span class="flex justify-center items-center">
-                Show more post
-                <span class="ms-2">
-                   <img src="{{asset('/images/home/arrow-right.svg')}}" class="w-[18px] h-[18px]" alt="arrow-right">
-                </span>
-            </span>
-            </a>
         </div>
 
     </div>

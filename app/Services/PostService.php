@@ -64,6 +64,6 @@ class PostService
 
     public function getPostById($id)
     {
-        return Post::findOrFail($id);
+        return Post::with('author')->findOrFail($id);
     }
 }

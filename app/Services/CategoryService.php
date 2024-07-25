@@ -25,7 +25,7 @@ class CategoryService
 
     public function getAllCategory(array $filter)
     {
-        $rv = Category::with('author')->orderBy($filter['orderBy'], $filter['order']);
+        $rv = Category::orderBy($filter['orderBy'], $filter['order']);
         if (!empty($filter['keyword'])) {
             $rv->where(function($q) use ($filter) {
                 $q->where('title', 'LIKE', '%'.$filter['keyword'].'%');

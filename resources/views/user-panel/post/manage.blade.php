@@ -35,118 +35,68 @@
                     </div>
                     <div class="mb-5 w-full md:w-1/2 px-4">
                         <label for="category" class="block font-semibold"> Category </label>
-                        <div class="relative inline-block text-left w-full" id="categoryDropdown"
-                             @click="categoryDropdown">
-                            <div
-                                class="py-5 pe-5 w-full border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white h-[65px]"
+                        <div class="relative inline-block text-left w-full" id="categoryDropdown">
+                            <div :class="{'py-5 pe-5' : categories.length === 0, 'py-3 pe-5' : categories.length > 0 }"
+                                class="w-full border-0 border-b border-b-cyan-400 bg-transparent text-black outline-0 dark:text-white flex flex-wrap gap-2"
                                 id="insertToggle">
-                                <span v-if="!insertedData" class="w-full flex justify-between items-center">
+                                <span v-if="categories.length === 0" class="w-full">
                                     Select Category
-
-                                    <svg viewBox="0 0 24 24" class="w-[26px] h-[26px]" fill="none"
-                                         xmlns="http://www.w3.org/2000/svg">
-                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
-                                           stroke-linejoin="round"></g>
-                                        <g id="SVGRepo_iconCarrier">
-                                            <g id="Arrow / Caret_Down_MD">
-                                                <path id="Vector" d="M16 10L12 14L8 10"
-                                                      class="stroke-black dark:stroke-white" stroke-width="2"
-                                                      stroke-linecap="round" stroke-linejoin="round"></path>
-                                            </g>
-                                        </g>
-                                    </svg>
-
                                 </span>
-                                <span
-                                    class="cursor-pointer border-0 outline-0 bg-cyan-400 py-2 px-4 inline-block rounded-md duration-500 hover:bg-cyan-700 relative"
-                                    v-if="insertedData">
-                                    <span class="flex justify-between items-center gap-x-2">
-                            @{{insertedData}}
 
-                                    <svg viewBox="0 0 24 24" fill="none" class="w-[16px] h-[16px]" xmlns="http://www.w3.org/2000/svg"><g
-                                            id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier"
-                                                                                           stroke-linecap="round"
-                                                                                           stroke-linejoin="round"></g><g
-                                            id="SVGRepo_iconCarrier"> <g clip-path="url(#clip0_429_11083)"> <path
-                                                    d="M7 7.00006L17 17.0001M7 17.0001L17 7.00006" stroke="#fff"
-                                                    stroke-width="2.5" stroke-linecap="round"
-                                                    stroke-linejoin="round"></path> </g> <defs> <clipPath
-                                                    id="clip0_429_11083"> <rect width="24" height="24"
-                                                                                fill="white"></rect> </clipPath> </defs> </g></svg>
+                                <div class="absolute end-0 top-0 bottom-0 flex items-center">
+                                    <button type="button" class="border-0 outline-0 bg-transparent">
+                                        <svg viewBox="0 0 24 24" class="w-[26px] h-[26px]" fill="none" @click="categoryDropdown"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                               stroke-linejoin="round"></g>
+                                            <g id="SVGRepo_iconCarrier">
+                                                <g id="Arrow / Caret_Down_MD">
+                                                    <path id="Vector" d="M16 10L12 14L8 10"
+                                                          class="stroke-black dark:stroke-white" stroke-width="2"
+                                                          stroke-linecap="round" stroke-linejoin="round"></path>
+                                                </g>
+                                            </g>
+                                        </svg>
+                                    </button>
+                                </div>
+
+                                <div v-if="categories.length > 0" v-for="(each, index) in categories">
+                                    <span class="cursor-pointer border-0 outline-0 bg-cyan-400 py-1 ps-4 pe-3 inline-block rounded-md duration-500 hover:bg-cyan-700">
+                                        <span class="flex justify-between items-center gap-x-2">
+                                            @{{ each.name }}
+                                            <svg viewBox="0 0 24 24" fill="none" class="w-[16px] h-[16px]" xmlns="http://www.w3.org/2000/svg" @click="removeData(index)">
+                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                                <g id="SVGRepo_iconCarrier">
+                                                    <g clip-path="url(#clip0_429_11083)">
+                                                        <path d="M7 7.00006L17 17.0001M7 17.0001L17 7.00006" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    </g>
+                                                    <defs>
+                                                        <clipPath id="clip0_429_11083">
+                                                            <rect width="24" height="24" fill="white"></rect>
+                                                        </clipPath>
+                                                    </defs>
+                                                </g>
+                                            </svg>
+                                        </span>
                                     </span>
-
-                        </span>
+                                </div>
                             </div>
                             <div
                                 class="absolute left-0 z-10 mt-1 w-full origin-top-left p-0 bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none rounded overflow-hidden hidden"
                                 id="inserted-dropdown">
                                 <div role="none" class="w-full max-h-[200px] overflow-y-scroll">
-                                    <button type="button"
-                                            class="border-0 outline-0 text-black block w-full text-start duration-500 p-3 hover:bg-black hover:text-white"
-                                            @click="insertData($event)">
-                                        Honda
-                                    </button>
-                                    <button type="button"
-                                            class="border-0 outline-0 text-black block w-full text-start duration-500 p-3 hover:bg-black hover:text-white"
-                                            @click="insertData($event)">
-                                        Modhi
-                                    </button>
-                                    <button type="button"
-                                            class="border-0 outline-0 text-black block w-full text-start duration-500 p-3 hover:bg-black hover:text-white"
-                                            @click="insertData($event)">
-                                        Hindi
-                                    </button>
-                                    <button type="button"
-                                            class="border-0 outline-0 text-black block w-full text-start duration-500 p-3 hover:bg-black hover:text-white"
-                                            @click="insertData($event)">
-                                        Glindi
-                                    </button>
-                                    <button type="button"
-                                            class="border-0 outline-0 text-black block w-full text-start duration-500 p-3 hover:bg-black hover:text-white"
-                                            @click="insertData($event)">
-                                        Honda
-                                    </button>
-                                    <button type="button"
-                                            class="border-0 outline-0 text-black block w-full text-start duration-500 p-3 hover:bg-black hover:text-white"
-                                            @click="insertData($event)">
-                                        Modhi
-                                    </button>
-                                    <button type="button"
-                                            class="border-0 outline-0 text-black block w-full text-start duration-500 p-3 hover:bg-black hover:text-white"
-                                            @click="insertData($event)">
-                                        Hindi
-                                    </button>
-                                    <button type="button"
-                                            class="border-0 outline-0 text-black block w-full text-start duration-500 p-3 hover:bg-black hover:text-white"
-                                            @click="insertData($event)">
-                                        Glindi
-                                    </button>
-                                    <button type="button"
-                                            class="border-0 outline-0 text-black block w-full text-start duration-500 p-3 hover:bg-black hover:text-white"
-                                            @click="insertData($event)">
-                                        Honda
-                                    </button>
-                                    <button type="button"
-                                            class="border-0 outline-0 text-black block w-full text-start duration-500 p-3 hover:bg-black hover:text-white"
-                                            @click="insertData($event)">
-                                        Modhi
-                                    </button>
-                                    <button type="button"
-                                            class="border-0 outline-0 text-black block w-full text-start duration-500 p-3 hover:bg-black hover:text-white"
-                                            @click="insertData($event)">
-                                        Hindi
-                                    </button>
-                                    <button type="button"
-                                            class="border-0 outline-0 text-black block w-full text-start duration-500 p-3 hover:bg-black hover:text-white"
-                                            @click="insertData($event)">
-                                        Glindi
-                                    </button>
+                                    <div v-for="each in categoryData" class="w-full">
+                                        <button type="button" class="border-0 outline-0 text-black block w-full text-start duration-500 p-3 hover:bg-black hover:text-white" @click="insertData(each)">
+                                            @{{ each.name }}
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                             <div class="error-report text-red-500 text-sm mt-2"
-                                 v-if="error != null && error.category_id !== undefined"
-                                 v-text="error.category_id[0]"></div>
+                                 v-if="error != null && error.category_ids !== undefined"
+                                 v-text="error.category_ids[0]"></div>
                         </div>
                     </div>
                     <div class="mb-5 w-full md:w-1/2 px-4">

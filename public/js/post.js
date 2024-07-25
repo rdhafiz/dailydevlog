@@ -43,7 +43,6 @@ new Vue({
                 let res = response.data
                 this.loading = false;
                 this.tableData = res?.data
-                this.last_page = res?.data?.last_page
                 this.total_pages = res?.data?.total < res.data.per_page ? 1 : Math.ceil((res.data.total / res.data.per_page));
                 this.current_page = res?.data?.current_page;
                 this.buttons = [...Array(this.total_pages).keys()].map((i) => i + 1);

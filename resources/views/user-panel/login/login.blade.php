@@ -20,7 +20,7 @@
                     <div class="flex justify-between items-center font-medium flex-wrap mb-5">
                         <div class="mb-3">
                             <label for="remember-me" class="flex justify-start items-center cursor-pointer">
-                                <input id="remember-me" type="checkbox" class="me-2 form-checkbox">
+                                <input id="remember-me" v-model="loginParam.remember" type="checkbox" class="me-2 form-checkbox">
                                 Remember me
                             </label>
                         </div>

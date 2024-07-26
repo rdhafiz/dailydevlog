@@ -52,13 +52,14 @@ new Vue({
                 'Content-Type': 'application/json; charset=utf-8',
             }
             this.error = null;
+            this.postParam.category_ids = JSON.parse(JSON.stringify(this.categoryIds)).join(',');
             axios.put(`/api/front/posts/`+this.postId, this.postParam, {headers: headerContent}).then((response) => {
                 if (response.data.error) {
                     this.manageLoading = false;
                     this.error = response.data.error
                 } else {
                     this.manageLoading = false;
-                    window.location.href = '/post';
+                    // window.location.href = '/post';
                 }
             }).catch(err => {
                 this.manageLoading = false;
@@ -108,6 +109,10 @@ new Vue({
                 } else {
                     this.manageLoading = false;
                     this.postParam = response?.data
+                    this.categoryData = response?.data?.categories.forEach((i) => {
+                        this.categories.push(i)
+                        this.categoryIds.push(i.id)
+                    })
                 }
             }).catch(err => {
                 this.manageLoading = false;

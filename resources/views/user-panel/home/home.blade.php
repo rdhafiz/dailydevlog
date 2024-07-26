@@ -27,9 +27,9 @@
         </div>
 
         <div class="flex flex-wrap" v-if="tableData.length > 0 && !loading">
-            <div class="w-full sm:w-full md:w-1/2 lg:w-1/3 p-2 flex" v-for="(each) in tableData">
-                <div class="border dark:border-gray-500 p-5 rounded-2xl group bg-gray-100 dark:bg-gray-800">
-                    <img :src="'/storage/media/'+each?.featured_image" class="bg-cover w-full rounded-2xl object-cover h-[350px]"
+            <div class="w-full sm:w-full md:w-1/2 lg:w-1/2 xl:w-1/3 p-2 flex" v-for="(each) in tableData">
+                <div class="w-full border dark:border-gray-500 p-5 rounded-2xl group bg-gray-100 dark:bg-gray-800">
+                    <img :src="'/storage/media/'+each?.featured_image" class="bg-cover w-full rounded-2xl object-cover h-[300px]"
                          alt="blog">
                     <div
                         class="flex justify-between items-center mt-5 text-gray-600 dark:text-gray-400 text-sm font-medium">
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div
-                        class="text-2xl md:text-3xl lg:text-4xl font-bold transition-all duration-500 dark:text-cyan-600 dark:group-hover:text-cyan-400 text-gray-600 group-hover:text-blue-400 my-4">
+                        class="text-2xl md:min-h-[100px] md:text-3xl xl:text-4xl font-bold transition-all duration-500 dark:text-cyan-600 dark:group-hover:text-cyan-400 text-gray-600 group-hover:text-blue-400 my-4">
                         @{{ each.title }}
                     </div>
                     <div class="flex justify-between items-center">

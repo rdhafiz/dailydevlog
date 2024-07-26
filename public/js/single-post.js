@@ -172,6 +172,9 @@ new Vue({
     },
     mounted(){
 
+        var content = new RichTextEditor("#content");
+        var meta_description = new RichTextEditor("#meta_description");
+
         this.listCategory()
 
         if(this.websiteUrl.pathname.split('/').pop() !== 'new') {

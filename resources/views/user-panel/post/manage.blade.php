@@ -26,10 +26,9 @@
                              v-if="error != null && error.slug !== undefined" v-text="error.slug[0]"></div>
                     </div>
                     <div class="mb-5 w-full px-4">
-                        <label for="content" class="block font-semibold"> Content </label>
-                        <textarea name="content" id="content" v-model="postParam.content"
-                                  class="resize-0 py-5 pe-5 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white"
-                                  placeholder="Write your content here"></textarea>
+                        <label for="content" class="block font-semibold mb-5"> Content </label>
+                        <textarea name="content" v-model="postParam.content" id="content" placeholder="Write your content here"
+                                  class="resize-0 py-5 pe-5 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white"></textarea>
                         <div class="error-report text-red-500 text-sm mt-2"
                              v-if="error != null && error.content !== undefined" v-text="error.content[0]"></div>
                     </div>
@@ -37,15 +36,16 @@
                         <label for="category" class="block font-semibold"> Category </label>
                         <div class="relative inline-block text-left w-full" id="categoryDropdown">
                             <div :class="{'py-5 pe-5' : categories.length === 0, 'py-3 pe-5' : categories.length > 0 }"
-                                class="w-full border-0 border-b border-b-cyan-400 bg-transparent text-black outline-0 dark:text-white flex flex-wrap gap-2"
-                                id="insertToggle">
+                                 class="w-full border-0 border-b border-b-cyan-400 bg-transparent text-black outline-0 dark:text-white flex flex-wrap gap-2"
+                                 id="insertToggle">
                                 <span v-if="categories.length === 0" class="w-full">
                                     Select Category
                                 </span>
 
                                 <div class="absolute end-0 top-0 bottom-0 flex items-center">
                                     <button type="button" class="border-0 outline-0 bg-transparent">
-                                        <svg viewBox="0 0 24 24" class="w-[26px] h-[26px]" fill="none" @click="categoryDropdown"
+                                        <svg viewBox="0 0 24 24" class="w-[26px] h-[26px]" fill="none"
+                                             @click="categoryDropdown"
                                              xmlns="http://www.w3.org/2000/svg">
                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                                             <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
@@ -62,15 +62,20 @@
                                 </div>
 
                                 <div v-if="categories.length > 0" v-for="(each, index) in categories">
-                                    <span class="cursor-pointer border-0 outline-0 bg-cyan-400 py-1 ps-4 pe-3 inline-block rounded-md duration-500 hover:bg-cyan-700">
+                                    <span
+                                        class="cursor-pointer border-0 outline-0 bg-cyan-400 py-1 ps-4 pe-3 inline-block rounded-md duration-500 hover:bg-cyan-700">
                                         <span class="flex justify-between items-center gap-x-2 text-white">
                                             @{{ each.name }}
-                                            <svg viewBox="0 0 24 24" fill="none" class="w-[16px] h-[16px]" xmlns="http://www.w3.org/2000/svg" @click="removeData(index)">
+                                            <svg viewBox="0 0 24 24" fill="none" class="w-[16px] h-[16px]"
+                                                 xmlns="http://www.w3.org/2000/svg" @click="removeData(index)">
                                                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                   stroke-linejoin="round"></g>
                                                 <g id="SVGRepo_iconCarrier">
                                                     <g clip-path="url(#clip0_429_11083)">
-                                                        <path d="M7 7.00006L17 17.0001M7 17.0001L17 7.00006" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                                        <path d="M7 7.00006L17 17.0001M7 17.0001L17 7.00006"
+                                                              stroke="#fff" stroke-width="2.5" stroke-linecap="round"
+                                                              stroke-linejoin="round"></path>
                                                     </g>
                                                     <defs>
                                                         <clipPath id="clip0_429_11083">
@@ -88,7 +93,9 @@
                                 id="inserted-dropdown">
                                 <div role="none" class="w-full max-h-[200px] overflow-y-scroll">
                                     <div v-for="each in categoryData" class="w-full">
-                                        <button type="button" class="border-0 outline-0 text-black block w-full text-start duration-500 p-3 hover:bg-black hover:text-white" @click="insertData(each)">
+                                        <button type="button"
+                                                class="border-0 outline-0 text-black block w-full text-start duration-500 p-3 hover:bg-black hover:text-white"
+                                                @click="insertData(each)">
                                             @{{ each.name }}
                                         </button>
                                     </div>
@@ -112,18 +119,17 @@
                              v-if="error != null && error.status !== undefined" v-text="error.status[0]"></div>
                     </div>
                     <div class="mb-5 w-full md:w-1/2 px-4">
-                        <label for="title" class="block font-semibold"> Meta Title </label>
-                        <input id="title" type="text" name="meta_title" v-model="postParam.meta_title"
+                        <label for="meta_title" class="block font-semibold"> Meta Title </label>
+                        <input id="meta_title" type="text" name="meta_title" v-model="postParam.meta_title"
                                class="py-5 pe-5 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white"
                                placeholder="Enter your post Meta Title">
                         <div class="error-report text-red-500 text-sm mt-2"
                              v-if="error != null && error.meta_title !== undefined" v-text="error.meta_title[0]"></div>
                     </div>
                     <div class="mb-5 w-full px-4">
-                        <label for="meta_description" class="block font-semibold"> Meta Description </label>
-                        <textarea name="meta_description" id="meta_description" v-model="postParam.meta_description"
-                                  class="resize-0 py-5 pe-5 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white"
-                                  placeholder="Write your meta description"></textarea>
+                        <label for="meta_description" class="block font-semibold mb-5"> Meta Description </label>
+                        <textarea name="content" v-model="postParam.meta_description" id="meta_description" placeholder="Write your meta description"
+                                  class="resize-0 py-5 pe-5 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white"></textarea>
                         <div class="error-report text-red-500 text-sm mt-2"
                              v-if="error != null && error.meta_description !== undefined"
                              v-text="error.meta_description[0]"></div>

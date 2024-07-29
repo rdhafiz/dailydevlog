@@ -57,7 +57,7 @@
                         </div>
                     </div>
                     <div class="w-full my-10 font-semibold text-cyan-700">
-                        <div id="content_description" class="w-full dark:text-white flex justify-center items-center flex-col gap-3" v-html="postParam.content"></div>
+                        <div id="content_description" class="w-full dark:text-white flex flex-col justify-center items-center gap-5" v-html="postParam.content"></div>
                     </div>
                     <hr class="w-full border border-cyan-300 my-5 px-5 md:px-[120px]">
                     <div class="flex justify-start flex-wrap gap-3">

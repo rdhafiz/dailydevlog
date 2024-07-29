@@ -52,6 +52,9 @@ new Vue({
                 'Content-Type': 'application/json; charset=utf-8',
             }
             this.error = null;
+            this.postParam.category_ids = JSON.parse(JSON.stringify(this.categoryIds)).join(',');
+            this.postParam.content = document.getElementById('content_description').value;
+            this.postParam.meta_description = document.getElementById('meta_description').value;
             axios.put(`/api/front/posts/`+this.postId, this.postParam, {headers: headerContent}).then((response) => {
                 if (response.data.error) {
                     this.manageLoading = false;
@@ -99,6 +102,7 @@ new Vue({
 
         /* --- --- --- function of single post api --- --- --- */
         singlePost() {
+            let content_description = new RichTextEditor("#content_description");
             const id = this.websiteUrl.pathname.split('/').pop();
             let headerContent = {
                 'Content-Type': 'application/json; charset=utf-8',
@@ -106,10 +110,11 @@ new Vue({
             axios.get(`/api/front/posts/`+this.postId, this.postParam, {headers: headerContent}).then((response) => {
                 if (response.data.error) {
                     this.manageLoading = false;
-                    this.error = response.data.error
+                    this.error = response.data.error;
                 } else {
                     this.manageLoading = false;
                     this.postParam = response?.data
+                    content_description.setHTMLCode(this.postParam.content)
                 }
             }).catch(err => {
                 this.manageLoading = false;
@@ -174,8 +179,9 @@ new Vue({
     },
     mounted(){
 
-        let content_description = new RichTextEditor("#content_description");
-        let meta_description = new RichTextEditor("#meta_description");
+        if(this.websiteUrl.pathname.split('/').pop() === 'new') {
+            let content_description = new RichTextEditor("#content_description");
+        }
 
         this.listCategory()
 

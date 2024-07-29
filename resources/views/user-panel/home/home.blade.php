@@ -37,7 +37,7 @@
                             #Business #Food #Interior
                         </div>
                         <div>
-                            views @{{ each.views_count }}
+                            @{{ each.views_count }} views
                         </div>
                     </div>
                     <div

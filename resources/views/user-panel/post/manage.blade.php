@@ -127,9 +127,8 @@
                              v-if="error != null && error.meta_title !== undefined" v-text="error.meta_title[0]"></div>
                     </div>
                     <div class="mb-5 w-full px-4">
-                        <label for="meta_description" class="block font-semibold mb-5"> Meta Description </label>
-                        <textarea name="content" v-model="postParam.meta_description" id="meta_description" placeholder="Write your meta description"
-                                  class="resize-0 py-5 pe-5 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white"></textarea>
+                        <label for="meta_description" class="block font-semibold"> Meta Description </label>
+                        <textarea v-model="postParam.meta_description" class="py-5 pe-5 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white" name="meta_description" id="meta_description" cols="30" rows="5" placeholder="Enter your meta description"></textarea>
                         <div class="error-report text-red-500 text-sm mt-2"
                              v-if="error != null && error.meta_description !== undefined"
                              v-text="error.meta_description[0]"></div>

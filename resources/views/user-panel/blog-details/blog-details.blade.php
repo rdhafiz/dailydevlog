@@ -56,8 +56,8 @@
                             <img src="{{asset('/images/blog-details/linkedin.svg')}}" class="w-[18px]" alt="linkedin">
                         </div>
                     </div>
-                    <div class="my-10 font-semibold text-cyan-700">
-                        @{{ this.postParam?.content }}
+                    <div class="w-full my-10 font-semibold text-cyan-700">
+                        <div id="content_description" class="w-full dark:text-white flex justify-center items-center flex-col gap-3" v-html="postParam.content"></div>
                     </div>
                     <hr class="w-full border border-cyan-300 my-5 px-5 md:px-[120px]">
                     <div class="flex justify-start flex-wrap gap-3">

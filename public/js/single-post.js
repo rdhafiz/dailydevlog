@@ -78,6 +78,8 @@ new Vue({
             }
             this.error = null;
             this.postParam.category_ids = JSON.parse(JSON.stringify(this.categoryIds)).join(',');
+            this.postParam.content = document.getElementById('content_description').value;
+            this.postParam.meta_description = document.getElementById('meta_description').value;
             axios.post(`/api/front/posts`, this.postParam, {headers: headerContent}).then((response) => {
                 if (response.data.error) {
                     this.manageLoading = false;
@@ -172,8 +174,8 @@ new Vue({
     },
     mounted(){
 
-        var content = new RichTextEditor("#content");
-        var meta_description = new RichTextEditor("#meta_description");
+        let content_description = new RichTextEditor("#content_description");
+        let meta_description = new RichTextEditor("#meta_description");
 
         this.listCategory()
 

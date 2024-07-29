@@ -4,18 +4,13 @@
     <div id="single-details">
         <section class="w-full px-5 md:px-[120px]">
             <div class="flex justify-start items-center gap-x-2 flex-wrap">
-                <a href="javascript:void(0)"
+                <a href="{{route('user.panel.home')}}"
                    class="decoration-0 text-gray-400 dark:text-cyan-600 flex justify-center items-center">
                     <div
                         class="w-[35px] h-[35px] p-0 rounded-full bg-gradient-to-r from-blue-600 to-green-300 flex justify-center items-center me-2">
                         <img src="{{asset('/images/blog-details/home.svg')}}" class="w-[18px]" alt="home">
                     </div>
                     Home
-                </a>
-                <img src="{{asset('/images/blog-details/chevron-dot-right.svg')}}" class="w-[22px] h-[22px]"
-                     alt="chevron-dot-right.svg">
-                <a href="javascript:void(0)" class="decoration-0 text-gray-400 dark:text-cyan-600">
-                    Movie
                 </a>
                 <img src="{{asset('/images/blog-details/chevron-dot-right.svg')}}" class="w-[22px] h-[22px]"
                      alt="chevron-dot-right.svg">

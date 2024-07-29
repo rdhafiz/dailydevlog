@@ -2,7 +2,7 @@
     <div class="container mx-auto">
         <div class="w-full flex items-center h-[90px] px-3 sm:px-2 justify-between">
             <div class="w-auto sm:w-1/2 text-3xl font-bold">
-                <a href="{{route('user.panel.home')}}" class="decoration-0 text-gray-600">
+                <a href="{{route('user.panel.home')}}" class="decoration-0 text-gray-600 inline-block">
                     <img src="{{asset('/images/logo-dark.svg')}}" class="w-[75px] sm:w-auto md:w-[120px]" alt="logo-dark">
                 </a>
             </div>

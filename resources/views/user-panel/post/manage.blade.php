@@ -38,7 +38,7 @@
                             <div :class="{'py-5 pe-5' : categories.length === 0, 'py-3 pe-5' : categories.length > 0 }"
                                  class="w-full border-0 border-b border-b-cyan-400 bg-transparent text-black outline-0 dark:text-white flex flex-wrap gap-2"
                                  id="insertToggle">
-                                <span v-if="categories.length === 0" class="w-full">
+                                <span v-if="categories.length === 0" class="w-full" @click="categoryDropdown">
                                     Select Category
                                 </span>
 

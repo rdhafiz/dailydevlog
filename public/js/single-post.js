@@ -115,6 +115,7 @@ new Vue({
                     this.manageLoading = false;
                     this.postParam = response?.data
                     this.categories = response?.data?.categories;
+                    this.insertData(response?.data?.category_ids);
                     content_description.setHTMLCode(this.postParam.content)
                 }
             }).catch(err => {

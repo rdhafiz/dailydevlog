@@ -1,8 +1,8 @@
 @extends('user-panel.layout.layout')
 @section('content')
 
-    <div id="post" class="p-4">
-        <div class="border border-cyan-100 dark:border-cyan-900 bg-cyan-100 dark:bg-cyan-800 rounded-3xl p-10">
+    <div id="post" class="p-2 md:p-4">
+        <div class="border border-cyan-100 dark:border-cyan-900 bg-cyan-100 dark:bg-cyan-800 rounded-3xl p-5 md:p-10">
             <form @submit.prevent="managePost()">
                 <div class="mb-7 text-2xl md:text-4xl font-bold"><span
                         v-if="this.websiteUrl.pathname.split('/').pop() === 'new'"> Create </span> <span
@@ -151,7 +151,7 @@
                     </div>
                     <div class="mb-5 w-full px-4">
                         <div class="w-full md:w-1/2">
-                            <div class="relative">
+                            <div class="relative" v-if="!uploadLoading">
                                 <label for="upload-file"
                                        class="w-full h-[250px] flex justify-center items-center cursor-pointer border border-cyan-400 rounded-lg bg-transparent duration-500 hover:bg-cyan-400 hover:text-black fw-medium">
                                     <input type="file" id="upload-file" class="hidden" @change="uploadFile($event)">
@@ -160,7 +160,7 @@
                                 <div class="absolute top-0 bottom-0 start-0 end-0"
                                      v-if="postParam.featured_image !== null">
                                     <img :src="'/storage/media/'+postParam.featured_image"
-                                         class="w-full object-cover bg-cover h-[250px] border-4" alt="featured-image">
+                                         class="w-full object-contain bg-contain h-[250px]" alt="featured-image">
                                     <div class="absolute top-0 end-0 p-5">
                                         <button type="button"
                                                 class="outline-0 border-0 flex justify-center items-center duration-500 bg-red-500 hover:bg-red-800 w-[45px] h-[45px] rounded-lg"
@@ -191,6 +191,19 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <div v-if="uploadLoading">
+                                <div class="w-full h-[250px] flex justify-center items-center cursor-pointer border border-cyan-400 rounded-lg bg-transparent duration-500 hover:bg-cyan-400 hover:text-black fw-medium">
+                                    <svg class="h-[35px] mx-auto w-[35px] animate-spin text-white" xmlns="http://www.w3.org/2000/svg"
+                                         fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                                stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor"
+                                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                     <div class="flex justify-end items-center px-4">

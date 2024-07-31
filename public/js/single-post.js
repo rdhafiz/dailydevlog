@@ -167,6 +167,7 @@ new Vue({
         categoryDropdown() {
             let userDropDownMenu = document.querySelector('#categoryDropdown #inserted-dropdown');
             userDropDownMenu.classList.toggle('hidden');
+            console.log(434)
         },
 
         /* Function of category list */

@@ -91,11 +91,15 @@ new Vue({
         /* Function of scrolling header */
 
          onscroll() {
-            if (window.scrollY > 50) {
-                document.querySelector('.header').classList.add('border-effect');
-            } else {
-                document.querySelector('.header').classList.remove('border-effect');
-            }
+             const header = document.querySelector('.header');
+             if(header){
+                 if (window.scrollY > 50) {
+                     header.classList.add('border-effect');
+                 } else {
+                     header.classList.remove('border-effect');
+                 }
+             }
+
         }
     },
     mounted(){

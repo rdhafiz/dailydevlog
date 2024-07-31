@@ -243,7 +243,7 @@ class UserAuthRepository
             $user = User::where('id', Auth::id())->first();
             $user->avatar = $input['avatar'];
             $user->save();
-            return ['status' => 200, 'msg' => 'Avatar has been changed successfully.'];
+            return ['status' => 200, 'msg' => 'Avatar has been changed successfully.', 'avatar'=> $user->avatar];
         } catch (\Exception $e) {
             return ['status' => 500, 'error' => $e->getMessage()];
         }

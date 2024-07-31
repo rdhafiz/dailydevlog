@@ -169,8 +169,11 @@ new Vue({
             axios.post(`/api/front/user/update-avatar`, this.profileParam, {headers: headerContent}).then((response) => {
                 if(response.data.status === 200) {
                     this.uploadLoading = false;
-                    this.msg = response?.data?.msg
-                    _this.msg = response?.data?.msg
+                    console.log(response)
+                    this.msg = response?.data?.msg;
+                    if(response?.data?.avatar){
+                        document.getElementById('header_avatar').src = `/storage/media/${response?.data?.avatar}`
+                    }
                     setTimeout(function(){
                         _this.msg = null;
                     }, 3000);

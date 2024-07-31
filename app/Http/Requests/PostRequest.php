@@ -49,7 +49,7 @@ class PostRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'category_ids.required' => 'The category IDs field is required.',
+            'category_ids.required' => 'The category field is required.',
         ];
     }
 

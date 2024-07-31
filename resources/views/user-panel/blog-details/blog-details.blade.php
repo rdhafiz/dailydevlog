@@ -4,18 +4,13 @@
     <div id="single-details">
         <section class="w-full px-5 md:px-[120px]">
             <div class="flex justify-start items-center gap-x-2 flex-wrap">
-                <a href="javascript:void(0)"
+                <a href="{{route('user.panel.home')}}"
                    class="decoration-0 text-gray-400 dark:text-cyan-600 flex justify-center items-center">
                     <div
                         class="w-[35px] h-[35px] p-0 rounded-full bg-gradient-to-r from-blue-600 to-green-300 flex justify-center items-center me-2">
                         <img src="{{asset('/images/blog-details/home.svg')}}" class="w-[18px]" alt="home">
                     </div>
                     Home
-                </a>
-                <img src="{{asset('/images/blog-details/chevron-dot-right.svg')}}" class="w-[22px] h-[22px]"
-                     alt="chevron-dot-right.svg">
-                <a href="javascript:void(0)" class="decoration-0 text-gray-400 dark:text-cyan-600">
-                    Movie
                 </a>
                 <img src="{{asset('/images/blog-details/chevron-dot-right.svg')}}" class="w-[22px] h-[22px]"
                      alt="chevron-dot-right.svg">
@@ -33,14 +28,16 @@
                     @{{ this.postParam?.title }}
                 </div>
             </div>
-            <img :src="'/storage/media/'+this.postParam?.featured_image" v-if="this.postParam.featured_image !== null" class="w-full h-[350px] lg:h-[550px] bg-cover object-cover rounded-2xl"
+            <img :src="'/storage/media/'+postParam?.featured_image" v-if="this.postParam.featured_image !== null" class="w-full h-[350px] lg:h-[550px] bg-cover object-cover rounded-2xl"
+                 alt="blog-details">
+            <img :src="'/images/default.png'" v-if="this.postParam.featured_image == null" class="w-full h-[350px] lg:h-[550px] bg-cover object-cover rounded-2xl"
                  alt="blog-details">
             <div class="flex justify-center">
                 <div class="w-full lg:w-2/3">
                     <div class="flex justify-between items-center mt-10 w-full flex-wrap gap-5">
                         <div class="flex items-center justify-start">
                             <img v-if="this.postParam?.author?.avatar !== null" :src="'/storage/media/'+this.postParam?.author?.avatar" class="w-[45px] h-[45px] rounded-full object-cover bg-cover" alt="avatar">
-                            <div v-if="this.postParam?.author?.avatar === null" class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-cyan-600">
+                            <div v-if="this.postParam?.author?.avatar === null" class="w-[45px] h-[45px] rounded-full flex justify-center items-center text-white bg-cyan-600">
                                 @{{ nameControl(this.postParam?.author?.name) }}
                             </div>
                             <div class="ms-3">
@@ -61,8 +58,8 @@
                             <img src="{{asset('/images/blog-details/linkedin.svg')}}" class="w-[18px]" alt="linkedin">
                         </div>
                     </div>
-                    <div class="my-10 font-semibold text-cyan-700">
-                        @{{ this.postParam?.content }}
+                    <div class="w-full my-10 font-semibold text-cyan-700">
+                        <div id="content_description" class="w-full text-black dark:text-white content_description" v-html="postParam.content"></div>
                     </div>
                     <hr class="w-full border border-cyan-300 my-5 px-5 md:px-[120px]">
                     <div class="flex justify-start flex-wrap gap-3">

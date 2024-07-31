@@ -14,6 +14,7 @@ new Vue({
         last_page: 0,
         loading: false,
         searchTimeout: null,
+        msg: null
     },
     methods: {
 
@@ -62,12 +63,14 @@ new Vue({
 
         /* Function of search list data */
         deletePost(id) {
+            let _this = this;
             this.ClearErrorHandler();
             this.deleteLoading = true;
             let headerContent = {
                 'Content-Type': 'application/json; charset=utf-8',
             }
             this.error = null;
+            _this.msg = null;
             axios.delete(`/api/front/posts/`+id, null, {headers: headerContent}).then((response) => {
                 if (response.data.error) {
                     this.deleteLoading = false;
@@ -75,6 +78,10 @@ new Vue({
                 } else {
                     this.deleteLoading = false;
                     this.listPost();
+                    this.msg = response?.data?.message;
+                    setTimeout(function(){
+                        _this.msg = null;
+                    }, 3000);
                 }
             }).catch(err => {
                 this.deleteLoading = false;

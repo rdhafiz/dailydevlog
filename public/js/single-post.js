@@ -52,21 +52,26 @@ new Vue({
                 'Content-Type': 'application/json; charset=utf-8',
             }
             this.error = null;
-            axios.put(`/api/front/posts/`+this.postId, this.postParam, {headers: headerContent}).then((response) => {
-                if (response.data.error) {
-                    this.manageLoading = false;
-                    this.error = response.data.error
-                } else {
-                    this.manageLoading = false;
-                    window.location.href = '/post';
-                }
-            }).catch(err => {
-                this.manageLoading = false;
-                let res = err?.response;
-                if (res?.data?.errors !== undefined) {
-                    this.error = res?.data?.errors;
-                }
-            });
+            this.postParam.category_ids = this.categories.map(each => each.id).join(',');
+            this.postParam.content = document.getElementById('content_description').value;
+            this.postParam.meta_description = document.getElementById('meta_description').value;
+             setTimeout(()=> {
+                 axios.put(`/api/front/posts/`+this.postId, this.postParam, {headers: headerContent}).then((response) => {
+                     if (response.data.error) {
+                         this.manageLoading = false;
+                         this.error = response.data.error
+                     } else {
+                         this.manageLoading = false;
+                         window.location.href = '/blogs';
+                     }
+                 }).catch(err => {
+                     this.manageLoading = false;
+                     let res = err?.response;
+                     if (res?.data?.errors !== undefined) {
+                         this.error = res?.data?.errors;
+                     }
+                 });
+             }, 500)
         },
 
         /* --- --- --- function of create api --- --- --- */
@@ -77,14 +82,18 @@ new Vue({
                 'Content-Type': 'application/json; charset=utf-8',
             }
             this.error = null;
-            this.postParam.category_ids = JSON.parse(JSON.stringify(this.categoryIds)).join(',');
+            this.postParam.category_ids = this.categories.map(each => each.id).join(',');
+            this.postParam.content = document.getElementById('content_description').value;
+            console.log(document.getElementById('content_description').value, 'description')
+            console.log( this.postParam.content, 'content')
+            this.postParam.meta_description = document.getElementById('meta_description').value;
             axios.post(`/api/front/posts`, this.postParam, {headers: headerContent}).then((response) => {
                 if (response.data.error) {
                     this.manageLoading = false;
                     this.error = response.data.error
                 } else {
                     this.manageLoading = false;
-                    window.location.href="/post";
+                    window.location.href="/blogs";
                 }
             }).catch(err => {
                 this.manageLoading = false;
@@ -97,6 +106,7 @@ new Vue({
 
         /* --- --- --- function of single post api --- --- --- */
         singlePost() {
+            let content_description = new RichTextEditor("#content_description");
             const id = this.websiteUrl.pathname.split('/').pop();
             let headerContent = {
                 'Content-Type': 'application/json; charset=utf-8',
@@ -104,10 +114,12 @@ new Vue({
             axios.get(`/api/front/posts/`+this.postId, this.postParam, {headers: headerContent}).then((response) => {
                 if (response.data.error) {
                     this.manageLoading = false;
-                    this.error = response.data.error
+                    this.error = response.data.error;
                 } else {
                     this.manageLoading = false;
                     this.postParam = response?.data
+                    this.categories = response?.data?.categories;
+                    content_description.setHTMLCode(this.postParam.content)
                 }
             }).catch(err => {
                 this.manageLoading = false;
@@ -120,6 +132,7 @@ new Vue({
 
         /* --- --- --- function of attach file api --- --- --- */
         uploadFile(event) {
+            console.log(234)
             let headerContent = {
                 'Content-Type': 'multipart/form-data',
             }
@@ -142,14 +155,12 @@ new Vue({
             const category = this.categories.find((category) => category.id === each.id);
             if(!category) {
                 this.categories.push(each)
-                this.categoryIds.push(each.id)
             }
         },
 
         /* Function of remove data */
         removeData(index) {
             this.categories.splice(index, 1)
-            this.categoryIds.splice(index, 1)
         },
 
         /* Function of category dropdown */
@@ -171,6 +182,10 @@ new Vue({
 
     },
     mounted(){
+
+        if(this.websiteUrl.pathname.split('/').pop() === 'new') {
+            let content_description = new RichTextEditor("#content_description");
+        }
 
         this.listCategory()
 

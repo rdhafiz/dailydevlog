@@ -67,20 +67,6 @@ class PostController extends Controller
 
     public function store(PostRequest $request): JsonResponse
     {
-//        try {
-//            DB::beginTransaction();
-//            $data = $request->validated();
-//            $data['user_id'] = Auth::id();
-//            if($data['status'] === 'published'){
-//                $data['published_at'] = Carbon::now();
-//            }
-//            $post = $this->postService->createPost($data);
-//            return response()->json($post, 201);
-//            DB::commit();
-//        } catch (\Exception $e) {
-//            DB::rollBack();
-//            return ['status' => 500, 'error' => $e->getMessage()];
-//        }
         $data = $request->validated();
         $data['user_id'] = Auth::id();
         if($data['status'] === 'published'){
@@ -97,6 +83,11 @@ class PostController extends Controller
         if (!$post) {
             return response()->json(['message' => 'Post not found'], 404);
         }
+        if($data['status'] === 'published' && $post['status'] !== 'published'){
+            $data['published_at'] = Carbon::now();
+        } else if($data['status'] !== 'published' && $post['status'] == 'published'){
+            $data['published_at'] = null;
+        }
         $post = $this->postService->updatePost($post, $data);
 
         return response()->json($post, 200);
@@ -104,13 +95,6 @@ class PostController extends Controller
 
     public function destroy($id): JsonResponse
     {
-//        try {
-//            DB::beginTransaction();
-//            DB::commit();
-//        } catch (\Exception $e) {
-//            DB::rollBack();
-//            return ['status' => 500, 'error' => $e->getMessage()];
-//        }
         $post = $this->postService->getPostById($id);
 
         if (!$post) {
@@ -119,6 +103,6 @@ class PostController extends Controller
 
         $this->postService->deletePost($post);
 
-        return response()->json(['message' => 'Post deleted successfully'], 200);
+        return response()->json(['message' => 'Post has been deleted successfully'], 200);
     }
 }

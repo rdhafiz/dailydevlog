@@ -35,6 +35,20 @@ class PostService
     public function updatePost(Post $post, array $data)
     {
         $post->update($data);
+        $category_ids_array = explode(',', $data['category_ids']);
+        $data['category_ids'] = $category_ids_array;
+        PostCategory::whereIn('post_id', [$post['id']])->delete();
+//        $post_categories = PostCategory::where('')
+        if(count($data['category_ids']) > 0){
+            foreach ($data['category_ids'] as $each){
+                $postCategoryData = [
+                    'post_id' => $post->id,
+                    'category_id' => $each ?? null,
+                ];
+                self::createPostCategories($postCategoryData);
+            }
+        }
+
         return $post;
     }
 

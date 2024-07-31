@@ -1,8 +1,8 @@
 @extends('user-panel.layout.layout')
 @section('content')
 
-    <div id="forgot">
-        <section class="h-full md:h-dvh flex justify-center items-center p-3 md:p-5">
+    <div id="forgot" class="py-10">
+        <section class="flex justify-center items-center p-3 md:p-5">
             <div
                 class="border p-5 md:p-10 bg-gray-50 dark:bg-gray-800 border-cyan-200 dark:border-gray-700 w-full md:w-[565px] rounded-md">
 

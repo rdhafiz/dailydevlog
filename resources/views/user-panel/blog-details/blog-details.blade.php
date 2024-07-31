@@ -28,14 +28,16 @@
                     @{{ this.postParam?.title }}
                 </div>
             </div>
-            <img :src="'/storage/media/'+this.postParam?.featured_image" v-if="this.postParam.featured_image !== null" class="w-full h-[350px] lg:h-[550px] bg-cover object-cover rounded-2xl"
+            <img :src="'/storage/media/'+postParam?.featured_image" v-if="this.postParam.featured_image !== null" class="w-full h-[350px] lg:h-[550px] bg-cover object-cover rounded-2xl"
+                 alt="blog-details">
+            <img :src="'/images/default.png'" v-if="this.postParam.featured_image == null" class="w-full h-[350px] lg:h-[550px] bg-cover object-cover rounded-2xl"
                  alt="blog-details">
             <div class="flex justify-center">
                 <div class="w-full lg:w-2/3">
                     <div class="flex justify-between items-center mt-10 w-full flex-wrap gap-5">
                         <div class="flex items-center justify-start">
                             <img v-if="this.postParam?.author?.avatar !== null" :src="'/storage/media/'+this.postParam?.author?.avatar" class="w-[45px] h-[45px] rounded-full object-cover bg-cover" alt="avatar">
-                            <div v-if="this.postParam?.author?.avatar === null" class="w-[45px] h-[45px] rounded-full flex justify-center items-center bg-cyan-600">
+                            <div v-if="this.postParam?.author?.avatar === null" class="w-[45px] h-[45px] rounded-full flex justify-center items-center text-white bg-cyan-600">
                                 @{{ nameControl(this.postParam?.author?.name) }}
                             </div>
                             <div class="ms-3">
@@ -57,7 +59,7 @@
                         </div>
                     </div>
                     <div class="w-full my-10 font-semibold text-cyan-700">
-                        <div id="content_description" class="w-full dark:text-white flex flex-col justify-center items-center gap-5" v-html="postParam.content"></div>
+                        <div id="content_description" class="w-full text-black dark:text-white content_description" v-html="postParam.content"></div>
                     </div>
                     <hr class="w-full border border-cyan-300 my-5 px-5 md:px-[120px]">
                     <div class="flex justify-start flex-wrap gap-3">

@@ -4,11 +4,9 @@
     <div id="home">
 
         <div class="w-full px-4" v-if="tableData.length === 0 && !loading">
-            <div class="w-full overflow-hidden rounded-3xl h-[100vh] flex justify-center items-center border-2 border-cyan-500 flex-col">
-                <div class="text-sm md:text-2xl mb-3 text-cyan-600 dark:text-gray-700 font-medium">
-                    Do not have any data
-                </div>
-                <div class="md:text-3xl font-medium text-cyan-600 dark:text-gray-700">Click “New +” to create new post.</div>
+            <div
+                class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
+                <div class="font-medium text-cyan-600 dark:text-gray-500 text-2xl">Do not have any blog.</div>
             </div>
         </div>
 
@@ -28,13 +26,15 @@
 
         <div class="flex flex-wrap" v-if="tableData.length > 0 && !loading">
             <div class="w-full sm:w-full md:w-1/2 lg:w-1/3 p-2 flex" v-for="(each) in tableData">
-                <div class="border dark:border-gray-500 p-5 rounded-2xl group bg-gray-100 dark:bg-gray-800">
-                    <img :src="'/storage/media/'+each?.featured_image" class="bg-cover w-full rounded-2xl object-cover h-[350px]"
-                         alt="blog">
+                <div class="border dark:border-gray-500 p-5 rounded-2xl group bg-gray-100 dark:bg-gray-800 w-full">
+                    <img :src="'/storage/media/'+each?.featured_image" class="w-full rounded-2xl object-cover h-[350px]"
+                         alt="blog" v-if="each?.featured_image">
+                    <img :src="'/images/default.png/'" class="w-full rounded-2xl object-cover h-[350px]"
+                         alt="blog" v-if="!each?.featured_image">
                     <div
                         class="flex justify-between items-center mt-5 text-gray-600 dark:text-gray-400 text-sm font-medium">
-                        <div>
-                            #Business #Food #Interior
+                        <div class="flex items-center gap-2" v-if="each?.categories?.length > 0">
+                            <span v-for="(category, index) in each?.categories">#@{{ category.name }}</span>
                         </div>
                         <div>
                             @{{ each.views_count }} views

@@ -75,7 +75,7 @@
                                     Profile
                                 </a>
                                 <a href="{{route('user.panel.post')}}" class="flex justify-start p-3 transition duration-500 text-cyan-500 hover:bg-gray-300">
-                                    Post
+                                    Blogs
                                 </a>
                             </div>
                         </div>

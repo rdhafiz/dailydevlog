@@ -15,7 +15,7 @@
                 <div class="w-full lg:w-2/3 flex justify-end py-3">
 
                     <!-- New -->
-                    <a :href="'/post/new'" class="outline-0 border-0 btn-theme w-[90px] rounded-lg">
+                    <a :href="'/blogs/new'" class="outline-0 border-0 btn-theme w-[90px] rounded-lg">
                         New
                     </a>
 
@@ -38,15 +38,15 @@
 
             <div class="px-3 mt-5" v-if="tableData.length === 0 && !loading">
                 <div
-                    class="w-full overflow-hidden rounded-3xl h-[100vh] flex justify-center items-center border-2 border-cyan-500 flex-col">
+                    class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
                     <div class="text-sm mb-3 text-cyan-600 dark:text-gray-500 font-medium">
-                        Do not have any data
+                        Do not have any blog
                     </div>
-                    <div class="font-medium text-cyan-600 dark:text-gray-500">Click “New +” to create new post.</div>
+                    <div class="font-medium text-cyan-600 dark:text-gray-500">Click “New” to create a blog.</div>
                 </div>
             </div>
 
-            <div class="px-3" v-if="tableData.length > 0 && !loading">
+            <div class="px-3 min-h-[500px]" v-if="tableData.length > 0 && !loading">
                 <div class="w-full mt-10 border border-cyan-400 max-[1520px]:overflow-x-scroll">
                     <table class="w-[1510px]">
 
@@ -107,7 +107,7 @@
                                                 </g>
                                             </svg>
                                         </a>
-                                        <a :href="'/post/'+each.id" class="duration-500 bg-cyan-600 hover:bg-cyan-800 w-[35px] h-[35px] flex justify-center items-center rounded-lg">
+                                        <a :href="'/blogs/'+each.id" class="duration-500 bg-cyan-600 hover:bg-cyan-800 w-[35px] h-[35px] flex justify-center items-center rounded-lg">
                                             <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" fill="none"
                                                  xmlns="http://www.w3.org/2000/svg">
                                                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -212,6 +212,12 @@
                     </div>
                 </div>
 
+            </div>
+
+            <div class="fixed top-0 end-0 p-10 z-50" v-if="msg" id="msg">
+                <div class="px-10 py-5 text-end bg-gradient-to-r from-green-900 to-green-500 rounded-2xl">
+                    @{{msg}}
+                </div>
             </div>
         </section>
     </div>

@@ -11,6 +11,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class PostController extends Controller
@@ -72,6 +73,23 @@ class PostController extends Controller
         if($data['status'] === 'published'){
             $data['published_at'] = Carbon::now();
         }
+        if(!empty($data['content'])){
+            $htmlDom = new \DOMDocument();
+            @$htmlDom->loadHTML($data['content']);
+            $imageTags = $htmlDom->getElementsByTagName('img');
+            if (count($imageTags) > 0) {
+                foreach ($imageTags as $imageTag) {
+                    $imgSrc = $imageTag->getAttribute('src');
+                    if (strpos($imgSrc, ';base64')) {
+                        $imgdata = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imgSrc));
+                        $attachment = uniqid() . time() . '.png';
+                        Storage::disk('public')->put('/media/image/' . $attachment, $imgdata);
+                        $_jstUp = '[APP_URL]/storage/media/image/' . $attachment.'?optimize=0';
+                        $data['content'] = str_replace($imgSrc, $_jstUp, $data['content']);
+                    }
+                }
+            }
+        }
         $post = $this->postService->createPost($data);
         return response()->json($post, 201);
     }
@@ -87,6 +105,23 @@ class PostController extends Controller
             $data['published_at'] = Carbon::now();
         } else if($data['status'] !== 'published' && $post['status'] == 'published'){
             $data['published_at'] = null;
+        }
+        if(!empty($data['content'])){
+            $htmlDom = new \DOMDocument();
+            @$htmlDom->loadHTML($data['content']);
+            $imageTags = $htmlDom->getElementsByTagName('img');
+            if (count($imageTags) > 0) {
+                foreach ($imageTags as $imageTag) {
+                    $imgSrc = $imageTag->getAttribute('src');
+                    if (strpos($imgSrc, ';base64')) {
+                        $imgdata = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imgSrc));
+                        $attachment = uniqid() . time() . '.png';
+                        Storage::disk('public')->put('/media/image/' . $attachment, $imgdata);
+                        $_jstUp = '[APP_URL]/storage/media/image/' . $attachment.'?optimize=0';
+                        $data['content'] = str_replace($imgSrc, $_jstUp, $data['content']);
+                    }
+                }
+            }
         }
         $post = $this->postService->updatePost($post, $data);
 

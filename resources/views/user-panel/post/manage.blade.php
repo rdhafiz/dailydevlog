@@ -110,7 +110,8 @@
                                             </span>
                                         </span>
                                     </div>
-                                    <button type="button" class="border-0 outline-0 bg-transparent" @click="categoryDropdown">
+                                    <button type="button" class="border-0 outline-0 bg-transparent"
+                                            @click="categoryDropdown">
                                         <svg viewBox="0 0 24 24" class="w-[26px] h-[26px]" fill="none"
                                              xmlns="http://www.w3.org/2000/svg">
                                             <g id="SVGRepo_bgCarrier" stroke-width="0"></g>

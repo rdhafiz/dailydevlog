@@ -66,4 +66,11 @@ class Post extends Model
         }
         return null;
     }
+
+    public function getContentAttribute($value)
+    {
+        // Replace [APP_URL] with the actual app URL
+        $appUrl = config('app.url');
+        return str_replace('[APP_URL]', $appUrl, $value);
+    }
 }

@@ -84,8 +84,6 @@ new Vue({
             this.error = null;
             this.postParam.category_ids = this.categories.map(each => each.id).join(',');
             this.postParam.content = document.getElementById('content_description').value;
-            console.log(document.getElementById('content_description').value, 'description')
-            console.log( this.postParam.content, 'content')
             this.postParam.meta_description = document.getElementById('meta_description').value;
             axios.post(`/api/front/posts`, this.postParam, {headers: headerContent}).then((response) => {
                 if (response.data.error) {
@@ -132,7 +130,6 @@ new Vue({
 
         /* --- --- --- function of attach file api --- --- --- */
         uploadFile(event) {
-            console.log(234)
             let headerContent = {
                 'Content-Type': 'multipart/form-data',
             }
@@ -167,7 +164,6 @@ new Vue({
         categoryDropdown() {
             let userDropDownMenu = document.querySelector('#categoryDropdown #inserted-dropdown');
             userDropDownMenu.classList.toggle('hidden');
-            console.log(434)
         },
 
         /* Function of category list */

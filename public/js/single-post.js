@@ -13,7 +13,10 @@ new Vue({
             is_featured: 0,
             allow_comments: 1,
         },
-        manageLoading: false,
+        singleLoading: false,
+        archiveLoading: false,
+        draftLoading: false,
+        publishLoading: false,
         uploadLoading: false,
         error: null,
         insertedData: '',
@@ -36,8 +39,18 @@ new Vue({
         },
 
         /* --- --- --- manage post api --- --- --- */
-        managePost() {
-            if(this.websiteUrl.pathname.split('/').pop() === 'new') {
+        managePost(status) {
+            if(status == 'archive'){
+                this.postParam.status = 'archive';
+                this.archiveLoading = true;
+            }else if (status == 'draft') {
+                this.postParam.status = 'draft';
+                this.draftLoading = true;
+            }else {
+                this.postParam.status = 'publish';
+                this.publishLoading = true;
+            }
+            if(!this.postParam.id) {
                 this.createPost()
             }else {
                 this.updatePost()
@@ -47,7 +60,6 @@ new Vue({
         /* --- --- --- function of update api --- --- --- */
         updatePost() {
             this.ClearErrorHandler();
-            this.manageLoading = true;
             let headerContent = {
                 'Content-Type': 'application/json; charset=utf-8',
             }
@@ -56,28 +68,28 @@ new Vue({
             this.postParam.content = document.getElementById('content_description').value;
             this.postParam.meta_description = document.getElementById('meta_description').value;
              setTimeout(()=> {
-                 axios.put(`/api/front/posts/`+this.postId, this.postParam, {headers: headerContent}).then((response) => {
+                 axios.put(`/api/front/posts/`+this.postParam.id, this.postParam, {headers: headerContent}).then((response) => {
                      if (response.data.error) {
-                         this.manageLoading = false;
                          this.error = response.data.error
                      } else {
-                         this.manageLoading = false;
                          window.location.href = '/blogs';
                      }
                  }).catch(err => {
-                     this.manageLoading = false;
                      let res = err?.response;
                      if (res?.data?.errors !== undefined) {
                          this.error = res?.data?.errors;
                      }
-                 });
+                 }).finally(()=> {
+                     this.archiveLoading = false;
+                     this.draftLoading = false;
+                     this.publishLoading = false;
+                 })
              }, 500)
         },
 
         /* --- --- --- function of create api --- --- --- */
         createPost() {
             this.ClearErrorHandler();
-            this.manageLoading = true;
             let headerContent = {
                 'Content-Type': 'application/json; charset=utf-8',
             }
@@ -87,44 +99,45 @@ new Vue({
             this.postParam.meta_description = document.getElementById('meta_description').value;
             axios.post(`/api/front/posts`, this.postParam, {headers: headerContent}).then((response) => {
                 if (response.data.error) {
-                    this.manageLoading = false;
                     this.error = response.data.error
                 } else {
-                    this.manageLoading = false;
                     window.location.href="/blogs";
                 }
             }).catch(err => {
-                this.manageLoading = false;
                 let res = err?.response;
                 if (res?.data?.errors !== undefined) {
                     this.error = res?.data?.errors;
                 }
+            }).finally(()=> {
+                this.archiveLoading = false;
+                this.draftLoading = false;
+                this.publishLoading = false;
             });
         },
 
         /* --- --- --- function of single post api --- --- --- */
         singlePost() {
+            this.singleLoading = true;
             let content_description = new RichTextEditor("#content_description");
-            const id = this.websiteUrl.pathname.split('/').pop();
             let headerContent = {
                 'Content-Type': 'application/json; charset=utf-8',
             }
-            axios.get(`/api/front/posts/`+this.postId, this.postParam, {headers: headerContent}).then((response) => {
+            axios.get(`/api/front/posts/`+this.postParam.id, this.postParam, {headers: headerContent}).then((response) => {
                 if (response.data.error) {
-                    this.manageLoading = false;
+                    this.singleLoading = false;
                     this.error = response.data.error;
                 } else {
-                    this.manageLoading = false;
                     this.postParam = response?.data
                     this.categories = response?.data?.categories;
                     content_description.setHTMLCode(this.postParam.content)
                 }
             }).catch(err => {
-                this.manageLoading = false;
                 let res = err?.response;
                 if (res?.data?.errors !== undefined) {
                     this.error = res?.data?.errors;
                 }
+            }).finally(()=> {
+                this.singleLoading = false;
             });
         },
 
@@ -179,17 +192,18 @@ new Vue({
 
     },
     mounted(){
-
-        if(this.websiteUrl.pathname.split('/').pop() === 'new') {
+        const param = this.websiteUrl.pathname.split('/').pop();
+        if(param !== 'new'){
+            this.postParam.id = this.websiteUrl.pathname.split('/').pop();
+            this.singlePost();
+        }else {
+            this.postParam.id = '';
+        }
+        if(param === 'new') {
             let content_description = new RichTextEditor("#content_description");
         }
 
-        this.listCategory()
-
-        if(this.websiteUrl.pathname.split('/').pop() !== 'new') {
-            this.postId = this.websiteUrl.pathname.split('/').pop();
-            this.singlePost();
-        }
+        this.listCategory();
 
         window.addEventListener('mouseup', (e) => {
 

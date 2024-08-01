@@ -15,8 +15,8 @@
                 <div class="w-full lg:w-2/3 flex justify-end py-3">
 
                     <!-- New -->
-                    <a :href="'/blogs/new'" class="outline-0 border-0 btn-theme w-[90px] rounded-lg">
-                        New
+                    <a :href="'/blogs/new'" class="outline-0 border-0 btn-theme w-[120px] rounded-lg">
+                        New Blog
                     </a>
 
                 </div>

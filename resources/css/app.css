@@ -85,3 +85,18 @@
     color: #ffffff;
 }
 
+.select2 {
+    width: 100% !important;
+}
+
+.select2-search__field, .select2-selection__choice__display{
+    color: #000;
+}
+
+#selectTagParent span{
+    color: #000;
+}
+
+.richtexteditor{
+    height: 400px;
+}

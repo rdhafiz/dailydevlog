@@ -3,15 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Post extends Model
 {
+    use HasSlug;
+
     protected $fillable = [
         'user_id',
         'title',
         'slug',
         'content',
-        'category_ids',
+        'category',
+        'tags',
         'featured_image',
         'status',
         'published_at',
@@ -39,17 +44,7 @@ class Post extends Model
         'created_at',
         'updated_at',
     ];
-    protected $appends = ['created_at_format', 'published_at_format', 'categories'];
-
-    public function getCategoriesAttribute()
-    {
-        $categories = PostCategory::with('category')->where('post_id', $this->id)->get()->toArray();
-        $rv = [];
-        foreach ($categories as $each){
-            $rv[] = $each['category'];
-        }
-        return $rv;
-    }
+    protected $appends = ['created_at_format', 'published_at_format'];
 
     public function getCreatedAtFormatAttribute()
     {
@@ -65,6 +60,15 @@ class Post extends Model
             return date('d/m/Y', strtotime($this->attributes['created_at']));
         }
         return null;
+    }
+
+
+
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('title')
+            ->saveSlugsTo('slug');
     }
 
     public function getContentAttribute($value)

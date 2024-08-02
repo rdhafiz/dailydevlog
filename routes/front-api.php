@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\API\TagController;
 use App\Http\Controllers\Api\UserAuthController;
 use App\Http\Controllers\Media\MediaController;
 use Illuminate\Support\Facades\Route;
@@ -38,6 +39,9 @@ Route::apiResource('posts', PostController::class );
 
 /*Category API*/
 Route::apiResource('categories', CategoryController::class );
+
+/*Tags API*/
+Route::apiResource('tags', TagController::class );
 
 
 /*media api*/

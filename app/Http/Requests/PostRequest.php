@@ -28,9 +28,10 @@ class PostRequest extends FormRequest
         return [
             'user_id' => 'nullable|integer',
             'title' => 'required|string',
-            'slug' => 'required|string',
+            'slug' => 'nullable|string',
             'content' => 'required|string',
-            'category_ids' => 'required|string',
+            'category' => 'nullable|string',
+            'tags' => 'required|string',
             'featured_image' => 'nullable|string',
             'status' => 'required|string',
             'views_count' => 'nullable|integer',
@@ -49,7 +50,6 @@ class PostRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'category_ids.required' => 'The category field is required.',
         ];
     }
 

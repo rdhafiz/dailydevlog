@@ -6,10 +6,8 @@ new Vue({
             slug: '',
             content: '',
             featured_image: null,
-            category_ids: [],
+            category: '',
             status: 'draft',
-            meta_title: '',
-            meta_description: '',
             is_featured: 0,
             allow_comments: 1,
         },
@@ -19,14 +17,16 @@ new Vue({
         publishLoading: false,
         uploadLoading: false,
         error: null,
+        tagsSelect2: null,
         insertedData: '',
         searchTimeout: null,
         websiteUrl: new URL(window.location.href),
         postId: null,
-        categoryLoading: false,
+        tagsLoading: false,
         categoryData: [],
         categories: [],
         categoryIds: [],
+        tags: []
     },
     methods: {
 
@@ -38,16 +38,34 @@ new Vue({
             });
         },
 
+        /* --- --- --- featured value change --- --- --- */
+        changeIsFeatured(event) {
+            if(event.target.checked){
+                this.postParam.is_featured = 1;
+            }else{
+                this.postParam.is_featured = 0;
+            }
+        },
+
+        /* --- --- --- comment value change --- --- --- */
+        changeAllowComments(event) {
+            if(event.target.checked){
+                this.postParam.allow_comments = 1;
+            }else{
+                this.postParam.allow_comments = 0;
+            }
+        },
+
         /* --- --- --- manage post api --- --- --- */
         managePost(status) {
-            if(status == 'archive'){
-                this.postParam.status = 'archive';
+            if(status == 'archived'){
+                this.postParam.status = 'archived';
                 this.archiveLoading = true;
             }else if (status == 'draft') {
                 this.postParam.status = 'draft';
                 this.draftLoading = true;
             }else {
-                this.postParam.status = 'publish';
+                this.postParam.status = 'published';
                 this.publishLoading = true;
             }
             if(!this.postParam.id) {
@@ -64,9 +82,10 @@ new Vue({
                 'Content-Type': 'application/json; charset=utf-8',
             }
             this.error = null;
-            this.postParam.category_ids = this.categories.map(each => each.id).join(',');
             this.postParam.content = document.getElementById('content_description').value;
-            this.postParam.meta_description = document.getElementById('meta_description').value;
+            if(typeof this.postParam.tags !== 'string'){
+                this.postParam.tags = this.postParam.tags.join('')
+            }
              setTimeout(()=> {
                  axios.put(`/api/front/posts/`+this.postParam.id, this.postParam, {headers: headerContent}).then((response) => {
                      if (response.data.error) {
@@ -94,9 +113,7 @@ new Vue({
                 'Content-Type': 'application/json; charset=utf-8',
             }
             this.error = null;
-            this.postParam.category_ids = this.categories.map(each => each.id).join(',');
             this.postParam.content = document.getElementById('content_description').value;
-            this.postParam.meta_description = document.getElementById('meta_description').value;
             axios.post(`/api/front/posts`, this.postParam, {headers: headerContent}).then((response) => {
                 if (response.data.error) {
                     this.error = response.data.error
@@ -118,7 +135,7 @@ new Vue({
         /* --- --- --- function of single post api --- --- --- */
         singlePost() {
             this.singleLoading = true;
-            let content_description = new RichTextEditor("#content_description");
+            let content_description = new RichTextEditor("#content_description", {height: 300});
             let headerContent = {
                 'Content-Type': 'application/json; charset=utf-8',
             }
@@ -128,7 +145,18 @@ new Vue({
                     this.error = response.data.error;
                 } else {
                     this.postParam = response?.data
-                    this.categories = response?.data?.categories;
+                    this.postParam.tags = response?.data?.tags.split(',');
+                    if(this.postParam.is_featured == 1){
+                        $('#is_featured').prop('checked', true);
+                    }else{
+                        $('#is_featured').prop('checked', false);
+                    }
+                    if(this.postParam.allow_comments == 1){
+                        $('#comment').prop('checked', true);
+                    }else{
+                        $('#comment').prop('checked', false);
+                    }
+                    console.log(this.postParam.tags)
                     content_description.setHTMLCode(this.postParam.content)
                 }
             }).catch(err => {
@@ -160,33 +188,28 @@ new Vue({
             })
         },
 
-        /* Function of insert data */
-        insertData(each) {
-            const category = this.categories.find((category) => category.id === each.id);
-            if(!category) {
-                this.categories.push(each)
-            }
-        },
-
-        /* Function of remove data */
-        removeData(index) {
-            this.categories.splice(index, 1)
-        },
-
-        /* Function of category dropdown */
-        categoryDropdown() {
-            let userDropDownMenu = document.querySelector('#categoryDropdown #inserted-dropdown');
-            userDropDownMenu.classList.toggle('hidden');
-        },
-
-        /* Function of category list */
-        listCategory() {
-            this.categoryLoading = true;
+        /* Function of tags list */
+        listTags() {
+            this.tagsLoading = true;
             let headerContent = {
                 'Content-Type': 'application/json; charset=utf-8',
             }
-            axios.get(`/api/front/categories`, {headers: headerContent}).then((response) => {
-                this.categoryData = response?.data?.data
+            let _this = this;
+            axios.get(`/api/front/tags`, {headers: headerContent}).then((response) => {
+                this.tags = response?.data?.data;
+                console.log(this.tags)
+                setTimeout(() => {
+                    this.tagsSelect2 = $('#selectTag').select2({
+                        dropdownParent: $('#selectTagParent'),
+                        tags: true,
+                        placeholder: 'Select Tag',
+                        allowClear: true,
+                    });
+                    this.tagsSelect2.on('change', function () {
+                        _this.postParam.tags = $(this).val().join(',');
+                        console.log($(this).val())
+                    });
+                }, 500)
             })
         },
 
@@ -200,10 +223,12 @@ new Vue({
             this.postParam.id = '';
         }
         if(param === 'new') {
-            let content_description = new RichTextEditor("#content_description");
+            let content_description = new RichTextEditor("#content_description", {height: 300});
+            $('#is_featured').prop('checked', false);
+            $('#comment').prop('checked', true);
         }
 
-        this.listCategory();
+        this.listTags();
 
         window.addEventListener('mouseup', (e) => {
 

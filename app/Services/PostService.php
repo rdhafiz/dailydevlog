@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Post;
 use App\Models\PostCategory;
+use App\Models\Tag;
 
 class PostService
 {
@@ -11,44 +12,41 @@ class PostService
     {
 
         $post = Post::create($data);
-        $category_ids_array = explode(',', $data['category_ids']);
-        $data['category_ids'] = $category_ids_array;
-            if(count($data['category_ids']) > 0){
-                foreach ($data['category_ids'] as $each){
-                    $postCategoryData = [
-                        'post_id' => $post->id,
-                        'category_id' => $each ?? null,
+        $tags = explode(',', $data['tags']);
+        if($tags> 0){
+            foreach ($tags as $each){
+                $tagExist = Tag::where('title', $each)->first();
+                if($tagExist === null){
+                    $tag = [
+                        'title' => $each,
                     ];
-                    self::createPostCategories($postCategoryData);
+                    self::createTag($tag);
                 }
             }
-
-
+        }
         return $post;
     }
 
-    public function createPostCategories(array $data)
+    public function createTag(array $data)
     {
-        return PostCategory::create($data);
+        return Tag::create($data);
     }
 
     public function updatePost(Post $post, array $data)
     {
         $post->update($data);
-        $category_ids_array = explode(',', $data['category_ids']);
-        $data['category_ids'] = $category_ids_array;
-        PostCategory::whereIn('post_id', [$post['id']])->delete();
-//        $post_categories = PostCategory::where('')
-        if(count($data['category_ids']) > 0){
-            foreach ($data['category_ids'] as $each){
-                $postCategoryData = [
-                    'post_id' => $post->id,
-                    'category_id' => $each ?? null,
-                ];
-                self::createPostCategories($postCategoryData);
+        $tags = explode(',', $data['tags']);
+        if($tags> 0){
+            foreach ($tags as $each){
+                $tagExist = Tag::where('title', $each)->first();
+                if($tagExist === null){
+                    $tag = [
+                        'title' => $each,
+                    ];
+                    self::createTag($tag);
+                }
             }
         }
-
         return $post;
     }
 

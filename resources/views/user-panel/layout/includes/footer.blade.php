@@ -4,7 +4,11 @@
         <div class="w-full sm:w-1/2 xl:w-1/3">
 
             <div class="my-5">
-                <img src="{{asset('/images/logo-dark.svg')}}" class="w-[120px]" alt="logo-dark">
+                <a href="{{route('user.panel.home')}}" class="decoration-0 text-gray-600 inline-flex items-center justify-between relative">
+                    <img src="{{asset('/images/logo-dark.png')}}"
+                         alt="logo-dark">
+                    <span class="text-[12px] sm:text-[24px] font-extrabold text-slate-500 ms-2">DailyDevBLog</span>
+                </a>
             </div>
 
             <p class="text-gray-600 font-semibold pe-5 dark:text-cyan-700">

@@ -3,9 +3,10 @@
     <div class="container mx-auto">
         <div class="w-full flex items-center h-[90px] px-3 sm:px-2 justify-between">
             <div class="w-auto sm:w-1/2 text-3xl font-bold">
-                <a href="{{route('user.panel.home')}}" class="decoration-0 text-gray-600 inline-block relative">
-                    <img src="{{asset('/images/logo-dark.svg')}}"
+                <a href="{{route('user.panel.home')}}" class="decoration-0 text-gray-600 inline-flex items-center justify-between relative">
+                    <img src="{{asset('/images/logo-dark.png')}}"
                          alt="logo-dark">
+                    <span class="text-[12px] sm:text-[24px] font-extrabold text-slate-500 ms-2">DailyDevBLog</span>
                 </a>
             </div>
             <div class="hidden md:block">
@@ -79,7 +80,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="javascript:void(0)" class="inline-block md:hidden px-2">
+                <a href="javascript:void(0)" class="inline-block md:hidden sm:px-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="35px" height="35px" viewBox="0 0 24 24" fill="none">
                         <g id="Menu / Hamburger_MD">
                             <path id="Vector" d="M5 17H19M5 12H19M5 7H19" stroke="currentColor" class="stroke-black dark:stroke-gray-400"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

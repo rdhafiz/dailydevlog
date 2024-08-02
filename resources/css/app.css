@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components{
+
+    .border-effect {
+        @apply border border-gray-100 shadow-2xl dark:border transition-all duration-500 z-50;
+    }
+
+}
+
 .btn-theme {
     padding-top: 10px !important;
     padding-bottom: 10px !important;
@@ -23,21 +31,72 @@
     touch-action: manipulation;
     background-position: right center;
 }
+.btn-orange {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    font-size: 16px !important;
+    text-decoration: none !important;
+    text-rendering: auto;
+    height: 45px;
+    text-align: center !important;
+    transition: 0.5s !important;
+    background-size: 200% auto;
+    color: #ffffff !important;
+    display: inline-block !important;
+    border: 0 !important;
+    font-weight: 400 !important;
+    background-image: linear-gradient(60deg, #facc15 0%, #ca8a04 45%, #facc15 100%);
+    cursor: pointer !important;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    background-position: right center;
+}
+.btn-red {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+    font-size: 16px !important;
+    text-decoration: none !important;
+    text-rendering: auto;
+    height: 45px;
+    text-align: center !important;
+    transition: 0.5s !important;
+    background-size: 200% auto;
+    color: #ffffff !important;
+    display: inline-block !important;
+    border: 0 !important;
+    font-weight: 400 !important;
+    background-image: linear-gradient(60deg, #fb7185 0%, #e11d48 45%, #fb7185 100%);
+    cursor: pointer !important;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    background-position: right center;
+}
+
 
 .button-remove {
     display: none !important;
 }
 
-.btn-theme:hover {
+.btn-theme:hover, .btn-orange:hover, .btn-red:hover {
     text-decoration: none;
     background-position: initial;
     color: #ffffff;
 }
 
-@layer components{
+.select2 {
+    width: 100% !important;
+}
 
-    .border-effect {
-        @apply border border-gray-100 shadow-2xl dark:border transition-all duration-500 z-50;
-    }
+.select2-search__field, .select2-selection__choice__display{
+    color: #000;
+}
 
+#selectTagParent span{
+    color: #000;
+}
+
+.richtexteditor{
+    height: 400px;
 }

@@ -90,6 +90,8 @@ class PostController extends Controller
                 }
             }
         }
+        $data['meta_title'] = trim($data['title']);
+        $data['meta_description'] = trim($data['content']);
         $post = $this->postService->createPost($data);
         return response()->json($post, 201);
     }
@@ -123,6 +125,8 @@ class PostController extends Controller
                 }
             }
         }
+        $data['meta_title'] = trim($data['title']);
+        $data['meta_description'] = trim($data['content']);
         $post = $this->postService->updatePost($post, $data);
 
         return response()->json($post, 200);

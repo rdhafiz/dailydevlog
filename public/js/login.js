@@ -35,7 +35,7 @@ new Vue({
                     this.error = response.data.error
                 } else {
                     this.loading = false;
-                    window.location.href = `/profile`;
+                    window.location.href = `/blogs`;
                     this.loginParam = {
                         email: '',
                         password: '',

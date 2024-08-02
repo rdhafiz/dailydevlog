@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\Api\PostController;
-use App\Http\Controllers\API\TagController;
+use App\Http\Controllers\Api\TagController;
 use App\Http\Controllers\Api\UserAuthController;
 use App\Http\Controllers\Media\MediaController;
 use Illuminate\Support\Facades\Route;

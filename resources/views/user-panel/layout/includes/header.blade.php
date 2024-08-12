@@ -1,3 +1,7 @@
+@php
+$tags = getPopularTags();
+@endphp
+
 <header class="start-0 sticky end-0 top-0 bg-white dark:border-gray-700 dark:bg-gray-900 w-full header border-effect"
         id="header">
     <div class="container mx-auto">
@@ -42,16 +46,13 @@
                                 Popular topic
                             </div>
                             <div class="mt-2 text-sm flex justify-start items-center gap-x-2 flex-wrap">
-                                <a href="javascript:void(0)"
-                                   class="decoration-0 text-cyan-600 d-flex justify-start items-center"># Lifestyle</a>
-                                <a href="javascript:void(0)"
-                                   class="decoration-0 text-cyan-600 d-flex justify-start items-center"># Travel</a>
-                                <a href="javascript:void(0)"
-                                   class="decoration-0 text-cyan-600 d-flex justify-start items-center"># Space</a>
-                                <a href="javascript:void(0)"
-                                   class="decoration-0 text-cyan-600 d-flex justify-start items-center"># Business</a>
-                                <a href="javascript:void(0)"
-                                   class="decoration-0 text-cyan-600 d-flex justify-start items-center"># Food</a>
+                                @if(count($tags) > 0)
+                                    @foreach($tags as $tag)
+                                        <a href="javascript:void(0)"
+                                           class="decoration-0 text-cyan-600 d-flex justify-start items-center">#
+                                            {{$tag['title']}}</a>
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -64,18 +65,18 @@
                         </button>
                     </div>
                     <div
-                        class="hidden absolute right-0 z-10 mt-4 w-[150px] origin-top-right p-0 bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none rounded-2xl overflow-hidden"
+                        class="hidden absolute right-0 z-10 mt-4 w-[150px] origin-top-right p-0 bg-white dark:bg-[#1a202c] shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none rounded-2xl overflow-hidden"
                         id="dropdown">
                         <div role="none">
-                            <a href="#" class="flex justify-start p-3 transition duration-500 hover:bg-gray-300 dark:hover:text-white"
+                            <a href="#" class="flex justify-start p-3 transition duration-500 dark:hover:bg-[#2b3548] hover:bg-gray-300 group"
                                role="menuitem" tabindex="-1" id="menu-item-0" onclick="lightMode()">
                                 <img src="{{asset('/images/header/light.svg')}}" class="w-[24px] h-[24px]" alt="light">
-                                <span class="ms-3 text-cyan-500">Light </span>
+                                <span class="ms-3 dark:text-white text-cyan-500 group-hover:text-cyan-500 duration-500">Light </span>
                             </a>
-                            <a href="#" class="flex justify-start p-3 transition duration-500 hover:bg-gray-300"
+                            <a href="#" class="flex justify-start p-3 transition duration-500 dark:hover:bg-[#2b3548] hover:bg-gray-300 group"
                                role="menuitem" tabindex="-1" id="menu-item-1" onclick="darkMode()">
                                 <img src="{{asset('/images/header/dark.svg')}}" class="w-[24px] h-[24px]" alt="dark">
-                                <span class="ms-3 text-cyan-500">Dark </span>
+                                <span class="ms-3 dark:text-white text-cyan-500 group-hover:text-cyan-500 duration-500">Dark </span>
                             </a>
                         </div>
                     </div>

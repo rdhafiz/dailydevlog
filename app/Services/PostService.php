@@ -21,6 +21,8 @@ class PostService
                         'title' => $each,
                     ];
                     self::createTag($tag);
+                }else{
+                    $tagExist->update(['count' => $tagExist['count'] + 1]);
                 }
             }
         }

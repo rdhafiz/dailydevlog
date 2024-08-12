@@ -137,11 +137,11 @@ class PostController extends Controller
         $post = $this->postService->getPostById($id);
 
         if (!$post) {
-            return response()->json(['message' => 'Post not found'], 404);
+            return response()->json(['message' => 'Blog not found'], 404);
         }
 
         $this->postService->deletePost($post);
 
-        return response()->json(['message' => 'Post has been deleted successfully'], 200);
+        return response()->json(['message' => 'Blog has been deleted successfully'], 200);
     }
 }

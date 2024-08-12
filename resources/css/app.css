@@ -100,3 +100,16 @@
 .richtexteditor{
     height: 400px;
 }
+
+
+.select2-selection {
+    background: #fff!important;
+    border: none!important;
+    border-bottom: 1px solid #22d3ee!important;
+    padding-bottom: 15px!important;
+    border-radius: 0!important;
+}
+
+.select2-search__field{
+    height: 25px!important;
+}

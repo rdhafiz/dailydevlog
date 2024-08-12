@@ -1,3 +1,6 @@
+@php
+$tags = getPopularTags();
+@endphp
 <footer class="container mx-auto py-10 px-5">
     <div
         class="w-full flex flex-wrap border border-gray-300 p-10 rounded-3xl bg-blue-50 dark:border-gray-700 dark:bg-gray-900">
@@ -15,65 +18,21 @@
                 When an unknown prnoto sans took a galley and scrambled it to make specimen book not only five When an
                 unknown prnoto sans took a galley and scrambled it to five centurie.
             </p>
-
-            <div class="font-semibold my-5 text-2xl text-gray-400 dark:text-cyan-500">
-                Address
-            </div>
-            <p class="text-gray-600 font-semibold mb-10 dark:text-cyan-700">
-                123 Main Street
-                <br>
-                New York, NY 10001
-            </p>
         </div>
-        <div class="w-full sm:w-1/2 xl:w-1/3">
+        <div class="w-full sm:ps-[100px] sm:w-1/2 xl:w-1/3">
             <div class="font-semibold my-5 text-2xl text-gray-400 dark:text-cyan-500">
-                Categories
+                Popular Tags
             </div>
 
             <div class="mb-5">
-                <div class="flex">
-                    <div class="w-1/2">
+                @if(count($tags) > 0)
+                    @foreach($tags as $tag)
                         <a href="javascript:void(0)"
                            class="decoration-0 text-gray-600 font-semibold duration-500 ps-0 hover:ps-4 block p-3 dark:text-cyan-700 dark:hover:text-cyan-400 hover:text-cyan-400">
-                            Design
+                            {{$tag['title']}}
                         </a>
-                        <a href="javascript:void(0)"
-                           class="decoration-0 text-gray-600 font-semibold duration-500 ps-0 hover:ps-4 block p-3 dark:text-cyan-700 dark:hover:text-cyan-400 hover:text-cyan-400">
-                            Healthy
-                        </a>
-                        <a href="javascript:void(0)"
-                           class="decoration-0 text-gray-600 font-semibold duration-500 ps-0 hover:ps-4 block p-3 dark:text-cyan-700 dark:hover:text-cyan-400 hover:text-cyan-400">
-                            Interviews
-                        </a>
-                        <a href="javascript:void(0)"
-                           class="decoration-0 text-gray-600 font-semibold duration-500 ps-0 hover:ps-4 block p-3 dark:text-cyan-700 dark:hover:text-cyan-400 hover:text-cyan-400">
-                            Lifestyle
-                        </a>
-                        <a href="javascript:void(0)"
-                           class="decoration-0 text-gray-600 font-semibold duration-500 ps-0 hover:ps-4 block p-3 dark:text-cyan-700 dark:hover:text-cyan-400 hover:text-cyan-400">
-                            Movie
-                        </a>
-                    </div>
-                    <div class="w-1/2">
-                        <a href="javascript:void(0)"
-                           class="decoration-0 text-gray-600 font-semibold duration-500 ps-0 hover:ps-4 block p-3 dark:text-cyan-700 dark:hover:text-cyan-400 hover:text-cyan-400">
-                            Sports
-                        </a>
-                        <a href="javascript:void(0)"
-                           class="decoration-0 text-gray-600 font-semibold duration-500 ps-0 hover:ps-4 block p-3 dark:text-cyan-700 dark:hover:text-cyan-400 hover:text-cyan-400">
-                            Technology
-                        </a>
-                        <a href="javascript:void(0)"
-                           class="decoration-0 text-gray-600 font-semibold duration-500 ps-0 hover:ps-4 block p-3 dark:text-cyan-700 dark:hover:text-cyan-400 hover:text-cyan-400">
-                            Travel Tips
-                        </a>
-                        <a href="javascript:void(0)"
-                           class="decoration-0 text-gray-600 font-semibold duration-500 ps-0 hover:ps-4 block p-3 dark:text-cyan-700 dark:hover:text-cyan-400 hover:text-cyan-400">
-                            Music
-                        </a>
-                    </div>
-                </div>
-
+                    @endforeach
+                @endif
             </div>
 
         </div>
@@ -113,7 +72,7 @@
         </div>
         <div class="w-full xl:w-1/2 lg:py-10 order-2 lg:order-1">
             <a href="https://redishketch.com/" class="decoration-0 text-gray-600 font-semibold dark:text-cyan-500 max-[500px]:text-[14px]">
-                © 2023 Created by Redishketch.com
+                © <?php echo date('Y'); ?> Created by Redishketch.com
             </a>
         </div>
         <div class="w-full xl:w-1/2 py-10 flex flex-wrap justify-start xl:justify-end gap-5 order-1 lg:order-1">

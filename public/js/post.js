@@ -43,6 +43,11 @@ new Vue({
                 let res = response.data
                 this.loading = false;
                 this.tableData = res.data
+                console.log(343)
+                this.tableData.forEach(each => {
+                    // each.tags =
+                    console.log(each, each.tags)
+                })
                 this.last_page = res.last_page
                 this.total_pages = res.total < res.per_page ? 1 : Math.ceil((res.total / res.per_page))
                 this.current_page = res.current_page;

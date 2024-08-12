@@ -33,8 +33,8 @@
                          alt="blog" v-if="!each?.featured_image">
                     <div
                         class="flex justify-between items-center mt-5 text-gray-600 dark:text-gray-400 text-sm font-medium">
-                        <div class="flex items-center gap-2" v-if="each?.categories?.length > 0">
-                            <span v-for="(category, index) in each?.categories">#@{{ category.name }}</span>
+                        <div class="flex items-center gap-2" v-if="each?.tags?.length > 0">
+                            <span v-for="(tag, index) in each?.tags">#@{{ tag }}</span>
                         </div>
                         <div>
                             @{{ each.views_count }} views

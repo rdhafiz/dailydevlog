@@ -10,6 +10,10 @@
 
 }
 
+.icon {
+    @apply fill-black dark:fill-white;
+}
+
 .btn-theme {
     padding-top: 10px !important;
     padding-bottom: 10px !important;
@@ -112,4 +116,48 @@
 
 .select2-search__field{
     height: 25px!important;
+}
+
+.text-truncate{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /*width: 50px;*/
+}
+
+.text-truncate-line-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.read-more:hover .child{
+    height: 40px;
+    width: 40px;
+}
+
+/* CODE FOR TOOLTIP */
+.custom-tooltip {
+    position: relative;
+}
+
+.custom-tooltip .child::before {
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translatex(-50%) rotate(-45deg);
+    content: "";
+    opacity: 0;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    border: 8px solid #f8f8f8;
+    border-top-color: transparent;
+    border-right-color: transparent;
+    transition: 300ms;
+}
+
+.custom-tooltip:hover .child {
+    opacity: 1;
 }

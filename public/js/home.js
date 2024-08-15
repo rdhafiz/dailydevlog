@@ -6,6 +6,7 @@ new Vue({
             keyword: '',
             limit: 20,
             page: 1,
+            sort_mode: ''
         },
         total_pages: 0,
         current_page: 0,
@@ -15,6 +16,20 @@ new Vue({
         searchTimeout: null,
     },
     methods: {
+
+        /* Function of search list data */
+        searchData() {
+            clearTimeout(this.searchTimeout);
+            this.searchTimeout = setTimeout(() => {
+                this.listBlog();
+            }, 800);
+        },
+
+
+        tooltipText(data){
+            const tags  = data.reduce((prev, current) => prev + `#${current} `, '');
+            return tags;
+        },
 
         /* --- --- --- function of author name control --- --- --- */
         nameControl(authorName) {
@@ -30,6 +45,7 @@ new Vue({
                 'Content-Type': 'application/json; charset=utf-8',
             }
             this.formData.page = this.current_page;
+            console.log(this.formData.page, this.current_page)
             axios.get(`/api/front/posts`, {params: this.formData}, {headers: headerContent}).then((response) => {
                 let res = response.data
                 this.loading = false;
@@ -40,6 +56,7 @@ new Vue({
                 this.last_page = res.last_page
                 this.total_pages = res.total < res.per_page ? 1 : Math.ceil((res.total / res.per_page))
                 this.current_page = res.current_page;
+                console.log(this.formData.page, this.current_page)
                 this.buttons = [...Array(this.total_pages).keys()].map(i => i + 1);
             }).catch(err => {
                 this.loading = false;

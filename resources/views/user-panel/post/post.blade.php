@@ -4,15 +4,22 @@
     <div id="post">
         <section class="w-full">
 
-            <div class="flex flex-wrap justify-between items-center px-3">
-                <div class="w-full lg:w-1/3 py-3">
+            <div class="w-full flex justify-between flex-wrap sm:flex-nowrap items-center px-3 gap-2 sm:gap-5">
+                <div class="w-full lg:w-1/3 py-2 sm:py-3">
                     <!-- Search input -->
                     <input type="text" name="keyword"
                            class="p-3 bg-transparent border-0 outline-0 border-b-cyan-400 border-b-2 w-full" required
                            autocomplete="off" placeholder="Search Here" v-model="formData.keyword"
                            @keyup="searchData()">
                 </div>
-                <div class="w-full lg:w-2/3 flex justify-end py-3">
+                <div class="from-group w-full lg:w-1/3">
+                    <select name="order" class="p-3 bg-transparent border-0 outline-0 border-b-cyan-400 border-b-2 w-full" v-model="formData.sort_mode" @change="searchData()">
+                        <option :value="''" class="text-black">Order</option>
+                        <option :value="'asc'" class="text-black">Ascending</option>
+                        <option :value="'desc'" class="text-black">Descending</option>
+                    </select>
+                </div>
+                <div class="w-full lg:w-1/3 flex justify-end py-3">
 
                     <!-- New -->
                     <a :href="'/blogs/new'" class="outline-0 border-0 btn-theme w-[120px] rounded-lg">
@@ -47,8 +54,8 @@
             </div>
 
             <div class="px-3 min-h-[500px]" v-if="tableData.length > 0 && !loading">
-                <div class="w-full mt-10 border border-cyan-400 max-[1520px]:overflow-x-scroll">
-                    <table class="w-[1510px]">
+                <div class="w-full mt-10 max-[768px]:overflow-x-scroll">
+                    {{--<table class="w-[1510px]">
 
                         <!-- header -->
                         <thead class="w-full border-b-2 border-b-cyan-400 dark:bg-gray-800">
@@ -161,56 +168,141 @@
                                 </td>
                             </tr>
                         </tbody>
-                    </table>
-
+                    </table>--}}
+                    <div
+                        class="group bg-gray-100 rounded-2xl dark:bg-gray-800 w-full py-3 px-4 rounded-lg mb-3 flex items-center justify-between min-w-[744px]"
+                        v-for="(each) in tableData">
+                        <div class="grow-0">
+                            <img :src="'/storage/media/'+each?.featured_image"
+                                 class="wounded-t-2xl  object-cover w-[100px] min-w-[100px] h-[60px]"
+                                 alt="blog" v-if="each?.featured_image">
+                            <img :src="'/images/default.png/'"
+                                 class="rounded-t-2xl object-cover w-[100px] min-w-[100px] h-[60px]"
+                                 alt="blog" v-if="!each?.featured_image">
+                        </div>
+                        <div class="grow text-start mx-8">
+                            <div
+                                class="font-bold text-lg dark:text-cyan-600 duration-500 dark:group-hover:text-cyan-400 text-gray-600 group-hover:text-cyan-400 text-truncate-line-2">
+                                @{{ each.title }}
+                            </div>
+                            <div
+                                class="flex justify-between items-center mt-1 text-gray-600 dark:text-gray-400 text-sm font-medium">
+                                <div class="flex items-center gap-2 me-3 grow"
+                                     v-if="each?.tags?.length > 0">
+                                    <span v-for="(tag, index) in each?.tags">#@{{ tag }}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2 grow-0">
+                            <a :href="'/blog-details/'+each.id"
+                               class="duration-500 bg-emerald-400 hover:bg-emerald-600 w-[80px] flex justify-center items-center rounded-lg py-1 px-3 text-white">
+                                View
+                            </a>
+                            <a :href="'/blogs/'+each.id"
+                               class="duration-500 bg-cyan-600 hover:bg-cyan-800 w-[80px] flex justify-center items-center rounded-lg py-1 px-3 text-white">
+                                Edit
+                            </a>
+                            <button type="button"
+                                    class="outline-0 border-0 flex justify-center items-center duration-500 bg-red-500 hover:bg-red-800 w-[80px] rounded-lg py-1 px-3 text-white"
+                                    @click="deletePost(each.id)" v-if="!deleteLoading">
+                                Delete
+                            </button>
+                            <button type="button"
+                                    class="outline-0 border-0 flex justify-center items-center duration-500 bg-red-500 hover:bg-red-800 w-[80px] rounded-lg py-1 px-3 text-white"
+                                    disabled v-if="deleteLoading">
+                                <svg class="h-5 mx-auto w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg"
+                                     fill="none" viewBox="0 0 24 24">
+                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="#fff"
+                                            stroke-width="4"></circle>
+                                    <path class="opacity-75" fill="#fff"
+                                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Pagination Start -->
-                <div class="mt-5 flex justify-center items-center" v-if="tableData.length > 0 && loading === false && last_page > 1">
+
+                <div class="mt-5 flex justify-center items-center"
+                     v-if="tableData.length > 0 && loading === false && last_page > 1">
                     <div class="flex justify-center items-center gap-x-1">
                         <div @click="PrevPage()">
-                            <a href="javascript:void(0)" class="p-2 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="acorn-icons acorn-icons-chevron-left undefined">
-                                    <path d="M13 16L7.35355 10.3536C7.15829 10.1583 7.15829 9.84171 7.35355 9.64645L13 4"></path>
+                            <a href="javascript:void(0)"
+                               class="p-2 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 20 20" fill="none"
+                                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                                     class="acorn-icons acorn-icons-chevron-left undefined">
+                                    <path
+                                        d="M13 16L7.35355 10.3536C7.15829 10.1583 7.15829 9.84171 7.35355 9.64645L13 4"></path>
                                 </svg>
                             </a>
                         </div>
                         <div v-if="buttons.length <= 6" class="flex justify-center items-center gap-x-1">
                             <div v-for="(page, index) in buttons">
-                                <a href="javascript:void(0)" class="p-3 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg" @click="pageChange(page)" v-text="page"></a>
+                                <a href="javascript:void(0)"
+                                   class="p-3 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg"
+                                   :class="{'bg-cyan-400': page === current_page}"
+                                   @click="pageChange(page)" v-text="page"></a>
                             </div>
                         </div>
                         <div v-if="buttons.length > 6" class="flex justify-center items-center gap-x-1">
                             <div>
-                                <a href="javascript:void(0)" class="p-3 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg" @click="pageChange(1)">1</a>
+                                <a href="javascript:void(0)"
+                                   class="p-3 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg"
+                                   :class="formData.page === 0 || formData.page === 1 ? 'bg-cyan-400' : ''"
+                                   @click="pageChange(1)">1</a>
                             </div>
                             <div v-if="current_page > 3">
-                                <a href="javascript:void(0)" class="p-3 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg" @click="pageChange(current_page - 2)">...</a>
+                                <a href="javascript:void(0)"
+                                   class="p-3 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg"
+                                   @click="pageChange(current_page - 2)">...</a>
                             </div>
                             <div v-if="current_page == buttons.length">
-                                <a href="javascript:void(0)" class="p-3 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg" @click="pageChange(current_page - 2)" v-text="current_page - 2"></a>
+                                <a href="javascript:void(0)"
+                                   class="p-3 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg"
+                                   :class="formData.page === current_page - 2 ? 'bg-cyan-400' : ''"
+                                   @click="pageChange(current_page - 2)" v-text="current_page - 2"></a>
                             </div>
                             <div v-if="current_page > 2">
-                                <a href="javascript:void(0)" class="p-3 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg" @click="pageChange(current_page - 1)" v-text="current_page - 1"></a>
+                                <a href="javascript:void(0)"
+                                   class="p-3 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg"
+                                   :class="formData.page === current_page - 1 ? 'bg-cyan-400' : ''"
+                                   @click="pageChange(current_page - 1)" v-text="current_page - 1"></a>
                             </div>
                             <div v-if="current_page != 1 && current_page != buttons.length">
-                                <a href="javascript:void(0)" class="p-3 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg" @click="pageChange(current_page)" v-text="current_page"></a>
+                                <a href="javascript:void(0)"
+                                   class="p-3 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg"
+                                   :class="formData.page === current_page ? 'bg-cyan-400' : ''"
+                                   @click="pageChange(current_page)" v-text="current_page"></a>
                             </div>
                             <div v-if="current_page < buttons.length - 1">
-                                <a href="javascript:void(0)" class="p-3 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg" @click="pageChange(current_page + 1)" v-text="current_page + 1"></a>
+                                <a href="javascript:void(0)"
+                                   class="p-3 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg"
+                                   :class="formData.page === current_page + 1 ? 'bg-cyan-400' : ''"
+                                   @click="pageChange(current_page + 1)" v-text="current_page + 1"></a>
                             </div>
                             <div v-if="current_page == 1">
-                                <a href="javascript:void(0)" class="p-3 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg" @click="pageChange(current_page + 2)" v-text="current_page + 2"></a>
+                                <a href="javascript:void(0)"
+                                   class="p-3 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg"
+                                   :class="formData.page === current_page + 2 ? 'bg-cyan-400' : ''"
+                                   @click="pageChange(current_page + 2)" v-text="current_page + 2"></a>
                             </div>
                             <div v-if="current_page < buttons.length - 2">
-                                <a href="javascript:void(0)" class="p-3 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg" @click="pageChange(current_page + 2)">...</a>
+                                <a href="javascript:void(0)"
+                                   class="p-3 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg"
+                                   @click="pageChange(current_page + 2)">...</a>
                             </div>
                             <div>
-                                <a href="javascript:void(0)" class="p-3 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg" @click="pageChange(buttons.length)" v-text="buttons.length"></a>
+                                <a href="javascript:void(0)"
+                                   class="p-3 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg"
+                                   :class="{'bg-cyan-400': formData.page === last_page }"
+                                   @click="pageChange(buttons.length)" v-text="buttons.length"></a>
                             </div>
                         </div>
                         <div @click="NextPage()">
-                            <a href="javascript:void(0)" class="p-2 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg">
+                            <a href="javascript:void(0)"
+                               class="p-2 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 20 20"
                                      fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                                      stroke-linejoin="round" class="acorn-icons acorn-icons-chevron-right undefined">

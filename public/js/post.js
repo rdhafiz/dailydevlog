@@ -7,6 +7,7 @@ new Vue({
             keyword: '',
             limit: 20,
             page: 1,
+            sort_mode: ''
         },
         total_pages: 0,
         current_page: 0,
@@ -42,13 +43,11 @@ new Vue({
             axios.get(`/api/front/posts`, {params: this.formData}, {headers: headerContent}).then((response) => {
                 let res = response.data
                 this.loading = false;
-                this.tableData = res.data
-                console.log(343)
+                this.tableData = res.data;
                 this.tableData.forEach(each => {
-                    // each.tags =
-                    console.log(each, each.tags)
+                    each.tags = each?.tags.split(',');
                 })
-                this.last_page = res.last_page
+                this.last_page = res.last_page;
                 this.total_pages = res.total < res.per_page ? 1 : Math.ceil((res.total / res.per_page))
                 this.current_page = res.current_page;
                 this.buttons = [...Array(this.total_pages).keys()].map(i => i + 1);

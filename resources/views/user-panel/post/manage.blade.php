@@ -2,27 +2,45 @@
 @section('content')
 
     <div id="post" class="p-2 md:p-4">
+        <section class="w-full">
+            <div class="flex justify-start items-center gap-x-2 flex-wrap">
+                <a href="{{route('user.panel.home')}}"
+                   class="decoration-0 text-gray-400 dark:text-cyan-600 flex justify-center items-center">
+                    Home
+                </a>
+                <img src="{{asset('/images/blog-details/chevron-dot-right.svg')}}" class="w-[22px] h-[22px]"
+                     alt="chevron-dot-right.svg">
+                <a href="{{route('user.panel.post')}}"
+                   class="decoration-0 text-gray-400 dark:text-cyan-600 flex justify-center items-center">
+                    Blogs
+                </a>
+                <img src="{{asset('/images/blog-details/chevron-dot-right.svg')}}" class="w-[22px] h-[22px]"
+                     alt="chevron-dot-right.svg">
+                <a href="javascript:void(0)" class="decoration-0 text-gray-600 font-semibold dark:text-cyan-400">
+                 <span
+                     v-if="!this.postParam.id"> Create </span> <span
+                        v-if="this.postParam.id"> Edit </span>
+                </a>
+            </div>
+            <hr class="w-full border border-cyan-300 mt-5 mb-[50px] px-5 md:px-[120px]">
+        </section>
         <div
-            class="border border-cyan-100 dark:border-cyan-900 bg-cyan-100 dark:bg-cyan-800 rounded-3xl py-5 px-0 md:p-10">
+            class="border border-cyan-100 dark:border-cyan-900 bg-gray-100 dark:bg-gray-800 rounded-3xl py-5 px-0 md:p-10">
             <form>
-                <div class="mb-7 text-2xl md:text-4xl font-bold px-5 md:px-0"><span
-                        v-if="!this.postParam.id"> Create </span> <span
-                        v-if="this.postParam.id"> Edit </span> Blog
-                </div>
                 <div class="w-full flex-wrap flex">
 
                     <div class="mb-5 w-full px-4">
                         <div class="w-full">
                             <div class="relative" v-if="!uploadLoading">
                                 <label for="upload-file"
-                                       class="w-full h-[250px] flex justify-center items-center cursor-pointer border border-cyan-400 rounded-lg bg-transparent duration-500 hover:bg-cyan-400 hover:text-black fw-medium">
-                                    <a class="flex items-center justify-center relative h-full w-full">
+                                       class="w-full h-[250px] flex justify-center items-center cursor-pointer border border-cyan-400 rounded-lg duration-500 bg-transparent hover:bg-gray-400 dark:hover:bg-gray-600 fw-medium">
+                                    <a class="flex items-center justify-center relative h-full w-full text-gray-600 dark:text-gray-400 duration-500">
                                         <input type="file" id="upload-file" class="hidden" @change="uploadFile($event)"
                                                accept="image/*">
                                         Upload Featured Image
                                         <div class="absolute top-0 bottom-0 start-0 end-0 h-full w-full">
                                             <img :src="'/storage/media/'+postParam.featured_image"
-                                                 class="w-full object-contain bg-contain h-full" alt="featured-image"
+                                                 class="w-full object-cover h-full" alt="featured-image"
                                                  v-if="postParam.featured_image">
                                         </div>
                                     </a>
@@ -60,7 +78,7 @@
 
                             <div v-if="uploadLoading">
                                 <div
-                                    class="w-full h-[250px] flex justify-center items-center cursor-pointer border border-cyan-400 rounded-lg bg-transparent duration-500 hover:bg-cyan-400 hover:text-black fw-medium">
+                                    class="w-full h-[250px] flex justify-center items-center cursor-pointer border border-cyan-400 rounded-lg bg-transparent duration-500 hover:bg-gray-400 dark:hover:bg-gray-400 hover:text-black fw-medium">
                                     <svg class="h-[35px] mx-auto w-[35px] animate-spin text-white"
                                          xmlns="http://www.w3.org/2000/svg"
                                          fill="none" viewBox="0 0 24 24">
@@ -77,7 +95,7 @@
                     <div class="mb-5 w-full px-4">
                         <label for="title" class="block font-semibold"> Title </label>
                         <input id="title" type="text" name="title" v-model="postParam.title"
-                               class="py-5 pe-5 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white"
+                               class="h-[51px] px-4 border-0 border-b border-b-cyan-500 placeholder-gray-400 bg-transparent text-gray-600 dark:text-white w-full outline-0"
                                v-model="postParam.title" placeholder="Enter your post title">
                         <div class="error-report text-red-500 text-sm mt-2"
                              v-if="error != null && error.title !== undefined" v-text="error.title[0]"></div>
@@ -109,7 +127,7 @@
 
                     <div class="mb-5 w-full md:w-1/2 px-4">
                         <label for="selectTag" class="block font-semibold"> Tags </label>
-                        <div id="selectTagParent" class="pt-4">
+                        <div id="selectTagParent">
                             <select id="selectTag" class="w-100" name="tags" multiple="multiple"
                                     v-model="postParam.tags">
                                 <option></option>

@@ -46,7 +46,9 @@ new Vue({
                 this.tableData = res.data;
                 this.tableData.forEach(each => {
                     each.tags = each?.tags.split(',');
+                    each.deleteLoading = false;
                 })
+                console.log(this.tableData)
                 this.last_page = res.last_page;
                 this.total_pages = res.total < res.per_page ? 1 : Math.ceil((res.total / res.per_page))
                 this.current_page = res.current_page;
@@ -66,34 +68,35 @@ new Vue({
         },
 
         /* Function of search list data */
-        deletePost(id) {
+        deletePost(data, index) {
             let _this = this;
+            data.deleteLoading = true;
+            this.$set(this.tableData, index, data);
             this.ClearErrorHandler();
-            this.deleteLoading = true;
             let headerContent = {
                 'Content-Type': 'application/json; charset=utf-8',
             }
             this.error = null;
             _this.msg = null;
-            axios.delete(`/api/front/posts/`+id, null, {headers: headerContent}).then((response) => {
-                if (response.data.error) {
-                    this.deleteLoading = false;
-                    this.error = response.data.error
-                } else {
-                    this.deleteLoading = false;
-                    this.listPost();
-                    this.msg = response?.data?.message;
-                    setTimeout(function(){
-                        _this.msg = null;
-                    }, 3000);
-                }
-            }).catch(err => {
-                this.deleteLoading = false;
-                let res = err?.response;
-                if (res?.data?.errors !== undefined) {
-                    this.error = res?.data?.errors;
-                }
-            });
+           setTimeout(()=> {
+               axios.delete(`/api/front/posts/`+data.id, null, {headers: headerContent}).then((response) => {
+                   if (response.data.error) {
+                       this.error = response.data.error
+                   } else {
+                       this.listPost();
+                       this.msg = response?.data?.message;
+                       setTimeout(function(){
+                           _this.msg = null;
+                       }, 3000);
+                   }
+               }).catch(err => {
+                   data.deleteLoading = false;
+                   let res = err?.response;
+                   if (res?.data?.errors !== undefined) {
+                       this.error = res?.data?.errors;
+                   }
+               });
+           }, 3000)
         },
 
         /* Function of previous page call */

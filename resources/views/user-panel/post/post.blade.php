@@ -13,7 +13,9 @@
                            @keyup="searchData()">
                 </div>
                 <div class="from-group w-full lg:w-1/3">
-                    <select name="order" class="p-3 bg-transparent border-0 outline-0 border-b-cyan-400 border-b-2 w-full" v-model="formData.sort_mode" @change="searchData()">
+                    <select name="order"
+                            class="p-3 bg-transparent border-0 outline-0 border-b-cyan-400 border-b-2 w-full lg:w-1/2"
+                            v-model="formData.sort_mode" @change="searchData()">
                         <option :value="''" class="text-black">Order</option>
                         <option :value="'asc'" class="text-black">Ascending</option>
                         <option :value="'desc'" class="text-black">Descending</option>
@@ -55,123 +57,9 @@
 
             <div class="px-3 min-h-[500px]" v-if="tableData.length > 0 && !loading">
                 <div class="w-full mt-10 max-[768px]:overflow-x-scroll">
-                    {{--<table class="w-[1510px]">
-
-                        <!-- header -->
-                        <thead class="w-full border-b-2 border-b-cyan-400 dark:bg-gray-800">
-                            <tr>
-                                <th class="w-[250px] p-3 text-start">
-                                    Title
-                                </th>
-                                <th class="w-[250px] p-3 text-start">
-                                    Slug
-                                </th>
-                                <th class="w-[250px] p-3 text-start">
-                                    Status
-                                </th>
-                                <th class="w-[250px] p-3 text-start">
-                                    Views
-                                </th>
-                                <th class="w-[250px] p-3 text-start">
-                                    Created
-                                </th>
-                                <th class="w-[250px] p-3 text-center">
-                                    Action
-                                </th>
-                            </tr>
-                        </thead>
-
-                        <!-- list -->
-                        <tbody>
-                            <tr class="text-center" v-for="(each) in tableData">
-                                <td class="w-[250px] p-3 text-start">
-                                    @{{each.title}}
-                                </td>
-                                <td class="w-[250px] p-3 text-start">
-                                    @{{each.slug}}
-                                </td>
-                                <td class="w-[250px] p-3 text-start">
-                                    @{{each.status}}
-                                </td>
-                                <td class="w-[250px] p-3 text-start">
-                                    @{{each.views_count}}
-                                </td>
-                                <td class="w-[250px] p-3 text-start">
-                                    @{{each.created_at_format}}
-                                </td>
-                                <td class="w-[250px] p-3">
-                                    <div class="flex justify-center gap-x-5 items-center">
-                                        <a :href="'/blog-details/'+each.id" class="duration-500 bg-emerald-400 hover:bg-emerald-600 w-[35px] h-[35px] flex justify-center items-center rounded-lg">
-                                            <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
-                                                   stroke-linejoin="round"></g>
-                                                <g id="SVGRepo_iconCarrier">
-                                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                                          d="M6.30147 15.5771C4.77832 14.2684 3.6904 12.7726 3.18002 12C3.6904 11.2274 4.77832 9.73158 6.30147 8.42294C7.87402 7.07185 9.81574 6 12 6C14.1843 6 16.1261 7.07185 17.6986 8.42294C19.2218 9.73158 20.3097 11.2274 20.8201 12C20.3097 12.7726 19.2218 14.2684 17.6986 15.5771C16.1261 16.9282 14.1843 18 12 18C9.81574 18 7.87402 16.9282 6.30147 15.5771ZM12 4C9.14754 4 6.75717 5.39462 4.99812 6.90595C3.23268 8.42276 2.00757 10.1376 1.46387 10.9698C1.05306 11.5985 1.05306 12.4015 1.46387 13.0302C2.00757 13.8624 3.23268 15.5772 4.99812 17.0941C6.75717 18.6054 9.14754 20 12 20C14.8525 20 17.2429 18.6054 19.002 17.0941C20.7674 15.5772 21.9925 13.8624 22.5362 13.0302C22.947 12.4015 22.947 11.5985 22.5362 10.9698C21.9925 10.1376 20.7674 8.42276 19.002 6.90595C17.2429 5.39462 14.8525 4 12 4ZM10 12C10 10.8954 10.8955 10 12 10C13.1046 10 14 10.8954 14 12C14 13.1046 13.1046 14 12 14C10.8955 14 10 13.1046 10 12ZM12 8C9.7909 8 8.00004 9.79086 8.00004 12C8.00004 14.2091 9.7909 16 12 16C14.2092 16 16 14.2091 16 12C16 9.79086 14.2092 8 12 8Z"
-                                                          class="stroke-white"></path>
-                                                </g>
-                                            </svg>
-                                        </a>
-                                        <a :href="'/blogs/'+each.id" class="duration-500 bg-cyan-600 hover:bg-cyan-800 w-[35px] h-[35px] flex justify-center items-center rounded-lg">
-                                            <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
-                                                   stroke-linejoin="round"></g>
-                                                <g id="SVGRepo_iconCarrier">
-                                                    <path
-                                                        d="M11 4H7.2C6.0799 4 5.51984 4 5.09202 4.21799C4.71569 4.40974 4.40973 4.7157 4.21799 5.09202C4 5.51985 4 6.0799 4 7.2V16.8C4 17.9201 4 18.4802 4.21799 18.908C4.40973 19.2843 4.71569 19.5903 5.09202 19.782C5.51984 20 6.0799 20 7.2 20H16.8C17.9201 20 18.4802 20 18.908 19.782C19.2843 19.5903 19.5903 19.2843 19.782 18.908C20 18.4802 20 17.9201 20 16.8V12.5M15.5 5.5L18.3284 8.32843M10.7627 10.2373L17.411 3.58902C18.192 2.80797 19.4584 2.80797 20.2394 3.58902C21.0205 4.37007 21.0205 5.6364 20.2394 6.41745L13.3774 13.2794C12.6158 14.0411 12.235 14.4219 11.8012 14.7247C11.4162 14.9936 11.0009 15.2162 10.564 15.3882C10.0717 15.582 9.54378 15.6885 8.48793 15.9016L8 16L8.04745 15.6678C8.21536 14.4925 8.29932 13.9048 8.49029 13.3561C8.65975 12.8692 8.89125 12.4063 9.17906 11.9786C9.50341 11.4966 9.92319 11.0768 10.7627 10.2373Z"
-                                                        class="stroke-white" stroke-width="2"
-                                                        stroke-linecap="round" stroke-linejoin="round"></path>
-                                                </g>
-                                            </svg>
-                                        </a>
-                                        <button type="button"
-                                                class="outline-0 border-0 flex justify-center items-center duration-500 bg-red-500 hover:bg-red-800 w-[35px] h-[35px] rounded-lg"
-                                                @click="deletePost(each.id)" v-if="!deleteLoading">
-                                            <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
-                                                   stroke-linejoin="round"></g>
-                                                <g id="SVGRepo_iconCarrier">
-                                                    <path d="M10 11V17" class="stroke-white" stroke-width="2"
-                                                          stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    <path d="M14 11V17" class="stroke-white" stroke-width="2"
-                                                          stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    <path d="M4 7H20" class="stroke-white" stroke-width="2"
-                                                          stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    <path
-                                                        d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z"
-                                                        class="stroke-white" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round"></path>
-                                                    <path
-                                                        d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
-                                                        class="stroke-white" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round"></path>
-                                                </g>
-                                            </svg>
-                                        </button>
-                                        <button type="button"
-                                                class="outline-0 border-0 flex justify-center items-center duration-500 bg-red-500 hover:bg-red-800 w-[35px] h-[35px] rounded-lg" disabled v-if="deleteLoading">
-                                            <svg class="h-5 mx-auto w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg"
-                                                 fill="none" viewBox="0 0 24 24">
-                                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="#fff"
-                                                        stroke-width="4"></circle>
-                                                <path class="opacity-75" fill="#fff"
-                                                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>--}}
                     <div
                         class="group bg-gray-100 rounded-2xl dark:bg-gray-800 w-full py-3 px-4 rounded-lg mb-3 flex items-center justify-between min-w-[744px]"
-                        v-for="(each) in tableData">
+                        v-for="(each, index) in tableData">
                         <div class="grow-0">
                             <img :src="'/storage/media/'+each?.featured_image"
                                  class="wounded-t-2xl  object-cover w-[100px] min-w-[100px] h-[60px]"
@@ -193,28 +81,67 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="flex items-center gap-2 grow-0">
+                        <div class="flex items-center gap-1 grow-0">
                             <a :href="'/blog-details/'+each.id"
-                               class="duration-500 bg-emerald-400 hover:bg-emerald-600 w-[80px] flex justify-center items-center rounded-lg py-1 px-3 text-white">
-                                View
+                               class="h-8 w-8 flex items-center justify-center rounded-full bg-transparent hover:bg-gray-300 dark:hover:bg-gray-600 duration-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px" viewBox="0 0 24 24"
+                                     fill="none">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9ZM11 12C11 11.4477 11.4477 11 12 11C12.5523 11 13 11.4477 13 12C13 12.5523 12.5523 13 12 13C11.4477 13 11 12.5523 11 12Z"
+                                          fill="#000000" class="fill-gray-600 dark:fill-gray-400"/>
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M21.83 11.2807C19.542 7.15186 15.8122 5 12 5C8.18777 5 4.45796 7.15186 2.17003 11.2807C1.94637 11.6844 1.94361 12.1821 2.16029 12.5876C4.41183 16.8013 8.1628 19 12 19C15.8372 19 19.5882 16.8013 21.8397 12.5876C22.0564 12.1821 22.0536 11.6844 21.83 11.2807ZM12 17C9.06097 17 6.04052 15.3724 4.09173 11.9487C6.06862 8.59614 9.07319 7 12 7C14.9268 7 17.9314 8.59614 19.9083 11.9487C17.9595 15.3724 14.939 17 12 17Z"
+                                          fill="#000000" class="fill-gray-600 dark:fill-gray-400"/>
+                                </svg>
                             </a>
                             <a :href="'/blogs/'+each.id"
-                               class="duration-500 bg-cyan-600 hover:bg-cyan-800 w-[80px] flex justify-center items-center rounded-lg py-1 px-3 text-white">
-                                Edit
+                               class="h-8 w-8 flex items-center justify-center rounded-full bg-transparent hover:bg-gray-300 dark:hover:bg-gray-600 duration-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24"
+                                     fill="none">
+                                    <g id="Edit / Edit_Pencil_01">
+                                        <path id="Vector"
+                                              d="M12 8.00012L4 16.0001V20.0001L8 20.0001L16 12.0001M12 8.00012L14.8686 5.13146L14.8704 5.12976C15.2652 4.73488 15.463 4.53709 15.691 4.46301C15.8919 4.39775 16.1082 4.39775 16.3091 4.46301C16.5369 4.53704 16.7345 4.7346 17.1288 5.12892L18.8686 6.86872C19.2646 7.26474 19.4627 7.46284 19.5369 7.69117C19.6022 7.89201 19.6021 8.10835 19.5369 8.3092C19.4628 8.53736 19.265 8.73516 18.8695 9.13061L18.8686 9.13146L16 12.0001M12 8.00012L16 12.0001"
+                                              stroke="#000000" class="stroke-gray-600 dark:stroke-gray-400" stroke-width="2" stroke-linecap="round"
+                                              stroke-linejoin="round"/>
+                                    </g>
+                                </svg>
                             </a>
-                            <button type="button"
-                                    class="outline-0 border-0 flex justify-center items-center duration-500 bg-red-500 hover:bg-red-800 w-[80px] rounded-lg py-1 px-3 text-white"
-                                    @click="deletePost(each.id)" v-if="!deleteLoading">
-                                Delete
+                            <button type="button" @click="deletePost(each, index)" v-if="each.deleteLoading == false"
+                                    class="h-8 w-8 flex items-center justify-center rounded-full bg-transparent hover:bg-gray-300 dark:hover:bg-gray-600 duration-500">
+                                <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                       stroke-linejoin="round"></g>
+                                    <g id="SVGRepo_iconCarrier">
+                                        <path d="M10 11V17" class="stroke-gray-600 dark:stroke-gray-400"
+                                              stroke-width="2"
+                                              stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M14 11V17" class="stroke-gray-600 dark:stroke-gray-400"
+                                              stroke-width="2"
+                                              stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path d="M4 7H20" class="stroke-gray-600 dark:stroke-gray-400" stroke-width="2"
+                                              stroke-linecap="round" stroke-linejoin="round"></path>
+                                        <path
+                                            d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z"
+                                            class="stroke-gray-600 dark:stroke-gray-400" stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"></path>
+                                        <path
+                                            d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
+                                            class="stroke-gray-600 dark:stroke-gray-400" stroke-width="2"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"></path>
+                                    </g>
+                                </svg>
                             </button>
-                            <button type="button"
-                                    class="outline-0 border-0 flex justify-center items-center duration-500 bg-red-500 hover:bg-red-800 w-[80px] rounded-lg py-1 px-3 text-white"
-                                    disabled v-if="deleteLoading">
-                                <svg class="h-5 mx-auto w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg"
+                            <button type="button" disabled v-if="each.deleteLoading == true"
+                                    class="h-8 w-8 flex items-center justify-center">
+                                <svg class="h-4 mx-auto w-4 animate-spin text-white" xmlns="http://www.w3.org/2000/svg"
                                      fill="none" viewBox="0 0 24 24">
                                     <circle class="opacity-25" cx="12" cy="12" r="10" stroke="#fff"
                                             stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="#fff"
+                                    <path class="opacity-75 fill-black dark:fill-white" fill="#fff"
                                           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                 </svg>
                             </button>
@@ -230,8 +157,10 @@
                         <div @click="PrevPage()">
                             <a href="javascript:void(0)"
                                class="p-2 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 20 20" fill="none"
-                                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 20 20"
+                                     fill="none"
+                                     stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                     stroke-linejoin="round"
                                      class="acorn-icons acorn-icons-chevron-left undefined">
                                     <path
                                         d="M13 16L7.35355 10.3536C7.15829 10.1583 7.15829 9.84171 7.35355 9.64645L13 4"></path>

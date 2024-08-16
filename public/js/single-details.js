@@ -1,3 +1,5 @@
+
+
 new Vue({
     el: '#single-details',
     data: {
@@ -27,7 +29,6 @@ new Vue({
             axios.get(`/api/front/posts/`+this.postId, this.postParam, {headers: headerContent}).then((response) => {
                 this.postParam = response?.data
                 this.postParam.tags = response?.data?.tags.split(',');
-                console.log(this.postParam.tags)
             }).catch(err => {
                 this.manageLoading = false;
                 let res = err?.response;

@@ -47,11 +47,11 @@ new Vue({
                 'Content-Type': 'application/json; charset=utf-8',
             }
             this.formData.page = this.current_page;
-            console.log(this.formData.page, this.current_page)
             axios.get(`/api/front/posts`, {params: this.formData}, {headers: headerContent}).then((response) => {
                 let res = response.data
                 this.loading = false;
                 this.tableData = res.data
+                this.tableData = this.tableData.filter(data => data.status === 'published')
                 this.tableData.forEach(each => {
                     each.tags = each?.tags.split(',');
                 })
@@ -60,7 +60,6 @@ new Vue({
                 this.last_page = res.last_page
                 this.total_pages = res.total < res.per_page ? 1 : Math.ceil((res.total / res.per_page))
                 this.current_page = res.current_page;
-                console.log(this.formData.page, this.current_page)
                 this.buttons = [...Array(this.total_pages).keys()].map(i => i + 1);
             }).catch(err => {
                 this.loading = false;

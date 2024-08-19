@@ -157,7 +157,6 @@ new Vue({
                     }else{
                         $('#comment').prop('checked', false);
                     }
-                    console.log(this.postParam.tags)
                     this.richTextEditor.setHTMLCode(this.postParam.content)
                 }
             }).catch(err => {
@@ -198,7 +197,6 @@ new Vue({
             let _this = this;
             axios.get(`/api/front/tags`, {headers: headerContent}).then((response) => {
                 this.tags = response?.data?.data;
-                console.log(this.tags)
                 setTimeout(() => {
                     this.tagsSelect2 = $('#selectTag').select2({
                         dropdownParent: $('#selectTagParent'),
@@ -208,7 +206,6 @@ new Vue({
                     });
                     this.tagsSelect2.on('change', function () {
                         _this.postParam.tags = $(this).val().join(',');
-                        console.log($(this).val())
                     });
                 }, 500)
             })

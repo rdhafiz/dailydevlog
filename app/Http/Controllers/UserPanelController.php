@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,8 @@ class UserPanelController extends BaseController
     public function blogDetails(Request $request, $id)
     {
         $rv = [
-            'id' => $id
+            'id' => $id,
+            'blog' => Post::where('id', $id)->first()
         ];
         return view('user-panel.blog-details.blog-details', $rv);
     }
@@ -47,6 +49,21 @@ class UserPanelController extends BaseController
         ];
 
         return view('user-panel.post.manage', $rv);
+    }
+
+
+    public function categories()
+    {
+        return view('user-panel.categories.categories');
+    }
+
+    public function manageCategory(Request $request, $id)
+    {
+        $rv = [
+            'id' => $id
+        ];
+
+        return view('user-panel.categories.manage', $rv);
     }
 
 }

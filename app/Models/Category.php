@@ -3,12 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Category extends Model
 {
+    use HasSlug;
+
     protected $fillable = [
         'name',
         'slug',
+        'icon',
         'description',
         'parent_id',
     ];
@@ -30,5 +35,14 @@ class Category extends Model
             return date('d/m/Y', strtotime($this->attributes['created_at']));
         }
         return null;
+    }
+
+
+
+    public function getSlugOptions() : SlugOptions
+    {
+        return SlugOptions::create()
+            ->generateSlugsFrom('name')
+            ->saveSlugsTo('slug');
     }
 }

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug')->unique();
             $table->text('description')->nullable();
+            $table->string('icon')->nullable();
             $table->unsignedInteger('parent_id')->nullable();
             $table->dateTime('created_at')->useCurrent();
             $table->timestamp('updated_at')->nullable()->useCurrentOnUpdate();

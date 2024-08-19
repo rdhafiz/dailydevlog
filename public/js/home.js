@@ -2,6 +2,8 @@ new Vue({
     el: '#home',
     data: {
         tableData: [],
+        featuredData: [],
+        notFeaturedData: [],
         formData: {
             keyword: '',
             limit: 20,
@@ -53,6 +55,8 @@ new Vue({
                 this.tableData.forEach(each => {
                     each.tags = each?.tags.split(',');
                 })
+                this.featuredData = this.tableData.filter(data => data.is_featured === 1);
+                this.notFeaturedData = this.tableData.filter(data => data.is_featured === 0);
                 this.last_page = res.last_page
                 this.total_pages = res.total < res.per_page ? 1 : Math.ceil((res.total / res.per_page))
                 this.current_page = res.current_page;

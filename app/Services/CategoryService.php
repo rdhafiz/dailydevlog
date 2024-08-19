@@ -12,15 +12,15 @@ class CategoryService
         return Category::create($data);
     }
 
-    public function updateCategory(Post $post, array $data)
+    public function updateCategory(Category $category, array $data)
     {
-        $post->update($data);
-        return $post;
+        $category->update($data);
+        return $category;
     }
 
-    public function deleteCategory(Post $slide)
+    public function deleteCategory(Category $category)
     {
-        $slide->delete();
+        $category->delete();
     }
 
     public function getAllCategory(array $filter)
@@ -28,8 +28,7 @@ class CategoryService
         $rv = Category::orderBy($filter['orderBy'], $filter['order']);
         if (!empty($filter['keyword'])) {
             $rv->where(function($q) use ($filter) {
-                $q->where('title', 'LIKE', '%'.$filter['keyword'].'%');
-                $q->orWhere('content', 'LIKE', '%'.$filter['keyword'].'%');
+                $q->where('name', 'LIKE', '%'.$filter['keyword'].'%');
             });
         }
         return $rv->paginate($filter['limit']);

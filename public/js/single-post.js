@@ -26,7 +26,8 @@ new Vue({
         categoryData: [],
         categories: [],
         categoryIds: [],
-        tags: []
+        tags: [],
+        richTextEditor: null
     },
     methods: {
 
@@ -135,7 +136,7 @@ new Vue({
         /* --- --- --- function of single post api --- --- --- */
         singlePost() {
             this.singleLoading = true;
-            let content_description = new RichTextEditor("#content_description", {height: 300});
+            this.richTextEditor = new RichTextEditor("#content_description", {height: 300});
             let headerContent = {
                 'Content-Type': 'application/json; charset=utf-8',
             }
@@ -157,7 +158,7 @@ new Vue({
                         $('#comment').prop('checked', false);
                     }
                     console.log(this.postParam.tags)
-                    content_description.setHTMLCode(this.postParam.content)
+                    this.richTextEditor.setHTMLCode(this.postParam.content)
                 }
             }).catch(err => {
                 let res = err?.response;
@@ -223,7 +224,7 @@ new Vue({
             this.postParam.id = '';
         }
         if(param === 'new') {
-            let content_description = new RichTextEditor("#content_description", {height: 300});
+            this.richTextEditor = new RichTextEditor("#content_description", {height: 300});
             $('#is_featured').prop('checked', false);
             $('#comment').prop('checked', true);
         }

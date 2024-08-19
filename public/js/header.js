@@ -3,6 +3,7 @@ new Vue({
     data: {
         logoutLoading: false,
         profileData: null,
+        menuShow: false
     },
     methods: {
         /* Function of search dropdown */
@@ -33,6 +34,11 @@ new Vue({
             dropDownMenu.classList.add('hidden');
             let searchDropDownMenu = document.querySelector('#search-dropdown-menu #search-dropdown');
             searchDropDownMenu.classList.add('hidden');
+        },
+
+        /* Function of toggle menu */
+        toggleMenu() {
+            this.menuShow = !this.menuShow;
         },
 
         /* --- --- --- function of logout api --- --- --- */
@@ -93,7 +99,7 @@ new Vue({
          onscroll() {
              const header = document.querySelector('.header');
              if(header){
-                 if (window.scrollY > 50) {
+                 if (window.scrollY > 100) {
                      header.classList.add('border-effect');
                  } else {
                      header.classList.remove('border-effect');

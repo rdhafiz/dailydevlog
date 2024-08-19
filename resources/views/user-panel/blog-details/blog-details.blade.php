@@ -6,10 +6,6 @@
             <div class="flex justify-start items-center gap-x-2 flex-wrap">
                 <a href="{{route('user.panel.home')}}"
                    class="decoration-0 text-gray-400 dark:text-cyan-600 flex justify-center items-center">
-                    <div
-                        class="w-[35px] h-[35px] p-0 rounded-full bg-gradient-to-r from-blue-600 to-green-300 flex justify-center items-center me-2">
-                        <img src="{{asset('/images/blog-details/home.svg')}}" class="w-[18px]" alt="home">
-                    </div>
                     Home
                 </a>
                 <img src="{{asset('/images/blog-details/chevron-dot-right.svg')}}" class="w-[22px] h-[22px]"
@@ -22,18 +18,16 @@
         </section>
 
         <section class="w-full py-10 px-5 md:px-[120px]">
-            <div class="text-center flex justify-center mb-5">
-                <div
-                    class="w-full lg:w-2/4 text-5xl font-bold leading-normal bg-gradient-to-r from-blue-600 to-green-400 inline-block text-transparent bg-clip-text">
-                    @{{ postParam?.title }}
-                </div>
+            <div
+                class="w-full text-xl md:text-3xl font-bold leading-normal bg-gradient-to-r from-cyan-400 to-green-400 text-transparent bg-clip-text mb-5">
+                @{{ postParam?.title }}
             </div>
             <img :src="'/storage/media/'+postParam?.featured_image" v-if="postParam.featured_image !== null" class="w-full h-[350px] lg:h-[550px] bg-cover object-cover rounded-2xl"
                  alt="blog-details">
             <img :src="'/images/default.png'" v-if="postParam.featured_image == null" class="w-full h-[350px] lg:h-[550px] bg-cover object-cover rounded-2xl"
                  alt="blog-details">
             <div class="flex justify-center">
-                <div class="w-full lg:w-2/3">
+                <div class="w-full">
                     <div class="flex justify-between items-center mt-10 w-full flex-wrap gap-5">
                         <div class="flex items-center justify-start">
                             <img v-if="postParam?.author?.avatar !== null" :src="'/storage/media/'+postParam?.author?.avatar" class="w-[45px] h-[45px] rounded-full object-cover bg-cover" alt="avatar">
@@ -47,39 +41,45 @@
                                 <div class="text-sm dark:text-gray-500 font-semibold text-gray-400">
                                     @{{ postParam?.created_at_format }}
                                 </div>
+                                <div class="text-sm dark:text-gray-500 font-semibold text-gray-400 text-sm">
+                                    @{{ postParam?.views_count }} views
+                                </div>
                             </div>
                         </div>
-                        <div class="flex justify-start items-center gap-x-5">
+                        <div class="flex justify-start items-center gap-x-2">
                             <div class="font-bold text-gray-600 dark:text-cyan-600">
                                 Share
                             </div>
-                            <img src="{{asset('/images/blog-details/facebook.svg')}}" class="w-[18px]" alt="facebook">
-                            <img src="{{asset('/images/blog-details/twitter.svg')}}" class="w-[18px]" alt="twitter">
-                            <img src="{{asset('/images/blog-details/linkedin.svg')}}" class="w-[18px]" alt="linkedin">
+                            <a href="javascript:void(0)" @click="share('facebook')" class="h-8 w-8 rounded-full bg-transparent hover:bg-gray-300 dark:hover:bg-gray-800 duration-500 flex items-center justify-center">
+                                <img src="{{asset('/images/blog-details/facebook.svg')}}" class="w-[18px]" alt="facebook">
+                            </a>
+                            <a href="javascript:void(0)" @click="share('twitter')" class="h-8 w-8 rounded-full bg-transparent hover:bg-gray-300 dark:hover:bg-gray-800 duration-500 flex items-center justify-center">
+                                <img src="{{asset('/images/blog-details/twitter.svg')}}" class="w-[18px]" alt="twitter">
+                            </a>
+                            <a href="javascript:void(0)" @click="share('linkedin')" class="h-8 w-8 rounded-full bg-transparent hover:bg-gray-300 dark:hover:bg-gray-800 duration-500 flex items-center justify-center">
+                                <img src="{{asset('/images/blog-details/linkedin.svg')}}" class="w-[18px]" alt="linkedin">
+                            </a>
                         </div>
                     </div>
                     <div class="w-full my-10 font-semibold text-cyan-700">
-                        <div id="content_description" class="w-full text-black dark:text-white content_description" v-html="postParam.content"></div>
+                        <div id="content_description" class="w-full text-black dark:text-white content_description" v-html="postParam?.content"></div>
                     </div>
                     <hr class="w-full border border-cyan-300 my-5 px-5 md:px-[120px]">
-                    <div class="flex justify-start flex-wrap gap-3">
-                        <span v-for="each in postParam.tags">
-                            <button type="button" class="bg-gray-300 px-5 py-2 rounded-md text-gray-600 outline-0 border border-gray-400">
-                                @{{ each }}
-                            </button>
-                        </span>
+                    <div
+                        class="text-gray-600 dark:text-gray-400 text-sm font-medium">
+                        <div class="flex items-center gap-2 me-3 grow"
+                             v-if="postParam?.tags?.length > 0">
+                            <span v-for="(tag, index) in postParam?.tags">#@{{ tag }}</span>
+                        </div>
                     </div>
-                    <div class="my-10 font-semibold text-gray-400 text-4xl">
+                    <div class="my-5 font-semibold text-gray-400 text-4xl">
                         Leave a comment
                     </div>
-                    <a href="javascript:void(0)" class="text-gray-400 decoration-0">
-                        You must be <a href="{{route('user.panel.login')}}" class="text-cyan-400"> logged in </a> to post a comment.
-                    </a>
+                    <div class="fb-comments w-full dark:text-white" :data-href="encodeURI(window.location.href)" data-width="100%" data-numposts="5"></div>
                 </div>
             </div>
         </section>
     </div>
 
     <script src="{{asset('/js/single-details.js')}}"></script>
-
 @endsection

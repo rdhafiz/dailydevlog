@@ -11,8 +11,8 @@
                        @keyup="searchData()">
             </div>
 
-            <div class="from-group w-full sm:w-1/2 lg:w-1/3">
-                <select name="order" class="p-3 bg-transparent border-0 outline-0 border-b-cyan-400 border-b-2 w-full" v-model="formData.sort_mode" @change="searchData()">
+            <div class="from-group w-full sm:w-1/2 lg:w-1/3 text-end">
+                <select name="order" class="p-3 bg-transparent border-0 outline-0 border-b-cyan-400 border-b-2 w-full lg:w-1/2" v-model="formData.sort_mode" @change="searchData()">
                     <option :value="''" class="text-black">Order</option>
                     <option :value="'asc'" class="text-black">Ascending</option>
                     <option :value="'desc'" class="text-black">Descending</option>
@@ -41,7 +41,69 @@
         </div>
 
         <div class="flex flex-wrap mt-5" v-if="tableData.length > 0 && !loading">
-            <div class="w-full sm:w-full lg:w-1/2 2xl:w-1/4 p-3 flex" v-for="(each) in tableData">
+            <div class="w-full sm:w-full 2xl:w-1/2 p-3 flex" v-for="(each) in featuredData" v-if="featuredData.length > 0">
+                <div class="group bg-gray-100 rounded-2xl dark:bg-gray-800 w-full">
+                    <div class="h-[250px] rounded-t-2xl overflow-hidden">
+                        <img :src="'/storage/media/'+each?.featured_image"
+                             class="w-full rounded-t-2xl object-cover h-[250px] scale-[1] group-hover:scale-[1.2] duration-500"
+                             alt="blog" v-if="each?.featured_image">
+                        <img :src="'/images/default.png/'"
+                             class="w-full rounded-t-2xlobject-cover h-[300px] scale-[1] group-hover:scale-[1.2] duration-500"
+                             alt="blog" v-if="!each?.featured_image">
+                    </div>
+                    <div class="px-4">
+
+                        <div
+                            class="flex justify-between items-center gap-2 mb-1 text-gray-600 dark:text-gray-400 text-sm font-medium mt-3">
+                            <div class="w-[calc(100%-60px)]" v-if="each?.tags?.length > 0">
+                                <div class="text-truncate w-[95%]">
+                                    <template v-for="(tag, index) in each?.tags">#@{{ tag }}&nbsp;</template>
+                                </div>
+                            </div>
+                            <div class="dark:text-gray-500 font-semibold text-gray-400 text-[12px] w-[60px] text-end grow-0">
+                                @{{ each.views_count }} views
+                            </div>
+                        </div>
+                        <div
+                            class="text-[18px] font-bold transition-all h-[44px] leading-[1.2] duration-500 dark:text-cyan-600 dark:group-hover:text-cyan-400 text-gray-600 group-hover:text-cyan-400 mt-2 mb-1 text-truncate-line-2">
+                            @{{ each.title }}
+                        </div>
+
+                        <div class="flex justify-between items-center mt-2 mb-2">
+                            <div class="flex items-center justify-start">
+                                <div
+                                    class="w-[30px] h-[30px] flex justify-center items-center bg-cyan-300 rounded-full font-bold dark:bg-cyan-500"
+                                    v-if="each?.author?.avatar === null">
+                                    @{{ nameControl(each?.author?.name) }}
+                                </div>
+                                <img :src="'/storage/media/'+each?.author?.avatar"
+                                     class="w-[30px] h-[30px] bg-cover object-cover rounded-full"
+                                     v-if="each?.author?.avatar !== null" alt="avatar">
+                                <div class="ms-3">
+                                    <div class="font-bold text-gray-600 dark:text-cyan-600 text-[14px]">
+                                        @{{ each?.author?.name }}
+                                    </div>
+                                    <div class="dark:text-gray-500 font-semibold text-gray-400 text-[11px]">
+                                        @{{ each?.created_at_format }}
+                                    </div>
+                                </div>
+                            </div>
+                            <a :href="'/blog-details/'+each.id" class="decoration-0">
+                                <div
+                                    class="relative w-[100px] h-[40px] text-gray-400 hover:text-blue-400 dark:text-blue-400 dark:hover:text-cyan-400 flex items-center read-more">
+                                    <div
+                                        class="w-[30px] h-[30px] bg-white rounded-full dark:bg-gray-900 child duration-500"></div>
+                                    <div
+                                        class="absolute top-0 bottom-0 start-0 w-full h-full transition-all duration-500 flex justify-start ps-4 items-center text-[14px]">
+                                        Read More
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full sm:w-full lg:w-1/2 2xl:w-1/4 p-3 flex" v-for="(each) in notFeaturedData" v-if="notFeaturedData.length > 0">
                 <div class="group bg-gray-100 rounded-2xl dark:bg-gray-800 w-full">
                     <div class="h-[250px] rounded-t-2xl overflow-hidden">
                         <img :src="'/storage/media/'+each?.featured_image"

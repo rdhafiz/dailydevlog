@@ -173,7 +173,6 @@ new Vue({
                     _this.msg = response?.data?.msg;
                     setTimeout(function(){
                         _this.msg = null;
-                        console.log(3)
                     }, 3000);
                 }
             }).catch(err => {

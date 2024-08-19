@@ -59,19 +59,16 @@ new Vue({
             this.formData.page = this.current_page;
             axios.get(`/api/front/categories`, {params: this.formData}, {headers: headerContent}).then((response) => {
                 let res = response.data
-                console.log(1)
                 this.loading = false;
                 this.tableData = res.data;
                 this.tableData.forEach(each => {
                     each.deleteLoading = false;
                 })
-                console.log(this.tableData)
                 this.last_page = res.last_page;
                 this.total_pages = res.total < res.per_page ? 1 : Math.ceil((res.total / res.per_page))
                 this.current_page = res.current_page;
                 this.buttons = [...Array(this.total_pages).keys()].map(i => i + 1);
             }).catch(err => {
-                console.log(2)
                 this.loading = false;
                 let res = err?.response;
             })

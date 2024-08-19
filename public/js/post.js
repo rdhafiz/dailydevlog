@@ -48,7 +48,6 @@ new Vue({
                     each.tags = each?.tags.split(',');
                     each.deleteLoading = false;
                 })
-                console.log(this.tableData)
                 this.last_page = res.last_page;
                 this.total_pages = res.total < res.per_page ? 1 : Math.ceil((res.total / res.per_page))
                 this.current_page = res.current_page;

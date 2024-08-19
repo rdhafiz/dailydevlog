@@ -5,7 +5,7 @@
 @layer components {
 
     .border-effect {
-        @apply border border-gray-100 shadow-2xl dark:border transition-all duration-500 z-50;
+        @apply border border-gray-100 shadow-2xl dark:border transition-all duration-500 z-50 sticky;
     }
 
     .dark .select2 {
@@ -65,6 +65,14 @@
 
     .dark rte-content p {
         color: #FFFFFF !important;
+    }
+
+    .dark .fb-comments ._ohe ._50f7{
+        color: #fff!important;
+    }
+
+    .dark .fb-comments ._5mdd{
+        color: #fff!important;
     }
 }
 
@@ -378,4 +386,37 @@ rte-toolbar-arrowbutton svg {
 #single-details #content_description button {
     background-color: buttonface; /* Default button background color */
     cursor: pointer; /* Default cursor for buttons */
+}
+
+
+
+::-webkit-scrollbar {
+       -webkit-appearance: none;
+       width: 5px !important;
+       height: 2px !important;
+       background-color: #f6f6f6;
+}
+
+@media screen and (max-width: 991px) {
+    ::-webkit-scrollbar {
+        height: 9px !important;
+    }
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, .2) !important;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #f6f6f6;
+    opacity: 1;
+}
+
+._30o4{
+    color: #fff!important;
 }

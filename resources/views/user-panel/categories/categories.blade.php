@@ -1,7 +1,7 @@
 @extends('user-panel.layout.layout')
 @section('content')
 
-    <div id="post">
+    <div id="categories">
         <section class="w-full">
 
             <div class="w-full flex justify-between flex-wrap sm:flex-nowrap items-center px-3 gap-2 sm:gap-5">
@@ -24,8 +24,8 @@
                 <div class="w-full lg:w-1/3 flex justify-end py-3">
 
                     <!-- New -->
-                    <a :href="'/blogs/new'" class="outline-0 border-0 btn-theme w-[120px] rounded-lg">
-                        New Blog
+                    <a :href="'/categories/new'" class="outline-0 border-0 btn-theme w-[120px] rounded-lg">
+                        New Category
                     </a>
 
                 </div>
@@ -49,9 +49,9 @@
                 <div
                     class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
                     <div class="text-sm mb-3 text-cyan-600 dark:text-gray-500 font-medium">
-                        Do not have any blog
+                        Do not have any category
                     </div>
-                    <div class="font-medium text-cyan-600 dark:text-gray-500">Click “New” to create a blog.</div>
+                    <div class="font-medium text-cyan-600 dark:text-gray-500">Click “New” to create a category.</div>
                 </div>
             </div>
 
@@ -61,40 +61,21 @@
                         class="group bg-gray-100 rounded-2xl dark:bg-gray-800 w-full py-3 px-4 rounded-lg mb-3 flex items-center justify-between min-w-[744px]"
                         v-for="(each, index) in tableData">
                         <div class="grow-0">
-                            <img :src="'/storage/media/'+each?.featured_image"
+                            <img :src="'/storage/media/'+each?.icon"
                                  class="wounded-t-2xl  object-cover w-[100px] min-w-[100px] h-[60px]"
-                                 alt="blog" v-if="each?.featured_image">
+                                 alt="blog" v-if="each?.icon">
                             <img :src="'/images/default.png/'"
                                  class="rounded-t-2xl object-cover w-[100px] min-w-[100px] h-[60px]"
-                                 alt="blog" v-if="!each?.featured_image">
+                                 alt="blog" v-if="!each?.icon">
                         </div>
                         <div class="grow text-start mx-8">
                             <div
                                 class="font-bold text-lg dark:text-cyan-600 duration-500 dark:group-hover:text-cyan-400 text-gray-600 group-hover:text-cyan-400 text-truncate-line-2">
-                                @{{ each.title }}
-                            </div>
-                            <div
-                                class="flex justify-between items-center mt-1 text-gray-600 dark:text-gray-400 text-sm font-medium">
-                                <div class="flex items-center gap-2 me-3 grow"
-                                     v-if="each?.tags?.length > 0">
-                                    <span v-for="(tag, index) in each?.tags">#@{{ tag }}</span>
-                                </div>
+                                @{{ each.name }}
                             </div>
                         </div>
                         <div class="flex items-center gap-1 grow-0">
-                            <a :href="'/blog-details/'+each.id"
-                               class="h-8 w-8 flex items-center justify-center rounded-full bg-transparent hover:bg-gray-300 dark:hover:bg-gray-600 duration-500">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="22px" height="22px" viewBox="0 0 24 24"
-                                     fill="none">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                          d="M12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9ZM11 12C11 11.4477 11.4477 11 12 11C12.5523 11 13 11.4477 13 12C13 12.5523 12.5523 13 12 13C11.4477 13 11 12.5523 11 12Z"
-                                          fill="#000000" class="fill-gray-600 dark:fill-gray-400"/>
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                          d="M21.83 11.2807C19.542 7.15186 15.8122 5 12 5C8.18777 5 4.45796 7.15186 2.17003 11.2807C1.94637 11.6844 1.94361 12.1821 2.16029 12.5876C4.41183 16.8013 8.1628 19 12 19C15.8372 19 19.5882 16.8013 21.8397 12.5876C22.0564 12.1821 22.0536 11.6844 21.83 11.2807ZM12 17C9.06097 17 6.04052 15.3724 4.09173 11.9487C6.06862 8.59614 9.07319 7 12 7C14.9268 7 17.9314 8.59614 19.9083 11.9487C17.9595 15.3724 14.939 17 12 17Z"
-                                          fill="#000000" class="fill-gray-600 dark:fill-gray-400"/>
-                                </svg>
-                            </a>
-                            <a :href="'/blogs/'+each.id"
+                            <a :href="'/categories/'+each.id"
                                class="h-8 w-8 flex items-center justify-center rounded-full bg-transparent hover:bg-gray-300 dark:hover:bg-gray-600 duration-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 24 24"
                                      fill="none">
@@ -106,7 +87,7 @@
                                     </g>
                                 </svg>
                             </a>
-                            <button type="button" @click="deletePost(each, index)" v-if="each.deleteLoading == false"
+                            <button type="button" @click="deleteCategory(each, index)" v-if="each.deleteLoading == false"
                                     class="h-8 w-8 flex items-center justify-center rounded-full bg-transparent hover:bg-gray-300 dark:hover:bg-gray-600 duration-500">
                                 <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -245,7 +226,7 @@
 
             </div>
 
-            <div class="fixed top-0 end-0 p-10 z-50" v-if="msg" id="msg">
+            <div class="fixed top-0 end-0 p-10 z-50" v-if="msg">
                 <div class="px-10 py-5 text-end bg-gradient-to-r from-cyan-500 to-cyan-700 rounded-2xl">
                     @{{msg}}
                 </div>
@@ -253,6 +234,6 @@
         </section>
     </div>
 
-    <script src="{{asset('/js/post.js')}}"></script>
+    <script src="{{asset('/js/categories.js')}}"></script>
 
 @endsection

@@ -50,13 +50,13 @@
                             <div class="font-bold text-gray-600 dark:text-cyan-600">
                                 Share
                             </div>
-                            <a href="https://www.facebook.com" target="_blank" class="h-8 w-8 rounded-full bg-transparent hover:bg-gray-300 dark:hover:bg-gray-800 duration-500 flex items-center justify-center">
+                            <a href="javascript:void(0)" @click="share('facebook')" class="h-8 w-8 rounded-full bg-transparent hover:bg-gray-300 dark:hover:bg-gray-800 duration-500 flex items-center justify-center">
                                 <img src="{{asset('/images/blog-details/facebook.svg')}}" class="w-[18px]" alt="facebook">
                             </a>
-                            <a href="https://x.com" target="_blank" class="h-8 w-8 rounded-full bg-transparent hover:bg-gray-300 dark:hover:bg-gray-800 duration-500 flex items-center justify-center">
+                            <a href="javascript:void(0)" @click="share('twitter')" class="h-8 w-8 rounded-full bg-transparent hover:bg-gray-300 dark:hover:bg-gray-800 duration-500 flex items-center justify-center">
                                 <img src="{{asset('/images/blog-details/twitter.svg')}}" class="w-[18px]" alt="twitter">
                             </a>
-                            <a href="https://www.linkedin.com" target="_blank" class="h-8 w-8 rounded-full bg-transparent hover:bg-gray-300 dark:hover:bg-gray-800 duration-500 flex items-center justify-center">
+                            <a href="javascript:void(0)" @click="share('linkedin')" class="h-8 w-8 rounded-full bg-transparent hover:bg-gray-300 dark:hover:bg-gray-800 duration-500 flex items-center justify-center">
                                 <img src="{{asset('/images/blog-details/linkedin.svg')}}" class="w-[18px]" alt="linkedin">
                             </a>
                         </div>
@@ -75,9 +75,7 @@
                     <div class="my-5 font-semibold text-gray-400 text-4xl">
                         Leave a comment
                     </div>
-                    <a href="javascript:void(0)" class="text-gray-400 decoration-0">
-                        You must be <a href="{{route('user.panel.login')}}" class="text-cyan-400"> logged in </a> to post a comment.
-                    </a>
+                    <div class="fb-comments w-full dark:text-white" :data-href="encodeURI(window.location.href)" data-width="100%" data-numposts="5"></div>
                 </div>
             </div>
         </section>

@@ -2,12 +2,25 @@
 @section('content')
 
     <div id="profile">
+        <section class="w-full px-5 mb-12">
+            <div class="flex justify-start items-center gap-x-2 flex-wrap">
+                <a href="{{route('user.panel.home')}}"
+                   class="decoration-0 text-gray-400 dark:text-cyan-600 flex justify-center items-center">
+                    Home
+                </a>
+                <img src="{{asset('/images/blog-details/chevron-dot-right.svg')}}" class="w-[22px] h-[22px]"
+                     alt="chevron-dot-right.svg">
+                <a href="javascript:void(0)" class="decoration-0 text-gray-600 font-semibold dark:text-cyan-400">
+                    Profile
+                </a>
+            </div>
+            <hr class="w-full border border-cyan-300 my-5 px-5 md:px-[120px]">
+        </section>
         <section class="px-2">
             <div class="flex flex-wrap">
-                <div class="w-full lg:w-1/3 px-3">
-
+                <div class="w-full lg:w-1/3 px-3 mb-5">
                     <div
-                        class="px-5 py-10 w-full border border-cyan-100 dark:border-cyan-900 bg-cyan-100 dark:bg-cyan-800 rounded-3xl flex justify-center items-center flex-col">
+                        class="px-5 py-10 w-full border border-cyan-100 dark:border-cyan-900 bg-gray-100 dark:bg-gray-800 rounded-3xl flex justify-center items-center flex-col">
 
                         <label for="upload-profile-avatar" v-if="profileParam.avatar === null && !uploadLoading"
                                class="cursor-pointer w-[200px] lg:w-[250px] h-[200px] lg:h-[250px] text-white dark:bg-cyan-600 bg-gray-400 rounded-full text-5xl lg:text-7xl flex justify-center items-center">
@@ -63,36 +76,29 @@
                             </div>
                         </div>
 
-                        <div class="text-3xl font-bold text-center py-5">
+                        <div class="text-3xl font-bold text-center pt-5 pb-2">
                             @{{profileData?.name}}
                         </div>
 
-                    </div>
-                    <div
-                        class="p-5 w-full border border-cyan-100 dark:border-cyan-900 bg-cyan-100 dark:bg-cyan-800 rounded-3xl mt-5 mb-5">
-                        <a href="javascript:void(0)" @click="logout" v-if="!logoutLoading"
-                           class="decoration-0 text-gray-700 hover:text-cyan-800 dark:text-white dark:hover:text-cyan-300 duration-500 block font-semibold p-3">
-                            Logout
-                        </a>
-                        <button type="button"
-                                class="btn-theme rounded-md w-full flex justify-center items-center h-[45px] text-white"
-                                disabled v-if="logoutLoading">
-                            <svg class="h-5 mx-auto w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg"
-                                 fill="none" viewBox="0 0 24 24">
-                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                        stroke-width="4"></circle>
-                                <path class="opacity-75" fill="currentColor"
-                                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                            </svg>
-                        </button>
+                        <div class="text-3xl font-medium text-center text-sm pb-2">
+                            @{{profileData?.email}}
+                        </div>
+
+                        <div class="text-gray-600 dark:text-gray-400 text-sm">
+                            @{{profileData?.bio}}
+                        </div>
+
                     </div>
                 </div>
                 <div class="w-full lg:w-2/3 px-3">
                     <div
-                        class="p-10 w-full border border-cyan-100 dark:border-cyan-900 bg-cyan-100 dark:bg-cyan-800 rounded-3xl mb-5">
+                        class="p-10 w-full border border-cyan-100 dark:border-cyan-900 bg-gray-100 dark:bg-gray-800 rounded-3xl mb-5">
 
                         <form @submit.prevent="profileUpdate">
-                            <div class="mb-7 text-2xl md:text-4xl font-bold"> Edit Profile</div>
+                            <section class="w-full mb-7">
+                                <div class="decoration-0 text-gray-600 font-semibold dark:text-cyan-400">Edit Profile</div>
+                                <hr class="w-full border border-cyan-300 my-5 px-5 md:px-[120px]">
+                            </section>
                             <div class="mb-5">
                                 <label for="name" class="block font-semibold"> Name </label>
                                 <input id="name" type="text" name="name" v-model="profileParam.name"
@@ -148,10 +154,13 @@
                     </div>
 
                     <div
-                        class="p-10 w-full border border-cyan-100 dark:border-cyan-900 bg-cyan-100 dark:bg-cyan-800 rounded-3xl">
+                        class="p-10 w-full border border-cyan-100 dark:border-cyan-900 bg-gray-100 dark:bg-gray-800 rounded-3xl">
 
                         <form @submit.prevent="changePassword()">
-                            <div class="mb-7 text-2xl md:text-4xl font-bold"> Change Password</div>
+                            <section class="w-full mb-7">
+                                <div class="decoration-0 text-gray-600 font-semibold dark:text-cyan-400">Change Password</div>
+                                <hr class="w-full border border-cyan-300 my-5 px-5 md:px-[120px]">
+                            </section>
                             <div class="mb-5">
                                 <label for="current_password" class="block font-semibold"> Current password </label>
                                 <input id="current_password" type="password" name="current_password"
@@ -207,7 +216,7 @@
         </section>
 
         <div class="fixed top-0 end-0 p-10 z-50" v-if="msg" id="msg">
-            <div class="px-10 py-5 text-end bg-gradient-to-r from-green-900 to-green-500 rounded-2xl">
+            <div class="px-10 py-5 text-end bg-gradient-to-r from-cyan-500 to-cyan-700 rounded-2xl">
                 @{{msg}}
             </div>
         </div>

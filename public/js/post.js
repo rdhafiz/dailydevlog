@@ -67,7 +67,7 @@ new Vue({
             }, 800);
         },
 
-        /* Function of search list data */
+        /* Function of delete data */
         deletePost(data, index) {
             let _this = this;
             data.deleteLoading = true;

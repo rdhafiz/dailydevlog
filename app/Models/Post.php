@@ -62,8 +62,6 @@ class Post extends Model
         return null;
     }
 
-
-
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()

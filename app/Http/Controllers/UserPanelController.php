@@ -51,4 +51,19 @@ class UserPanelController extends BaseController
         return view('user-panel.post.manage', $rv);
     }
 
+
+    public function categories()
+    {
+        return view('user-panel.categories.categories');
+    }
+
+    public function manageCategory(Request $request, $id)
+    {
+        $rv = [
+            'id' => $id
+        ];
+
+        return view('user-panel.categories.manage', $rv);
+    }
+
 }

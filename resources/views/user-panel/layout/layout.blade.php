@@ -10,5 +10,8 @@
     @yield('content')
     </div>
     @include('user-panel.layout.includes.footer')
+
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v20.0" nonce="wUVh3P2L"></script>
     </body>
 </html>

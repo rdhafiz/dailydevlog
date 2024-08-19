@@ -171,11 +171,9 @@ new Vue({
                     this.uploadLoading = false;
                     this.msg = response?.data?.msg;
                     _this.msg = response?.data?.msg;
-                    if(response?.data?.avatar){
-                        document.getElementById('header_avatar').src = `/storage/media/${response?.data?.avatar}`
-                    }
                     setTimeout(function(){
                         _this.msg = null;
+                        console.log(3)
                     }, 3000);
                 }
             }).catch(err => {

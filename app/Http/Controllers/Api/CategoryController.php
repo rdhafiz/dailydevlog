@@ -88,6 +88,6 @@ class CategoryController extends Controller
         $category = $this->categoryService->getCategoryById($id);
         $this->categoryService->deleteCategory($category);
 
-        return response()->json(['message' => 'Category deleted successfully'], 200);
+        return response()->json(['message' => 'Category has been deleted successfully'], 200);
     }
 }

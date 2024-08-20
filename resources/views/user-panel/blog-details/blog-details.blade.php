@@ -2,7 +2,7 @@
 @section('content')
 
     <div id="single-details">
-        <section class="w-full px-5 md:px-[120px]">
+{{--        <section class="w-full px-5 md:px-[120px]">
             <div class="flex justify-start items-center gap-x-2 flex-wrap">
                 <a href="{{route('user.panel.home')}}"
                    class="decoration-0 text-gray-400 dark:text-cyan-600 flex justify-center items-center">
@@ -15,34 +15,37 @@
                 </a>
             </div>
             <hr class="w-full border border-cyan-300 my-5 px-5 md:px-[120px]">
-        </section>
+        </section>--}}
 
-        <section class="w-full py-10 px-5 md:px-[120px]">
+        <section class="w-full lg:py-10 px-5 lg:px-[120px]">
             <div
-                class="w-full text-xl md:text-3xl font-bold leading-normal bg-gradient-to-r from-cyan-400 to-green-400 text-transparent bg-clip-text mb-5">
-                @{{ postParam?.title }}
+                class="w-full text-3xl md:text-5xl font-bold !leading-normal bg-gradient-to-r from-cyan-400 to-green-400 text-transparent bg-clip-text mb-5">
+                {{$post['title']}}
             </div>
-            <img :src="'/storage/media/'+postParam?.featured_image" v-if="postParam.featured_image !== null" class="w-full h-[350px] lg:h-[550px] bg-cover object-cover rounded-2xl"
-                 alt="blog-details">
-            <img :src="'/images/default.png'" v-if="postParam.featured_image == null" class="w-full h-[350px] lg:h-[550px] bg-cover object-cover rounded-2xl"
-                 alt="blog-details">
+            @if($post['featured_image'] !== null)
+                <img src="{{asset('/storage/media/').'/'.$post['featured_image']}}" class="w-full h-350px lg:h-[550px] object-contain lg:object-cover rounded-2xl"
+                     alt="blog-details">
+            @else
+                <img :src="'/images/default.png'" class="w-full h-[350px] lg:h-[550px] object-contain lg:object-cover rounded-2xl"
+                     alt="blog-details">
+            @endif
             <div class="flex justify-center">
                 <div class="w-full">
                     <div class="flex justify-between items-center mt-10 w-full flex-wrap gap-5">
                         <div class="flex items-center justify-start">
                             <img v-if="postParam?.author?.avatar !== null" :src="'/storage/media/'+postParam?.author?.avatar" class="w-[45px] h-[45px] rounded-full object-cover bg-cover" alt="avatar">
                             <div v-if="postParam?.author?.avatar === null" class="w-[45px] h-[45px] rounded-full flex justify-center items-center text-white bg-cyan-600">
-                                @{{ nameControl(postParam?.author?.name) }}
+                                @{{ nameControl(@json($post['author']['name'])) }}
                             </div>
                             <div class="ms-3">
                                 <div class="font-bold text-gray-600 dark:text-cyan-600">
-                                    @{{ postParam?.author?.name }}
+                                    {{$post['author']['name']}}
                                 </div>
                                 <div class="text-sm dark:text-gray-500 font-semibold text-gray-400">
-                                    @{{ postParam?.created_at_format }}
+                                    {{$post['author']['created_at_format']}}
                                 </div>
                                 <div class="text-sm dark:text-gray-500 font-semibold text-gray-400 text-sm">
-                                    @{{ postParam?.views_count }} views
+                                    {{$post['views_count']}} views
                                 </div>
                             </div>
                         </div>
@@ -69,10 +72,12 @@
                         class="text-gray-600 dark:text-gray-400 text-sm font-medium">
                         <div class="flex items-center gap-2 me-3 grow"
                              v-if="postParam?.tags?.length > 0">
-                            <span v-for="(tag, index) in postParam?.tags">#@{{ tag }}</span>
+                            @foreach(explode(",", $post['tags']) as $tag)
+                            <span>#{{$tag}}</span>
+                            @endforeach
                         </div>
                     </div>
-                    <div class="my-5 font-semibold text-gray-400 text-4xl">
+                    <div class="my-5 font-semibold text-gray-400 text-2xl lg:text-4xl">
                         Leave a comment
                     </div>
                     <div class="fb-comments w-full dark:text-white" :data-href="encodeURI(window.location.href)" data-width="100%" data-numposts="5"></div>

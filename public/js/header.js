@@ -3,9 +3,25 @@ new Vue({
     data: {
         logoutLoading: false,
         profileData: null,
-        menuShow: false
+        menuShow: false,
+        formData: {
+            keyword: '',
+            page: 1,
+            status: 'published'
+        }
     },
     methods: {
+
+        /*function to search data*/
+        searchData(){
+            const params = new URLSearchParams();
+            params.append('keyword', this.formData.keyword);
+            const queryString = params.toString();
+            const origin = new URL(window.location.href).origin;
+            const url = `${origin}/search-blogs?${queryString}`;
+            window.location.href = url;
+        },
+
         /* Function of search dropdown */
         searchDropdown() {
             let searchDropDownMenu = document.querySelector('#search-dropdown-menu #search-dropdown');

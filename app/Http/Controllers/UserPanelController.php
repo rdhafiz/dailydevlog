@@ -17,8 +17,16 @@ class UserPanelController extends BaseController
     {
         $rv = [
             'id' => $id,
-            'blog' => Post::where('id', $id)->first()
+            'post' => Post::where('id', $id)->first()
         ];
+        $post = Post::where('id', $id)->first();
+
+        if ($post->views_count == 0) {
+            $post->views_count = 1;
+        } else {
+            $post->views_count = $post->views_count + 1;
+        }
+        $post->save();
         return view('user-panel.blog-details.blog-details', $rv);
     }
 
@@ -40,6 +48,16 @@ class UserPanelController extends BaseController
     public function post()
     {
         return view('user-panel.post.post');
+    }
+
+    public function my_post()
+    {
+        return view('user-panel.post.my-post');
+    }
+
+    public function search_post()
+    {
+        return view('user-panel.post.search-post');
     }
 
     public function managePost(Request $request, $id)

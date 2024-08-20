@@ -28,6 +28,7 @@ class PostRequest extends FormRequest
         return [
             'user_id' => 'nullable|integer',
             'title' => 'required|string',
+            'short_description' => 'required|string',
             'slug' => 'nullable|string',
             'content' => 'required|string',
             'category' => 'nullable|string',

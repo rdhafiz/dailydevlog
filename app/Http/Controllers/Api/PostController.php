@@ -29,6 +29,7 @@ class PostController extends Controller
         $validator = Validator::make($request->all(), [
             'limit' => 'nullable|integer',
             'keyword' => 'nullable|string',
+            'is_featured' => 'nullable|integer',
             'status' => 'nullable|string',
             'orderBy' => 'nullable|string',
             'order' => 'nullable|in:asc,desc',
@@ -44,6 +45,7 @@ class PostController extends Controller
             $filter = [
                 'limit' => $request->limit ?? 20,
                 'keyword' => $request->keyword ?? '',
+                'is_featured' => $request->is_featured ?? '',
                 'status' => $request->status ?? '',
                 'orderBy' => $request->orderBy ?? 'id',
                 'order' => $request->sort_mode ?? 'asc',
@@ -59,11 +61,6 @@ class PostController extends Controller
     public function show($id)
     {
         $post = $this->postService->getPostById($id);
-        if ($post->views_count == 0) {
-            $post->views_count = 1;
-        } else {
-            $post->views_count = $post->views_count + 1;
-        }
         $post->save();
         return response()->json($post, 200);
     }

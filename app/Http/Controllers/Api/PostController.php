@@ -29,6 +29,7 @@ class PostController extends Controller
         $validator = Validator::make($request->all(), [
             'limit' => 'nullable|integer',
             'keyword' => 'nullable|string',
+            'status' => 'nullable|string',
             'orderBy' => 'nullable|string',
             'order' => 'nullable|in:asc,desc',
         ]);
@@ -43,6 +44,7 @@ class PostController extends Controller
             $filter = [
                 'limit' => $request->limit ?? 20,
                 'keyword' => $request->keyword ?? '',
+                'status' => $request->status ?? '',
                 'orderBy' => $request->orderBy ?? 'id',
                 'order' => $request->sort_mode ?? 'asc',
             ];

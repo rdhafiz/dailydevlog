@@ -7,6 +7,7 @@ new Vue({
             keyword: '',
             limit: 20,
             page: 1,
+            status: '',
             sort_mode: ''
         },
         total_pages: 0,

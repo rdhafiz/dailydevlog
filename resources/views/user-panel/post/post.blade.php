@@ -5,23 +5,35 @@
         <section class="w-full">
 
             <div class="w-full flex justify-between flex-wrap sm:flex-nowrap items-center px-3 gap-2 sm:gap-5">
-                <div class="w-full lg:w-1/3 py-2 sm:py-3">
+                <div class="w-full sm:w-2/5 py-2 sm:py-3">
                     <!-- Search input -->
                     <input type="text" name="keyword"
                            class="p-3 bg-transparent border-0 outline-0 border-b-cyan-400 border-b-2 w-full" required
                            autocomplete="off" placeholder="Search Here" v-model="formData.keyword"
                            @keyup="searchData()">
                 </div>
-                <div class="from-group w-full lg:w-1/3">
-                    <select name="order"
-                            class="p-3 bg-transparent border-0 outline-0 border-b-cyan-400 border-b-2 w-full lg:w-1/2"
-                            v-model="formData.sort_mode" @change="searchData()">
-                        <option :value="''" class="text-black">Order</option>
-                        <option :value="'asc'" class="text-black">Ascending</option>
-                        <option :value="'desc'" class="text-black">Descending</option>
-                    </select>
-                </div>
-                <div class="w-full lg:w-1/3 flex justify-end py-3">
+               <div class="w-full sm:w-2/5 flex gap-2 sm:gap-5">
+                   <div class="from-group w-full sm:w-1/2">
+                       <select name="order"
+                               class="p-3 bg-transparent border-0 outline-0 border-b-cyan-400 border-b-2 w-full"
+                               v-model="formData.status" @change="searchData()">
+                           <option :value="''" class="text-black">Status</option>
+                           <option :value="'published'" class="text-black">Published</option>
+                           <option :value="'draft'" class="text-black">Draft</option>
+                           <option :value="'archived'" class="text-black">Archived</option>
+                       </select>
+                   </div>
+                   <div class="from-group w-full sm:w-1/2">
+                       <select name="order"
+                               class="p-3 bg-transparent border-0 outline-0 border-b-cyan-400 border-b-2 w-full"
+                               v-model="formData.sort_mode" @change="searchData()">
+                           <option :value="''" class="text-black">Order</option>
+                           <option :value="'asc'" class="text-black">Ascending</option>
+                           <option :value="'desc'" class="text-black">Descending</option>
+                       </select>
+                   </div>
+               </div>
+                <div class="w-full sm:w-1/5 flex justify-end py-3">
 
                     <!-- New -->
                     <a :href="'/blogs/new'" class="outline-0 border-0 btn-theme w-[120px] rounded-lg">

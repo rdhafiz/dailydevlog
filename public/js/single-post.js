@@ -85,6 +85,9 @@ new Vue({
             this.error = null;
             this.postParam.content = document.getElementById('content_description').value;
             if(typeof this.postParam.tags !== 'string'){
+                this.postParam.tags = this.postParam.tags.join(',');
+            }
+            if(typeof this.postParam.tags !== 'string'){
                 this.postParam.tags = this.postParam.tags.join('')
             }
              setTimeout(()=> {

@@ -72,6 +72,11 @@ class PostService
                 $q->orWhere('content', 'LIKE', '%'.$filter['keyword'].'%');
             });
         }
+        if (!empty($filter['status'])) {
+            $rv->where(function($q) use ($filter) {
+                $q->where('status', $filter['status']);
+            });
+        }
         return $rv->paginate($filter['limit']);
 
     }

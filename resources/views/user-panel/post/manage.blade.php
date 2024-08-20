@@ -2,28 +2,28 @@
 @section('content')
 
     <div id="post" class="p-2 md:p-4">
-        <section class="w-full">
-            <div class="flex justify-start items-center gap-x-2 flex-wrap">
-                <a href="{{route('user.panel.home')}}"
-                   class="decoration-0 text-gray-400 dark:text-cyan-600 flex justify-center items-center">
-                    Home
-                </a>
-                <img src="{{asset('/images/blog-details/chevron-dot-right.svg')}}" class="w-[22px] h-[22px]"
-                     alt="chevron-dot-right.svg">
-                <a href="{{route('user.panel.post')}}"
-                   class="decoration-0 text-gray-400 dark:text-cyan-600 flex justify-center items-center">
-                    Blogs
-                </a>
-                <img src="{{asset('/images/blog-details/chevron-dot-right.svg')}}" class="w-[22px] h-[22px]"
-                     alt="chevron-dot-right.svg">
-                <a href="javascript:void(0)" class="decoration-0 text-gray-600 font-semibold dark:text-cyan-400">
-                 <span
-                     v-if="!this.postParam.id"> Create </span> <span
-                        v-if="this.postParam.id"> Edit </span>
-                </a>
-            </div>
-            <hr class="w-full border border-cyan-300 mt-5 mb-[50px] px-5 md:px-[120px]">
-        </section>
+{{--        <section class="w-full">--}}
+{{--            <div class="flex justify-start items-center gap-x-2 flex-wrap">--}}
+{{--                <a href="{{route('user.panel.home')}}"--}}
+{{--                   class="decoration-0 text-gray-400 dark:text-cyan-600 flex justify-center items-center">--}}
+{{--                    Home--}}
+{{--                </a>--}}
+{{--                <img src="{{asset('/images/blog-details/chevron-dot-right.svg')}}" class="w-[22px] h-[22px]"--}}
+{{--                     alt="chevron-dot-right.svg">--}}
+{{--                <a href="{{route('user.panel.post')}}"--}}
+{{--                   class="decoration-0 text-gray-400 dark:text-cyan-600 flex justify-center items-center">--}}
+{{--                    Blogs--}}
+{{--                </a>--}}
+{{--                <img src="{{asset('/images/blog-details/chevron-dot-right.svg')}}" class="w-[22px] h-[22px]"--}}
+{{--                     alt="chevron-dot-right.svg">--}}
+{{--                <a href="javascript:void(0)" class="decoration-0 text-gray-600 font-semibold dark:text-cyan-400">--}}
+{{--                 <span--}}
+{{--                     v-if="!this.postParam.id"> Create </span> <span--}}
+{{--                        v-if="this.postParam.id"> Edit </span>--}}
+{{--                </a>--}}
+{{--            </div>--}}
+{{--            <hr class="w-full border border-cyan-300 mt-5 mb-[50px] px-5 md:px-[120px]">--}}
+{{--        </section>--}}
         <div
             class="border border-cyan-100 dark:border-cyan-900 bg-gray-100 dark:bg-gray-800 rounded-3xl py-5 px-0 md:p-10">
             <form>
@@ -99,6 +99,14 @@
                                v-model="postParam.title" placeholder="Enter your post title">
                         <div class="error-report text-red-500 text-sm mt-2"
                              v-if="error != null && error.title !== undefined" v-text="error.title[0]"></div>
+                    </div>
+                    <div class="mb-5 w-full px-4">
+                        <label for="short_description" class="block font-semibold"> Short Description </label>
+                        <textarea name="short_description"
+                                  placeholder="Enter short description"
+                                  class="resize-none py-5 px-4 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white" v-model="postParam.short_description"></textarea>
+                        <div class="error-report text-red-500 text-sm mt-2"
+                             v-if="error != null && error.short_description !== undefined" v-text="error.short_description[0]"></div>
                     </div>
                     <div class="mb-5 w-full px-4">
                         <label for="content_description" class="block font-semibold mb-5"> Content </label>

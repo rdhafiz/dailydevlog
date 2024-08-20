@@ -1,8 +1,8 @@
 @extends('user-panel.layout.layout')
 @section('content')
 
-    <div id="post">
-        <div class="w-full px-4 mt-5" v-if="tableData.length === 0 && !loading">
+    <div id="searchBlogs">
+        <div class="w-full px-4 mt-10" v-if="tableData.length === 0 && !loading">
             <div
                 class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
                 <div class="font-medium text-cyan-600 dark:text-gray-500 text-2xl">Do not have any blog.</div>
@@ -180,6 +180,6 @@
 
     </div>
 
-    <script src="{{asset('/js/post.js')}}"></script>
+    <script src="{{asset('/js/search-post.js')}}"></script>
 
 @endsection

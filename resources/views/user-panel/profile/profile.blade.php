@@ -2,7 +2,7 @@
 @section('content')
 
     <div id="profile">
-        <section class="w-full px-5 mb-12">
+ {{--       <section class="w-full px-5 mb-12">
             <div class="flex justify-start items-center gap-x-2 flex-wrap">
                 <a href="{{route('user.panel.home')}}"
                    class="decoration-0 text-gray-400 dark:text-cyan-600 flex justify-center items-center">
@@ -15,7 +15,7 @@
                 </a>
             </div>
             <hr class="w-full border border-cyan-300 my-5 px-5 md:px-[120px]">
-        </section>
+        </section>--}}
         <section class="px-2">
             <div class="flex flex-wrap">
                 <div class="w-full lg:w-1/3 px-3 mb-5">

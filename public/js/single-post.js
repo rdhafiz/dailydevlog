@@ -3,6 +3,7 @@ new Vue({
     data: {
         postParam: {
             title: '',
+            short_description: '',
             slug: '',
             content: '',
             featured_image: null,
@@ -95,7 +96,7 @@ new Vue({
                      if (response.data.error) {
                          this.error = response.data.error
                      } else {
-                         window.location.href = '/blogs';
+                         window.location.href = '/my-blogs';
                      }
                  }).catch(err => {
                      let res = err?.response;
@@ -122,7 +123,7 @@ new Vue({
                 if (response.data.error) {
                     this.error = response.data.error
                 } else {
-                    window.location.href="/blogs";
+                    window.location.href="/my-blogs";
                 }
             }).catch(err => {
                 let res = err?.response;
@@ -139,7 +140,6 @@ new Vue({
         /* --- --- --- function of single post api --- --- --- */
         singlePost() {
             this.singleLoading = true;
-            this.richTextEditor = new RichTextEditor("#content_description", {height: 300});
             let headerContent = {
                 'Content-Type': 'application/json; charset=utf-8',
             }
@@ -217,6 +217,13 @@ new Vue({
     },
     mounted(){
         const param = this.websiteUrl.pathname.split('/').pop();
+
+        const savedTheme = localStorage.getItem('theme');
+        const cssText = `
+                background-color: #f9f9f9;
+            `;
+        this.richTextEditor = new RichTextEditor("#content_description", {height: 300, editorBodyCssText: cssText, contentCssText: 'body{padding: 16px!important;}'});
+
         if(param !== 'new'){
             this.postParam.id = this.websiteUrl.pathname.split('/').pop();
             this.singlePost();
@@ -224,7 +231,6 @@ new Vue({
             this.postParam.id = '';
         }
         if(param === 'new') {
-            this.richTextEditor = new RichTextEditor("#content_description", {height: 300});
             $('#is_featured').prop('checked', false);
             $('#comment').prop('checked', true);
         }
@@ -242,6 +248,5 @@ new Vue({
                 }
             }
         })
-
     }
 })

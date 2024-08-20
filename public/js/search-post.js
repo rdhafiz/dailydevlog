@@ -1,14 +1,13 @@
 new Vue({
-    el: '#home',
+    el: '#searchBlogs',
     data: {
         tableData: [],
         formData: {
             keyword: '',
-            limit: 3,
+            limit: 20,
             page: 1,
             status: 'published',
-            is_featured: 1,
-            sort_mode: '',
+            sort_mode: ''
         },
         total_pages: 0,
         current_page: 0,
@@ -17,25 +16,9 @@ new Vue({
         loading: false,
     },
     methods: {
-        /*function to search data*/
-        searchData(){
-            const params = new URLSearchParams();
-            params.append('is_featured', '1');
-            const queryString = params.toString();
-            const origin = new URL(window.location.href).origin;
-            const url = `${origin}/search-blogs?${queryString}`;
-            window.location.href = url;
-        },
-
-        /* --- --- --- function of author name control --- --- --- */
-        nameControl(authorName) {
-            let words = authorName.split(' ');
-            let initials = ` ${words[0][0].toUpperCase()}${ words[words.length - 1][0].toUpperCase()}`;
-            return initials;
-        },
 
         /* --- --- --- function of list post api --- --- --- */
-        listBlog() {
+        listPost() {
             this.loading = true;
             let headerContent = {
                 'Content-Type': 'application/json; charset=utf-8',
@@ -48,7 +31,8 @@ new Vue({
                 this.tableData.forEach(each => {
                     each.tags = each?.tags.split(',');
                 })
-                this.last_page = res.last_page
+                console.log(this.tableData)
+                this.last_page = res.last_page;
                 this.total_pages = res.total < res.per_page ? 1 : Math.ceil((res.total / res.per_page))
                 this.current_page = res.current_page;
                 this.buttons = [...Array(this.total_pages).keys()].map(i => i + 1);
@@ -58,11 +42,19 @@ new Vue({
             })
         },
 
+
+        /* --- --- --- function of author name control --- --- --- */
+        nameControl(authorName) {
+            let words = authorName.split(' ');
+            let initials = ` ${words[0][0].toUpperCase()}${ words[words.length - 1][0].toUpperCase()}`;
+            return initials;
+        },
+
         /* Function of previous page call */
         PrevPage() {
             if (this.current_page > 1) {
                 this.current_page = this.current_page - 1;
-                this.listBlog()
+                this.listPost()
             }
         },
 
@@ -70,7 +62,7 @@ new Vue({
         NextPage() {
             if (this.current_page < this.total_pages) {
                 this.current_page = this.current_page + 1;
-                this.listBlog()
+                this.listPost()
             }
         },
 
@@ -78,12 +70,24 @@ new Vue({
         pageChange(page)
         {
             this.current_page = page;
-            this.listBlog()
+            this.listPost()
         },
 
 
     },
     mounted(){
-        this.listBlog();
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const keyword = urlParams.get('keyword');
+        const is_featured = urlParams.get('is_featured');
+        if(keyword){
+            this.formData.keyword = keyword;
+            this.current_page = 1
+        }
+        if(is_featured){
+            this.formData.is_featured = is_featured;
+            this.current_page = 1
+        }
+        this.listPost();
     }
 })

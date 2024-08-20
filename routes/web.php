@@ -26,6 +26,8 @@ Route::group(
 
         Route::get('/profile', [UserPanelController::class, 'profile'])->name('user.panel.profile');
         Route::get('/blogs', [UserPanelController::class, 'post'])->name('user.panel.post');
+        Route::get('/my-blogs', [UserPanelController::class, 'my_post'])->name('user.panel.my.post');
+        Route::get('/search-blogs', [UserPanelController::class, 'search_post'])->name('user.panel.search.post');
         Route::get('/blogs/{id}', [UserPanelController::class, 'managePost'])->name('user.panel.manage.post');
         Route::get('/categories', [UserPanelController::class, 'categories'])->name('user.panel.categories');
         Route::get('/categories/{id}', [UserPanelController::class, 'manageCategory'])->name('user.panel.manage.category');

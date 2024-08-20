@@ -69,12 +69,18 @@ class PostService
         if (!empty($filter['keyword'])) {
             $rv->where(function($q) use ($filter) {
                 $q->where('title', 'LIKE', '%'.$filter['keyword'].'%');
-                $q->orWhere('content', 'LIKE', '%'.$filter['keyword'].'%');
             });
         }
+
         if (!empty($filter['status'])) {
             $rv->where(function($q) use ($filter) {
                 $q->where('status', $filter['status']);
+            });
+        }
+
+        if (!empty($filter['is_featured'])) {
+            $rv->where(function($q) use ($filter) {
+                $q->where('is_featured', $filter['is_featured']);
             });
         }
         return $rv->paginate($filter['limit']);

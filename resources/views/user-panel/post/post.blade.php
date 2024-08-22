@@ -48,8 +48,12 @@
                             </div>
                         </div>
                         <div
-                            class="text-[18px] font-bold transition-all h-[44px] leading-[1.2] duration-500 dark:text-cyan-600 dark:group-hover:text-cyan-400 text-gray-600 group-hover:text-cyan-400 mt-2 mb-1 text-truncate-line-2">
+                            class="text-[18px] font-bold transition-all leading-[1.2] duration-500 dark:text-cyan-600 dark:group-hover:text-cyan-400 text-gray-600 group-hover:text-cyan-400 mt-2 mb-1 text-truncate-line-2">
                             @{{ each.title }}
+                        </div>
+                        <div
+                            class="text-gray-600 dark:text-gray-400 text-truncate-line-3">
+                            @{{ each.short_description }}
                         </div>
 
                         <div class="flex justify-between items-center mt-2 mb-2">

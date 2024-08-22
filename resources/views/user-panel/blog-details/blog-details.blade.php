@@ -80,7 +80,7 @@
                     <div class="my-5 font-semibold text-gray-400 text-2xl lg:text-4xl">
                         Leave a comment
                     </div>
-                    <div class="fb-comments w-full dark:text-white" :data-href="encodeURI(window.location.href)" data-width="100%" data-numposts="5"></div>
+                    <div class="fb-comments w-full bg-gray-100 dark:text-white" :data-href="encodeURI(window.location.href)" data-width="100%" data-numposts="5"></div>
                 </div>
             </div>
         </section>

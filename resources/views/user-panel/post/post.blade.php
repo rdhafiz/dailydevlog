@@ -25,17 +25,16 @@
 
         <div class="flex flex-wrap mt-5" v-if="tableData.length > 0 && !loading">
             <div class="w-full sm:w-full lg:w-1/2 2xl:w-1/4 p-3 flex" v-for="(each) in tableData">
-                <div class="group bg-gray-100 rounded-2xl dark:bg-gray-800 w-full">
-                    <div class="h-[250px] rounded-t-2xl overflow-hidden">
+                <div class="group bg-gray-100 rounded-2xl dark:bg-gray-800 w-full flex flex-col">
+                    <a :href="'/blog-details/'+each.id" class="h-[250px] rounded-t-2xl overflow-hidden block">
                         <img :src="'/storage/media/'+each?.featured_image"
                              class="w-full rounded-t-2xl object-cover h-[250px] scale-[1] group-hover:scale-[1.2] duration-500"
                              alt="blog" v-if="each?.featured_image">
                         <img :src="'/images/default.png/'"
                              class="w-full rounded-t-2xlobject-cover h-[300px] scale-[1] group-hover:scale-[1.2] duration-500"
                              alt="blog" v-if="!each?.featured_image">
-                    </div>
-                    <div class="px-4">
-
+                    </a>
+                    <div class="px-4 grow flex flex-col justify-between">
                         <div
                             class="flex justify-between items-center gap-2 mb-1 text-gray-600 dark:text-gray-400 text-sm font-medium mt-3">
                             <div class="w-[calc(100%-60px)]" v-if="each?.tags?.length > 0">
@@ -47,10 +46,10 @@
                                 @{{ each.views_count }} views
                             </div>
                         </div>
-                        <div
-                            class="text-[18px] font-bold transition-all leading-[1.2] duration-500 dark:text-cyan-600 dark:group-hover:text-cyan-400 text-gray-600 group-hover:text-cyan-400 mt-2 mb-1 text-truncate-line-2">
+                        <a :href="'/blog-details/'+each.id"
+                            class="text-[18px] block cursor-pointer font-bold transition-all leading-[1.2] duration-500 dark:text-cyan-600 dark:group-hover:text-cyan-400 text-gray-600 group-hover:text-cyan-400 mt-2 mb-1 text-truncate-line-2">
                             @{{ each.title }}
-                        </div>
+                        </a>
                         <div
                             class="text-gray-600 dark:text-gray-400 text-truncate-line-3">
                             @{{ each.short_description }}

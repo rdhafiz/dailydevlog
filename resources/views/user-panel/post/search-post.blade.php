@@ -2,10 +2,15 @@
 @section('content')
 
     <div id="searchBlogs">
+
+        <div class="mt-5">
+            <div class="font-medium text-gray-400 dark:text-gray-500 text-2xl px-4">Showing blogs matching the search for <span class="text-cyan-400">@{{ formData.keyword }}</span></div>
+        </div>
+
         <div class="w-full px-4 mt-10" v-if="tableData.length === 0 && !loading">
             <div
                 class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
-                <div class="font-medium text-cyan-600 dark:text-gray-500 text-2xl">Do not have any blog.</div>
+                <div class="font-medium text-cyan-600 dark:text-gray-500 text-2xl">No results found.</div>
             </div>
         </div>
 
@@ -25,17 +30,16 @@
 
         <div class="flex flex-wrap mt-5" v-if="tableData.length > 0 && !loading">
             <div class="w-full sm:w-full lg:w-1/2 2xl:w-1/4 p-3 flex" v-for="(each) in tableData">
-                <div class="group bg-gray-100 rounded-2xl dark:bg-gray-800 w-full">
-                    <div class="h-[250px] rounded-t-2xl overflow-hidden">
+                <div class="group bg-gray-100 rounded-2xl dark:bg-gray-800 w-full flex flex-col">
+                    <a :href="'/blog-details/'+each.id" class="h-[250px] rounded-t-2xl overflow-hidden block">
                         <img :src="'/storage/media/'+each?.featured_image"
                              class="w-full rounded-t-2xl object-cover h-[250px] scale-[1] group-hover:scale-[1.2] duration-500"
                              alt="blog" v-if="each?.featured_image">
                         <img :src="'/images/default.png/'"
                              class="w-full rounded-t-2xlobject-cover h-[300px] scale-[1] group-hover:scale-[1.2] duration-500"
                              alt="blog" v-if="!each?.featured_image">
-                    </div>
-                    <div class="px-4">
-
+                    </a>
+                    <div class="px-4 grow flex flex-col justify-between">
                         <div
                             class="flex justify-between items-center gap-2 mb-1 text-gray-600 dark:text-gray-400 text-sm font-medium mt-3">
                             <div class="w-[calc(100%-60px)]" v-if="each?.tags?.length > 0">
@@ -47,10 +51,10 @@
                                 @{{ each.views_count }} views
                             </div>
                         </div>
-                        <div
-                            class="text-[18px] font-bold transition-all leading-[1.2] duration-500 dark:text-cyan-600 dark:group-hover:text-cyan-400 text-gray-600 group-hover:text-cyan-400 mt-2 mb-1 text-truncate-line-2">
+                        <a :href="'/blog-details/'+each.id"
+                            class="text-[18px] block cursor-pointer font-bold transition-all leading-[1.2] duration-500 dark:text-cyan-600 dark:group-hover:text-cyan-400 text-gray-600 group-hover:text-cyan-400 mt-2 mb-1 text-truncate-line-2">
                             @{{ each.title }}
-                        </div>
+                        </a>
                         <div
                             class="text-gray-600 dark:text-gray-400 text-truncate-line-3">
                             @{{ each.short_description }}

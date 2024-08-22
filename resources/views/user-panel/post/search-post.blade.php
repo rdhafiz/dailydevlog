@@ -4,7 +4,8 @@
     <div id="searchBlogs">
 
         <div class="mt-5">
-            <div class="font-medium text-gray-400 dark:text-gray-500 text-2xl px-4">Showing blogs matching the search for <span class="text-cyan-400">@{{ formData.keyword }}</span></div>
+            <div class="font-medium text-gray-400 dark:text-gray-500 text-2xl px-4" v-if="formData.keyword">Showing blogs matching the search for <span class="text-cyan-400">@{{ formData.keyword }}</span></div>
+            <div class="w-full text-3xl lg:text-4xl px-3 font-bold !leading-normal bg-gradient-to-r from-cyan-400 to-green-400 text-transparent bg-clip-text" v-if="formData.is_featured == 1">Featured</div>
         </div>
 
         <div class="w-full px-4 mt-10" v-if="tableData.length === 0 && !loading">

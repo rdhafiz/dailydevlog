@@ -26,7 +26,7 @@
         <div class="mt-5" v-if="tableData.length > 0 && !loading">
             <div class="flex mb-3 items-center">
                 <div
-                    class="w-full text-2xl lg:text-3xl font-bold !leading-normal bg-gradient-to-r from-cyan-400 to-green-400 text-transparent bg-clip-text">
+                    class="w-full text-3xl lg:text-4xl px-3 font-bold !leading-normal bg-gradient-to-r from-cyan-400 to-green-400 text-transparent bg-clip-text">
                     Featured
                 </div>
 
@@ -38,7 +38,7 @@
                 <div class="w-full p-3 flex" :class="{'lg:w-1/2 xl:w-2/3': index == 1, 'lg:w-1/2 xl:w-1/3': index == 2}"
                      v-for="(each, index) in tableData">
                     <div class="group bg-gray-100 rounded-2xl dark:bg-gray-800 w-full flex flex-col">
-                        <div class="rounded-t-2xl overflow-hidden"
+                        <a :href="'/blog-details/'+each.id" class="rounded-t-2xl overflow-hidden block"
                              :class="{'h-[350px]': index == 0, 'h-[250px]': index == 1 || index == 2}">
                             <img :src="'/storage/media/'+each?.featured_image"
                                  class="w-full rounded-t-2xl object-cover h-full scale-[1] group-hover:scale-[1.2] duration-500"
@@ -46,7 +46,7 @@
                             <img :src="'/images/default.png/'"
                                  class="w-full rounded-t-2xlobject-cover h-full scale-[1] group-hover:scale-[1.2] duration-500"
                                  alt="blog" v-if="!each?.featured_image">
-                        </div>
+                        </a>
                         <div class="px-4 flex flex-col justify-between grow">
                             <div
                                 class="flex justify-between items-center gap-2 mb-1 text-gray-600 dark:text-gray-400 text-sm font-medium mt-3">
@@ -60,10 +60,10 @@
                                     @{{ each.views_count }} views
                                 </div>
                             </div>
-                            <div
-                                class="text-[18px] font-bold transition-all leading-[1.2] duration-500 dark:text-cyan-600 dark:group-hover:text-cyan-400 text-gray-600 group-hover:text-cyan-400 my-2 text-truncate-line-2">
+                            <a :href="'/blog-details/'+each.id"
+                                class="text-[18px] block cursor-pointer font-bold transition-all leading-[1.2] duration-500 dark:text-cyan-600 dark:group-hover:text-cyan-400 text-gray-600 group-hover:text-cyan-400 my-2 text-truncate-line-2">
                                 @{{ each.title }}
-                            </div>
+                            </a>
                             <div
                                 class="text-gray-600 dark:text-gray-400 text-truncate-line-3">
                                 @{{ each.short_description }}

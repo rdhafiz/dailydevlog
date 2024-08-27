@@ -181,7 +181,7 @@
                         </div>
                     @endif
 
-                    <div class="my-5 font-semibold text-gray-400 text-2xl lg:text-4xl">
+                    <div class="mb-5 mt-[50px] font-semibold text-gray-400 text-2xl lg:text-4xl">
                         Leave a comment
                     </div>
                     <div class="fb-comments w-full bg-gray-100 dark:text-white"

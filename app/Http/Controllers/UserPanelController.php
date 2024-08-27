@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserPanelController extends BaseController
 {
@@ -15,11 +17,13 @@ class UserPanelController extends BaseController
 
     public function blogDetails(Request $request, $id)
     {
+
+        $post = Post::where('id', $id)->first();
         $rv = [
             'id' => $id,
-            'post' => Post::where('id', $id)->first()
+            'post' => $post,
+            'related_posts' => Post::where('user_id', $post['user_id'])->where('id', '!=', $id)->where('status', 'published')->take(3)->get()
         ];
-        $post = Post::where('id', $id)->first();
 
         if ($post->views_count == 0) {
             $post->views_count = 1;

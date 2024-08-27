@@ -5,7 +5,7 @@
         <div class="w-full px-4 mt-5" v-if="tableData.length === 0 && !loading">
             <div
                 class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
-                <div class="font-medium text-cyan-600 dark:text-gray-500 text-2xl">Do featured blog has found.</div>
+                <div class="font-medium text-cyan-600 dark:text-gray-500 text-2xl">No featured blog has found.</div>
             </div>
         </div>
 

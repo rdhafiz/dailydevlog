@@ -40,13 +40,16 @@
                 <div class="w-full">
                     <div class="flex justify-between items-center mt-10 w-full flex-wrap gap-5">
                         <div class="flex items-center justify-start">
-                            <img v-if="postParam?.author?.avatar !== null"
-                                 :src="'/storage/media/'+postParam?.author?.avatar"
-                                 class="w-[45px] h-[45px] rounded-full object-cover bg-cover" alt="avatar">
-                            <div v-if="postParam?.author?.avatar === null"
-                                 class="w-[45px] h-[45px] rounded-full flex justify-center items-center text-white bg-cyan-600">
-                                @{{ nameControl(@json($post['author']['name'])) }}
-                            </div>
+
+                            @if($post['author']['avatar'] != null)
+                                <img src="{{asset('/storage/media/'.$post['author']['avatar'] )}}"
+                                     class="w-full rounded-t-2xl object-cover h-[250px] scale-[1] group-hover:scale-[1.2] duration-500"
+                                     alt="blog">
+                            @else
+                                <div class="w-[45px] h-[45px] rounded-full flex justify-center items-center text-white bg-cyan-600">
+                                    @{{ nameControl(@json($post['author']['name'])) }}
+                                </div>
+                            @endif
                             <div class="ms-3">
                                 <div class="font-bold text-gray-600 dark:text-cyan-600">
                                     {{$post['author']['name']}}

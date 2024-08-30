@@ -231,6 +231,28 @@
     overflow: hidden;
 }
 
+.text-truncate-line-4 {
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
+.text-truncate-line-9 {
+    display: -webkit-box;
+    -webkit-line-clamp: 9;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.text-truncate-line-7 {
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
 .read-more:hover .child {
     height: 40px;
     width: 40px;

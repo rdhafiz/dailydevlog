@@ -1,16 +1,11 @@
 @extends('user-panel.layout.layout')
 @section('content')
 
-    <div id="searchBlogs">
-
-        <div class="mt-5">
-            <div class="font-medium text-gray-400 dark:text-gray-500 text-2xl px-4">Showing blogs matching the search for <span class="text-second">@{{ formData.keyword }}</span></div>
-        </div>
-
-        <div class="w-full px-4 mt-10" v-if="tableData.length === 0 && !loading">
+    <div id="post">
+        <div class="w-full px-4 mt-5" v-if="tableData.length === 0 && !loading">
             <div
                 class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
-                <div class="font-medium text-cyan-600 dark:text-gray-500 text-2xl">No results found.</div>
+                <div class="font-medium text-cyan-600 dark:text-gray-500 text-2xl">No feature blog found.</div>
             </div>
         </div>
 
@@ -28,104 +23,104 @@
             </div>
         </div>
 
-        <div class="flex flex-wrap mt-5" v-if="tableData.length > 0 && !loading">
+        <div class="flex flex-wrap mt-10" v-if="tableData.length > 0 && !loading">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 <div class="sm:col-span-1 lg:col-span-1 flex flex-col group rounded-2xl bg-white dark:bg-[#222222] shadow-lg h-[350px]"  v-for="(each, index) in tableData">
-                        <a href="" class="block rounded-2xl overflow-hidden !h-[120px] min-h-[120px]">
-                                <img :src="'/storage/media/'+ each.featured_image"
-                                     class="!h-full w-full rounded-2xl object-cover scale-[1] group-hover:scale-[1.2] duration-500"
-                                     alt="blog image" v-if="each.featured_image">
-                                <img src="{{asset('/images/default.png')}}" class="h-full w-full rounded-2xl object-cover scale-[1] group-hover:scale-[1.2] duration-500"
-                                     alt="blog image" v-if="!each.featured_image">
-                        </a>
-                        <div class="p-3 grow flex flex-col justify-between text-center">
-                            <div>
-                                <a href="" class="text-secondary dark:text-white block font-bold text-lg leading-[24px] dark:hover:text-second hover:text-second duration-500 text-truncate-line-2">
-                                    @{{ each.title }}
-                                </a>
-                                <div class="flex flex-wrap items-center gap-2 pt-2 pb-4 text-xs">
-                                    <div v-for="(tag, index) in each?.tags" class="rounded-2xl py-1 px-7 text-white" :class="{'bg-primary': index === 0, 'bg-first text-secondary': index === 1, 'bg-dark3': index === 2, 'bg-red': index === 3}">@{{ tag }}</div>
-                                </div>
-                                <div class="text-sm text-black dark:!text-light2 text-truncate-line-4">
-                                    <p>@{{ each.short_description }}</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-center text-secondary dark:!text-light2 text-sm gap-3 text-xs mt-4">
-                                <span>@{{ each.published_at_format }}</span>
-                                <span>•</span>
-                                <span>3m Read</span>
-                                <span>•</span>
-                                <span>@{{ each.views_count }} Views</span>
-                            </div>
-                        </div>
-
-                    </div>
-            </div>
-           {{-- <div class="w-full sm:w-full lg:w-1/2 2xl:w-1/4 p-3 flex" v-for="(each) in tableData">
-                <div class="group bg-gray-100 rounded-2xl dark:bg-gray-800 w-full flex flex-col">
-                    <a :href="'/blog-details/'+each.id" class="h-[250px] rounded-t-2xl overflow-hidden block">
-                        <img :src="'/storage/media/'+each?.featured_image"
-                             class="w-full rounded-t-2xl object-cover h-[250px] scale-[1] group-hover:scale-[1.2] duration-500"
-                             alt="blog" v-if="each?.featured_image">
-                        <img :src="'/images/default.png/'"
-                             class="w-full rounded-t-2xlobject-cover h-[300px] scale-[1] group-hover:scale-[1.2] duration-500"
-                             alt="blog" v-if="!each?.featured_image">
+                    <a href="" class="block rounded-2xl overflow-hidden !h-[120px] min-h-[120px]">
+                        <img :src="'/storage/media/'+ each.featured_image"
+                             class="!h-full w-full rounded-2xl object-cover scale-[1] group-hover:scale-[1.2] duration-500"
+                             alt="blog image" v-if="each.featured_image">
+                        <img src="{{asset('/images/default.png')}}" class="h-full w-full rounded-2xl object-cover scale-[1] group-hover:scale-[1.2] duration-500"
+                             alt="blog image" v-if="!each.featured_image">
                     </a>
-                    <div class="px-4 grow flex flex-col justify-between">
-                        <div
-                            class="flex justify-between items-center gap-2 mb-1 text-gray-600 dark:text-gray-400 text-sm font-medium mt-3">
-                            <div class="w-[calc(100%-60px)]" v-if="each?.tags?.length > 0">
-                                <div class="text-truncate w-[95%]">
-                                    <template v-for="(tag, index) in each?.tags">#@{{ tag }}&nbsp;</template>
-                                </div>
-                            </div>
-                            <div class="dark:text-gray-500 font-semibold text-gray-400 text-[12px] w-[60px] text-end grow-0">
-                                @{{ each.views_count }} views
-                            </div>
-                        </div>
-                        <a :href="'/blog-details/'+each.id"
-                            class="text-[18px] block cursor-pointer font-bold transition-all leading-[1.2] duration-500 dark:text-cyan-600 dark:group-hover:text-cyan-400 text-gray-600 group-hover:text-cyan-400 mt-2 mb-1 text-truncate-line-2">
-                            @{{ each.title }}
-                        </a>
-                        <div
-                            class="text-gray-600 dark:text-gray-400 text-truncate-line-3">
-                            @{{ each.short_description }}
-                        </div>
-
-                        <div class="flex justify-between items-center mt-2 mb-2">
-                            <div class="flex items-center justify-start">
-                                <div
-                                    class="w-[30px] h-[30px] flex justify-center items-center bg-cyan-300 rounded-full font-bold dark:bg-cyan-500"
-                                    v-if="each?.author?.avatar === null">
-                                    @{{ nameControl(each?.author?.name) }}
-                                </div>
-                                <img :src="'/storage/media/'+each?.author?.avatar"
-                                     class="w-[30px] h-[30px] bg-cover object-cover rounded-full"
-                                     v-if="each?.author?.avatar !== null" alt="avatar">
-                                <div class="ms-3">
-                                    <div class="font-bold text-gray-600 dark:text-cyan-600 text-[14px]">
-                                        @{{ each?.author?.name }}
-                                    </div>
-                                    <div class="dark:text-gray-500 font-semibold text-gray-400 text-[11px]">
-                                        @{{ each?.created_at_format }}
-                                    </div>
-                                </div>
-                            </div>
-                            <a :href="'/blog-details/'+each.id" class="decoration-0">
-                                <div
-                                    class="relative w-[100px] h-[40px] text-gray-400 hover:text-blue-400 dark:text-blue-400 dark:hover:text-cyan-400 flex items-center read-more">
-                                    <div
-                                        class="w-[30px] h-[30px] bg-white rounded-full dark:bg-gray-900 child duration-500"></div>
-                                    <div
-                                        class="absolute top-0 bottom-0 start-0 w-full h-full transition-all duration-500 flex justify-start ps-4 items-center text-[14px]">
-                                        Read More
-                                    </div>
-                                </div>
+                    <div class="p-3 grow flex flex-col justify-between text-center">
+                        <div>
+                            <a href="" class="text-secondary dark:text-white block font-bold text-lg leading-[24px] dark:hover:text-second hover:text-second duration-500 text-truncate-line-2">
+                                @{{ each.title }}
                             </a>
+                            <div class="flex flex-wrap items-center gap-2 pt-2 pb-4 text-xs">
+                                <div v-for="(tag, index) in each?.tags" class="rounded-2xl py-1 px-7 text-white" :class="{'bg-primary': index === 0, 'bg-first text-secondary': index === 1, 'bg-dark3': index === 2, 'bg-red': index === 3}">@{{ tag }}</div>
+                            </div>
+                            <div class="text-sm text-black dark:!text-light2 text-truncate-line-4">
+                                <p>@{{ each.short_description }}</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-center text-secondary dark:!text-light2 text-sm gap-3 text-xs mt-4">
+                            <span>@{{ each.published_at_format }}</span>
+                            <span>•</span>
+                            <span>3m Read</span>
+                            <span>•</span>
+                            <span>@{{ each.views_count }} Views</span>
                         </div>
                     </div>
+
                 </div>
-            </div>--}}
+            </div>
+            {{-- <div class="w-full sm:w-full lg:w-1/2 2xl:w-1/4 p-3 flex" v-for="(each) in tableData">
+                 <div class="group bg-gray-100 rounded-2xl dark:bg-gray-800 w-full flex flex-col">
+                     <a :href="'/blog-details/'+each.id" class="h-[250px] rounded-t-2xl overflow-hidden block">
+                         <img :src="'/storage/media/'+each?.featured_image"
+                              class="w-full rounded-t-2xl object-cover h-[250px] scale-[1] group-hover:scale-[1.2] duration-500"
+                              alt="blog" v-if="each?.featured_image">
+                         <img :src="'/images/default.png/'"
+                              class="w-full rounded-t-2xlobject-cover h-[300px] scale-[1] group-hover:scale-[1.2] duration-500"
+                              alt="blog" v-if="!each?.featured_image">
+                     </a>
+                     <div class="px-4 grow flex flex-col justify-between">
+                         <div
+                             class="flex justify-between items-center gap-2 mb-1 text-gray-600 dark:text-gray-400 text-sm font-medium mt-3">
+                             <div class="w-[calc(100%-60px)]" v-if="each?.tags?.length > 0">
+                                 <div class="text-truncate w-[95%]">
+                                     <template v-for="(tag, index) in each?.tags">#@{{ tag }}&nbsp;</template>
+                                 </div>
+                             </div>
+                             <div class="dark:text-gray-500 font-semibold text-gray-400 text-[12px] w-[60px] text-end grow-0">
+                                 @{{ each.views_count }} views
+                             </div>
+                         </div>
+                         <a :href="'/blog-details/'+each.id"
+                             class="text-[18px] block cursor-pointer font-bold transition-all leading-[1.2] duration-500 dark:text-cyan-600 dark:group-hover:text-cyan-400 text-gray-600 group-hover:text-cyan-400 mt-2 mb-1 text-truncate-line-2">
+                             @{{ each.title }}
+                         </a>
+                         <div
+                             class="text-gray-600 dark:text-gray-400 text-truncate-line-3">
+                             @{{ each.short_description }}
+                         </div>
+
+                         <div class="flex justify-between items-center mt-2 mb-2">
+                             <div class="flex items-center justify-start">
+                                 <div
+                                     class="w-[30px] h-[30px] flex justify-center items-center bg-cyan-300 rounded-full font-bold dark:bg-cyan-500"
+                                     v-if="each?.author?.avatar === null">
+                                     @{{ nameControl(each?.author?.name) }}
+                                 </div>
+                                 <img :src="'/storage/media/'+each?.author?.avatar"
+                                      class="w-[30px] h-[30px] bg-cover object-cover rounded-full"
+                                      v-if="each?.author?.avatar !== null" alt="avatar">
+                                 <div class="ms-3">
+                                     <div class="font-bold text-gray-600 dark:text-cyan-600 text-[14px]">
+                                         @{{ each?.author?.name }}
+                                     </div>
+                                     <div class="dark:text-gray-500 font-semibold text-gray-400 text-[11px]">
+                                         @{{ each?.created_at_format }}
+                                     </div>
+                                 </div>
+                             </div>
+                             <a :href="'/blog-details/'+each.id" class="decoration-0">
+                                 <div
+                                     class="relative w-[100px] h-[40px] text-gray-400 hover:text-blue-400 dark:text-blue-400 dark:hover:text-cyan-400 flex items-center read-more">
+                                     <div
+                                         class="w-[30px] h-[30px] bg-white rounded-full dark:bg-gray-900 child duration-500"></div>
+                                     <div
+                                         class="absolute top-0 bottom-0 start-0 w-full h-full transition-all duration-500 flex justify-start ps-4 items-center text-[14px]">
+                                         Read More
+                                     </div>
+                                 </div>
+                             </a>
+                         </div>
+                     </div>
+                 </div>
+             </div>--}}
         </div>
 
         <div class="mt-5 flex justify-center items-center"
@@ -220,6 +215,6 @@
 
     </div>
 
-    <script src="{{asset('/js/search-post.js')}}"></script>
+    <script src="{{asset('/js/post.js')}}"></script>
 
 @endsection

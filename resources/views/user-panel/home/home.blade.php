@@ -1,8 +1,14 @@
 @extends('user-panel.layout.layout')
 @section('content')
-
+    @php
+        $date = function ($publishDate){
+            $date = new DateTime($publishDate);
+           $formattedDate = $date->format('F j, Y');
+           return $formattedDate;
+        }
+    @endphp
     <div id="home">
-        <div class="w-full px-4 mt-5" v-if="tableData.length === 0 && !loading">
+       {{-- <div class="w-full px-4 mt-5" v-if="tableData.length === 0 && !loading">
             <div
                 class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
                 <div class="font-medium text-cyan-600 dark:text-gray-500 text-2xl">No featured blog has found.</div>
@@ -39,7 +45,7 @@
                      v-for="(each, index) in tableData">
                     <div class="group bg-gray-100 rounded-2xl dark:bg-gray-800 w-full flex flex-col">
                         <a :href="'/blog-details/'+each.id" class="rounded-t-2xl overflow-hidden block"
-                             :class="{'h-[350px]': index == 0, 'h-[250px]': index == 1 || index == 2}">
+                             :class="{'h-[340px]': index == 0, 'h-[250px]': index == 1 || index == 2}">
                             <img :src="'/storage/media/'+each?.featured_image"
                                  class="w-full rounded-t-2xl object-cover h-full scale-[1] group-hover:scale-[1.2] duration-500"
                                  alt="blog" v-if="each?.featured_image">
@@ -104,8 +110,165 @@
                     </div>
                 </div>
             </div>
+        </div>--}}
+
+        <div class="mt-[85px]">
+            <div class="text-center text-secondary dark:text-white text-[30px] font-bold mb-[15px]">Featured Articles</div>
+            @if(count($featured_posts) > 0)
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    @foreach($featured_posts as $index => $p)
+                        <div class="{{$index === 0 ? 'sm:col-span-2 block sm:grid sm:grid-cols-2 sm:gap-4' : 'sm:col-span-1 lg:col-span-1 flex flex-col'}} group rounded-2xl bg-white dark:bg-[#222222] shadow-lg sm:h-[390px] xl:h-[370px] 2xl:h-[340px]">
+                            <a href="" class="{{$index === 0 ? 'sm:col-span-1 h-[120px] sm:h-[390px] xl:h-[370px] 2xl:h-[340px] w-full' : 'h-[120px]'}} block rounded-2xl overflow-hidden min-h-[120px]">
+                                @if($p['featured_image'])
+                                    <img src="{{asset('/storage/media/' .$p['featured_image'])}}"
+                                         class="h-full w-full rounded-2xl object-cover scale-[1] group-hover:scale-[1.2] duration-500"
+                                         alt="blog image">
+                                @else
+                                    <img src="{{asset('/images/default.png')}}" class="h-full w-full rounded-2xl object-cover scale-[1] group-hover:scale-[1.2] duration-500"
+                                         alt="blog image">
+                                @endif
+                            </a>
+                            <div class="p-3 grow flex flex-col justify-between {{$index === 0 ? 'sm:col-span-1 text-center sm:text-left' : 'text-center'}}">
+                                <div>
+                                    <a href="" class="text-secondary dark:text-white block font-bold text-lg leading-[24px] dark:hover:text-second hover:text-second duration-500 text-truncate-line-2">
+                                        {{$p['title']}}
+                                    </a>
+                                    <div class="flex flex-wrap items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} gap-2 pt-2 pb-4 text-xs">
+                                        @foreach(collect(explode(",", $p['tags']))->take(4) as $i => $tag)
+                                            <div
+                                                class="{{$i === 0 ? 'bg-primary' : '' }} {{$i === 1 ? 'bg-first' : '' }} {{$i === 2 ? 'bg-dark3' : '' }} {{$i === 3 ? 'bg-red' : '' }} rounded-2xl  {{$i === 1 ? 'text-secondary' : 'text-white' }} py-1 px-7">{{$tag}}</div>
+                                        @endforeach
+                                    </div>
+                                    <div class="text-sm text-black dark:!text-light2 {{$index === 0 ? 'text-truncate-line-9 whitespace-pre-line' : 'text-truncate-line-4'}}">
+                                        <p>{{$p['short_description']}}</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center {{$index === 0 ? '' : 'justify-center'}} text-secondary dark:!text-light2 text-sm gap-3 text-xs mt-4">
+                                    <span>{{$date($p['publish_date'])}}</span>
+                                    <span>•</span>
+                                    <span>3m Read</span>
+                                    <span>•</span>
+                                    <span>{{$p['views_count']}} Views</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <div
+                    class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
+                    <div class="font-medium text-cyan-600 dark:text-gray-500 text-2xl">No featured blog has found.</div>
+                </div>
+            @endif
         </div>
 
+        <div class="my-7">
+            <img src="{{asset('/images/ad-light.svg')}}" class="w-full block dark:hidden" alt="google ads">
+            <img src="{{asset('/images/ad.svg')}}" class="w-full hidden dark:block" alt="google ads">
+        </div>
+
+        <div class="mt-10">
+            <div class="text-center text-secondary dark:text-white text-[30px] font-bold mb-[15px]">Latest Articles</div>
+            @if(count($latest_posts) > 0)
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    @foreach($latest_posts as $index => $p)
+                        <div class="{{$index === 0 ? 'sm:col-span-2 block sm:grid sm:grid-cols-2 sm:gap-4' : 'sm:col-span-1 lg:col-span-1 flex flex-col'}} group rounded-2xl bg-white dark:bg-[#222222] shadow-lg sm:h-[390px] xl:h-[370px] 2xl:h-[340px]">
+                            <a href="" class="{{$index === 0 ? 'sm:col-span-1 h-[120px] sm:h-[390px] xl:h-[370px] 2xl:h-[340px] w-full' : 'h-[120px]'}} block rounded-2xl overflow-hidden min-h-[120px]">
+                                @if($p['featured_image'])
+                                    <img src="{{asset('/storage/media/' .$p['featured_image'])}}"
+                                         class="h-full w-full rounded-2xl object-cover scale-[1] group-hover:scale-[1.2] duration-500"
+                                         alt="blog image">
+                                @else
+                                    <img src="{{asset('/images/default.png')}}" class="h-full w-full rounded-2xl object-cover scale-[1] group-hover:scale-[1.2] duration-500"
+                                         alt="blog image">
+                                @endif
+                            </a>
+                            <div class="p-3 grow flex flex-col justify-between {{$index === 0 ? 'sm:col-span-1 text-center sm:text-left' : 'text-center'}}">
+                                <div>
+                                    <a href="" class="text-secondary dark:text-white block font-bold text-lg leading-[24px] dark:hover:text-second hover:text-second duration-500 text-truncate-line-2">
+                                        {{$p['title']}}
+                                    </a>
+                                    <div class="flex flex-wrap items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} gap-2 pt-2 pb-4 text-xs">
+                                        @foreach(collect(explode(",", $p['tags']))->take(4) as $i => $tag)
+                                            <div
+                                                class="{{$i === 0 ? 'bg-primary' : '' }} {{$i === 1 ? 'bg-first' : '' }} {{$i === 2 ? 'bg-dark3' : '' }} {{$i === 3 ? 'bg-red' : '' }} rounded-2xl  {{$i === 1 ? 'text-secondary' : 'text-white' }} py-1 px-7">{{$tag}}</div>
+                                        @endforeach
+                                    </div>
+                                    <div class="text-sm text-black dark:!text-light2 {{$index === 0 ? 'text-truncate-line-9 whitespace-pre-line' : 'text-truncate-line-4'}}">
+                                        <p>{{$p['short_description']}}</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center {{$index === 0 ? '' : 'justify-center'}} text-secondary dark:!text-light2 text-sm gap-3 text-xs mt-4">
+                                    <span>{{$date($p['publish_date'])}}</span>
+                                    <span>•</span>
+                                    <span>3m Read</span>
+                                    <span>•</span>
+                                    <span>{{$p['views_count']}} Views</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    @endforeach
+                </div>
+            @else
+                <div
+                    class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
+                    <div class="font-medium text-cyan-600 dark:text-gray-500 text-2xl">No latest blog has found.</div>
+                </div>
+            @endif
+        </div>
+
+        <div class="my-7">
+            <img src="{{asset('/images/ad-light.svg')}}" class="w-full block dark:hidden" alt="google ads">
+            <img src="{{asset('/images/ad.svg')}}" class="w-full hidden dark:block" alt="google ads">
+        </div>
+
+        <div class="mt-10">
+            <div class="text-center text-secondary dark:text-white text-[30px] font-bold mb-[15px]">Most Viewed</div>
+            @if(count($most_viewed_posts) > 0)
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                    @foreach($most_viewed_posts as $index => $p)
+                        <div class="{{$index === 0 ? 'sm:col-span-2 block sm:grid sm:grid-cols-2 sm:gap-4' : 'sm:col-span-1 lg:col-span-1 flex flex-col'}} group rounded-2xl bg-white dark:bg-[#222222] shadow-lg sm:h-[390px] xl:h-[370px] 2xl:h-[340px]">
+                            <a href="" class="{{$index === 0 ? 'sm:col-span-1 h-[120px] sm:h-[390px] xl:h-[370px] 2xl:h-[340px] w-full' : 'h-[120px]'}} block rounded-2xl overflow-hidden min-h-[120px]">
+                                @if($p['featured_image'])
+                                    <img src="{{asset('/storage/media/' .$p['featured_image'])}}"
+                                         class="h-full w-full rounded-2xl object-cover scale-[1] group-hover:scale-[1.2] duration-500"
+                                         alt="blog image">
+                                @else
+                                    <img src="{{asset('/images/default.png')}}" class="h-full w-full rounded-2xl object-cover scale-[1] group-hover:scale-[1.2] duration-500"
+                                         alt="blog image">
+                                @endif
+                            </a>
+                            <div class="p-3 grow flex flex-col justify-between {{$index === 0 ? 'sm:col-span-1 text-center sm:text-left' : 'text-center'}}">
+                                <div>
+                                    <a href="" class="text-secondary dark:text-white block font-bold text-lg leading-[24px] dark:hover:text-second hover:text-second duration-500 text-truncate-line-2">
+                                        {{$p['title']}}
+                                    </a>
+                                    <div class="flex flex-wrap items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} gap-2 pt-2 pb-4 text-xs">
+                                        @foreach(collect(explode(",", $p['tags']))->take(4) as $i => $tag)
+                                            <div
+                                                class="{{$i === 0 ? 'bg-primary' : '' }} {{$i === 1 ? 'bg-first' : '' }} {{$i === 2 ? 'bg-dark3' : '' }} {{$i === 3 ? 'bg-red' : '' }} rounded-2xl  {{$i === 1 ? 'text-secondary' : 'text-white' }} py-1 px-7">{{$tag}}</div>
+                                        @endforeach
+                                    </div>
+                                    <div class="text-sm text-black dark:!text-light2 {{$index === 0 ? 'text-truncate-line-9 whitespace-pre-line' : 'text-truncate-line-4'}}">
+                                        <p>{{$p['short_description']}}</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center {{$index === 0 ? '' : 'justify-center'}} text-secondary dark:!text-light2 text-sm gap-3 text-xs mt-4">
+                                    <span>{{$date($p['publish_date'])}}</span>
+                                    <span>•</span>
+                                    <span>3m Read</span>
+                                    <span>•</span>
+                                    <span>{{$p['views_count']}} Views</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+        </div>
     </div>
 
     <script src="{{asset('/js/home.js')}}"></script>

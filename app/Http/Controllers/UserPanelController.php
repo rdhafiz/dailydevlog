@@ -12,7 +12,12 @@ class UserPanelController extends BaseController
 {
     public function index(Request $request)
     {
-        return view('user-panel.home.home');
+        $rv = [
+            'featured_posts' => Post::where('is_featured', '1')->where('status', 'published')->take(5)->get(),
+            'latest_posts' => Post::where('status', 'published')->orderBy('created_at', 'desc')->take(5)->get(),
+            'most_viewed_posts' => Post::where('status', 'published')->orderBy('views_count', 'desc')->take(5)->get(),
+        ];
+        return view('user-panel.home.home', $rv);
     }
 
     public function blogDetails(Request $request, $id)
@@ -22,7 +27,7 @@ class UserPanelController extends BaseController
         $rv = [
             'id' => $id,
             'post' => $post,
-            'related_posts' => Post::where('user_id', $post['user_id'])->where('id', '!=', $id)->where('status', 'published')->take(3)->get()
+            'related_posts' => Post::where('user_id', $post['user_id'])->where('id', '!=', $id)->where('status', 'published')->take(3)->get(),
         ];
 
         if ($post->views_count == 0) {
@@ -62,6 +67,21 @@ class UserPanelController extends BaseController
     public function search_post()
     {
         return view('user-panel.post.search-post');
+    }
+
+    public function feature_post()
+    {
+        return view('user-panel.post.feature-post');
+    }
+
+    public function latest_post()
+    {
+        return view('user-panel.post.latest-post');
+    }
+
+    public function most_viewed_post()
+    {
+        return view('user-panel.post.most-viewed-post');
     }
 
     public function managePost(Request $request, $id)

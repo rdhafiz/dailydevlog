@@ -17,6 +17,13 @@ export default {
                     background: '#1a202c',
                     text: '#ffffff',
                 },
+                second: '#AED725',
+                primary: '#0C75ED',
+                first: '#FFC108',
+                dark3: '#333333',
+                red: '#C8093F',
+                secondary: '#556080',
+                light2: '#ECEBF7',
             },
             animation: {
                 'animate-spin': 'spin 3s linear infinite',

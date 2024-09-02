@@ -144,16 +144,16 @@
                                         class="flex flex-wrap items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} gap-[3px] pt-1 pb-[12px] text-xs">
                                         @foreach(collect(explode(",", $p['tags']))->take(4) as $i => $tag)
                                             <div
-                                                class="{{$i === 0 ? 'bg-primary' : '' }} {{$i === 1 ? 'bg-first' : '' }} {{$i === 2 ? 'bg-dark3' : '' }} {{$i === 3 ? 'bg-red' : '' }}  {{$i === 1 ? 'text-secondary' : 'text-white' }} rounded-2xl text-[7px] leading-[14px] h-[14px] text-center w-[50px] capitalize">{{$tag}}</div>
+                                                class="{{$i === 0 ? 'bg-primary' : '' }} {{$i === 1 ? 'bg-first' : '' }} {{$i === 2 ? 'bg-dark3' : '' }} {{$i === 3 ? 'bg-red' : '' }}  {{$i === 1 ? 'text-secondary' : 'text-white' }} rounded-2xl text-[9px] leading-[14px] h-[14px] text-center w-[50px] capitalize">{{$tag}}</div>
                                         @endforeach
                                     </div>
                                     <div
-                                        class="text-[9px] leading-[13.5px] text-black dark:!text-light2 {{$index === 0 ? 'text-truncate-line-9 whitespace-pre-line' : 'text-truncate-line-4'}}">
+                                        class="text-[10px] leading-[13.5px] text-black dark:!text-light2 {{$index === 0 ? 'text-truncate-line-9 whitespace-pre-line' : 'text-truncate-line-4'}}">
                                         <p>{{$p['short_description']}}</p>
                                     </div>
                                 </div>
                                 <div
-                                    class="flex items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} text-secondary dark:!text-light2 text-[8px] leading-[12px] mt-[12px] gap-1">
+                                    class="flex items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} text-secondary dark:!text-light2 text-[9px] leading-[12px] mt-[10px] pb-[2px] gap-1">
                                     <span>{{$date($p['publish_date'])}}</span>
                                     <span>•</span>
                                     <span>3m Read</span>
@@ -210,16 +210,16 @@
                                         class="flex flex-wrap items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} gap-[3px] pt-1 pb-[12px] text-xs">
                                         @foreach(collect(explode(",", $p['tags']))->take(4) as $i => $tag)
                                             <div
-                                                class="{{$i === 0 ? 'bg-primary' : '' }} {{$i === 1 ? 'bg-first' : '' }} {{$i === 2 ? 'bg-dark3' : '' }} {{$i === 3 ? 'bg-red' : '' }}  {{$i === 1 ? 'text-secondary' : 'text-white' }} rounded-2xl text-[7px] leading-[14px] h-[14px] text-center w-[50px] capitalize">{{$tag}}</div>
+                                                class="{{$i === 0 ? 'bg-primary' : '' }} {{$i === 1 ? 'bg-first' : '' }} {{$i === 2 ? 'bg-dark3' : '' }} {{$i === 3 ? 'bg-red' : '' }}  {{$i === 1 ? 'text-secondary' : 'text-white' }} rounded-2xl text-[9px] leading-[14px] h-[14px] text-center w-[50px] capitalize">{{$tag}}</div>
                                         @endforeach
                                     </div>
                                     <div
-                                        class="text-[9px] leading-[13.5px] text-black dark:!text-light2 {{$index === 0 ? 'text-truncate-line-9 whitespace-pre-line' : 'text-truncate-line-4'}}">
+                                        class="text-[10px] leading-[13.5px] text-black dark:!text-light2 {{$index === 0 ? 'text-truncate-line-9 whitespace-pre-line' : 'text-truncate-line-4'}}">
                                         <p>{{$p['short_description']}}</p>
                                     </div>
                                 </div>
                                 <div
-                                    class="flex items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} text-secondary dark:!text-light2 text-[8px] leading-[12px] mt-[12px] gap-1">
+                                    class="flex items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} text-secondary dark:!text-light2 text-[9px] leading-[12px] mt-[10px] pb-[2px] gap-1">
                                     <span>{{$date($p['publish_date'])}}</span>
                                     <span>•</span>
                                     <span>3m Read</span>
@@ -276,16 +276,16 @@
                                         class="flex flex-wrap items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} gap-[3px] pt-1 pb-[12px] text-xs">
                                         @foreach(collect(explode(",", $p['tags']))->take(4) as $i => $tag)
                                             <div
-                                                class="{{$i === 0 ? 'bg-primary' : '' }} {{$i === 1 ? 'bg-first' : '' }} {{$i === 2 ? 'bg-dark3' : '' }} {{$i === 3 ? 'bg-red' : '' }}  {{$i === 1 ? 'text-secondary' : 'text-white' }} rounded-2xl text-[7px] leading-[14px] h-[14px] text-center w-[50px] capitalize">{{$tag}}</div>
+                                                class="{{$i === 0 ? 'bg-primary' : '' }} {{$i === 1 ? 'bg-first' : '' }} {{$i === 2 ? 'bg-dark3' : '' }} {{$i === 3 ? 'bg-red' : '' }}  {{$i === 1 ? 'text-secondary' : 'text-white' }} rounded-2xl text-[9px] leading-[14px] h-[14px] text-center w-[50px] capitalize">{{$tag}}</div>
                                         @endforeach
                                     </div>
                                     <div
-                                        class="text-[9px] leading-[13.5px] text-black dark:!text-light2 {{$index === 0 ? 'text-truncate-line-9 whitespace-pre-line' : 'text-truncate-line-4'}}">
+                                        class="text-[10px] leading-[13.5px] text-black dark:!text-light2 {{$index === 0 ? 'text-truncate-line-9 whitespace-pre-line' : 'text-truncate-line-4'}}">
                                         <p>{{$p['short_description']}}</p>
                                     </div>
                                 </div>
                                 <div
-                                    class="flex items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} text-secondary dark:!text-light2 text-[8px] leading-[12px] mt-[12px] gap-1">
+                                    class="flex items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} text-secondary dark:!text-light2 text-[9px] leading-[12px] mt-[10px] pb-[2px] gap-1">
                                     <span>{{$date($p['publish_date'])}}</span>
                                     <span>•</span>
                                     <span>3m Read</span>

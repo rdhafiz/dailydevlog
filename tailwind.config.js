@@ -20,6 +20,7 @@ export default {
                 second: '#AED725',
                 primary: '#0C75ED',
                 first: '#FFC108',
+                dark2: '#222222',
                 dark3: '#333333',
                 red: '#C8093F',
                 secondary: '#556080',

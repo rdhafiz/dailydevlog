@@ -6,7 +6,7 @@
     @vite('resources/css/app.css')
     <body class="bg-[#ECEBF7] dark:bg-[#333333] text-black dark:text-white pt-[25px] pb-[46px]">
     @include('user-panel.layout.includes.header')
-    <div class="fixed-container">
+    <div>
     @yield('content')
     </div>
 {{--    @include('user-panel.layout.includes.footer')--}}

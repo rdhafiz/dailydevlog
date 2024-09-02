@@ -7,7 +7,7 @@
            return $formattedDate;
         }
     @endphp
-    <div id="home">
+    <div id="home" class="fixed-container">
         {{-- <div class="w-full px-4 mt-5" v-if="tableData.length === 0 && !loading">
              <div
                  class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
@@ -121,7 +121,7 @@
                     @foreach($featured_posts as $index => $p)
                         <div
                             class="{{$index === 0 ? 'sm:col-span-2 block sm:grid sm:grid-cols-2 sm:gap-[15px]' : 'col-span-1 lg:col-span-1 flex flex-col'}} group rounded-2xl bg-white dark:bg-[#222222] shadow-lg sm:h-[289px]">
-                            <a href=""
+                            <a href="{{route('user.panel.blog.details', ['id' => $p['id']])}}"
                                class="{{$index === 0 ? 'sm:col-span-1 h-[120px] sm:h-[289px] w-full' : 'h-[120px]'}} block rounded-2xl overflow-hidden min-h-[120px]">
                                 @if($p['featured_image'])
                                     <img src="{{asset('/storage/media/' .$p['featured_image'])}}"
@@ -136,7 +136,7 @@
                             <div
                                 class="grow flex flex-col gap-0 justify-between overflow-auto {{$index === 0 ? 'sm:col-span-1 text-center sm:text-left pr-[6px] pt-[15px] pb-2' : 'px-2 pt-2 pb-1 text-center'}}">
                                 <div class="overflow-auto">
-                                    <a href=""
+                                    <a href="{{route('user.panel.blog.details', ['id' => $p['id']])}}"
                                        class="text-secondary dark:text-white block font-bold text-lg leading-[24px] dark:hover:text-second hover:text-second duration-500 text-truncate-line-2">
                                         {{$p['title']}}
                                     </a>
@@ -153,7 +153,7 @@
                                     </div>
                                 </div>
                                 <div
-                                    class="flex items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} text-secondary dark:!text-light2 text-[8px] leading-[12px] mt-[12px] gap-3">
+                                    class="flex items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} text-secondary dark:!text-light2 text-[8px] leading-[12px] mt-[12px] gap-1">
                                     <span>{{$date($p['publish_date'])}}</span>
                                     <span>•</span>
                                     <span>3m Read</span>
@@ -187,7 +187,7 @@
                     @foreach($latest_posts as $index => $p)
                         <div
                             class="{{$index === 0 ? 'sm:col-span-2 block sm:grid sm:grid-cols-2 sm:gap-[15px]' : 'col-span-1 lg:col-span-1 flex flex-col'}} group rounded-2xl bg-white dark:bg-[#222222] shadow-lg sm:h-[289px]">
-                            <a href=""
+                            <a href="{{route('user.panel.blog.details', ['id' => $p['id']])}}"
                                class="{{$index === 0 ? 'sm:col-span-1 h-[120px] sm:h-[289px] w-full' : 'h-[120px]'}} block rounded-2xl overflow-hidden min-h-[120px]">
                                 @if($p['featured_image'])
                                     <img src="{{asset('/storage/media/' .$p['featured_image'])}}"
@@ -202,7 +202,7 @@
                             <div
                                 class="grow flex flex-col gap-0 justify-between overflow-auto {{$index === 0 ? 'sm:col-span-1 text-center sm:text-left pr-[6px] pt-[15px] pb-2' : 'px-2 pt-2 pb-1 text-center'}}">
                                 <div class="overflow-auto">
-                                    <a href=""
+                                    <a href="{{route('user.panel.blog.details', ['id' => $p['id']])}}"
                                        class="text-secondary dark:text-white block font-bold text-lg leading-[24px] dark:hover:text-second hover:text-second duration-500 text-truncate-line-2">
                                         {{$p['title']}}
                                     </a>
@@ -219,7 +219,7 @@
                                     </div>
                                 </div>
                                 <div
-                                    class="flex items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} text-secondary dark:!text-light2 text-[8px] leading-[12px] mt-[12px] gap-3">
+                                    class="flex items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} text-secondary dark:!text-light2 text-[8px] leading-[12px] mt-[12px] gap-1">
                                     <span>{{$date($p['publish_date'])}}</span>
                                     <span>•</span>
                                     <span>3m Read</span>
@@ -253,7 +253,7 @@
                     @foreach($most_viewed_posts as $index => $p)
                         <div
                             class="{{$index === 0 ? 'sm:col-span-2 block sm:grid sm:grid-cols-2 sm:gap-[15px]' : 'col-span-1 lg:col-span-1 flex flex-col'}} group rounded-2xl bg-white dark:bg-[#222222] shadow-lg sm:h-[289px]">
-                            <a href=""
+                            <a href="{{route('user.panel.blog.details', ['id' => $p['id']])}}"
                                class="{{$index === 0 ? 'sm:col-span-1 h-[120px] sm:h-[289px] w-full' : 'h-[120px]'}} block rounded-2xl overflow-hidden min-h-[120px]">
                                 @if($p['featured_image'])
                                     <img src="{{asset('/storage/media/' .$p['featured_image'])}}"
@@ -268,7 +268,7 @@
                             <div
                                 class="grow flex flex-col gap-0 justify-between overflow-auto {{$index === 0 ? 'sm:col-span-1 text-center sm:text-left pr-[6px] pt-[15px] pb-2' : 'px-2 pt-2 pb-1 text-center'}}">
                                 <div class="overflow-auto">
-                                    <a href=""
+                                    <a href="{{route('user.panel.blog.details', ['id' => $p['id']])}}"
                                        class="text-secondary dark:text-white block font-bold text-lg leading-[24px] dark:hover:text-second hover:text-second duration-500 text-truncate-line-2">
                                         {{$p['title']}}
                                     </a>
@@ -285,7 +285,7 @@
                                     </div>
                                 </div>
                                 <div
-                                    class="flex items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} text-secondary dark:!text-light2 text-[8px] leading-[12px] mt-[12px] gap-3">
+                                    class="flex items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} text-secondary dark:!text-light2 text-[8px] leading-[12px] mt-[12px] gap-1">
                                     <span>{{$date($p['publish_date'])}}</span>
                                     <span>•</span>
                                     <span>3m Read</span>

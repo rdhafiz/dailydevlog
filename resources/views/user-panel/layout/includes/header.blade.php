@@ -191,7 +191,7 @@
             </a>
             <ul class="items-center center hidden md:flex">
                 <li>
-                    <a href="{{route('user.panel.home')}}" class="dark:text-white hover:text-second dark:hover:text-second duration-500 text-[13px] leading-[19.5px] block">Featured</a>
+                    <a href="{{route('user.panel.home')}}" class="dark:text-second hover:text-second dark:hover:text-second duration-500 text-[13px] leading-[19.5px] block">Featured</a>
                 </li>
                 <li>
                     <a href="{{route('user.panel.home')}}"

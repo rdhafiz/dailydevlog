@@ -3,7 +3,23 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Daily Dev Blog</title>
+    <title>Redishketch - </title>
+    <meta name="keywords" content="redishketch,laravel,php,psdtohtml,responsive,web development,web application,website,portfolio"/>
+    <meta name="description" content="We, Redishketch are a startup web application development team. We do Web application and website development projects and develop our own SAAS and package applications. We develop web applications with all modern web technologies and web standards"/>
+    <meta name="subject" content="Redishketch - ">
+    <meta name="revised" content="Mon, September 02, 2024, 09:22 AM" />
+    <meta name="summary" content="We, Redishketch are a startup web application development team. We do Web application and website development projects and develop our own SAAS and package applications. We develop web applications with all modern web technologies and web standards.">
+    <meta name="author" content="Redishketch, redishketch@gmail.com">
+    <meta name="owner" content="Redishketch">
+    <meta name="url" content="https://www.redishketch.com">
+    <meta name="identifier-URL" content="https://www.redishketch.com">
+    <meta name="category" content="website,portfolio,service,team,it,programing,algorithm,development">
+    <meta name="og:title" content="Redishketch"/>
+    <meta name="og:type" content="website,portfolio,service,team,it,programing,algorithm,development"/>
+    <meta name="og:url" content="https://www.redishketch.com"/>
+    <meta name="og:image" content="https://www.redishketch.com/images/banners/redishketch.png"/>
+    <meta name="og:site_name" content="Redishketch"/>
+    <meta name="og:description" content="We, Redishketch are a startup web application development team. We do Web application and website development projects and develop our own SAAS and package applications. We develop web applications with all modern web technologies and web standards."/>
 
     <!--Stylesheets-->
     @vite('resources/scss/style.scss')

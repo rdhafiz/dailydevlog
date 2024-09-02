@@ -1,7 +1,7 @@
 @php
 $tags = getPopularTags();
 @endphp
-<footer class="container mx-auto py-10 px-5">
+<footer class="fixed-container py-10 px-5">
     <div
         class="w-full flex flex-wrap border border-gray-300 p-10 rounded-3xl bg-blue-50 dark:border-gray-700 dark:bg-gray-900">
         <div class="w-full sm:w-1/2 xl:w-1/3">

@@ -4,9 +4,9 @@
     @include('user-panel.layout.includes.head')
     @vite('resources/js/app.js')
     @vite('resources/css/app.css')
-    <body class="bg-[#ECEBF7] dark:bg-[#333333] text-black dark:text-white px-4 sm:px-0">
-    <div class="mx-auto container pt-[25px] pb-[50px]">
-        @include('user-panel.layout.includes.header')
+    <body class="bg-[#ECEBF7] dark:bg-[#333333] text-black dark:text-white pt-[25px] pb-[46px]">
+    @include('user-panel.layout.includes.header')
+    <div class="fixed-container">
     @yield('content')
     </div>
 {{--    @include('user-panel.layout.includes.footer')--}}

@@ -130,8 +130,25 @@
     }
 }
 
+body{
+    font-family: "Poppins", sans-serif;
+}
+
 .icon {
     @apply fill-black dark:fill-white;
+}
+
+.fixed-container{
+    width: 916px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem;
+}
+
+@media screen and (max-width: 916px) {
+    .fixed-container{
+        width: 100%;
+    }
 }
 
 .btn-theme {

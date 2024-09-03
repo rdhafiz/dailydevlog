@@ -323,7 +323,7 @@
                                 </div>
                                 <div class="px-[3px] py-[3px]">
                                     <div class="bg-[#F4F4F6] dark:bg-[#333333] rounded-[12px] px-[9px] py-[10px]">
-                                        <a href="javascript:void(0)" class="flex justify-start items-center decoration-0 w-full font-[500] text-[12px] text-[#000000] dark:text-[#ECEBF7] px-[10px] py-[7px] duration-300 hover:bg-white dark:hover:bg-[#222222] rounded-[12px] leading-[18px]">
+                                        <a href="{{route('user.panel.profile')}}" class="flex justify-start items-center decoration-0 w-full font-[500] text-[12px] text-[#000000] dark:text-[#ECEBF7] px-[10px] py-[7px] duration-300 hover:bg-white dark:hover:bg-[#222222] rounded-[12px] leading-[18px]">
                                             <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="dark:hidden">
                                                 <rect width="15" height="15" fill="url(#pattern0_110_602)"/>
                                                 <defs>
@@ -416,7 +416,7 @@
                                                 Settings
                                             </span>
                                         </a>
-                                        <a href="javascript:void(0)" class="flex justify-start items-center decoration-0 w-full font-[500] text-[12px] text-[#000000] dark:text-[#ECEBF7] bg-[#FF000D19] dark:bg-[#FF000D66] px-[10px] py-[7px] duration-300 rounded-[12px] leading-[18px]">
+                                        <a href="javascript:void(0)" class="flex justify-start items-center decoration-0 w-full font-[500] text-[12px] text-[#000000] dark:text-[#ECEBF7] bg-[#FF000D19] dark:bg-[#FF000D66] px-[10px] py-[7px] duration-300 rounded-[12px] leading-[18px]" @click="logout">
                                             <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="dark:hidden">
                                                 <rect width="15" height="15" fill="url(#pattern0_110_610)"/>
                                                 <defs>
@@ -486,4 +486,5 @@
         </ul>
     </div>
 </header>
+
 <script src="{{asset('js/header.js')}}"></script>

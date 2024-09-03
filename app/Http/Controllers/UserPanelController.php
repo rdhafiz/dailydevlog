@@ -108,4 +108,14 @@ class UserPanelController extends BaseController
         return view('user-panel.categories.manage', $rv);
     }
 
+    public function log_in()
+    {
+        return view('user-panel.log_in.login');
+    }
+
+    public function forgot()
+    {
+        return view('user-panel.forgot.forgot');
+    }
+
 }

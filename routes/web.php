@@ -25,6 +25,9 @@ Route::get('/categories', [UserPanelController::class, 'categories'])->name('use
 Route::get('/categories/{id}', [UserPanelController::class, 'manageCategory'])->name('user.panel.manage.category');
 Route::get('/blogs', [UserPanelController::class, 'post'])->name('user.panel.post');
 
+Route::get('/log_in', [UserPanelController::class, 'log_in'])->name('user.panel.log_in');
+Route::get('/forgot', [UserPanelController::class, 'forgot'])->name('user.panel.forgot');
+
 Route::group(
     ['middleware' => 'LoginCheck'],
     function () {

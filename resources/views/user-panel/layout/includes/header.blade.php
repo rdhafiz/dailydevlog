@@ -238,7 +238,7 @@
                         </button>
                     </div>
                     <div
-                        class="hidden absolute -right-[130px] sm:right-0 z-10 mt-5 w-[340px] sm:w-[340px] p-0 bg-white rounded-[100px] overflow-hidden"
+                        class="hidden absolute -right-[130px] sm:right-0 z-10 mt-5 w-[320px] sm:w-[340px] p-0 bg-white rounded-[100px] overflow-hidden"
                         id="search-dropdown">
                         <form @submit.prevent="searchData" class="p-0 border-0 shadow-none">
                             <input type="text" placeholder="Type to search article..."

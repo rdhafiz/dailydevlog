@@ -22,13 +22,15 @@
                     </div>
 
                     <div class="w-full mb-[15px]">
-                        <button type="submit" class="btn h-[45px] w-full flex justify-center items-center border border-[#0000003F] rounded-[50px] bg-gradient-to-r from-15% from-[#85A41C] via-50% via-[#AED725] to-85% to-[#85A41C]">
+                        <button type="submit"
+                                class="btn h-[45px] w-full flex justify-center items-center border border-[#0000003F] rounded-[50px] bg-gradient-to-r from-15% from-[#85A41C] via-50% via-[#AED725] to-85% to-[#85A41C]">
                             <span class="font-[500] dark:text-black light:text-black text-[14px]">
                                 Send Request
                             </span>
                         </button>
                     </div>
-                    <div class="text-center pb-[8px] leading-[18px] light:text-[#556080] font-[300] dark:text-[#ECEBF7] text-[12px]">
+                    <div
+                        class="text-center pb-[8px] leading-[18px] light:text-[#556080] font-[300] dark:text-[#ECEBF7] text-[12px]">
                         Remember Password?
                         <a href="{{route('user.panel.log_in')}}" class="decoration-0 text-[#0C75ED]">
                             Login Now!

@@ -57,7 +57,8 @@
                     </div>
 
                     <div class="w-full mb-[12px]">
-                        <button type="submit" class="btn h-[45px] w-full flex justify-center items-center border border-[#0000003F] rounded-[50px] bg-gradient-to-r from-15% from-[#85A41C] via-50% via-[#AED725] to-85% to-[#85A41C]">
+                        <button type="submit"
+                                class="btn h-[45px] w-full flex justify-center items-center border border-[#0000003F] rounded-[50px] bg-gradient-to-r from-15% from-[#85A41C] via-50% via-[#AED725] to-85% to-[#85A41C]">
                             <span class="font-[500] dark:text-black light:text-black text-[14px]">
                                 LOGIN NOW
                             </span>

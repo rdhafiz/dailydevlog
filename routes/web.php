@@ -32,8 +32,8 @@ Route::group(
         Route::get('/user_login', [UserPanelController::class, 'new_login'])->name('user.panel.user_login');
         Route::get('/user_forgot', [UserPanelController::class, 'new_forgot'])->name('user.panel.user_forgot');
 
-        Route::get('/login', [UserPanelController::class, 'login'])->name('user.panel.login');
-        Route::get('/forget-password', [UserPanelController::class, 'forgetPassword'])->name('user.panel.forget.password');
+//        Route::get('/login', [UserPanelController::class, 'login'])->name('user.panel.login');
+//        Route::get('/forget-password', [UserPanelController::class, 'forgetPassword'])->name('user.panel.forget.password');
 
         Route::get('/profile', [UserPanelController::class, 'profile'])->name('user.panel.profile');
         Route::get('/my-blogs', [UserPanelController::class, 'my_post'])->name('user.panel.my.post');

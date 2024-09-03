@@ -242,7 +242,7 @@
                         id="search-dropdown">
                         <form @submit.prevent="searchData" class="p-0 border-0 shadow-none">
                             <input type="text" placeholder="Type to search article..."
-                                   class="py-3 px-5 outline-0 text-[13px] w-full bg-[#ffffff] dark:bg-[#222222] placeholder-[#C0C0C0]"
+                                   class="h-[50px] px-[23px] py-[15px] outline-0 text-[13px] w-full bg-[#ffffff] dark:bg-[#222222] placeholder-[#C0C0C0]"
                                    v-model="formData.keyword">
                         </form>
                     </div>

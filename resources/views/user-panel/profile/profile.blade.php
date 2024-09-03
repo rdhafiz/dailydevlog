@@ -22,7 +22,7 @@
                     <div
                         class="px-5 py-10 w-full border border-cyan-100 dark:border-cyan-900 bg-gray-100 dark:bg-gray-800 rounded-3xl flex justify-center items-center flex-col">
 
-                        <label for="upload-profile-avatar" v-if="profileParam.avatar === null && !uploadLoading"
+                        <label for="upload-profile-avatar" v-if="profileParam?.avatar === null && !uploadLoading"
                                class="cursor-pointer w-[200px] lg:w-[250px] h-[200px] lg:h-[250px] text-white dark:bg-cyan-600 bg-gray-400 rounded-full text-5xl lg:text-7xl flex justify-center items-center">
                             @{{nameControl()}}
                             <input id="upload-profile-avatar" type="file" name="avatar" hidden="hidden"
@@ -39,9 +39,9 @@
                             </svg>
                         </div>
 
-                        <div v-if="profileParam.avatar !== null & !uploadLoading"
+                        <div v-if="profileParam?.avatar !== null & !uploadLoading"
                              class="relative rounded-full w-[200px] lg:w-[250px] h-[200px] bg-cover object-cover lg:h-[250px] overflow-hidden group">
-                            <img :src="'/storage/media/'+profileParam.avatar"
+                            <img :src="'/storage/media/'+profileParam?.avatar"
                                  class="w-[200px] lg:w-[250px] h-[200px] bg-cover object-cover lg:h-[250px] rounded-full"
                                  alt="profile-avtar">
                             <div class="absolute top-0 end-0 bottom-0 start-0 flex justify-center items-center rounded-full w-full h-full duration-500 group-hover:bg-black group-hover:bg-opacity-30">

@@ -75,7 +75,7 @@
             @endif
         </div>
         <div class="mt-[50px]">
-            <div class="text-center text-secondary dark:text-white text-[30px] font-bold mb-[15px] leading-[45px]">
+            <div class="text-center text-secondary dark:text-white text-[36px] font-bold mb-[6px] leading-[54px]">
                 Latest Articles
             </div>
             @if(count($latest_posts) > 0)
@@ -141,8 +141,8 @@
             @endif
         </div>
         <div class="mt-[50px]">
-            <div class="text-center text-secondary dark:text-white text-[30px] font-bold mb-[15px] leading-[45px]">Most
-                Viewed
+            <div class="text-center text-secondary dark:text-white text-[36px] font-bold mb-[6px] leading-[54px]">
+                Most Viewed
             </div>
             @if(count($most_viewed_posts) > 0)
                 <div class="grid grid-cols-1 sm:grid-cols-2 min-[917px]:grid-cols-3 gap-[15px]">

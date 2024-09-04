@@ -25,31 +25,49 @@ new Vue({
         /* Function of search dropdown */
         searchDropdown() {
             let searchDropDownMenu = document.querySelector('#search-dropdown-menu #search-dropdown');
+            if(searchDropDownMenu) {
+                searchDropDownMenu.classList.toggle('hidden');
+            }
             let dropDownMenu = document.querySelector('#dropdown-menu #dropdown');
+            if(dropDownMenu) {
+                dropDownMenu.classList.add('hidden');
+            }
             let userDropDownMenu = document.querySelector('#user-menu #user-dropdown');
-            searchDropDownMenu.classList.toggle('hidden');
-            dropDownMenu.classList.add('hidden');
-            userDropDownMenu.classList.add('hidden');
+            if(userDropDownMenu) {
+                userDropDownMenu.classList.add('hidden');
+            }
         },
 
         /* Function of mode dropdown */
          modeDropdown() {
             let dropDownMenu = document.querySelector('#dropdown-menu #dropdown');
-            dropDownMenu.classList.toggle('hidden');
+            if(dropDownMenu) {
+                dropDownMenu.classList.toggle('hidden');
+            }
             let searchDropDownMenu = document.querySelector('#search-dropdown-menu #search-dropdown');
-            searchDropDownMenu.classList.add('hidden');
+            if(searchDropDownMenu) {
+                searchDropDownMenu.classList.add('hidden');
+            }
             let userDropDownMenu = document.querySelector('#user-menu #user-dropdown');
-            userDropDownMenu.classList.add('hidden');
+            if(userDropDownMenu) {
+                userDropDownMenu.classList.add('hidden');
+            }
         },
 
         /* Function of mode dropdown */
         userDropdown() {
             let userDropDownMenu = document.querySelector('#user-menu #user-dropdown');
-            userDropDownMenu.classList.toggle('hidden');
+            if(userDropDownMenu) {
+                userDropDownMenu.classList.toggle('hidden');
+            }
             let dropDownMenu = document.querySelector('#dropdown-menu #dropdown');
-            dropDownMenu.classList.add('hidden');
+            if(dropDownMenu) {
+                dropDownMenu.classList.add('hidden');
+            }
             let searchDropDownMenu = document.querySelector('#search-dropdown-menu #search-dropdown');
-            searchDropDownMenu.classList.add('hidden');
+            if(searchDropDownMenu) {
+                searchDropDownMenu.classList.add('hidden');
+            }
         },
 
         /* Function of toggle menu */

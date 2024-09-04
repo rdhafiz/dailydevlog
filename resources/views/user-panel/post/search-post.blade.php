@@ -1,10 +1,10 @@
 @extends('user-panel.layout.layout')
 @section('content')
 
-    <div id="searchBlogs">
+    <div id="searchBlogs" class="fixed-container mt-[85px]">
 
         <div class="mt-5">
-            <div class="font-medium text-gray-400 dark:text-gray-500 text-2xl px-4">Showing blogs matching the search for <span class="text-second">@{{ formData.keyword }}</span></div>
+            <div class="text-secondary dark:text-white block font-bold text-[16px] leading-[24px] dark:hover:text-second hover:text-second duration-500 text-truncate-line-2">Showing blogs matching the search for <span class="text-second">@{{ formData.keyword }}</span></div>
         </div>
 
         <div class="w-full px-4 mt-10" v-if="tableData.length === 0 && !loading">
@@ -28,29 +28,30 @@
             </div>
         </div>
 
-        <div class="flex flex-wrap mt-5" v-if="tableData.length > 0 && !loading">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <div class="sm:col-span-1 lg:col-span-1 flex flex-col group rounded-2xl bg-white dark:bg-[#222222] shadow-lg h-[350px]"  v-for="(each, index) in tableData">
-                        <a href="" class="block rounded-2xl overflow-hidden !h-[120px] min-h-[120px]">
-                                <img :src="'/storage/media/'+ each.featured_image"
-                                     class="!h-full w-full rounded-2xl object-cover scale-[1] group-hover:scale-[1.2] duration-500"
-                                     alt="blog image" v-if="each.featured_image">
-                                <img src="{{asset('/images/default.png')}}" class="h-full w-full rounded-2xl object-cover scale-[1] group-hover:scale-[1.2] duration-500"
-                                     alt="blog image" v-if="!each.featured_image">
+        <div class="mt-[15px]" v-if="tableData.length > 0 && !loading">
+            <div class="grid grid-cols-1 sm:grid-cols-2 min-[917px]:grid-cols-3 gap-[15px]">
+                <template v-for="(each, index) in tableData">
+                    <div class="group rounded-2xl bg-white dark:bg-[#222222] shadow-lg sm:h-[289px]" :class="{ 'sm:col-span-2 block sm:grid sm:grid-cols-2 sm:gap-[15px]' : index === 0, 'col-span-1 lg:col-span-1 flex flex-col' : index > 0 }">
+                        <a href="javascript:void(0)" class="block rounded-2xl overflow-hidden min-h-[120px]" :class="{ 'sm:col-span-1 h-[120px] sm:h-[289px] w-full' : index === 0, 'h-[120px]' : index > 0 }">
+                            <img :src="'/storage/media/'+ each.featured_image"
+                                 class="!h-full w-full rounded-2xl object-cover scale-[1] group-hover:scale-[1.2] duration-500"
+                                 alt="blog image" v-if="each.featured_image">
+                            <img src="{{asset('/images/default.png')}}" class="h-full w-full rounded-2xl object-cover scale-[1] group-hover:scale-[1.2] duration-500"
+                                 alt="blog image" v-if="!each.featured_image">
                         </a>
-                        <div class="p-3 grow flex flex-col justify-between text-center">
-                            <div>
-                                <a href="" class="text-secondary dark:text-white block font-bold text-lg leading-[24px] dark:hover:text-second hover:text-second duration-500 text-truncate-line-2">
+                        <div class="grow flex flex-col gap-0 justify-between overflow-auto" :class="{ 'sm:col-span-1 text-center sm:text-left pr-[6px] pt-[15px] pb-2' : index === 0, 'px-2 pt-2 pb-1 text-center' : index > 0 }">
+                            <div class="overflow-auto">
+                                <a href="javascript:void(0)" class="text-secondary dark:text-white block font-bold text-[16px] leading-[24px] dark:hover:text-second hover:text-second duration-500 text-truncate-line-2">
                                     @{{ each.title }}
                                 </a>
-                                <div class="flex flex-wrap items-center gap-2 pt-2 pb-4 text-xs">
-                                    <div v-for="(tag, index) in each?.tags" class="rounded-2xl py-1 px-7 text-white" :class="{'bg-primary': index === 0, 'bg-first text-secondary': index === 1, 'bg-dark3': index === 2, 'bg-red': index === 3}">@{{ tag }}</div>
+                                <div class="flex flex-wrap items-center gap-[3px] pt-1 pb-[12px]" :class="{ 'justify-center sm:justify-start' : index === 0, 'justify-center' : index > 0 }">
+                                    <div v-for="(tag, index) in each?.tags" class="rounded-2xl text-[10px] leading-[14px] h-[14px] font-[400] text-center w-[50px] capitalize" :class="{'bg-primary': index === 0, 'bg-first text-secondary': index === 1, 'bg-dark3': index === 2, 'bg-red': index === 3}">@{{ tag }}</div>
                                 </div>
-                                <div class="text-sm text-black dark:!text-light2 text-truncate-line-4">
+                                <div class="text-[10px] font-[400] leading-[13.5px] text-black dark:!text-light2" :class="{ 'text-truncate-line-9 whitespace-pre-line' : index === 0, 'text-truncate-line-4' : index > 0 }">
                                     <p>@{{ each.short_description }}</p>
                                 </div>
                             </div>
-                            <div class="flex items-center justify-center text-secondary dark:!text-light2 text-sm gap-3 text-xs mt-4">
+                            <div class="flex items-center text-secondary dark:!text-light2 text-[10px] leading-[12px] mt-[10px] pb-[2px] gap-1" :class="{ 'justify-center sm:justify-start' : index === 0, 'justify-center' : index > 0 }">
                                 <span>@{{ each.published_at_format }}</span>
                                 <span>•</span>
                                 <span>3m Read</span>
@@ -60,6 +61,7 @@
                         </div>
 
                     </div>
+                </template>
             </div>
            {{-- <div class="w-full sm:w-full lg:w-1/2 2xl:w-1/4 p-3 flex" v-for="(each) in tableData">
                 <div class="group bg-gray-100 rounded-2xl dark:bg-gray-800 w-full flex flex-col">

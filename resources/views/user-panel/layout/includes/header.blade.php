@@ -186,22 +186,22 @@
     id="header">
     <div class="fixed-container">
         <div
-            class="bg-white dark:bg-[#222222] text-secondary dark:text-white shadow !p-[5px] rounded-[100px] flex items-center justify-between">
+            class="relative bg-white dark:bg-[#222222] text-secondary dark:text-white shadow !p-[5px] rounded-[100px] flex items-center justify-between">
             <a href="{{route('user.panel.home')}}" class="hidden md:block">
                 <img src="{{asset('/images/logo.svg')}}" alt="logo">
             </a>
             <ul class="items-center center hidden md:flex">
                 <li>
-                    <a href="{{route('user.panel.home')}}"
-                       class="text-second hover:text-second dark:text-second dark:hover:text-second duration-500 text-[13px] leading-[19.5px] block">Featured</a>
+                    <a href="{{route('user.panel.feature.post')}}"
+                       class="hover:text-second dark:hover:text-second duration-500 text-[13px] leading-[19.5px] block {{\Request::route()->getName() === 'user.panel.feature.post' ? 'text-second' : 'dark:text-white'}}">Featured</a>
                 </li>
                 <li>
-                    <a href="{{route('user.panel.home')}}"
-                       class="dark:text-white hover:text-second dark:hover:text-second duration-500 text-[13px] mx-8 block">Latest</a>
+                    <a href="{{route('user.panel.latest.post')}}"
+                       class="hover:text-second dark:hover:text-second duration-500 text-[13px] mx-8 block {{\Request::route()->getName() === 'user.panel.latest.post' ? 'text-second' : 'dark:text-white'}}">Latest</a>
                 </li>
                 <li>
-                    <a href="{{route('user.panel.home')}}"
-                       class="dark:text-white hover:text-second dark:hover:text-second duration-500 text-[13px] block">Most
+                    <a href="{{route('user.panel.most.viewed.post')}}"
+                       class="hover:text-second dark:hover:text-second duration-500 text-[13px] block {{\Request::route()->getName() === 'user.panel.most.viewed.post' ? 'text-second' : 'dark:text-white'}}">Most
                         Viewed</a>
                 </li>
             </ul>
@@ -215,7 +215,7 @@
                 </svg>
             </a>
             <div class="flex items-center">
-                <div class="relative inline-block text-left" id="search-dropdown-menu">
+                <div class="inline-block text-left" id="search-dropdown-menu">
                     <div id="searchBtn" class="flex">
                         <button type="button" class="outline-0 border-0" @click="searchDropdown">
                             <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
@@ -238,7 +238,7 @@
                         </button>
                     </div>
                     <div
-                        class="hidden absolute -right-[130px] sm:right-0 z-10 mt-5 w-[320px] sm:w-[340px] p-0 bg-white rounded-[100px] overflow-hidden"
+                        class="hidden absolute right-0 left-0 sm:right-0 z-10 mt-4 max-w-full w-full min-w-full p-0 bg-white rounded-[100px] overflow-hidden"
                         id="search-dropdown">
                         <form @submit.prevent="searchData" class="p-0 border-0 shadow-none">
                             <input type="text" placeholder="Type to search article..."
@@ -338,10 +338,10 @@
                                             class="block font-[400] text-[10px] text-[#55608080] dark:text-[#ECEBF780]"> @{{ profileData?.email }} </span>
                                     </span>
                                     </div>
-                                    <div class="px-[3px] py-[3px]">
+                                    <div class="ps-[3px] pt-[3px] pb-[4px] pe-[4px]">
                                         <div class="bg-[#F4F4F6] dark:bg-[#333333] rounded-[12px] px-[9px] py-[10px]">
                                             <a href="{{route('user.panel.profile')}}"
-                                               class="flex justify-start items-center decoration-0 w-full font-[500] text-[12px] text-[#000000] dark:text-[#ECEBF7] px-[10px] py-[7px] duration-300 hover:bg-white dark:hover:bg-[#222222] rounded-[12px] leading-[18px]">
+                                               class="flex justify-start items-center decoration-0 w-full font-[500] text-[12px] text-[#000000] dark:text-[#ECEBF7] px-[10px] py-[6px] duration-300 hover:bg-white dark:hover:bg-[#222222] rounded-[12px] leading-[18px]">
                                                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg"
                                                      xmlns:xlink="http://www.w3.org/1999/xlink" class="dark:hidden">
@@ -375,8 +375,8 @@
                                                 Profile
                                             </span>
                                             </a>
-                                            <a href="javascript:void(0)"
-                                               class="flex justify-start items-center decoration-0 w-full font-[500] text-[12px] text-[#000000] dark:text-[#ECEBF7] px-[10px] py-[7px] duration-300 hover:bg-white dark:hover:bg-[#222222] rounded-[12px] leading-[18px]">
+                                            <a href="{{route('user.panel.my.post')}}"
+                                               class="flex justify-start items-center decoration-0 w-full font-[500] text-[12px] text-[#000000] dark:text-[#ECEBF7] px-[10px] py-[6px] duration-300 hover:bg-white dark:hover:bg-[#222222] rounded-[12px] leading-[18px]">
                                                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg"
                                                      xmlns:xlink="http://www.w3.org/1999/xlink" class="dark:hidden">
@@ -410,7 +410,7 @@
                                             </span>
                                             </a>
                                             <a href="javascript:void(0)"
-                                               class="flex justify-start items-center decoration-0 w-full font-[500] text-[12px] text-[#000000] dark:text-[#ECEBF7] px-[10px] py-[7px] duration-300 hover:bg-white dark:hover:bg-[#222222] rounded-[12px] leading-[18px]">
+                                               class="flex justify-start items-center decoration-0 w-full font-[500] text-[12px] text-[#000000] dark:text-[#ECEBF7] px-[10px] py-[6px] duration-300 hover:bg-white dark:hover:bg-[#222222] rounded-[12px] leading-[18px]">
                                                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg"
                                                      xmlns:xlink="http://www.w3.org/1999/xlink" class="dark:hidden">
@@ -444,7 +444,7 @@
                                             </span>
                                             </a>
                                             <a href="javascript:void(0)"
-                                               class="flex justify-start items-center decoration-0 w-full font-[500] text-[12px] text-[#000000] dark:text-[#ECEBF7] px-[10px] py-[7px] duration-300 hover:bg-white dark:hover:bg-[#222222] rounded-[12px] leading-[18px]">
+                                               class="flex justify-start items-center decoration-0 w-full font-[500] text-[12px] text-[#000000] dark:text-[#ECEBF7] px-[10px] py-[6px] duration-300 hover:bg-white dark:hover:bg-[#222222] rounded-[12px] leading-[18px]">
                                                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg"
                                                      xmlns:xlink="http://www.w3.org/1999/xlink" class="dark:hidden">
@@ -478,7 +478,7 @@
                                             </span>
                                             </a>
                                             <a href="javascript:void(0)" v-if="!logoutLoading"
-                                               class="flex justify-start items-center decoration-0 w-full font-[500] text-[12px] text-[#000000] dark:text-[#ECEBF7] bg-[#FF000D19] dark:bg-[#FF000D66] px-[10px] py-[7px] duration-300 rounded-[12px] leading-[18px]"
+                                               class="flex justify-start items-center decoration-0 w-full font-[500] text-[12px] text-[#000000] dark:text-[#ECEBF7] bg-[#FF000D19] dark:bg-[#FF000D66] px-[10px] py-[6px] duration-300 rounded-[12px] leading-[18px]"
                                                @click="logout">
                                                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg"
@@ -526,7 +526,7 @@
                     </div>
 
                 @else
-                    <a href="{{route('user.panel.user_login')}}">
+                    <a href="{{route('user.panel.login')}}">
                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
                              xmlns="http://www.w3.org/2000/svg"
                              xmlns:xlink="http://www.w3.org/1999/xlink">

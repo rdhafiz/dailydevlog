@@ -2,7 +2,7 @@
 @section('content')
 
     <div id="myPost">
-        <section class="w-full">
+        <section class="fixed-container mt-[85px]">
 
             <div class="w-full flex justify-between flex-wrap sm:flex-nowrap items-center px-3 gap-2 sm:gap-5">
                 <div class="w-full sm:w-1/3 py-2 sm:py-3">

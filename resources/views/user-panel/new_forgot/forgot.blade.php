@@ -43,7 +43,7 @@
                         <div
                             class="text-center pb-[8px] leading-[18px] light:text-[#556080] font-[300] dark:text-[#ECEBF7] text-[12px]">
                             Remember Password?
-                            <a href="{{route('user.panel.user_login')}}" class="decoration-0 text-[#0C75ED]">
+                            <a href="{{route('user.panel.login')}}" class="decoration-0 text-[#0C75ED]">
                                 Login Now!
                             </a>
                         </div>
@@ -114,7 +114,7 @@
                         <div
                             class="text-center pb-[8px] leading-[18px] light:text-[#556080] font-[300] dark:text-[#ECEBF7] text-[12px]">
                             Remember Password?
-                            <a href="{{route('user.panel.user_login')}}" class="decoration-0 text-[#0C75ED]">
+                            <a href="{{route('user.panel.login')}}" class="decoration-0 text-[#0C75ED]">
                                 Login Now!
                             </a>
                         </div>

@@ -367,6 +367,9 @@ rte-toolbar-arrowbutton svg {
     stroke: #06b6d4 !important;
 }
 
+rte-toolbar-dropdown-item {
+    color: #000000;
+}
 
 
 #single-details #content_description h1 {

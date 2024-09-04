@@ -41,12 +41,12 @@ class UserPanelController extends BaseController
 
     public function login()
     {
-        return view('user-panel.login.login');
+        return view('user-panel.new_login.login');
     }
 
-    public function forgetPassword()
+    public function forgotPassword()
     {
-        return view('user-panel.forget-password.forget-password');
+        return view('user-panel.new_forgot.forgot');
     }
 
     public function profile()
@@ -106,16 +106,6 @@ class UserPanelController extends BaseController
         ];
 
         return view('user-panel.categories.manage', $rv);
-    }
-
-    public function new_login()
-    {
-        return view('user-panel.new_login.login');
-    }
-
-    public function new_forgot()
-    {
-        return view('user-panel.new_forgot.forgot');
     }
 
 }

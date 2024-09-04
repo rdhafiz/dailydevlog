@@ -3,7 +3,7 @@
     @php
         $date = function ($publishDate){
             $date = new DateTime($publishDate);
-           $formattedDate = $date->format('F j, Y');
+           $formattedDate = $date->format('M d Y');
            return $formattedDate;
         }
     @endphp

@@ -78,7 +78,7 @@
                             </button>
                         </div>
                         <div class="text-center pb-[8px] leading-[18px] text-[12px] font-[300]">
-                            <a href="{{route('user.panel.user_forgot')}}" class="decoration-0 text-[#0C75ED]">
+                            <a href="{{route('user.panel.forgot.password')}}" class="decoration-0 text-[#0C75ED]">
                                 Forgot Password?
                             </a>
                         </div>

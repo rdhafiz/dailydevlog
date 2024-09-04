@@ -66,7 +66,7 @@ new Vue({
             this.logoutLoading = true;
             axios.post(`/api/front/user/logout`, '', {headers: headerContent}).then((response) => {
                 this.logoutLoading = false;
-                window.location.href = '/user_login'
+                window.location.href = '/login'
             }).catch(err => {
                 this.logoutLoading = false;
                 let res = err?.response;

@@ -375,7 +375,7 @@
                                                 Profile
                                             </span>
                                             </a>
-                                            <a href="javascript:void(0)"
+                                            <a href="{{route('user.panel.my.post')}}"
                                                class="flex justify-start items-center decoration-0 w-full font-[500] text-[12px] text-[#000000] dark:text-[#ECEBF7] px-[10px] py-[7px] duration-300 hover:bg-white dark:hover:bg-[#222222] rounded-[12px] leading-[18px]">
                                                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg"
@@ -526,7 +526,7 @@
                     </div>
 
                 @else
-                    <a href="{{route('user.panel.user_login')}}">
+                    <a href="{{route('user.panel.login')}}">
                         <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
                              xmlns="http://www.w3.org/2000/svg"
                              xmlns:xlink="http://www.w3.org/1999/xlink">

@@ -137,23 +137,23 @@
                                 class="grow flex flex-col gap-0 justify-between overflow-auto {{$index === 0 ? 'sm:col-span-1 text-center sm:text-left pr-[6px] pt-[15px] pb-2' : 'px-2 pt-2 pb-1 text-center'}}">
                                 <div class="overflow-auto">
                                     <a href="{{route('user.panel.blog.details', ['id' => $p['id']])}}"
-                                       class="text-secondary dark:text-white block font-bold text-lg leading-[24px] dark:hover:text-second hover:text-second duration-500 text-truncate-line-2">
+                                       class="text-secondary dark:text-white block font-bold text-[16px] leading-[24px] dark:hover:text-second hover:text-second duration-500 text-truncate-line-2">
                                         {{$p['title']}}
                                     </a>
                                     <div
-                                        class="flex flex-wrap items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} gap-[3px] pt-1 pb-[12px] text-xs">
+                                        class="flex flex-wrap items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} gap-[3px] pt-1 pb-[12px]">
                                         @foreach(collect(explode(",", $p['tags']))->take(4) as $i => $tag)
                                             <div
-                                                class="{{$i === 0 ? 'bg-primary' : '' }} {{$i === 1 ? 'bg-first' : '' }} {{$i === 2 ? 'bg-dark3' : '' }} {{$i === 3 ? 'bg-red' : '' }}  {{$i === 1 ? 'text-secondary' : 'text-white' }} rounded-2xl text-[9px] leading-[14px] h-[14px] text-center w-[50px] capitalize">{{$tag}}</div>
+                                                class="{{$i === 0 ? 'bg-primary' : '' }} {{$i === 1 ? 'bg-first' : '' }} {{$i === 2 ? 'bg-dark3' : '' }} {{$i === 3 ? 'bg-red' : '' }}  {{$i === 1 ? 'text-secondary' : 'text-white' }} rounded-2xl text-[10px] leading-[14px] h-[14px] font-[400] text-center w-[50px] capitalize">{{$tag}}</div>
                                         @endforeach
                                     </div>
                                     <div
-                                        class="text-[10px] leading-[13.5px] text-black dark:!text-light2 {{$index === 0 ? 'text-truncate-line-9 whitespace-pre-line' : 'text-truncate-line-4'}}">
+                                        class="text-[10px] font-[400] leading-[13.5px] text-black dark:!text-light2 {{$index === 0 ? 'text-truncate-line-9 whitespace-pre-line' : 'text-truncate-line-4'}}">
                                         <p>{{$p['short_description']}}</p>
                                     </div>
                                 </div>
                                 <div
-                                    class="flex items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} text-secondary dark:!text-light2 text-[9px] leading-[12px] mt-[10px] pb-[2px] gap-1">
+                                    class="flex items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} text-secondary dark:!text-light2 text-[10px] leading-[12px] mt-[10px] pb-[2px] gap-1">
                                     <span>{{$date($p['publish_date'])}}</span>
                                     <span>•</span>
                                     <span>3m Read</span>
@@ -203,23 +203,23 @@
                                 class="grow flex flex-col gap-0 justify-between overflow-auto {{$index === 0 ? 'sm:col-span-1 text-center sm:text-left pr-[6px] pt-[15px] pb-2' : 'px-2 pt-2 pb-1 text-center'}}">
                                 <div class="overflow-auto">
                                     <a href="{{route('user.panel.blog.details', ['id' => $p['id']])}}"
-                                       class="text-secondary dark:text-white block font-bold text-lg leading-[24px] dark:hover:text-second hover:text-second duration-500 text-truncate-line-2">
+                                       class="text-secondary dark:text-white block font-bold text-[16px] leading-[24px] dark:hover:text-second hover:text-second duration-500 text-truncate-line-2">
                                         {{$p['title']}}
                                     </a>
                                     <div
-                                        class="flex flex-wrap items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} gap-[3px] pt-1 pb-[12px] text-xs">
+                                        class="flex flex-wrap items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} gap-[3px] pt-1 pb-[12px]">
                                         @foreach(collect(explode(",", $p['tags']))->take(4) as $i => $tag)
                                             <div
-                                                class="{{$i === 0 ? 'bg-primary' : '' }} {{$i === 1 ? 'bg-first' : '' }} {{$i === 2 ? 'bg-dark3' : '' }} {{$i === 3 ? 'bg-red' : '' }}  {{$i === 1 ? 'text-secondary' : 'text-white' }} rounded-2xl text-[9px] leading-[14px] h-[14px] text-center w-[50px] capitalize">{{$tag}}</div>
+                                                class="{{$i === 0 ? 'bg-primary' : '' }} {{$i === 1 ? 'bg-first' : '' }} {{$i === 2 ? 'bg-dark3' : '' }} {{$i === 3 ? 'bg-red' : '' }}  {{$i === 1 ? 'text-secondary' : 'text-white' }} rounded-2xl text-[10px] leading-[14px] h-[14px] font-[400] text-center w-[50px] capitalize">{{$tag}}</div>
                                         @endforeach
                                     </div>
                                     <div
-                                        class="text-[10px] leading-[13.5px] text-black dark:!text-light2 {{$index === 0 ? 'text-truncate-line-9 whitespace-pre-line' : 'text-truncate-line-4'}}">
+                                        class="text-[10px] font-[400] leading-[13.5px] text-black dark:!text-light2 {{$index === 0 ? 'text-truncate-line-9 whitespace-pre-line' : 'text-truncate-line-4'}}">
                                         <p>{{$p['short_description']}}</p>
                                     </div>
                                 </div>
                                 <div
-                                    class="flex items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} text-secondary dark:!text-light2 text-[9px] leading-[12px] mt-[10px] pb-[2px] gap-1">
+                                    class="flex items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} text-secondary dark:!text-light2 text-[10px] leading-[12px] mt-[10px] pb-[2px] gap-1">
                                     <span>{{$date($p['publish_date'])}}</span>
                                     <span>•</span>
                                     <span>3m Read</span>
@@ -269,23 +269,23 @@
                                 class="grow flex flex-col gap-0 justify-between overflow-auto {{$index === 0 ? 'sm:col-span-1 text-center sm:text-left pr-[6px] pt-[15px] pb-2' : 'px-2 pt-2 pb-1 text-center'}}">
                                 <div class="overflow-auto">
                                     <a href="{{route('user.panel.blog.details', ['id' => $p['id']])}}"
-                                       class="text-secondary dark:text-white block font-bold text-lg leading-[24px] dark:hover:text-second hover:text-second duration-500 text-truncate-line-2">
+                                       class="text-secondary dark:text-white block font-bold text-[16px] leading-[24px] dark:hover:text-second hover:text-second duration-500 text-truncate-line-2">
                                         {{$p['title']}}
                                     </a>
                                     <div
-                                        class="flex flex-wrap items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} gap-[3px] pt-1 pb-[12px] text-xs">
+                                        class="flex flex-wrap items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} gap-[3px] pt-1 pb-[12px]">
                                         @foreach(collect(explode(",", $p['tags']))->take(4) as $i => $tag)
                                             <div
-                                                class="{{$i === 0 ? 'bg-primary' : '' }} {{$i === 1 ? 'bg-first' : '' }} {{$i === 2 ? 'bg-dark3' : '' }} {{$i === 3 ? 'bg-red' : '' }}  {{$i === 1 ? 'text-secondary' : 'text-white' }} rounded-2xl text-[9px] leading-[14px] h-[14px] text-center w-[50px] capitalize">{{$tag}}</div>
+                                                class="{{$i === 0 ? 'bg-primary' : '' }} {{$i === 1 ? 'bg-first' : '' }} {{$i === 2 ? 'bg-dark3' : '' }} {{$i === 3 ? 'bg-red' : '' }}  {{$i === 1 ? 'text-secondary' : 'text-white' }} rounded-2xl text-[10px] leading-[14px] h-[14px] font-[400] text-center w-[50px] capitalize">{{$tag}}</div>
                                         @endforeach
                                     </div>
                                     <div
-                                        class="text-[10px] leading-[13.5px] text-black dark:!text-light2 {{$index === 0 ? 'text-truncate-line-9 whitespace-pre-line' : 'text-truncate-line-4'}}">
+                                        class="text-[10px] font-[400] leading-[13.5px] text-black dark:!text-light2 {{$index === 0 ? 'text-truncate-line-9 whitespace-pre-line' : 'text-truncate-line-4'}}">
                                         <p>{{$p['short_description']}}</p>
                                     </div>
                                 </div>
                                 <div
-                                    class="flex items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} text-secondary dark:!text-light2 text-[9px] leading-[12px] mt-[10px] pb-[2px] gap-1">
+                                    class="flex items-center {{$index === 0 ? 'justify-center sm:justify-start' : 'justify-center'}} text-secondary dark:!text-light2 text-[10px] leading-[12px] mt-[10px] pb-[2px] gap-1">
                                     <span>{{$date($p['publish_date'])}}</span>
                                     <span>•</span>
                                     <span>3m Read</span>

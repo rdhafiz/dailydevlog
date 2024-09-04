@@ -44,7 +44,7 @@
                                     @{{ each.title }}
                                 </a>
                                 <div class="flex flex-wrap items-center pt-1 pb-[12px]" :class="{ 'gap-x-[9px] justify-center sm:justify-start' : index === 0, 'gap-x-[8px] justify-center' : index > 0 }">
-                                    <div v-for="(tag, indexTag) in each?.tags" class="rounded-2xl leading-[14px] font-[400] text-center flex justify-center items-center capitalize" :class="{'bg-primary': indexTag === 0, 'bg-first text-dark': indexTag === 1, 'bg-dark3': indexTag === 2, 'bg-red': indexTag === 3, 'w-[65px] h-[20px] text-[12px]' : index === 0, 'w-[50px] h-[16px] text-[11px]' : index > 0 }">@{{ tag }}</div>
+                                    <div v-for="(tag, indexTag) in each?.tags" class="rounded-2xl leading-[14px] font-[400] text-center flex justify-center items-center capitalize" :class="{'bg-primary !text-white': indexTag === 0, 'bg-first !text-[#333333]': indexTag === 1, 'bg-dark3 !text-white': indexTag === 2, 'bg-red !text-white': indexTag === 3, 'w-[65px] h-[20px] text-[12px]' : index === 0, 'w-[50px] h-[16px] text-[11px]' : index > 0 }">@{{ tag }}</div>
                                 </div>
                                 <div class="font-[400] leading-[21px] text-black dark:!text-light2" :class="{ 'text-[14px] text-truncate-line-5' : index === 0, 'text-[13px] text-truncate-line-3' : index > 0 }">
                                     <p>@{{ each.short_description }}</p>

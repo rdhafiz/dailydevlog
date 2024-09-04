@@ -192,16 +192,16 @@
             </a>
             <ul class="items-center center hidden md:flex">
                 <li>
-                    <a href="{{route('user.panel.home')}}"
-                       class="text-second hover:text-second dark:text-second dark:hover:text-second duration-500 text-[13px] leading-[19.5px] block">Featured</a>
+                    <a href="{{route('user.panel.feature.post')}}"
+                       class="hover:text-second dark:hover:text-second duration-500 text-[13px] leading-[19.5px] block {{\Request::route()->getName() === 'user.panel.feature.post' ? 'text-second' : 'dark:text-white'}}">Featured</a>
                 </li>
                 <li>
-                    <a href="{{route('user.panel.home')}}"
-                       class="dark:text-white hover:text-second dark:hover:text-second duration-500 text-[13px] mx-8 block">Latest</a>
+                    <a href="{{route('user.panel.latest.post')}}"
+                       class="hover:text-second dark:hover:text-second duration-500 text-[13px] mx-8 block {{\Request::route()->getName() === 'user.panel.latest.post' ? 'text-second' : 'dark:text-white'}}">Latest</a>
                 </li>
                 <li>
-                    <a href="{{route('user.panel.home')}}"
-                       class="dark:text-white hover:text-second dark:hover:text-second duration-500 text-[13px] block">Most
+                    <a href="{{route('user.panel.most.viewed.post')}}"
+                       class="hover:text-second dark:hover:text-second duration-500 text-[13px] block {{\Request::route()->getName() === 'user.panel.most.viewed.post' ? 'text-second' : 'dark:text-white'}}">Most
                         Viewed</a>
                 </li>
             </ul>

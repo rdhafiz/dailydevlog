@@ -25,10 +25,10 @@ new Vue({
         /* Function of search dropdown */
         searchDropdown() {
             let searchDropDownMenu = document.querySelector('#search-dropdown-menu #search-dropdown');
-            searchDropDownMenu.classList.toggle('hidden');
             let dropDownMenu = document.querySelector('#dropdown-menu #dropdown');
-            dropDownMenu.classList.add('hidden');
             let userDropDownMenu = document.querySelector('#user-menu #user-dropdown');
+            searchDropDownMenu.classList.toggle('hidden');
+            dropDownMenu.classList.add('hidden');
             userDropDownMenu.classList.add('hidden');
         },
 

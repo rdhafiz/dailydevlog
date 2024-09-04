@@ -16,7 +16,7 @@
             </div>
             <hr class="w-full border border-cyan-300 my-5 px-5 md:px-[120px]">
         </section>--}}
-        <section class="px-2">
+        <section class="fixed-container mt-[85px]">
             <div class="flex flex-wrap">
                 <div class="w-full lg:w-1/3 px-3 mb-5">
                     <div

@@ -1,4 +1,5 @@
 @extends('user-panel.layout.layout')
+@section('title', 'Daily Dev Log | Insights & Tutorials on Web and Mobile App Development')
 @section('content')
 
     <div id="post" class="p-2 md:p-4">

@@ -3,23 +3,21 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Redishketch - </title>
-    <meta name="keywords" content="redishketch,laravel,php,psdtohtml,responsive,web development,web application,website,portfolio"/>
-    <meta name="description" content="We, Redishketch are a startup web application development team. We do Web application and website development projects and develop our own SAAS and package applications. We develop web applications with all modern web technologies and web standards"/>
-    <meta name="subject" content="Redishketch - ">
-    <meta name="revised" content="Mon, September 02, 2024, 09:22 AM" />
-    <meta name="summary" content="We, Redishketch are a startup web application development team. We do Web application and website development projects and develop our own SAAS and package applications. We develop web applications with all modern web technologies and web standards.">
-    <meta name="author" content="Redishketch, redishketch@gmail.com">
-    <meta name="owner" content="Redishketch">
-    <meta name="url" content="https://www.redishketch.com">
-    <meta name="identifier-URL" content="https://www.redishketch.com">
+    <title> @yield('title') </title>
+    <meta name="keywords" content="Daily Dev Log, programming blog, IT tutorials, technology articles, web development, mobile app development, coding tips, software development, tech news, programming insights, developer resources"/>
+    <meta name="description" content="Daily Dev Log is your go-to resource for the latest insights, tutorials, and news on programming, IT, technology, web, and mobile app development. Stay updated with expert articles, coding tips, and in-depth guides designed to help developers and tech enthusiasts enhance their skills and knowledge."/>
+    <meta name="subject" content="@yield('title')">
+    <meta name="revised" content="{{date('D F d, Y, h:i A')}}" />
+    <meta name="summary" content="Daily Dev Log is your go-to resource for the latest insights, tutorials, and news on programming, IT, technology, web, and mobile app development. Stay updated with expert articles, coding tips, and in-depth guides designed to help developers and tech enthusiasts enhance their skills and knowledge.">
+    <meta name="url" content="{{url()->current()}}">
+    <meta name="identifier-URL" content="{{url()->current()}}">
     <meta name="category" content="website,portfolio,service,team,it,programing,algorithm,development">
-    <meta name="og:title" content="Redishketch"/>
-    <meta name="og:type" content="website,portfolio,service,team,it,programing,algorithm,development"/>
-    <meta name="og:url" content="https://www.redishketch.com"/>
-    <meta name="og:image" content="https://www.redishketch.com/images/banners/redishketch.png"/>
-    <meta name="og:site_name" content="Redishketch"/>
-    <meta name="og:description" content="We, Redishketch are a startup web application development team. We do Web application and website development projects and develop our own SAAS and package applications. We develop web applications with all modern web technologies and web standards."/>
+    <meta name="og:title" content="@yield('title')"/>
+    <meta name="og:type" content="Daily Dev Log, programming blog, IT tutorials, technology articles, web development, mobile app development, coding tips, software development, tech news, programming insights, developer resources"/>
+    <meta name="og:url" content="{{url()->current()}}"/>
+    <meta name="og:image" content="{{asset('/images/daily-dev-log.jpg')}}"/>
+    <meta name="og:site_name" content="@yield('title')"/>
+    <meta name="og:description" content="Daily Dev Log is your go-to resource for the latest insights, tutorials, and news on programming, IT, technology, web, and mobile app development. Stay updated with expert articles, coding tips, and in-depth guides designed to help developers and tech enthusiasts enhance their skills and knowledge."/>
 
     <!--Stylesheets-->
     @vite('resources/scss/style.scss')

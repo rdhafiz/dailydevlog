@@ -3,7 +3,7 @@
     @php
         $date = function ($publishDate){
             $date = new DateTime($publishDate);
-           $formattedDate = $date->format('F j, Y');
+           $formattedDate = $date->format('M d Y');
            return $formattedDate;
         }
     @endphp
@@ -60,12 +60,6 @@
 
                         </div>
                     @endforeach
-                </div>
-
-
-                <div class="mt-[18px]">
-                    <img src="{{asset('/images/ad-light.svg')}}" class="w-full block dark:hidden" alt="google ads">
-                    <img src="{{asset('/images/ad.svg')}}" class="w-full hidden dark:block" alt="google ads">
                 </div>
             @else
                 <div
@@ -126,12 +120,6 @@
 
                         </div>
                     @endforeach
-                </div>
-
-
-                <div class="mt-[18px]">
-                    <img src="{{asset('/images/ad-light.svg')}}" class="w-full block dark:hidden" alt="google ads">
-                    <img src="{{asset('/images/ad.svg')}}" class="w-full hidden dark:block" alt="google ads">
                 </div>
             @else
                 <div

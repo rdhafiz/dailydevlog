@@ -58,7 +58,7 @@ class Post extends Model
     public function getPublishedAtFormatAttribute()
     {
         if (isset($this->attributes['published_at'])) {
-            return date('d/m/Y', strtotime($this->attributes['created_at']));
+            return date('M d Y', strtotime($this->attributes['created_at']));
         }
         return null;
     }

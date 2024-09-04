@@ -139,10 +139,10 @@ body{
 }
 
 .fixed-container{
-    width: 916px;
+    width: 988px;
     margin-left: auto;
     margin-right: auto;
-    padding: 0 1rem;
+    /*padding: 0 1rem;*/
 }
 
 @media screen and (max-width: 916px) {
@@ -255,6 +255,12 @@ body{
     overflow: hidden;
 }
 
+.text-truncate-line-5 {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
 
 .text-truncate-line-9 {
     display: -webkit-box;

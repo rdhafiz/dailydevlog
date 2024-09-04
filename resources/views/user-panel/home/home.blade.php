@@ -61,12 +61,6 @@
                         </div>
                     @endforeach
                 </div>
-
-
-                <div class="mt-[18px]">
-                    <img src="{{asset('/images/ad-light.svg')}}" class="w-full block dark:hidden" alt="google ads">
-                    <img src="{{asset('/images/ad.svg')}}" class="w-full hidden dark:block" alt="google ads">
-                </div>
             @else
                 <div
                     class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
@@ -126,12 +120,6 @@
 
                         </div>
                     @endforeach
-                </div>
-
-
-                <div class="mt-[18px]">
-                    <img src="{{asset('/images/ad-light.svg')}}" class="w-full block dark:hidden" alt="google ads">
-                    <img src="{{asset('/images/ad.svg')}}" class="w-full hidden dark:block" alt="google ads">
                 </div>
             @else
                 <div

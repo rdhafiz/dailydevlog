@@ -1,7 +1,7 @@
 @extends('user-panel.layout.layout')
 @section('content')
 
-    <div id="post">
+    <div id="featured-post">
         <div class="fixed-container mt-[50px]">
             <div class="w-full px-4" v-if="tableData.length === 0 && !loading">
                 <div
@@ -155,6 +155,6 @@
         </div>
     </div>
 
-    <script src="{{asset('/js/post.js')}}"></script>
+    <script src="{{asset('/js/featured-post.js')}}"></script>
 
 @endsection

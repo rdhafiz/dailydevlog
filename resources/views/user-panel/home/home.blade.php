@@ -37,7 +37,7 @@
                                         {{$p['title']}}
                                     </a>
                                     <div
-                                        class="flex flex-wrap items-center {{$index === 0 ? 'gap-[9px] justify-center sm:justify-start' : 'gap-[8px] justify-center'}} pt-1 pb-[12px]">
+                                        class="flex flex-wrap items-center {{$index === 0 ? 'gap-[9px] justify-center sm:justify-start mb-[10px]' : 'gap-[8px] justify-center'}} pt-1 pb-[12px]">
                                         @foreach(collect(explode(",", $p['tags']))->take(4) as $i => $tag)
                                             <div
                                                 class="{{$i === 0 ? 'bg-primary' : '' }} {{$i === 1 ? 'bg-first !text-[#333333]' : '' }} {{$i === 2 ? 'bg-dark3' : '' }} {{$i === 3 ? 'bg-red' : '' }}  {{$i === 1 ? 'text-secondary' : 'text-white' }} rounded-2xl leading-[14px] font-[400] text-center {{$index === 0 ? 'w-[65px] h-[20px] text-[12px]' : 'w-[50px] h-[16px] text-[11px]'}} flex justify-center items-center capitalize">{{$tag}}</div>
@@ -103,7 +103,7 @@
                                         {{$p['title']}}
                                     </a>
                                     <div
-                                        class="flex flex-wrap items-center {{$index === 0 ? 'gap-[9px] justify-center sm:justify-start' : 'gap-[8px] justify-center'}} pt-1 pb-[12px]">
+                                        class="flex flex-wrap items-center {{$index === 0 ? ' mb-[10px] gap-[9px] justify-center sm:justify-start' : 'gap-[8px] justify-center'}} pt-1 pb-[12px]">
                                         @foreach(collect(explode(",", $p['tags']))->take(4) as $i => $tag)
                                             <div
                                                 class="{{$i === 0 ? 'bg-primary' : '' }} {{$i === 1 ? 'bg-first !text-[#333333]' : '' }} {{$i === 2 ? 'bg-dark3' : '' }} {{$i === 3 ? 'bg-red' : '' }}  {{$i === 1 ? 'text-secondary' : 'text-white' }} rounded-2xl leading-[14px] font-[400] text-center {{$index === 0 ? 'w-[65px] h-[20px] text-[12px]' : 'w-[50px] h-[16px] text-[11px]'}} flex justify-center items-center capitalize">{{$tag}}</div>
@@ -169,7 +169,7 @@
                                         {{$p['title']}}
                                     </a>
                                     <div
-                                        class="flex flex-wrap items-center {{$index === 0 ? 'gap-x-[9px] justify-center sm:justify-start' : 'gap-x-[8px] justify-center'}} pt-1 pb-[12px]">
+                                        class="flex flex-wrap items-center {{$index === 0 ? 'mb-[10px] gap-x-[9px] justify-center sm:justify-start' : 'gap-x-[8px] justify-center'}} pt-1 pb-[12px]">
                                         @foreach(collect(explode(",", $p['tags']))->take(4) as $i => $tag)
                                             <div
                                                 class="{{$i === 0 ? 'bg-primary' : '' }} {{$i === 1 ? 'bg-first !text-[#333333]' : '' }} {{$i === 2 ? 'bg-dark3' : '' }} {{$i === 3 ? 'bg-red' : '' }}  {{$i === 1 ? 'text-secondary' : 'text-white' }} rounded-2xl leading-[14px] font-[400] text-center {{$index === 0 ? 'w-[65px] h-[20px] text-[12px]' : 'w-[50px] h-[16px] text-[11px]'}} flex justify-center items-center capitalize">{{$tag}}</div>

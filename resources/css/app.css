@@ -255,6 +255,12 @@ body{
     overflow: hidden;
 }
 
+.text-truncate-line-5 {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
 
 .text-truncate-line-9 {
     display: -webkit-box;

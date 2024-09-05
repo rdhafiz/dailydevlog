@@ -41,7 +41,7 @@ class UserAuthController extends Controller
                     if (Auth::attempt($credential, $remember)) {
                         $userInfo->last_login_at = Carbon::now();
                         $userInfo->save();
-                        return redirect()->route('user-panel.post.my-post')->with('success', 'Login Successful!');
+                        return redirect()->route('user.panel.post')->with('success', 'Login Successful!');
                     } else {
                         return redirect()->back()->withErrors(['email' => 'Invalid credentials! Try again.'])->withInput();
                     }

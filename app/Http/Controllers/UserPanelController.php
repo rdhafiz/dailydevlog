@@ -77,19 +77,19 @@ class UserPanelController extends BaseController
 
         $query = Post::with('author')->orderBy($filter['orderBy'], $filter['order']);
         if (!empty($filter['keyword'])) {
-            $query->where(function($q) use ($filter) {
-                $q->where('title', 'LIKE', '%'.$filter['keyword'].'%');
+            $query->where(function ($q) use ($filter) {
+                $q->where('title', 'LIKE', '%' . $filter['keyword'] . '%');
             });
         }
 
         if (!empty($filter['status'])) {
-            $query->where(function($q) use ($filter) {
+            $query->where(function ($q) use ($filter) {
                 $q->where('status', $filter['status']);
             });
         }
 
         if (!empty($filter['is_featured'])) {
-            $query->where(function($q) use ($filter) {
+            $query->where(function ($q) use ($filter) {
                 $q->where('is_featured', $filter['is_featured']);
             });
         }
@@ -103,17 +103,60 @@ class UserPanelController extends BaseController
 
     public function feature_post()
     {
-        return view('user-panel.post.feature-post');
+        // Data sanitization
+        $filter = [
+            'orderBy' => $request->orderBy ?? 'id',
+            'order' => $request->sort_mode ?? 'asc',
+        ];
+
+        $query = Post::with('author')->where('is_featured', 1)->orderBy($filter['orderBy'], $filter['order']);
+
+        $result = $query->paginate(20);
+
+        $rv = [
+            'featured_posts' => $result,
+        ];
+
+        return view('user-panel.post.feature-post', $rv);
     }
 
     public function latest_post()
     {
-        return view('user-panel.post.latest-post');
+        // Data sanitization
+        $filter = [
+            'orderBy' => $request->orderBy ?? 'id',
+            'order' => $request->sort_mode ?? 'desc',
+        ];
+
+        $query = Post::with('author')->orderBy($filter['orderBy'], $filter['order']);
+
+        $result = $query->paginate(20);
+
+        $rv = [
+            'latest_post' => $result,
+        ];
+
+        return view('user-panel.post.latest-post', $rv);
     }
 
     public function most_viewed_post()
     {
-        return view('user-panel.post.most-viewed-post');
+
+        // Data sanitization
+        $filter = [
+            'orderBy' => $request->orderBy ?? 'views_count',
+            'order' => $request->sort_mode ?? 'desc',
+        ];
+
+        $query = Post::with('author')->orderBy($filter['orderBy'], $filter['order']);
+
+        $result = $query->paginate(20);
+
+        $rv = [
+            'most_views' => $result,
+        ];
+
+        return view('user-panel.post.most-viewed-post', $rv);
     }
 
     public function managePost(Request $request, $id)

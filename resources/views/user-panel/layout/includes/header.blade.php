@@ -63,7 +63,7 @@ use Illuminate\Support\Facades\Auth;
                     <div
                         class="hidden absolute right-0 left-0 sm:right-0 z-10 mt-4 max-w-full w-full min-w-full p-0 bg-white rounded-[100px] overflow-hidden"
                         id="search-dropdown">
-                        <form onsubmit="searchData()" class="p-0 border-0 shadow-none">
+                        <form onsubmit="searchData()" id="globalSearchForm" class="p-0 border-0 shadow-none">
                             <input type="text" name="keyword" id="keyword" placeholder="Type to search article..."
                                    class="h-[50px] px-[23px] py-[15px] outline-0 text-[13px] w-full bg-[#ffffff] dark:bg-[#222222] placeholder-[#C0C0C0]">
                         </form>

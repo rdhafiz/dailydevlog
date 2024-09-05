@@ -1,3 +1,17 @@
+// function for getQueryParams
+function getQueryParams(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name) || '';
+}
+
+window.onload = function () {
+    const keyword = getQueryParams('keyword');
+    const text = document.getElementById('global-data-show');
+    if(text) {
+        text.innerText = keyword
+    }
+};
+
 /*function to search data*/
 function searchData(){
     const globalSearchParam = document.getElementById('keyword');
@@ -7,6 +21,11 @@ function searchData(){
     const origin = new URL(window.location.href).origin;
     window.location.href = `${origin}/search-blogs?${queryString}`;
 }
+
+document.getElementById('globalSearchForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+    searchData();
+});
 
 // function of toggle menu
 let menuShow = false;

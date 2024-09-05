@@ -15,7 +15,6 @@ use Illuminate\Support\Facades\Validator;
 
 class UserPanelController extends BaseController
 {
-    private $postService;
 
     public function index(Request $request)
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Api;
 
 
 use App\Http\Controllers\Controller;
@@ -131,16 +131,16 @@ class PostController extends Controller
         return response()->json($post, 200);
     }
 
-    public function destroy($id): JsonResponse
+    public function destroy($id)
     {
         $post = $this->postService->getPostById($id);
 
         if (!$post) {
-            return response()->json(['message' => 'Blog not found'], 404);
+            return redirect()->back()->withErrors(['message' => 'Blog not found']);
         }
 
         $this->postService->deletePost($post);
 
-        return response()->json(['message' => 'Blog has been deleted successfully'], 200);
+        return redirect()->route('user.panel.my.post')->with('success', 'Post has been deleted');
     }
 }

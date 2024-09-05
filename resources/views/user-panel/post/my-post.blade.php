@@ -5,33 +5,31 @@
     @php
         $date = function ($publishDate){
             $date = new DateTime($publishDate);
-           $formattedDate = $date->format('M d Y');
-           return $formattedDate;
+           return $date->format('M d Y');
         }
     @endphp
 
-    <div id="myPost">
+    <div>
         <section class="fixed-container mt-[85px]">
 
             <div class="w-full flex justify-between flex-wrap sm:flex-nowrap items-center px-3 gap-2 sm:gap-5 mb-10">
                 <div class="w-full sm:w-1/3 py-2 sm:py-3">
                     <!-- Search input -->
-                    <input type="text" name="keyword"
-                           class="p-3 bg-transparent border-0 outline-0 border-b-cyan-400 border-b-2 w-full" required
-                           autocomplete="off" placeholder="Search Here" v-model="formData.keyword"
-                           @keyup="searchData()">
+                    <form>
+                        <input type="text" name="keyword"
+                               class="p-3 bg-transparent border-0 outline-0 border-b-cyan-400 border-b-2 w-full"
+                               autocomplete="off" placeholder="Search Here">
+                    </form>
                 </div>
                 <div class="w-full sm:w-1/3 flex gap-2 sm:gap-5">
-                    <div class="from-group w-full lg:w-1/2">
-                        <select name="order"
-                                class="p-3 bg-transparent border-0 outline-0 border-b-cyan-400 border-b-2 w-full"
-                                v-model="formData.status" @change="searchData()">
-                            <option :value="''" class="text-black">Status</option>
-                            <option :value="'published'" class="text-black">Published</option>
-                            <option :value="'draft'" class="text-black">Draft</option>
-                            <option :value="'archived'" class="text-black">Archived</option>
+                    <form class="from-group w-full lg:w-1/2" id="statusForm">
+                        <select name="status" id="selectData" class="p-3 bg-transparent border-0 outline-0 border-b-cyan-400 border-b-2 w-full">
+                            <option value="" class="text-black">Status</option>
+                            <option value="published" class="text-black">Published</option>
+                            <option value="draft" class="text-black">Draft</option>
+                            <option value="archived" class="text-black">Archived</option>
                         </select>
-                    </div>
+                    </form>
                 </div>
                 <div class="w-full sm:w-1/3 flex justify-end py-3">
 
@@ -106,36 +104,40 @@
                                             </g>
                                         </svg>
                                     </a>
-                                    <button type="button" @click="deletePost(each, index)"
-                                            class="h-8 w-8 flex items-center justify-center rounded-full bg-transparent hover:bg-gray-300 dark:hover:bg-gray-600 duration-500">
-                                        <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" fill="none"
-                                             xmlns="http://www.w3.org/2000/svg">
-                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
-                                               stroke-linejoin="round"></g>
-                                            <g id="SVGRepo_iconCarrier">
-                                                <path d="M10 11V17" class="stroke-gray-600 dark:stroke-gray-400"
-                                                      stroke-width="2"
-                                                      stroke-linecap="round" stroke-linejoin="round"></path>
-                                                <path d="M14 11V17" class="stroke-gray-600 dark:stroke-gray-400"
-                                                      stroke-width="2"
-                                                      stroke-linecap="round" stroke-linejoin="round"></path>
-                                                <path d="M4 7H20" class="stroke-gray-600 dark:stroke-gray-400"
-                                                      stroke-width="2"
-                                                      stroke-linecap="round" stroke-linejoin="round"></path>
-                                                <path
-                                                    d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z"
-                                                    class="stroke-gray-600 dark:stroke-gray-400" stroke-width="2"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"></path>
-                                                <path
-                                                    d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
-                                                    class="stroke-gray-600 dark:stroke-gray-400" stroke-width="2"
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"></path>
-                                            </g>
-                                        </svg>
-                                    </button>
+                                    <form action="/api/front/posts/{{$p['id']}}" method="POST">
+                                        @method('DELETE')
+                                        @csrf()
+                                        <button type="submit"
+                                                class="h-8 w-8 flex items-center justify-center rounded-full bg-transparent hover:bg-gray-300 dark:hover:bg-gray-600 duration-500">
+                                            <svg viewBox="0 0 24 24" class="w-[20px] h-[20px]" fill="none"
+                                                 xmlns="http://www.w3.org/2000/svg">
+                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                   stroke-linejoin="round"></g>
+                                                <g id="SVGRepo_iconCarrier">
+                                                    <path d="M10 11V17" class="stroke-gray-600 dark:stroke-gray-400"
+                                                          stroke-width="2"
+                                                          stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    <path d="M14 11V17" class="stroke-gray-600 dark:stroke-gray-400"
+                                                          stroke-width="2"
+                                                          stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    <path d="M4 7H20" class="stroke-gray-600 dark:stroke-gray-400"
+                                                          stroke-width="2"
+                                                          stroke-linecap="round" stroke-linejoin="round"></path>
+                                                    <path
+                                                        d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z"
+                                                        class="stroke-gray-600 dark:stroke-gray-400" stroke-width="2"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"></path>
+                                                    <path
+                                                        d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
+                                                        class="stroke-gray-600 dark:stroke-gray-400" stroke-width="2"
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"></path>
+                                                </g>
+                                            </svg>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         @endforeach
@@ -150,12 +152,6 @@
                     <div class="font-medium text-cyan-600 dark:text-gray-500 text-2xl">No featured blog has found.</div>
                 </div>
             @endif
-
-            {{--            <div class="fixed top-0 end-0 p-10 z-50" v-if="msg" id="msg">--}}
-            {{--                <div class="px-10 py-5 text-end bg-gradient-to-r from-cyan-500 to-cyan-700 rounded-2xl">--}}
-            {{--                    @{{msg}}--}}
-            {{--                </div>--}}
-            {{--            </div>--}}
         </section>
     </div>
 

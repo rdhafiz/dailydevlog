@@ -7,9 +7,12 @@ use App\Models\User;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class UserPanelController extends BaseController
 {
+    private $postService;
+
     public function index(Request $request)
     {
         $rv = [
@@ -56,13 +59,44 @@ class UserPanelController extends BaseController
 
     public function post(Request $request)
     {
-        
+
         return view('user-panel.post.post');
     }
 
-    public function my_post()
+    public function my_post(Request $request)
     {
-        return view('user-panel.post.my-post');
+
+        // Data sanitization
+        $filter = [
+            'keyword' => $request->keyword ?? '',
+            'is_featured' => $request->is_featured ?? '',
+            'status' => $request->status ?? '',
+            'orderBy' => $request->orderBy ?? 'id',
+            'order' => $request->sort_mode ?? 'asc',
+        ];
+
+
+        $rv = Post::with('author')->orderBy($filter['orderBy'], $filter['order']);
+        if (!empty($filter['keyword'])) {
+            $rv->where(function($q) use ($filter) {
+                $q->where('title', 'LIKE', '%'.$filter['keyword'].'%');
+            });
+        }
+
+        if (!empty($filter['status'])) {
+            $rv->where(function($q) use ($filter) {
+                $q->where('status', $filter['status']);
+            });
+        }
+
+        if (!empty($filter['is_featured'])) {
+            $rv->where(function($q) use ($filter) {
+                $q->where('is_featured', $filter['is_featured']);
+            });
+        }
+        $result =  $rv->paginate(20);
+
+        return view('user-panel.post.my-post', compact('result'));
     }
 
     public function search_post(Request $request)

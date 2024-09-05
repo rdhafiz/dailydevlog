@@ -123,6 +123,6 @@ new Vue({
 
     },
     mounted(){
-        this.listPost();
+        // this.listPost();
     }
 })

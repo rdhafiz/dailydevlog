@@ -54,8 +54,9 @@ class UserPanelController extends BaseController
         return view('user-panel.profile.profile');
     }
 
-    public function post()
+    public function post(Request $request)
     {
+        
         return view('user-panel.post.post');
     }
 

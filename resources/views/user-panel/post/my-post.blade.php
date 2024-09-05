@@ -12,24 +12,25 @@
     <div>
         <section class="fixed-container mt-[85px]">
 
+            <form id="searchDataForm">
             <div class="w-full flex justify-between flex-wrap sm:flex-nowrap items-center px-3 gap-2 sm:gap-5 mb-10">
                 <div class="w-full sm:w-1/3 py-2 sm:py-3">
                     <!-- Search input -->
-                    <form>
-                        <input type="text" name="keyword"
+
+                        <input type="text" name="keyword" id="searchKey"
+                               value="{{old('keyword')}}"
                                class="p-3 bg-transparent border-0 outline-0 border-b-cyan-400 border-b-2 w-full"
                                autocomplete="off" placeholder="Search Here">
-                    </form>
                 </div>
                 <div class="w-full sm:w-1/3 flex gap-2 sm:gap-5">
-                    <form class="from-group w-full lg:w-1/2" id="statusForm">
+                    <div class="from-group w-full lg:w-1/2">
                         <select name="status" id="selectData" class="p-3 bg-transparent border-0 outline-0 border-b-cyan-400 border-b-2 w-full">
                             <option value="" class="text-black">Status</option>
                             <option value="published" class="text-black">Published</option>
                             <option value="draft" class="text-black">Draft</option>
                             <option value="archived" class="text-black">Archived</option>
                         </select>
-                    </form>
+                    </div>
                 </div>
                 <div class="w-full sm:w-1/3 flex justify-end py-3">
 
@@ -40,6 +41,7 @@
 
                 </div>
             </div>
+            </form>
 
             @if(count($result) > 0)
                 <div class="px-3 min-h-[500px]">

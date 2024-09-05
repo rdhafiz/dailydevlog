@@ -67,8 +67,21 @@ class UserPanelController extends BaseController
 
     public function post(Request $request)
     {
+        // Data sanitization
+        $filter = [
+            'orderBy' => $request->orderBy ?? 'id',
+            'order' => $request->sort_mode ?? 'desc',
+        ];
 
-        return view('user-panel.post.post');
+        $query = Post::with('author')->orderBy($filter['orderBy'], $filter['order']);
+
+        $result = $query->paginate(20);
+
+        $rv = [
+            'blogs' => $result,
+        ];
+
+        return view('user-panel.post.post', $rv);
     }
 
     public function my_post(Request $request)

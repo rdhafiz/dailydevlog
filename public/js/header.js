@@ -39,22 +39,6 @@ new Vue({
         },
 
         /* Function of mode dropdown */
-         modeDropdown() {
-            let dropDownMenu = document.querySelector('#dropdown-menu #dropdown');
-            if(dropDownMenu) {
-                dropDownMenu.classList.toggle('hidden');
-            }
-            let searchDropDownMenu = document.querySelector('#search-dropdown-menu #search-dropdown');
-            if(searchDropDownMenu) {
-                searchDropDownMenu.classList.add('hidden');
-            }
-            let userDropDownMenu = document.querySelector('#user-menu #user-dropdown');
-            if(userDropDownMenu) {
-                userDropDownMenu.classList.add('hidden');
-            }
-        },
-
-        /* Function of mode dropdown */
         userDropdown() {
             let userDropDownMenu = document.querySelector('#user-menu #user-dropdown');
             if(userDropDownMenu) {
@@ -143,7 +127,6 @@ new Vue({
         }
     },
     mounted(){
-        this.profileDetails()
         window.addEventListener('scroll', this.onscroll)
 
         window.addEventListener('mouseup', (e) => {
@@ -154,15 +137,6 @@ new Vue({
             if(searchBtn && searchDropDown) {
                 if (!searchBtn.contains(e.target) && !searchDropDown.contains(e.target)) {
                     searchDropDown.classList.add('hidden');
-                }
-            }
-
-            /*hide theme container*/
-            const themeSwitch = document.querySelector('#themeSwitch');
-            const dropDown = document.querySelector('#dropdown');
-            if(themeSwitch && dropDown) {
-                if (!themeSwitch.contains(e.target) && !dropDown.contains(e.target)) {
-                    dropDown.classList.add('hidden');
                 }
             }
 

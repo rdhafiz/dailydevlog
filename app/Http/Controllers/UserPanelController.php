@@ -64,9 +64,41 @@ class UserPanelController extends BaseController
         return view('user-panel.post.my-post');
     }
 
-    public function search_post()
+    public function search_post(Request $request)
     {
-        return view('user-panel.post.search-post');
+        // Data sanitization
+        $filter = [
+            'keyword' => $request->keyword ?? '',
+            'is_featured' => $request->is_featured ?? '',
+            'status' => $request->status ?? '',
+            'orderBy' => $request->orderBy ?? 'id',
+            'order' => $request->sort_mode ?? 'asc',
+        ];
+
+        $query = Post::with('author')->orderBy($filter['orderBy'], $filter['order']);
+        if (!empty($filter['keyword'])) {
+            $query->where(function($q) use ($filter) {
+                $q->where('title', 'LIKE', '%'.$filter['keyword'].'%');
+            });
+        }
+
+        if (!empty($filter['status'])) {
+            $query->where(function($q) use ($filter) {
+                $q->where('status', $filter['status']);
+            });
+        }
+
+        if (!empty($filter['is_featured'])) {
+            $query->where(function($q) use ($filter) {
+                $q->where('is_featured', $filter['is_featured']);
+            });
+        }
+        $result = $query->get();
+
+        $rv = [
+            'posts' => $result,
+        ];
+        return view('user-panel.post.search-post', $rv);
     }
 
     public function feature_post()

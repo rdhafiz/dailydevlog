@@ -84,7 +84,7 @@ class UserAuthRepository
     {
         try {
             Auth::logout();
-            return ['status' => 200, 'msg' => 'You have successfully logged out.'];
+            return redirect('user.panel.login');
         } catch (\Exception $e) {
             return ['status' => 500, 'error' => $e->getMessage()];
         }

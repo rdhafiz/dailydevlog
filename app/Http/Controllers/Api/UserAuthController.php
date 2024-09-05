@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Api\Repository\UserAuthRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserAuthController extends Controller
 {
@@ -21,8 +22,8 @@ class UserAuthController extends Controller
 
     public function Logout(Request $request)
     {
-        $rv = UserAuthRepository::Logout($request);
-        return response()->json($rv, 200);
+        Auth::logout();
+        return redirect(route('user.panel.login'));
     }
     public function Forgot(Request $request)
     {

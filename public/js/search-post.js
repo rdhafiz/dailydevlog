@@ -17,31 +17,6 @@ new Vue({
     },
     methods: {
 
-        /* --- --- --- function of list post api --- --- --- */
-        // listPost() {
-        //     this.loading = true;
-        //     let headerContent = {
-        //         'Content-Type': 'application/json; charset=utf-8',
-        //     }
-        //     this.formData.page = this.current_page;
-        //     axios.get(`/api/front/posts`, {params: this.formData}, {headers: headerContent}).then((response) => {
-        //         let res = response.data
-        //         this.loading = false;
-        //         this.tableData = res.data;
-        //         this.tableData.forEach(each => {
-        //             each.tags = each?.tags.split(',');
-        //         })
-        //         console.log(this.tableData)
-        //         this.last_page = res.last_page;
-        //         this.total_pages = res.total < res.per_page ? 1 : Math.ceil((res.total / res.per_page))
-        //         this.current_page = res.current_page;
-        //         this.buttons = [...Array(this.total_pages).keys()].map(i => i + 1);
-        //     }).catch(err => {
-        //         this.loading = false;
-        //         let res = err?.response;
-        //     })
-        // },
-
         /* Function of previous page call */
         // PrevPage() {
         //     if (this.current_page > 1) {
@@ -79,6 +54,5 @@ new Vue({
             this.formData.is_featured = is_featured;
             this.current_page = 1
         }
-        // this.listPost();
     }
 })

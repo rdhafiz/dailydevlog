@@ -15,20 +15,24 @@
                     </div>
                 </div>
                 <div class="sm:flex justify-center">
-                    <form @submit.prevent="login()">
-
+                    <form id="login-form" method="post" action="{{ route('API.USER.LOGIN') }}">
+                        @csrf
                         {{-- Email --}}
                         <div class="mb-[12px]">
-                            <input type="email" name="email" placeholder="Email Address *" v-model="loginParam.email"
+                            <input type="email" name="email" value="{{ old('email') }}" placeholder="Email Address *"
                                    class="w-full sm:w-[330px] border border-[#0000003F] bg-[#ECEBF7] dark:bg-[#333333] placeholder-[#A0A0A0] dark:placeholder-[#ECEBF780] h-[45px] px-[20px] rounded-[50px] d-flex justify-start items-center outline-0 text-[14px]">
-                            <div class="text-[12px] font-[600] text-red mt-2" v-if="error != null && error.email !== undefined" v-text="error.email[0]"></div>
+                            @error('email')
+                            <div class="text-[12px] font-[600] text-red mt-2">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         {{-- Password --}}
                         <div class="mb-[12px]">
-                            <input type="password" name="password" placeholder="Password *" v-model="loginParam.password"
+                            <input type="password" name="password" value="{{ old('password') }}" placeholder="Password *"
                                    class="w-full sm:w-[330px] border border-[#0000003F] bg-[#ECEBF7] dark:bg-[#333333] placeholder-[#A0A0A0] dark:placeholder-[#ECEBF780] h-[45px] px-[20px] rounded-[50px] d-flex justify-start items-center outline-0 text-[14px]">
-                            <div class="text-[12px] font-[600] text-red mt-2" v-if="error != null && error.password !== undefined" v-text="error.password[0]"></div>
+                            @error('password')
+                            <div class="text-[12px] font-[600] text-red mt-2">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         <div class="mb-[12px]">
@@ -38,9 +42,9 @@
                                 <div class="inline-flex items-center">
                                     <label class="flex items-center cursor-pointer relative"
                                            for="check-vertical-list-group">
-                                        <input type="checkbox" v-model="loginParam.remember"
+                                        <input type="checkbox"
                                                class="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-[#0000003F] bg-[#ECEBF7] checked:bg-slate-800 checked:border-slate-800"
-                                               id="check-vertical-list-group"/>
+                                               id="check-vertical-list-group" onchange="isRemember()" />
                                         <span
                                             class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                                           <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"
@@ -61,23 +65,27 @@
                             </label>
                         </div>
 
+                        {{-- Submit Button --}}
                         <div class="w-full mb-[12px]">
-                            <button type="submit" v-if="!loading"
-                                    class="btn h-[45px] w-full flex justify-center items-center border border-[#0000003F] rounded-[50px] bg-gradient-to-r from-15% from-[#85A41C] via-50% via-[#AED725] to-85% to-[#85A41C]">
-                            <span class="font-[500] dark:text-black light:text-black text-[14px]">
-                                LOGIN NOW
-                            </span>
+                            <button type="submit"
+                                    class="btn h-[45px] w-full flex justify-center items-center border border-[#0000003F] rounded-[50px] bg-gradient-to-r from-15% from-[#85A41C] via-50% via-[#AED725] to-85% to-[#85A41C]"
+                                    id="submitBtn">
+                                    <span class="font-[500] dark:text-black light:text-black text-[14px]">
+                                        LOGIN NOW
+                                    </span>
                             </button>
-                            <button type="button" disabled v-if="loading"
-                                    class="btn h-[45px] w-full flex justify-center items-center border border-[#0000003F] rounded-[50px] bg-gradient-to-r from-15% from-[#85A41C] via-50% via-[#AED725] to-85% to-[#85A41C]">
-                            <span class="font-[500] dark:text-black light:text-black text-[14px]">
-                                <svg class="h-5 mx-auto w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                </svg>
-                            </span>
+                            <button type="button" disabled
+                                    id="loader"
+                                    class="btn h-[45px] w-full flex justify-center items-center border border-[#0000003F] rounded-[50px] bg-gradient-to-r from-15% from-[#85A41C] via-50% via-[#AED725] to-85% to-[#85A41C] hidden">
+                                    <span class="font-[500] dark:text-black light:text-black text-[14px]">
+                                        <svg class="h-5 mx-auto w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                        </svg>
+                                    </span>
                             </button>
                         </div>
+
                         <div class="text-center pb-[8px] leading-[18px] text-[12px] font-[300]">
                             <a href="{{route('user.panel.forgot.password')}}" class="decoration-0 text-[#0C75ED]">
                                 Forgot Password?
@@ -90,6 +98,5 @@
         </section>
     </div>
 
-    <script src="{{asset('/js/login.js')}}"></script>
-
+    <script src="{{asset('js/login.js')}}"></script>
 @endsection

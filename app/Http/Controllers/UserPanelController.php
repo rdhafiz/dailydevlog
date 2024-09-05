@@ -4,12 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class UserPanelController extends BaseController
 {
+    private $postService;
+
     public function index(Request $request)
     {
         $rv = [
@@ -49,6 +56,11 @@ class UserPanelController extends BaseController
         return view('user-panel.new_forgot.forgot');
     }
 
+    public function resetPassword()
+    {
+        return view('user-panel.reset.reset');
+    }
+
     public function profile()
     {
         return view('user-panel.profile.profile');
@@ -56,13 +68,44 @@ class UserPanelController extends BaseController
 
     public function post(Request $request)
     {
-        
+
         return view('user-panel.post.post');
     }
 
-    public function my_post()
+    public function my_post(Request $request)
     {
-        return view('user-panel.post.my-post');
+
+        // Data sanitization
+        $filter = [
+            'keyword' => $request->keyword ?? '',
+            'is_featured' => $request->is_featured ?? '',
+            'status' => $request->status ?? '',
+            'orderBy' => $request->orderBy ?? 'id',
+            'order' => $request->sort_mode ?? 'asc',
+        ];
+
+
+        $rv = Post::with('author')->orderBy($filter['orderBy'], $filter['order']);
+        if (!empty($filter['keyword'])) {
+            $rv->where(function($q) use ($filter) {
+                $q->where('title', 'LIKE', '%'.$filter['keyword'].'%');
+            });
+        }
+
+        if (!empty($filter['status'])) {
+            $rv->where(function($q) use ($filter) {
+                $q->where('status', $filter['status']);
+            });
+        }
+
+        if (!empty($filter['is_featured'])) {
+            $rv->where(function($q) use ($filter) {
+                $q->where('is_featured', $filter['is_featured']);
+            });
+        }
+        $result =  $rv->paginate(20);
+
+        return view('user-panel.post.my-post', compact('result'));
     }
 
     public function search_post(Request $request)
@@ -112,7 +155,7 @@ class UserPanelController extends BaseController
 
         $query = Post::with('author')->where('is_featured', 1)->orderBy($filter['orderBy'], $filter['order']);
 
-        $result = $query->paginate(20);
+        $result = $query->paginate(2);
 
         $rv = [
             'featured_posts' => $result,

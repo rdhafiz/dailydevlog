@@ -29,8 +29,9 @@ Route::group(
     ['middleware' => 'LoginCheck'],
     function () {
 
-        Route::get('/login', [UserPanelController::class, 'login'])->name('user.panel.login');
+        Route::get('login', [UserPanelController::class, 'login'])->name('user.panel.login');
         Route::get('/forgot-password', [UserPanelController::class, 'forgotPassword'])->name('user.panel.forgot.password');
+        Route::get('/reset-password', [UserPanelController::class, 'resetPassword'])->name('user.panel.reset.password');
 
 //        Route::get('/login', [UserPanelController::class, 'login'])->name('user.panel.login');
 //        Route::get('/forget-password', [UserPanelController::class, 'forgetPassword'])->name('user.panel.forget.password');

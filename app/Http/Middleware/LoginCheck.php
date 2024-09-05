@@ -43,13 +43,13 @@ class LoginCheck
     {
         $path = Request::route()->getName();
         if (Auth::check()) {
-            if($path == 'user.panel.login' || $path == 'user.panel.forgot.password') {
+            if($path == 'user.panel.login' || $path == 'user.panel.forgot.password' || $path == 'user.panel.reset.password') {
                 return redirect()->route('user.panel.profile');
             } else {
                 return $next($request);
             }
         } else {
-            if($path != 'user.panel.login' && $path != 'user.panel.forgot.password') {
+            if($path != 'user.panel.login' && $path != 'user.panel.forgot.password' && $path != 'user.panel.reset.password') {
                 return redirect()->route('user.panel.login');
             } else {
                 return $next($request);

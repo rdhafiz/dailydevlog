@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -16,7 +17,7 @@ class UserAuthRepository
 {
     public static function Login($request)
     {
-        try {
+        /*try {
             $input = $request->input();
             $validator = Validator::make($input, [
                 'email' => 'required',
@@ -76,8 +77,9 @@ class UserAuthRepository
             }
         } catch (\Exception $e) {
             return ['status' => 500, 'error' => $e->getMessage()];
+        }*/
 
-        }
+
     }
 
     public static function Logout($request)

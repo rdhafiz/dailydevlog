@@ -4,9 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class UserPanelController extends BaseController
@@ -50,6 +54,11 @@ class UserPanelController extends BaseController
     public function forgotPassword()
     {
         return view('user-panel.new_forgot.forgot');
+    }
+
+    public function resetPassword()
+    {
+        return view('user-panel.reset.reset');
     }
 
     public function profile()
@@ -146,7 +155,7 @@ class UserPanelController extends BaseController
 
         $query = Post::with('author')->where('is_featured', 1)->orderBy($filter['orderBy'], $filter['order']);
 
-        $result = $query->paginate(20);
+        $result = $query->paginate(2);
 
         $rv = [
             'featured_posts' => $result,

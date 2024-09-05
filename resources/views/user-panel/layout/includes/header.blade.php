@@ -28,7 +28,7 @@ use Illuminate\Support\Facades\Auth;
                         Viewed</a>
                 </li>
             </ul>
-            <a href="javascript:void(0)" class="inline-block md:hidden sm:px-2" @click="toggleMenu">
+            <a href="javascript:void(0)" class="inline-block md:hidden sm:px-2" onclick="toggleMenu()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="35px" height="35px" viewBox="0 0 24 24" fill="none">
                     <g id="Menu / Hamburger_MD">
                         <path id="Vector" d="M5 17H19M5 12H19M5 7H19" stroke="currentColor"
@@ -40,7 +40,7 @@ use Illuminate\Support\Facades\Auth;
             <div class="flex items-center">
                 <div class="inline-block text-left" id="search-dropdown-menu">
                     <div id="searchBtn" class="flex">
-                        <button type="button" class="outline-0 border-0" @click="searchDropdown">
+                        <button type="button" class="outline-0 border-0" onclick="searchDropdown()">
                             <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
                                  xmlns="http://www.w3.org/2000/svg"
                                  xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -63,10 +63,9 @@ use Illuminate\Support\Facades\Auth;
                     <div
                         class="hidden absolute right-0 left-0 sm:right-0 z-10 mt-4 max-w-full w-full min-w-full p-0 bg-white rounded-[100px] overflow-hidden"
                         id="search-dropdown">
-                        <form @submit.prevent="searchData" class="p-0 border-0 shadow-none">
-                            <input type="text" placeholder="Type to search article..."
-                                   class="h-[50px] px-[23px] py-[15px] outline-0 text-[13px] w-full bg-[#ffffff] dark:bg-[#222222] placeholder-[#C0C0C0]"
-                                   v-model="formData.keyword">
+                        <form onsubmit="searchData()" id="globalSearchForm" class="p-0 border-0 shadow-none">
+                            <input type="text" name="keyword" id="keyword" placeholder="Type to search article..."
+                                   class="h-[50px] px-[23px] py-[15px] outline-0 text-[13px] w-full bg-[#ffffff] dark:bg-[#222222] placeholder-[#C0C0C0]">
                         </form>
                     </div>
                 </div>
@@ -109,7 +108,7 @@ use Illuminate\Support\Facades\Auth;
 
                     <div class="relative inline-block text-left" id="user-menu">
                         <div id="userToggle">
-                            <a href="javascript:void(0)" @click="userDropdown">
+                            <a href="javascript:void(0)" onclick="userDropdown()">
                                 @if($user['avatar'] === null)
                                     <svg width="30" height="30" viewBox="0 0 30 30" fill="none"
                                          xmlns="http://www.w3.org/2000/svg"
@@ -364,8 +363,8 @@ use Illuminate\Support\Facades\Auth;
             </div>
         </div>
     </div>
-    <div class="fixed top-0 right-0 h-screen w-full p-5 bg-[#ECEBF7] dark:bg-[#333333] duration-500 block md:hidden"
-         :class="{'left-0 z-[9999]': menuShow, 'left-[-100%] -z-[10]': !menuShow}">
+    <div class="fixed top-0 right-[-100%] h-screen w-full p-5 bg-[#ECEBF7] dark:bg-[#333333] duration-500 block md:hidden"
+         id="menu">
         <div class="flex items-center justify-between">
             <div class="w-auto sm:w-1/2 text-3xl font-bold">
                 <a href="{{route('user.panel.home')}}"
@@ -373,7 +372,7 @@ use Illuminate\Support\Facades\Auth;
                     <img src="{{asset('/images/logo.svg')}}" alt="logo">
                 </a>
             </div>
-            <a href="javascript:void(0)" class="inline-block md:hidden sm:px-2" @click="toggleMenu">
+            <a href="javascript:void(0)" class="inline-block md:hidden sm:px-2" onclick="toggleMenu()">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 24" fill="none">
                     <path fill-rule="evenodd" clip-rule="evenodd"
                           d="M19.207 6.207a1 1 0 0 0-1.414-1.414L12 10.586 6.207 4.793a1 1 0 0 0-1.414 1.414L10.586 12l-5.793 5.793a1 1 0 1 0 1.414 1.414L12 13.414l5.793 5.793a1 1 0 0 0 1.414-1.414L13.414 12l5.793-5.793z"

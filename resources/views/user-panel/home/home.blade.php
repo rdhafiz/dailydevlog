@@ -4,8 +4,7 @@
     @php
         $date = function ($publishDate){
             $date = new DateTime($publishDate);
-           $formattedDate = $date->format('M d Y');
-           return $formattedDate;
+           return $date->format('M d Y');
         }
     @endphp
     <div class="fixed-container">

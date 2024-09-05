@@ -4,14 +4,14 @@
     @php
         $date = function ($publishDate){
            $date = new DateTime($publishDate);
-          $formattedDate = $date->format('M d Y');
-          return $formattedDate;
+          return $date->format('M d Y');
        }
     @endphp
 
     <div class="mt-[50px] fixed-container">
         <div class="max-w-[735px] mx-auto">
-            <div class="text-3xl leading-[45px] text-secondary dark:text-white font-bold mb-[10px]">{{$post['title']}}</div>
+            <div
+                class="text-3xl leading-[45px] text-secondary dark:text-white font-bold mb-[10px]">{{$post['title']}}</div>
             <div class="bg-white dark:bg-dark2 rounded-2xl">
                 <div>
                     @if($post['featured_image'] !== null)
@@ -26,7 +26,7 @@
                 </div>
                 <div class="py-[25px] px-[22px]">
                     <div
-                        class="flex items-center text-secondary text-secondary dark:!text-light2 text-[8px] font-[400] leading-[12px] mb-[8px] gap-1">
+                        class="flex items-center text-secondary dark:!text-light2 text-[8px] font-[400] leading-[12px] mb-[8px] gap-1">
                         <span>{{$date($post['publish_date'])}}</span>
                         <span>•</span>
                         <span>3m Read</span>

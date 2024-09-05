@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\TagController;
 use App\Http\Controllers\Api\UserAuthController;
 use App\Http\Controllers\Media\MediaController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\Repository\UserAuthRepository;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,10 +27,10 @@ Route::group(['prefix' => 'auth'], function () {
 });
 
 Route::group(['prefix' => 'user'], function () {
-    Route::post('get-profile', [UserAuthController::class, 'GetProfile'])->name('API.USER.GET.PROFILE');
-    Route::post('update-profile', [UserAuthController::class, 'UpdateProfile'])->name('API.USER.UPDATE.PROFILE');
-    Route::post('change-password', [UserAuthController::class, 'ChangePassword'])->name('API.USER.CHANGE.PASSWORD');
-    Route::post('update-avatar', [UserAuthController::class, 'UpdateAvatar'])->name('API.USER.UPDATE.AVATAR');
+    Route::post('get-profile', [UserAuthRepository::class, 'GetProfile'])->name('API.USER.GET.PROFILE');
+    Route::post('update-profile', [UserAuthRepository::class, 'UpdateProfile'])->name('API.USER.UPDATE.PROFILE');
+    Route::post('change-password', [UserAuthRepository::class, 'ChangePassword'])->name('API.USER.CHANGE.PASSWORD');
+    Route::post('update-avatar', [UserAuthRepository::class, 'UpdateAvatar'])->name('API.USER.UPDATE.AVATAR');
     Route::get('logout', [UserAuthController::class, 'Logout'])->name('API.USER.LOGOUT');
 });
 

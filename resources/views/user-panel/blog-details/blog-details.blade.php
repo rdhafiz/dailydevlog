@@ -26,7 +26,7 @@
                 </div>
                 <div class="py-[25px] px-[22px]">
                     <div
-                        class="flex items-center text-secondary text-secondary dark:!text-light2 text-[8px] font-[400] leading-[12px] mb-[8px] gap-1">
+                        class="flex items-center text-secondary dark:!text-light2 text-[8px] font-[400] leading-[12px] mb-[8px] gap-1">
                         <span>{{$date($post['publish_date'])}}</span>
                         <span>•</span>
                         <span>3m Read</span>

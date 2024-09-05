@@ -93,7 +93,7 @@ class UserPanelController extends BaseController
                 $q->where('is_featured', $filter['is_featured']);
             });
         }
-        $result = $query->get();
+        $result = $query->paginate(20);
 
         $rv = [
             'posts' => $result,

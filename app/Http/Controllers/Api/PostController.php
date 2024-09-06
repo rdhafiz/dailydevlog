@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
+use App\Models\Post;
 use App\Services\PostService;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -65,13 +65,31 @@ class PostController extends Controller
         return response()->json($post, 200);
     }
 
-    public function store(PostRequest $request): JsonResponse
+    public function store(Request $request)
     {
-        $data = $request->validated();
+        $data = $request->all();
+        $validator = Validator::make($data, [
+            'title' => 'required|string',
+            'short_description' => 'required|string',
+            'content' => 'required|string',
+            'tags' => 'required|array',
+            'featured_image' => 'nullable',
+            'status' => 'required|string',
+            'meta_title' => 'nullable|string',
+            'meta_description' => 'nullable|string',
+            'is_featured' => 'nullable',
+            'allow_comments' => 'nullable',
+        ]);
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
         $data['user_id'] = Auth::id();
         if($data['status'] === 'published'){
             $data['published_at'] = Carbon::now();
         }
+        if (isset($data['tags']) && is_array($data['tags']) && count($data['tags']) > 0) {
+            $data['tags'] = implode(', ', $data['tags']);
+        }
         if(!empty($data['content'])){
             $htmlDom = new \DOMDocument();
             @$htmlDom->loadHTML($data['content']);
@@ -89,47 +107,92 @@ class PostController extends Controller
                 }
             }
         }
+        if ($request->hasFile('featured_image')) {
+            $path = $request->file('featured_image')->store('public/media');
+            $featured_image = basename($path);
+        } else {
+            $featured_image = null;
+        }
+        $data['featured_image'] = $featured_image;
         $data['meta_title'] = trim($data['title']);
         $data['meta_description'] = trim($data['content']);
+        $data['is_featured'] = isset($data['is_featured']) && $data['is_featured'] == 'on' ? true : false;
+        $data['allow_comments'] = isset( $data['allow_comments']) && $data['allow_comments'] == 'on' ? true : false;
         $post = $this->postService->createPost($data);
-        return response()->json($post, 201);
+        return redirect()->route('user.panel.my.post')->with([$post, 'success', 'Post has been created']);
     }
 
-    public function update(PostRequest $request, $id): JsonResponse
+    public function update(Request $request, $id)
     {
-        $data = $request->validated();
-        $post = $this->postService->getPostById($id);
-        if (!$post) {
-            return response()->json(['message' => 'Post not found'], 404);
+        $data = $request->all();
+        $validator = Validator::make($data, [
+            'title' => 'required|string',
+            'short_description' => 'required|string',
+            'content' => 'required|string',
+            'tags' => 'required|array',
+            'featured_image' => 'nullable|image',
+            'status' => 'required|string',
+            'meta_title' => 'nullable|string',
+            'meta_description' => 'nullable|string',
+            'is_featured' => 'nullable',
+            'allow_comments' => 'nullable',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
         }
-        if($data['status'] === 'published' && $post['status'] !== 'published'){
-            $data['published_at'] = Carbon::now();
-        } else if($data['status'] !== 'published' && $post['status'] == 'published'){
-            $data['published_at'] = null;
-        }
-        if(!empty($data['content'])){
-            $htmlDom = new \DOMDocument();
-            @$htmlDom->loadHTML($data['content']);
-            $imageTags = $htmlDom->getElementsByTagName('img');
-            if (count($imageTags) > 0) {
-                foreach ($imageTags as $imageTag) {
-                    $imgSrc = $imageTag->getAttribute('src');
-                    if (strpos($imgSrc, ';base64')) {
-                        $imgdata = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imgSrc));
-                        $attachment = uniqid() . time() . '.png';
-                        Storage::disk('public')->put('/media/image/' . $attachment, $imgdata);
-                        $_jstUp = '[APP_URL]/storage/media/image/' . $attachment.'?optimize=0';
-                        $data['content'] = str_replace($imgSrc, $_jstUp, $data['content']);
+        $postData = Post::find($id);
+        if ($postData == null){
+            return redirect()->back()->withErrors($validator)->withInput();
+        }else {
+            $data['user_id'] = Auth::id();
+            if ($data['status'] === 'published') {
+                $data['published_at'] = Carbon::now();
+            }
+
+            if (isset($data['tags']) && is_array($data['tags']) && count($data['tags']) > 0) {
+                $data['tags'] = implode(', ', $data['tags']);
+            }
+
+            if (!empty($data['content'])) {
+                $htmlDom = new \DOMDocument();
+                @$htmlDom->loadHTML($data['content']);
+                $imageTags = $htmlDom->getElementsByTagName('img');
+                if (count($imageTags) > 0) {
+                    foreach ($imageTags as $imageTag) {
+                        $imgSrc = $imageTag->getAttribute('src');
+                        if (strpos($imgSrc, ';base64')) {
+                            $imgdata = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imgSrc));
+                            $attachment = uniqid() . time() . '.png';
+                            Storage::disk('public')->put('/media/image/' . $attachment, $imgdata);
+                            $_jstUp = '[APP_URL]/storage/media/image/' . $attachment . '?optimize=0';
+                            $data['content'] = str_replace($imgSrc, $_jstUp, $data['content']);
+                        }
                     }
                 }
             }
-        }
-        $data['meta_title'] = trim($data['title']);
-        $data['meta_description'] = trim($data['content']);
-        $post = $this->postService->updatePost($post, $data);
 
-        return response()->json($post, 200);
+            // Handle featured image upload
+            if ($request->hasFile('featured_image')) {
+                $path = $request->file('featured_image')->store('public/media');
+                $featured_image = basename($path);
+                $data['featured_image'] = $featured_image;
+            } else {
+                // Keep existing image if no new image is uploaded
+                $post = $this->postService->findPostById($id); // Assuming a method to find the post
+                $data['featured_image'] = $post->featured_image;
+            }
+
+            $data['meta_title'] = trim($data['title']);
+            $data['meta_description'] = trim($data['content']);
+            $data['is_featured'] = isset($data['is_featured']) && $data['is_featured'] == 'on' ? true : false;
+            $data['allow_comments'] = isset($data['allow_comments']) && $data['allow_comments'] == 'on' ? true : false;
+        }
+
+        $post = $this->postService->updatePost($postData, $data); // Assuming a method to update the post
+        return redirect()->route('user.panel.my.post')->with(['success', 'Post has been updated']);
     }
+
 
     public function destroy($id)
     {

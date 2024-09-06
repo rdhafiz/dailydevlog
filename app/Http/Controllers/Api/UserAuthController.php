@@ -191,22 +191,101 @@ class UserAuthController extends Controller
 
     public function GetProfile(Request $request)
     {
-        $rv = UserAuthRepository::GetProfile($request);
-        return response()->json($rv, 200);
+        try {
+            $user = Auth::user();
+            $profile = User::where('id', $user['id'])->first();
+            return ['profile', 'user' => $profile];
+        } catch (\Exception $e) {
+            return ['status' => 500, 'error' => $e->getMessage()];
+        }
     }
     public function UpdateProfile(Request $request)
     {
-        $rv = UserAuthRepository::UpdateProfile($request);
-        return response()->json($rv, 200);
+        try {
+            DB::beginTransaction();
+            $input = $request->input();
+            $validator = Validator::make($input, [
+                'name' => 'required|string|max:255',
+                'email' => 'required|email',
+                'website' => 'nullable|url',
+            ]);
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+            $user_id = Auth::id();
+            $user = User::find($user_id);
+            if ($user == null) {
+                return redirect()->back()->with('error', 'Invalid Request!');
+            }
+            $user->name = $input['name'];
+            $user->email = $input['email'];
+            $user->avatar = $input['avatar'] ?? null;
+            $user->bio = $input['bio'] ?? null;
+            $user->website = $input['website'] ?? null;
+            $user->updated_at = Carbon::now('UTC');
+            $user->save();
+            DB::commit();
+            return redirect()->back()->with('success', 'The profile has been updated successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Something went wrong: ' . $e->getMessage());
+        }
     }
     public function ChangePassword(Request $request)
     {
-        $rv = UserAuthRepository::ChangePassword($request);
-        return response()->json($rv, 200);
+        try {
+            DB::beginTransaction();
+            $input = $request->all();
+            $validator = Validator::make($input, [
+                'current_password' => 'required|min:8',
+                'password' => 'required|min:8|confirmed',
+            ]);
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
+            $user_id = Auth::id();
+            $user = User::find($user_id);
+            if ($user == null) {
+                return redirect()->back()->with('error', 'Invalid Request!');
+            }
+            if (!Hash::check($input['current_password'], $user->password)) {
+                return redirect()->back()->with('error', 'Please enter the current correct password.');
+            }
+            if (Hash::check($input['password'], $user->password)) {
+                return redirect()->back()->with('error', 'Your new password must be different from your previous password.');
+            }
+            $user->password = bcrypt($input['password']);
+            $user->updated_at = Carbon::now('UTC');
+            $user->save();
+            DB::commit();
+            return redirect()->back()->with('success', 'The password has been changed successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->back()->with('error', 'Something went wrong: ' . $e->getMessage());
+        }
     }
+
     public function UpdateAvatar(Request $request)
     {
-        $rv = UserAuthRepository::UpdateAvatar($request);
-        return response()->json($rv, 200);
+        try {
+            $request->validate([
+                'avatar' => 'nullable|file|mimes:jpg,png,jpeg,gif|max:2048',
+            ]);
+
+            $user = User::find(Auth::id());
+
+            if ($request->hasFile('avatar')) {
+                $avatar = $request->file('avatar');
+                $avatarName = time() . '.' . $avatar->getClientOriginalExtension();
+                $avatar->storeAs('media', $avatarName, 'public');
+                $user->avatar = $avatarName;
+                $user->save();
+            }
+
+            return redirect()->back()->with('success', 'Avatar has been changed successfully.');
+        } catch (\Exception $e) {
+            // Redirect with error message
+            return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage());
+        }
     }
 }

@@ -144,51 +144,45 @@ class PostController extends Controller
         $postData = Post::find($id);
         if ($postData == null){
             return redirect()->back()->withErrors($validator)->withInput();
-        }else {
-            $data['user_id'] = Auth::id();
-            if ($data['status'] === 'published') {
-                $data['published_at'] = Carbon::now();
-            }
+        }
+        $data['user_id'] = Auth::id();
+        if ($data['status'] === 'published') {
+            $data['published_at'] = Carbon::now();
+        }
 
-            if (isset($data['tags']) && is_array($data['tags']) && count($data['tags']) > 0) {
-                $data['tags'] = implode(', ', $data['tags']);
-            }
+        if (isset($data['tags']) && is_array($data['tags']) && count($data['tags']) > 0) {
+            $data['tags'] = implode(', ', $data['tags']);
+        }
 
-            if (!empty($data['content'])) {
-                $htmlDom = new \DOMDocument();
-                @$htmlDom->loadHTML($data['content']);
-                $imageTags = $htmlDom->getElementsByTagName('img');
-                if (count($imageTags) > 0) {
-                    foreach ($imageTags as $imageTag) {
-                        $imgSrc = $imageTag->getAttribute('src');
-                        if (strpos($imgSrc, ';base64')) {
-                            $imgdata = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imgSrc));
-                            $attachment = uniqid() . time() . '.png';
-                            Storage::disk('public')->put('/media/image/' . $attachment, $imgdata);
-                            $_jstUp = '[APP_URL]/storage/media/image/' . $attachment . '?optimize=0';
-                            $data['content'] = str_replace($imgSrc, $_jstUp, $data['content']);
-                        }
+        if (!empty($data['content'])) {
+            $htmlDom = new \DOMDocument();
+            @$htmlDom->loadHTML($data['content']);
+            $imageTags = $htmlDom->getElementsByTagName('img');
+            if (count($imageTags) > 0) {
+                foreach ($imageTags as $imageTag) {
+                    $imgSrc = $imageTag->getAttribute('src');
+                    if (strpos($imgSrc, ';base64')) {
+                        $imgdata = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $imgSrc));
+                        $attachment = uniqid() . time() . '.png';
+                        Storage::disk('public')->put('/media/image/' . $attachment, $imgdata);
+                        $_jstUp = '[APP_URL]/storage/media/image/' . $attachment . '?optimize=0';
+                        $data['content'] = str_replace($imgSrc, $_jstUp, $data['content']);
                     }
                 }
             }
-
-            // Handle featured image upload
-            if ($request->hasFile('featured_image')) {
-                $path = $request->file('featured_image')->store('public/media');
-                $featured_image = basename($path);
-                $data['featured_image'] = $featured_image;
-            } else {
-                // Keep existing image if no new image is uploaded
-                $post = $this->postService->findPostById($id); // Assuming a method to find the post
-                $data['featured_image'] = $post->featured_image;
-            }
-
-            $data['meta_title'] = trim($data['title']);
-            $data['meta_description'] = trim($data['content']);
-            $data['is_featured'] = isset($data['is_featured']) && $data['is_featured'] == 'on' ? true : false;
-            $data['allow_comments'] = isset($data['allow_comments']) && $data['allow_comments'] == 'on' ? true : false;
         }
 
+        // Handle featured image upload
+        if ($request->hasFile('featured_image')) {
+            $path = $request->file('featured_image')->store('public/media');
+            $featured_image = basename($path);
+            $data['featured_image'] = $featured_image;
+        }
+
+        $data['meta_title'] = trim($data['title']);
+        $data['meta_description'] = trim($data['content']);
+        $data['is_featured'] = isset($data['is_featured']) && $data['is_featured'] == 'on' ? true : false;
+        $data['allow_comments'] = isset($data['allow_comments']) && $data['allow_comments'] == 'on' ? true : false;
         $post = $this->postService->updatePost($postData, $data); // Assuming a method to update the post
         return redirect()->route('user.panel.my.post')->with(['success', 'Post has been updated']);
     }

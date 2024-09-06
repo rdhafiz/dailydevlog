@@ -67,19 +67,25 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+        $postData = Post::find($id);
+        if ($postData == null){
+            return redirect()->back()->with('error', 'Post not found.');
+        }
+
         $data = $request->all();
         $validator = Validator::make($data, [
             'title' => 'required|string',
             'short_description' => 'required|string',
             'content' => 'required|string',
             'tags' => 'required|array',
-            'featured_image' => 'nullable',
+            'featured_image' => 'nullable|image',
             'status' => 'required|string',
             'meta_title' => 'nullable|string',
             'meta_description' => 'nullable|string',
             'is_featured' => 'nullable',
             'allow_comments' => 'nullable',
         ]);
+
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
@@ -119,7 +125,7 @@ class PostController extends Controller
         $data['is_featured'] = isset($data['is_featured']) && $data['is_featured'] == 'on' ? true : false;
         $data['allow_comments'] = isset( $data['allow_comments']) && $data['allow_comments'] == 'on' ? true : false;
         $post = $this->postService->createPost($data);
-        return redirect()->route('user.panel.my.post')->with([$post, 'success', 'Post has been created']);
+        return redirect()->route('user.panel.my.post')->with('success', 'Post has been updated');
     }
 
     public function update(Request $request, $id)

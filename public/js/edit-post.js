@@ -9,27 +9,31 @@ const uploadLoading = document.getElementById('uploadLoading');
 const publishBtn = document.getElementById('publishBtnSubmit');
 const publishBtnLoading = document.getElementById('publishBtnLoading');
 
-// Switch handlers for isFeatured
+// Switch handler for "Is Featured"
 function changeIsFeatured(event) {
     const isChecked = event.target.checked;
+    const featureThumb = document.getElementById('is_feature_thumb');
+
     if (isChecked) {
-        document.getElementById('is_feature_checked').classList.add('peer-checked:before:left-10', 'peer-checked:before:bg-white');
-        document.getElementById('is_feature_checked').classList.remove('before:bg-gray-400');
+        featureThumb.classList.remove('bg-gray-400', 'left-1');
+        featureThumb.classList.add('bg-white', 'left-10');
     } else {
-        document.getElementById('is_feature_checked').classList.remove('peer-checked:before:left-10', 'peer-checked:before:bg-white');
-        document.getElementById('is_feature_checked').classList.add('before:bg-gray-400');
+        featureThumb.classList.remove('bg-white', 'left-10');
+        featureThumb.classList.add('bg-gray-400', 'left-1');
     }
 }
 
-// Switch handlers for allowComments
+// Switch handler for "Allow Comments"
 function changeAllowComments(event) {
     const isChecked = event.target.checked;
+    const commentThumb = document.getElementById('allow_comment_thumb');
+
     if (isChecked) {
-        document.getElementById('allow_comment_checked').classList.add('peer-checked:before:left-10', 'peer-checked:before:bg-white');
-        document.getElementById('allow_comment_checked').classList.remove('before:bg-gray-400');
+        commentThumb.classList.remove('bg-gray-400', 'left-1');
+        commentThumb.classList.add('bg-white', 'left-10');
     } else {
-        document.getElementById('allow_comment_checked').classList.remove('peer-checked:before:left-10', 'peer-checked:before:bg-white');
-        document.getElementById('allow_comment_checked').classList.add('before:bg-gray-400');
+        commentThumb.classList.remove('bg-white', 'left-10');
+        commentThumb.classList.add('bg-gray-400', 'left-1');
     }
 }
 

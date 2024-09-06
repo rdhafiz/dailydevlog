@@ -2,38 +2,26 @@
 @section('title', 'Daily Dev Log | Insights & Tutorials on Web and Mobile App Development')
 @section('content')
 
-    <div id="post" class="p-2 md:p-4">
+    <div id="post" class="p-2 md:p-4 mt-[50px]">
         <div class="fixed-container">
-            {{--        <section class="w-full">--}}
-            {{--            <div class="flex justify-start items-center gap-x-2 flex-wrap">--}}
-            {{--                <a href="{{route('user.panel.home')}}"--}}
-            {{--                   class="decoration-0 text-gray-400 dark:text-cyan-600 flex justify-center items-center">--}}
-            {{--                    Home--}}
-            {{--                </a>--}}
-            {{--                <img src="{{asset('/images/blog-details/chevron-dot-right.svg')}}" class="w-[22px] h-[22px]"--}}
-            {{--                     alt="chevron-dot-right.svg">--}}
-            {{--                <a href="{{route('user.panel.post')}}"--}}
-            {{--                   class="decoration-0 text-gray-400 dark:text-cyan-600 flex justify-center items-center">--}}
-            {{--                    Blogs--}}
-            {{--                </a>--}}
-            {{--                <img src="{{asset('/images/blog-details/chevron-dot-right.svg')}}" class="w-[22px] h-[22px]"--}}
-            {{--                     alt="chevron-dot-right.svg">--}}
-            {{--                <a href="javascript:void(0)" class="decoration-0 text-gray-600 font-semibold dark:text-cyan-400">--}}
-            {{--                 <span--}}
-            {{--                     v-if="!this.postParam.id"> Create </span> <span--}}
-            {{--                        v-if="this.postParam.id"> Edit </span>--}}
-            {{--                </a>--}}
-            {{--            </div>--}}
-            {{--            <hr class="w-full border border-cyan-300 mt-5 mb-[50px] px-5 md:px-[120px]">--}}
-            {{--        </section>--}}
             <div
                 class="border border-cyan-100 dark:border-cyan-900 bg-gray-100 dark:bg-gray-800 rounded-3xl py-5 px-0 md:p-10">
-                <form>
+                <form id="managePost" enctype='multipart/form-data' action="/api/front/posts">
+                    @if('')
+                        @method('POST')
+                        @csrf
+                    @else
+                        @method('put')
+                        @csrf
+                    @endif
                     <div class="w-full flex-wrap flex">
 
                         <div class="mb-5 w-full px-4">
                             <div class="w-full">
+
+                                {{-- Upload file --}}
                                 <div class="relative" v-if="!uploadLoading">
+
                                     <label for="upload-file"
                                            class="w-full h-[250px] flex justify-center items-center cursor-pointer border border-cyan-400 rounded-lg duration-500 bg-transparent hover:bg-gray-400 dark:hover:bg-gray-600 fw-medium">
                                         <a class="flex items-center justify-center relative h-full w-full text-gray-600 dark:text-gray-400 duration-500">
@@ -48,6 +36,7 @@
                                             </div>
                                         </a>
                                     </label>
+
                                     <div class="absolute top-3 end-3"
                                          v-if="postParam.featured_image !== null">
                                         <button type="button"
@@ -77,8 +66,10 @@
                                             </svg>
                                         </button>
                                     </div>
+
                                 </div>
 
+                                {{-- Upload Loading --}}
                                 <div v-if="uploadLoading">
                                     <div
                                         class="w-full h-[250px] flex justify-center items-center cursor-pointer border border-cyan-400 rounded-lg bg-transparent duration-500 hover:bg-gray-400 dark:hover:bg-gray-400 hover:text-black fw-medium">
@@ -95,6 +86,8 @@
 
                             </div>
                         </div>
+
+                        {{-- Title --}}
                         <div class="mb-5 w-full px-4">
                             <label for="title" class="block font-semibold"> Title </label>
                             <input id="title" type="text" name="title" v-model="postParam.title"
@@ -103,6 +96,8 @@
                             <div class="error-report text-red-500 text-sm mt-2"
                                  v-if="error != null && error.title !== undefined" v-text="error.title[0]"></div>
                         </div>
+
+                        {{-- Short description --}}
                         <div class="mb-5 w-full px-4">
                             <label for="short_description" class="block font-semibold"> Short Description </label>
                             <textarea name="short_description"
@@ -113,6 +108,8 @@
                                  v-if="error != null && error.short_description !== undefined"
                                  v-text="error.short_description[0]"></div>
                         </div>
+
+                        {{-- content description --}}
                         <div class="mb-5 w-full px-4">
                             <label for="content_description" class="block font-semibold mb-5"> Content </label>
                             <textarea name="content" id="content_description"
@@ -121,6 +118,8 @@
                             <div class="error-report text-red-500 text-sm mt-2"
                                  v-if="error != null && error.content !== undefined" v-text="error.content[0]"></div>
                         </div>
+
+                        {{-- Is featured --}}
                         <div class="mb-5 w-full md:w-1/2 px-4 switch">
                             <label for="is_featured" class="block font-semibold"> Is Featured? </label>
                             <label for="is_featured" class="flex items-center cursor-pointer pt-3">
@@ -130,6 +129,8 @@
                                     :class="{'block relative bg-cyan-500 w-16 h-7 p-1 rounded-full before:absolute before:w-5 before:h-5 before:p-1 before:rounded-full before:transition-all before:duration-500 before:left-1': true, 'peer-checked:before:left-10 peer-checked:before:bg-white' : postParam.is_featured == 1, ' before:bg-gray-400': postParam.is_featured == 0}"></div>
                             </label>
                         </div>
+
+                        {{-- Allow comment --}}
                         <div class="mb-5 w-full md:w-1/2 px-4">
                             <label for="allow_comment" class="block font-semibold"> Allow Comment </label>
                             <label for="comment" class="flex items-center cursor-pointer pt-3">
@@ -140,6 +141,7 @@
                             </label>
                         </div>
 
+                        {{-- Tags --}}
                         <div class="mb-5 w-full md:w-1/2 px-4">
                             <label for="selectTag" class="block font-semibold"> Tags </label>
                             <div id="selectTagParent">
@@ -153,10 +155,15 @@
                             <div class="error-report text-red-500 text-sm mt-2"
                                  v-if="error != null && error.tags !== undefined" v-text="error.tags[0]"></div>
                         </div>
+
                         <div class="w-full flex justify-end items-center px-4">
-                            <button type="button" class="btn-red w-[120px] rounded-lg me-2" v-if="!archiveLoading"
+
+                            {{-- Submit Button - archived --}}
+                            <button type="submit" class="btn-red w-[120px] rounded-lg me-2" v-if="!archiveLoading"
                                     @click="managePost('archived')">Archive
                             </button>
+
+                            {{-- archived btn loading --}}
                             <button type="button"
                                     class="btn-red rounded-md w-[120px] flex justify-center items-center h-[45px] text-white me-2"
                                     disabled v-if="archiveLoading">
@@ -168,9 +175,13 @@
                                           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                 </svg>
                             </button>
+
+                            {{-- Submit Button - draft --}}
                             <button type="button" class="btn-orange w-[120px] rounded-lg me-2" v-if="!draftLoading"
                                     @click="managePost('draft')">Draft
                             </button>
+
+                            {{-- draft btn loading --}}
                             <button type="button"
                                     class="btn-orange rounded-md w-[120px] flex justify-center items-center h-[45px] text-white me-2"
                                     disabled v-if="draftLoading">
@@ -182,9 +193,13 @@
                                           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                 </svg>
                             </button>
+
+                            {{-- Submit Button - publish --}}
                             <button type="button" class="btn-theme w-[120px] rounded-lg me-2" v-if="!publishLoading"
                                     @click="managePost('published')">Publish
                             </button>
+
+                            {{-- publish btn loading --}}
                             <button type="button"
                                     class="btn-theme rounded-md w-[120px] flex justify-center items-center h-[45px] text-white"
                                     disabled v-if="publishLoading">
@@ -196,7 +211,9 @@
                                           d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                                 </svg>
                             </button>
+
                         </div>
+
                     </div>
                 </form>
             </div>

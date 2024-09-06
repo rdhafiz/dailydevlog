@@ -10,12 +10,15 @@ document.getElementById('change-password').addEventListener('submit', (e) => {
     document.getElementById('changePasswordLoader').classList.remove('hidden');
 })
 
-// Function of two word
-function nameControl(userName) {
-    let words = userName.split(' ');
-    return ` ${words[0][0].toUpperCase()}${words[words.length - 1][0].toUpperCase()}`;
-}
+// update avatar form actions
+const uploadProfileAvatar = document.getElementById('upload-profile-avatar');
+if(uploadProfileAvatar) {
+    uploadProfileAvatar.addEventListener('change', function() {
+        document.getElementById('changeAvatar').classList.add('hidden');
+        document.getElementById('changeAvatarLoader').classList.remove('hidden');
+        const form = document.getElementById('update-avatar');
+        form.submit();
+    });
+} else {
 
-document.addEventListener('DOMContentLoaded', function() {
-    return document.getElementById('user-data').getAttribute('data-username');
-});
+}

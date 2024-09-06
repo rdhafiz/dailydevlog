@@ -217,7 +217,6 @@ new Vue({
     },
     mounted(){
         const param = this.websiteUrl.pathname.split('/').pop();
-
         const savedTheme = localStorage.getItem('theme');
         const cssText = `
                 background-color: #f9f9f9;

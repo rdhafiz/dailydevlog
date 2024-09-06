@@ -35,7 +35,7 @@
                 <div class="w-full sm:w-1/3 flex justify-end py-3">
 
                     <!-- New -->
-                    <a href="/blogs/new" class="outline-0 border-0 btn-theme w-[120px] rounded-lg">
+                    <a href="{{route('user.panel.create.post')}}" class="outline-0 border-0 btn-theme w-[120px] rounded-lg">
                         New Blog
                     </a>
 
@@ -92,7 +92,7 @@
                                                   fill="#000000" class="fill-gray-600 dark:fill-gray-400"/>
                                         </svg>
                                     </a>
-                                    <a href="/blogs/{{$p['id']}}"
+                                    <a href="/edit-logs/{{$p['id']}}"
                                        class="h-8 w-8 flex items-center justify-center rounded-full bg-transparent hover:bg-gray-300 dark:hover:bg-gray-600 duration-500">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px"
                                              viewBox="0 0 24 24"

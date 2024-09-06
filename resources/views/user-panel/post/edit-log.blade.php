@@ -30,36 +30,6 @@
                                         </a>
                                     </label>
 
-                                    <div class="absolute top-3 end-3"
-                                         v-if="postParam.featured_image !== null">
-                                        <button type="button"
-                                                class="outline-0 border-0 flex justify-center items-center duration-500 bg-red-500 hover:bg-red-800 w-[45px] h-[45px] rounded-lg"
-                                                @click="postParam.featured_image = null">
-                                            <svg viewBox="0 0 24 24" class="w-[24px] h-[24px]" fill="none"
-                                                 xmlns="http://www.w3.org/2000/svg">
-                                                <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                                <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
-                                                   stroke-linejoin="round"></g>
-                                                <g id="SVGRepo_iconCarrier">
-                                                    <path d="M10 11V17" class="stroke-white" stroke-width="2"
-                                                          stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    <path d="M14 11V17" class="stroke-white" stroke-width="2"
-                                                          stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    <path d="M4 7H20" class="stroke-white" stroke-width="2"
-                                                          stroke-linecap="round" stroke-linejoin="round"></path>
-                                                    <path
-                                                        d="M6 7H12H18V18C18 19.6569 16.6569 21 15 21H9C7.34315 21 6 19.6569 6 18V7Z"
-                                                        class="stroke-white" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round"></path>
-                                                    <path
-                                                        d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
-                                                        class="stroke-white" stroke-width="2" stroke-linecap="round"
-                                                        stroke-linejoin="round"></path>
-                                                </g>
-                                            </svg>
-                                        </button>
-                                    </div>
-
                                 </div>
 
                                 {{-- Upload Loading --}}
@@ -213,6 +183,6 @@
         </div>
     </div>
 
-    <script src="{{asset('/js/single-post.js')}}"></script>
+    <script src="{{asset('/js/edit-post.js')}}"></script>
 
 @endsection

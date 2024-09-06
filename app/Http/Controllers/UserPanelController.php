@@ -215,13 +215,18 @@ class UserPanelController extends BaseController
         return view('user-panel.post.most-viewed-post', $rv);
     }
 
-    public function managePost(Request $request, $id)
+    public function editPost(Request $request, $id)
     {
-        $rv = [
-            'id' => $id
-        ];
+        $post = Post::find($id);
+        if (!$post) {
+            return redirect()->back()->with('error', 'Post not found.');
+        }
+        return view('user-panel.post.edit-log', ['post' => $post]);
+    }
 
-        return view('user-panel.post.manage', $rv);
+    public function createPost(Request $request)
+    {
+        return view('user-panel.post.create-log');
     }
 
 

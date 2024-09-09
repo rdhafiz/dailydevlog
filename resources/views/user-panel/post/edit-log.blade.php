@@ -22,9 +22,11 @@
                                                 <input type="file" id="upload-file" name="featured_image" class="hidden" accept="image/*" value="{{old('featured_image')}}">
                                                 Upload Featured Image
                                             </a>
-                                            <div class="absolute top-0 bottom-0 start-0 end-0">
-                                                <img src="/storage/media/{{$post['featured_image']}}" id="featured_preview" class="w-full h-[250px] object-cover cursor-pointer border border-cyan-400 rounded-lg duration-500" alt="featured-image">
-                                            </div>
+                                            @if($post['featured_image'] !== null)
+                                                <div class="absolute top-0 bottom-0 start-0 end-0">
+                                                    <img src="/storage/media/{{$post['featured_image']}}" id="featured_preview" class="w-full h-[250px] object-cover cursor-pointer border border-cyan-400 rounded-lg duration-500" alt="featured-image">
+                                                </div>
+                                            @endif
                                         </label>
                                     </div>
 
@@ -81,32 +83,26 @@
                             @enderror
                         </div>
 
-                        {{-- Is Featured --}}
-                        <div class="mb-5 w-full md:w-1/2 px-4 switch">
-                            <label for="is_featured" class="block font-semibold"> Is Featured? </label>
-                            <label for="is_featured" class="flex items-center cursor-pointer pt-3">
-                                <input type="checkbox" id="is_featured" name="is_featured" class="sr-only" {{ $post['is_featured'] ? 'checked' : '' }} onchange="changeIsFeatured(event)">
-                                <div class="block relative bg-cyan-500 w-16 h-7 p-1 rounded-full">
-                                    <!-- This span represents the toggle thumb -->
-                                    <span id="is_feature_thumb" class="absolute w-5 h-5 rounded-full transition-all duration-500 {{ $post['is_featured'] ? 'bg-white left-10' : 'bg-gray-400 left-1' }}"></span>
-                                </div>
+                        {{-- Is featured --}}
+                        <div class="mb-5 w-full md:w-1/2 px-4">
+                            <label for="is_featured" class="block font-semibold mb-2"> Is Featured? </label>
+                            <label class="switch" for="is_feature_checked">
+                                <input type="checkbox" id="is_feature_checked" {{ $post['is_featured'] == 1 ? 'checked' : '' }} name="is_featured" onchange="changeIsFeatured(event)">
+                                <span class="slider round"></span>
                             </label>
                             @error('is_featured')
                             <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>
                             @enderror
                         </div>
 
-                        {{-- Allow Comment --}}
+                        {{-- Allow comment --}}
                         <div class="mb-5 w-full md:w-1/2 px-4">
-                            <label for="allow_comment" class="block font-semibold"> Allow Comment </label>
-                            <label for="allow_comment" class="flex items-center cursor-pointer pt-3">
-                                <input type="checkbox" id="allow_comment" name="allow_comments" class="sr-only" {{ $post['allow_comments'] ? 'checked' : '' }} onchange="changeAllowComments(event)">
-                                <div class="block relative bg-cyan-500 w-16 h-7 p-1 rounded-full">
-                                    <!-- This span represents the toggle thumb -->
-                                    <span id="allow_comment_thumb" class="absolute w-5 h-5 rounded-full transition-all duration-500 {{ $post['allow_comments'] ? 'bg-white left-10' : 'bg-gray-400 left-1' }}"></span>
-                                </div>
+                            <label for="is_allow_comment" class="block font-semibold mb-2"> Allow Comment </label>
+                            <label class="switch" for="is_allow_comment">
+                                <input type="checkbox" id="is_allow_comment" {{ $post['allow_comments'] == 1 ? 'checked' : '' }} name="allow_comments" onchange="changeAllowComments(event)">
+                                <span class="slider round"></span>
                             </label>
-                            @error('allow_comments')
+                            @error('allow_comment')
                             <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>
                             @enderror
                         </div>
@@ -115,9 +111,12 @@
                         <div class="mb-5 w-full md:w-1/2 px-4">
                             <label for="selectTag" class="block font-semibold"> Tags </label>
                             <div id="selectTagParent">
-                                <select id="selectTag" class="w-100" name="tags[]" multiple="multiple">
-                                    @foreach(collect(explode(",", $post['tags'])) as $tag)
-                                        <option value="{{ $tag }}" selected>{{ $tag }}</option>
+                                <select id="selectTag" class="w-100" name="tags[]" multiple="multiple" value="{{$post['tags']}}">
+                                    @foreach($tags as $tag)
+                                        <option value="{{ $tag['title'] }}"
+                                                @if(in_array($tag['title'], explode(",", $post['tags']))) selected @endif>
+                                            {{ $tag['title'] }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>

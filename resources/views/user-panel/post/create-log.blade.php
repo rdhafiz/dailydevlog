@@ -70,8 +70,11 @@
                         {{-- content description --}}
                         <div class="mb-5 w-full px-4">
                             <label for="content_description" class="block font-semibold mb-5"> Content </label>
-                            <textarea name="content" id="content_description" placeholder="Write your content here" value="{{old('content')}}"
-                                      class="resize-0 py-5 pe-5 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white"></textarea>
+{{--                            <textarea name="content" id="content_description" placeholder="Write your content here" value="{{old('content')}}"--}}
+{{--                                      class="resize-0 py-5 pe-5 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white"></textarea>--}}
+
+                            <div id="editorjs" class="resize-0 py-5 pe-5 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white"></div>
+                            <textarea id="editor-content" name="content" hidden></textarea>
                             @error('content')
                                 <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>
                             @enderror

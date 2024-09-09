@@ -94,6 +94,7 @@ class PostController extends Controller
                 }
             }
         }
+        dd($data['content']);
         $data['meta_title'] = trim($data['title']);
         $data['meta_description'] = trim($data['content']);
         $data['is_featured'] = isset($data['is_featured']) && $data['is_featured'] == 'on' ? true : false;

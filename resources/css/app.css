@@ -386,6 +386,17 @@ rte-toolbar-dropdown-item {
     color: #000000;
 }
 
+.codex-editor__redactor {
+    padding: 0 !important;
+}
+
+.ce-block__content {
+    max-width: 90% !important;
+}
+
+.ce-toolbar__actions {
+    left: -16% !important;
+}
 
 #single-details #content_description h1 {
     font-size: 2em; /* Example size, actual size may vary by browser */

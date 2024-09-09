@@ -9,27 +9,23 @@ const uploadLoading = document.getElementById('uploadLoading');
 const publishBtn = document.getElementById('publishBtnSubmit');
 const publishBtnLoading = document.getElementById('publishBtnLoading');
 
-// Switch handlers for isFeatured
+// Switch handler for "Is Featured"
 function changeIsFeatured(event) {
     const isChecked = event.target.checked;
-    if (isChecked) {
-        document.getElementById('is_feature_checked').classList.add('peer-checked:before:left-10', 'peer-checked:before:bg-white');
-        document.getElementById('is_feature_checked').classList.remove('before:bg-gray-400');
-    } else {
-        document.getElementById('is_feature_checked').classList.remove('peer-checked:before:left-10', 'peer-checked:before:bg-white');
-        document.getElementById('is_feature_checked').classList.add('before:bg-gray-400');
+    if(isChecked) {
+        console.log(isChecked)
+    }else {
+        console.log(isChecked)
     }
 }
 
-// Switch handlers for allowComments
+// Switch handler for "Allow Comments"
 function changeAllowComments(event) {
     const isChecked = event.target.checked;
-    if (isChecked) {
-        document.getElementById('allow_comment_checked').classList.add('peer-checked:before:left-10', 'peer-checked:before:bg-white');
-        document.getElementById('allow_comment_checked').classList.remove('before:bg-gray-400');
-    } else {
-        document.getElementById('allow_comment_checked').classList.remove('peer-checked:before:left-10', 'peer-checked:before:bg-white');
-        document.getElementById('allow_comment_checked').classList.add('before:bg-gray-400');
+    if(isChecked) {
+        console.log(isChecked)
+    }else {
+        console.log(isChecked)
     }
 }
 

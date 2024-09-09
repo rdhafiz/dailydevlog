@@ -78,26 +78,26 @@
                         </div>
 
                         {{-- Is featured --}}
-                        <div class="mb-5 w-full md:w-1/2 px-4 switch">
-                            <label for="is_featured" class="block font-semibold"> Is Featured? </label>
-                            <label for="is_featured" class="flex items-center cursor-pointer pt-3">
-                                <input type="checkbox" id="is_featured" name="is_featured" class="sr-only peer" value="{{old('is_featured')}}" onchange="changeIsFeatured(event)">
-                                <div id="is_feature_checked" class="block relative bg-cyan-500 w-16 h-7 p-1 rounded-full before:absolute before:w-5 before:h-5 before:p-1 before:rounded-full before:transition-all before:duration-500 before:left-1 before:bg-gray-400"></div>
+                        <div class="mb-5 w-full md:w-1/2 px-4">
+                            <label for="is_featured" class="block font-semibold mb-2"> Is Featured? </label>
+                            <label class="switch" for="is_feature_checked">
+                                <input type="checkbox" id="is_feature_checked" name="is_featured" onchange="changeIsFeatured(event)">
+                                <span class="slider round"></span>
                             </label>
                             @error('is_featured')
-                                <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>
+                            <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>
                             @enderror
                         </div>
 
                         {{-- Allow comment --}}
                         <div class="mb-5 w-full md:w-1/2 px-4">
-                            <label for="allow_comment" class="block font-semibold"> Allow Comment </label>
-                            <label for="comment" class="flex items-center cursor-pointer pt-3">
-                                <input type="checkbox" id="comment" name="allow_comments" class="sr-only peer" value="{{old('allow_comments')}}" onchange="changeAllowComments(event)">
-                                <div id="allow_comment_checked" class="block relative bg-cyan-500 w-16 h-7 p-1 rounded-full before:absolute before:w-5 before:h-5 before:p-1 before:rounded-full before:transition-all before:duration-500 before:left-1 before:bg-gray-400"></div>
+                            <label for="is_allow_comment" class="block font-semibold mb-2"> Allow Comment </label>
+                            <label class="switch" for="is_allow_comment">
+                                <input type="checkbox" id="is_allow_comment" name="allow_comments" onchange="changeAllowComments(event)">
+                                <span class="slider round"></span>
                             </label>
                             @error('allow_comment')
-                                <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>
+                            <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>
                             @enderror
                         </div>
 

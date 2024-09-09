@@ -67,11 +67,6 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        $postData = Post::find($id);
-        if ($postData == null){
-            return redirect()->back()->with('error', 'Post not found.');
-        }
-
         $data = $request->all();
         $validator = Validator::make($data, [
             'title' => 'required|string',
@@ -130,6 +125,10 @@ class PostController extends Controller
 
     public function update(Request $request, $id)
     {
+        $postData = Post::find($id);
+        if ($postData == null){
+            return redirect()->back()->with('error', 'Post not found.');
+        }
         $data = $request->all();
         $validator = Validator::make($data, [
             'title' => 'required|string',
@@ -151,6 +150,7 @@ class PostController extends Controller
         if ($postData == null){
             return redirect()->back()->withErrors($validator)->withInput();
         }
+
         $data['user_id'] = Auth::id();
         if ($data['status'] === 'published') {
             $data['published_at'] = Carbon::now();

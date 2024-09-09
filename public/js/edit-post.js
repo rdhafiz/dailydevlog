@@ -12,28 +12,20 @@ const publishBtnLoading = document.getElementById('publishBtnLoading');
 // Switch handler for "Is Featured"
 function changeIsFeatured(event) {
     const isChecked = event.target.checked;
-    const featureThumb = document.getElementById('is_feature_thumb');
-
-    if (isChecked) {
-        featureThumb.classList.remove('bg-gray-400', 'left-1');
-        featureThumb.classList.add('bg-white', 'left-10');
-    } else {
-        featureThumb.classList.remove('bg-white', 'left-10');
-        featureThumb.classList.add('bg-gray-400', 'left-1');
+    if(isChecked) {
+        console.log(isChecked)
+    }else {
+        console.log(isChecked)
     }
 }
 
 // Switch handler for "Allow Comments"
 function changeAllowComments(event) {
     const isChecked = event.target.checked;
-    const commentThumb = document.getElementById('allow_comment_thumb');
-
-    if (isChecked) {
-        commentThumb.classList.remove('bg-gray-400', 'left-1');
-        commentThumb.classList.add('bg-white', 'left-10');
-    } else {
-        commentThumb.classList.remove('bg-white', 'left-10');
-        commentThumb.classList.add('bg-gray-400', 'left-1');
+    if(isChecked) {
+        console.log(isChecked)
+    }else {
+        console.log(isChecked)
     }
 }
 

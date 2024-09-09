@@ -19,6 +19,14 @@ if(uploadProfileAvatar) {
         const form = document.getElementById('update-avatar');
         form.submit();
     });
-} else {
-
 }
+
+function nameControl(userName) {
+    let words = userName.split(' ');
+    return `${words[0][0].toUpperCase()}${words[words.length - 1][0].toUpperCase()}`;
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    let userName = window.userName;
+    document.getElementById('profile-initials').textContent = nameControl(userName);
+});

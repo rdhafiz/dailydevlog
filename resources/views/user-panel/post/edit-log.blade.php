@@ -2,10 +2,6 @@
 @section('title', 'Daily Dev Log | Insights & Tutorials on Web and Mobile App Development')
 @section('content')
 
-    @php
-        $selectedTags = explode(",", $post['tags']);
-    @endphp
-
     <div id="post" class="p-2 md:p-4 mt-[50px]">
         <div class="fixed-container">
             <div
@@ -118,7 +114,7 @@
                                 <select id="selectTag" class="w-100" name="tags[]" multiple="multiple" value="{{$post['tags']}}">
                                     @foreach($tags as $tag)
                                         <option value="{{ $tag['title'] }}"
-                                                @if(in_array($tag['title'], $selectedTags)) selected @endif>
+                                                @if(in_array($tag['title'], explode(",", $post['tags']))) selected @endif>
                                             {{ $tag['title'] }}
                                         </option>
                                     @endforeach

@@ -2,6 +2,12 @@
 @section('title', 'Daily Dev Log | Insights & Tutorials on Web and Mobile App Development')
 @section('content')
 
+    @php
+
+        $content_description = $post['content'];
+
+    @endphp
+
     <div id="post" class="p-2 md:p-4 mt-[50px]">
         <div class="fixed-container">
             <div
@@ -24,7 +30,9 @@
                                             </a>
                                             @if($post['featured_image'] !== null)
                                                 <div class="absolute top-0 bottom-0 start-0 end-0">
-                                                    <img src="/storage/media/{{$post['featured_image']}}" id="featured_preview" class="w-full h-[250px] object-cover cursor-pointer border border-cyan-400 rounded-lg duration-500" alt="featured-image">
+                                                    <div class="w-full h-[250px] bg-white">
+                                                        <img src="/storage/media/{{$post['featured_image']}}" id="featured_preview" class="w-full h-[250px] object-cover cursor-pointer border border-cyan-400 rounded-lg duration-500" alt="featured-image">
+                                                    </div>
                                                 </div>
                                             @endif
                                         </label>
@@ -162,6 +170,10 @@
             </div>
         </div>
     </div>
+
+    <script>
+        window.content_description = {!! $content_description !!}
+    </script>
 
     <script src="{{asset('/js/edit-post.js')}}"></script>
 

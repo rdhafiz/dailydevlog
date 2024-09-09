@@ -219,21 +219,11 @@
 
     </div>
 
-    <script src="{{asset('/js/profile.js')}}"></script>
-
     @if($user['avatar'] === null)
-    <script type="text/javascript">
-
-        function nameControl(userName) {
-            let words = userName.split(' ');
-            return `${words[0][0].toUpperCase()}${words[words.length - 1][0].toUpperCase()}`;
-        }
-
-        document.addEventListener('DOMContentLoaded', function () {
-            let userName = "{{ $userName }}";
-            document.getElementById('profile-initials').textContent = nameControl(userName);
-        });
-    </script>
+        <script>
+            window.userName = "{{$userName}}";
+        </script>
     @endif
+    <script src="{{asset('/js/profile.js')}}"></script>
 
 @endsection

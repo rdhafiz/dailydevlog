@@ -5,7 +5,10 @@
         $date = function ($publishDate){
            $date = new DateTime($publishDate);
           return $date->format('M d Y');
-       }
+       };
+
+       $content = $post['content'];
+
     @endphp
 
     <div class="mt-[50px] fixed-container" id="single-details">
@@ -41,12 +44,16 @@
                         @endforeach
                     </div>
                     <div class="mt-[25px] text-[13px] leading-[19.5px] text-black dark:!text-white" id="content_description">
-                        {!! $post['content'] !!}
+                        <div id="editorjs"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        window.editorContent = {!! $content !!};
+    </script>
 
     <script src="{{asset('/js/blog-details.js')}}"></script>
 

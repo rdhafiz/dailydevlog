@@ -59,8 +59,8 @@
 
                         {{-- Short description --}}
                         <div class="mb-5 w-full px-4">
-                            <label for="short_description" class="block font-semibold"> Short Description </label>
-                            <textarea name="short_description" placeholder="Enter short description" value="{{old('short_description')}}"
+                            <label for="short-description" class="block font-semibold"> Short Description </label>
+                            <textarea id="short-description" name="short_description" placeholder="Enter short description" value="{{old('short_description')}}"
                                       class="resize-none py-5 px-4 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white"></textarea>
                             @error('short_description')
                                 <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>
@@ -69,7 +69,7 @@
 
                         {{-- content description --}}
                         <div class="mb-5 w-full px-4">
-                            <label for="content_description" class="block font-semibold mb-5"> Content </label>
+                            <label for="editor-content" class="block font-semibold mb-5"> Content </label>
                             <div id="editorjs" class="resize-0 py-5 pe-5 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white"></div>
                             <textarea id="editor-content" name="content" hidden></textarea>
                             @error('content')
@@ -79,8 +79,8 @@
 
                         {{-- Is featured --}}
                         <div class="mb-5 w-full md:w-1/2 px-4">
-                            <label for="is_featured" class="block font-semibold mb-2"> Is Featured? </label>
-                            <label class="switch" for="is_feature_checked">
+                            <div class="block font-semibold mb-2"> Is Featured? </div>
+                            <label for="is_feature_checked" class="switch">
                                 <input type="checkbox" id="is_feature_checked" name="is_featured" onchange="changeIsFeatured(event)">
                                 <span class="slider round"></span>
                             </label>
@@ -131,41 +131,6 @@
                         </div>
 
                         <div class="w-full flex justify-end items-center px-4">
-                            {{--                             Submit Button - archived--}}
-                            {{--                            <button type="submit" class="btn-red w-[120px] rounded-lg me-2 border-0 outline-0" id="archiveBtnSubmit">--}}
-                            {{--                                Archived--}}
-                            {{--                            </button>--}}
-
-                            {{--                             archived btn loading--}}
-                            {{--                            <div class="hidden" id="archiveBtnLoading">--}}
-                            {{--                                <button type="button" class="btn-red rounded-md w-[120px] flex justify-center items-center h-[45px] text-white me-2" disabled>--}}
-                            {{--                                    <svg class="h-5 mx-auto w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg"--}}
-                            {{--                                         fill="none" viewBox="0 0 24 24">--}}
-                            {{--                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"--}}
-                            {{--                                                stroke-width="4"></circle>--}}
-                            {{--                                        <path class="opacity-75" fill="currentColor"--}}
-                            {{--                                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>--}}
-                            {{--                                    </svg>--}}
-                            {{--                                </button>--}}
-                            {{--                            </div>--}}
-
-                            {{--                             Submit Button - draft--}}
-                            {{--                            <button type="submit" class="btn-orange rounded-md w-[120px] flex justify-center items-center h-[45px] text-white me-2" id="draftBtnSubmit">--}}
-                            {{--                                Draft--}}
-                            {{--                            </button>--}}
-
-                            {{--                             draft btn loading--}}
-                            {{--                            <div class="hidden" id="draftBtnLoading">--}}
-                            {{--                                <button type="button" class="btn-orange rounded-md w-[120px] flex justify-center items-center h-[45px] text-white me-2" disabled>--}}
-                            {{--                                    <svg class="h-5 mx-auto w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg"--}}
-                            {{--                                         fill="none" viewBox="0 0 24 24">--}}
-                            {{--                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"--}}
-                            {{--                                                stroke-width="4"></circle>--}}
-                            {{--                                        <path class="opacity-75" fill="currentColor"--}}
-                            {{--                                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>--}}
-                            {{--                                    </svg>--}}
-                            {{--                                </button>--}}
-                            {{--                            </div>--}}
 
                             {{-- Submit Button - publish--}}
                             <button type="submit" class="btn-theme rounded-md w-[120px] flex justify-center items-center h-[45px] text-white" id="publishBtnSubmit">

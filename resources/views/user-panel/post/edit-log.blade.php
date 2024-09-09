@@ -2,7 +2,9 @@
 @section('title', 'Daily Dev Log | Insights & Tutorials on Web and Mobile App Development')
 @section('content')
 
-{{--    @php dd($post['featured_image']);  @endphp--}}
+    @php
+        $selectedTags = explode(",", $post['tags']);
+    @endphp
 
     <div id="post" class="p-2 md:p-4 mt-[50px]">
         <div class="fixed-container">
@@ -113,9 +115,12 @@
                         <div class="mb-5 w-full md:w-1/2 px-4">
                             <label for="selectTag" class="block font-semibold"> Tags </label>
                             <div id="selectTagParent">
-                                <select id="selectTag" class="w-100" name="tags[]" multiple="multiple">
-                                    @foreach(collect(explode(",", $post['tags'])) as $tag)
-                                        <option value="{{ $tag }}" selected>{{ $tag }}</option>
+                                <select id="selectTag" class="w-100" name="tags[]" multiple="multiple" value="{{$post['tags']}}">
+                                    @foreach($tags as $tag)
+                                        <option value="{{ $tag['title'] }}"
+                                                @if(in_array($tag['title'], $selectedTags)) selected @endif>
+                                            {{ $tag['title'] }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>

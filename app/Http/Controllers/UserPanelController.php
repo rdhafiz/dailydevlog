@@ -3,15 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Models\User;
-use Carbon\Carbon;
+use App\Models\Tag;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Validator;
 
 class UserPanelController extends BaseController
 {
@@ -218,15 +212,17 @@ class UserPanelController extends BaseController
     public function editPost(Request $request, $id)
     {
         $post = Post::find($id);
+        $tags = Tag::all();
         if (!$post) {
             return redirect()->back()->with('error', 'Post not found.');
         }
-        return view('user-panel.post.edit-log', ['post' => $post]);
+        return view('user-panel.post.edit-log', ['post' => $post, 'tags' => $tags]);
     }
 
     public function createPost(Request $request)
     {
-        return view('user-panel.post.create-log');
+        $tags = Tag::all();
+        return view('user-panel.post.create-log', ['tags' => $tags]);
     }
 
 

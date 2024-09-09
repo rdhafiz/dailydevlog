@@ -107,6 +107,9 @@
                             <div id="selectTagParent">
                                 <select id="selectTag" class="w-100" name="tags[]" multiple="multiple" value="{{old('tags[]')}}">
                                     <option></option>
+                                    @foreach($tags as $tag)
+                                        <option value="{{$tag['title']}}"> {{$tag['title']}} </option>
+                                    @endforeach
                                     <option id="tagArray"></option>
                                 </select>
                             </div>

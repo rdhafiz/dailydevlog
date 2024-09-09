@@ -52,7 +52,10 @@
     </div>
 
     <script>
-        window.editorContent = {!! $content !!};
+        let content = `{!! $content !!}`;
+        content = JSON.parse(content);
+        window.editorContent = content;
+        console.log(content)
     </script>
 
     <script src="{{asset('/js/blog-details.js')}}"></script>

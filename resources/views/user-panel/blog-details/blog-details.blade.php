@@ -19,7 +19,7 @@
                              class="w-full h-[250px] object-contain lg:object-cover rounded-2xl"
                              alt="blog-details">
                     @else
-                        <img :src="'/images/default.png'"
+                        <img src="{{asset('/images/default.png')}}"
                              class="w-full h-[350px] lg:h-[550px] object-contain lg:object-cover rounded-2xl"
                              alt="blog-details">
                     @endif

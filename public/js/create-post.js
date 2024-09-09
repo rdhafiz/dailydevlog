@@ -29,7 +29,7 @@ function changeAllowComments(event) {
     }
 }
 
-// Initialize RichTextEditor
+// select 2 function
 function runningFunction() {
     let editor1 = new RichTextEditor("#content_description");
     $('#selectTag').select2({

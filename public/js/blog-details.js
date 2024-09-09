@@ -19,3 +19,8 @@ function share(social) {
         return window.open(navUrl);
     }
 }
+
+let contentElement = document.getElementById('content_description');
+let contentHTML = contentElement.innerHTML;
+contentHTML = contentHTML.replace(/<(p|h1|h2|h3|h4|h5|h6|span)\s+[^>]*style="[^"]*"[^>]*>/g, '<$1>');
+contentElement.innerHTML = contentHTML;

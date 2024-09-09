@@ -29,7 +29,7 @@ function changeAllowComments(event) {
     }
 }
 
-// Initialize RichTextEditor
+// select 2 function
 function runningFunction() {
     let editor1 = new RichTextEditor("#content_description");
     $('#selectTag').select2({
@@ -38,7 +38,6 @@ function runningFunction() {
         placeholder: 'Select Tag',
         allowClear: true,
     });
-
     let selectTag = document.getElementById('selectTag');
     let tagArray = document.getElementById('tagArray');
     selectTag.addEventListener('change', function () {

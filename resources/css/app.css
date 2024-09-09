@@ -101,10 +101,12 @@
 
     /* Paragraph */
     .dark #single-details #content_description p {
+        background: transparent !important;
         color: #fff !important;
     }
 
     .dark #single-details #content_description p span {
+        background: transparent !important;
         color: #fff !important;
     }
 

@@ -104,6 +104,10 @@
         color: #fff !important;
     }
 
+    .dark #single-details #content_description p span {
+        color: #fff !important;
+    }
+
     .dark #single-details #content_description li {
         color: #fff !important;
     }

@@ -167,7 +167,7 @@ class UserPanelController extends BaseController
 
         $query = Post::with('author')->where('is_featured', 1)->orderBy($filter['orderBy'], $filter['order']);
 
-        $result = $query->paginate(2);
+        $result = $query->paginate(20);
 
         $rv = [
             'featured_posts' => $result,

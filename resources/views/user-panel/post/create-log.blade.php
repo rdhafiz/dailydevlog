@@ -70,9 +70,6 @@
                         {{-- content description --}}
                         <div class="mb-5 w-full px-4">
                             <label for="content_description" class="block font-semibold mb-5"> Content </label>
-{{--                            <textarea name="content" id="content_description" placeholder="Write your content here" value="{{old('content')}}"--}}
-{{--                                      class="resize-0 py-5 pe-5 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white"></textarea>--}}
-
                             <div id="editorjs" class="resize-0 py-5 pe-5 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white"></div>
                             <textarea id="editor-content" name="content" hidden></textarea>
                             @error('content')
@@ -134,42 +131,41 @@
                         </div>
 
                         <div class="w-full flex justify-end items-center px-4">
+                            {{--                             Submit Button - archived--}}
+                            {{--                            <button type="submit" class="btn-red w-[120px] rounded-lg me-2 border-0 outline-0" id="archiveBtnSubmit">--}}
+                            {{--                                Archived--}}
+                            {{--                            </button>--}}
 
-{{--                             Submit Button - archived--}}
-{{--                            <button type="submit" class="btn-red w-[120px] rounded-lg me-2 border-0 outline-0" id="archiveBtnSubmit">--}}
-{{--                                Archived--}}
-{{--                            </button>--}}
+                            {{--                             archived btn loading--}}
+                            {{--                            <div class="hidden" id="archiveBtnLoading">--}}
+                            {{--                                <button type="button" class="btn-red rounded-md w-[120px] flex justify-center items-center h-[45px] text-white me-2" disabled>--}}
+                            {{--                                    <svg class="h-5 mx-auto w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg"--}}
+                            {{--                                         fill="none" viewBox="0 0 24 24">--}}
+                            {{--                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"--}}
+                            {{--                                                stroke-width="4"></circle>--}}
+                            {{--                                        <path class="opacity-75" fill="currentColor"--}}
+                            {{--                                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>--}}
+                            {{--                                    </svg>--}}
+                            {{--                                </button>--}}
+                            {{--                            </div>--}}
 
-{{--                             archived btn loading--}}
-{{--                            <div class="hidden" id="archiveBtnLoading">--}}
-{{--                                <button type="button" class="btn-red rounded-md w-[120px] flex justify-center items-center h-[45px] text-white me-2" disabled>--}}
-{{--                                    <svg class="h-5 mx-auto w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg"--}}
-{{--                                         fill="none" viewBox="0 0 24 24">--}}
-{{--                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"--}}
-{{--                                                stroke-width="4"></circle>--}}
-{{--                                        <path class="opacity-75" fill="currentColor"--}}
-{{--                                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>--}}
-{{--                                    </svg>--}}
-{{--                                </button>--}}
-{{--                            </div>--}}
+                            {{--                             Submit Button - draft--}}
+                            {{--                            <button type="submit" class="btn-orange rounded-md w-[120px] flex justify-center items-center h-[45px] text-white me-2" id="draftBtnSubmit">--}}
+                            {{--                                Draft--}}
+                            {{--                            </button>--}}
 
-{{--                             Submit Button - draft--}}
-{{--                            <button type="submit" class="btn-orange rounded-md w-[120px] flex justify-center items-center h-[45px] text-white me-2" id="draftBtnSubmit">--}}
-{{--                                Draft--}}
-{{--                            </button>--}}
-
-{{--                             draft btn loading--}}
-{{--                            <div class="hidden" id="draftBtnLoading">--}}
-{{--                                <button type="button" class="btn-orange rounded-md w-[120px] flex justify-center items-center h-[45px] text-white me-2" disabled>--}}
-{{--                                    <svg class="h-5 mx-auto w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg"--}}
-{{--                                         fill="none" viewBox="0 0 24 24">--}}
-{{--                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"--}}
-{{--                                                stroke-width="4"></circle>--}}
-{{--                                        <path class="opacity-75" fill="currentColor"--}}
-{{--                                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>--}}
-{{--                                    </svg>--}}
-{{--                                </button>--}}
-{{--                            </div>--}}
+                            {{--                             draft btn loading--}}
+                            {{--                            <div class="hidden" id="draftBtnLoading">--}}
+                            {{--                                <button type="button" class="btn-orange rounded-md w-[120px] flex justify-center items-center h-[45px] text-white me-2" disabled>--}}
+                            {{--                                    <svg class="h-5 mx-auto w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg"--}}
+                            {{--                                         fill="none" viewBox="0 0 24 24">--}}
+                            {{--                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"--}}
+                            {{--                                                stroke-width="4"></circle>--}}
+                            {{--                                        <path class="opacity-75" fill="currentColor"--}}
+                            {{--                                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>--}}
+                            {{--                                    </svg>--}}
+                            {{--                                </button>--}}
+                            {{--                            </div>--}}
 
                             {{-- Submit Button - publish--}}
                             <button type="submit" class="btn-theme rounded-md w-[120px] flex justify-center items-center h-[45px] text-white" id="publishBtnSubmit">

@@ -75,7 +75,8 @@ function handleSubmit(event, btn, loadingElement, status) {
     }, 2000); // Simulate 2-second form submission delay
 }
 
-const editor = new EditorJS({
+
+/*const editor = new EditorJS({
     holder: 'editorjs',
     tools: {
         header: Header,
@@ -167,4 +168,144 @@ publishBtn.addEventListener('submit', function (event) {
         console.log('Saving failed: ', error);
     });
     handleSubmit(event, publishBtn, publishBtnLoading, 'published');
+});*/
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const editor = new EditorJS({
+        holder: 'editorjs',
+        tools: {
+            header: Header,
+            image: SimpleImage,
+            list: List,
+            checklist: Checklist,
+            quote: Quote,
+            warning: Warning,
+            marker: Marker,
+            code: CodeTool,
+            delimiter: Delimiter,
+            inlineCode: InlineCode,
+            linkTool: LinkTool,
+            embed: Embed,
+            table: Table
+        },
+        placeholder: 'Starting typing here',
+        i18n: {
+            messages: {
+                ui: {
+                    "blockTunes": {
+                        "toggler": {
+                            "Click to tune": "Click to tune",
+                            "or drag to move": "or drag to move"
+                        }
+                    },
+                    "inlineToolbar": {
+                        "converter": {
+                            "Convert to": "Convert to"
+                        }
+                    },
+                    "toolbar": {
+                        "toolbox": {
+                            "Add": "Add"
+                        }
+                    }
+                },
+                toolNames: {
+                    "Text": "Text",
+                    "Heading": "Heading",
+                    "List": "List",
+                    "Warning": "Warning",
+                    "Checklist": "Checklist",
+                    "Quote": "Quote",
+                    "Code": "Code",
+                    "Delimiter": "Delimiter",
+                    "Raw HTML": "Raw HTML",
+                    "Table": "Table",
+                    "Link": "Link",
+                    "Marker": "Marker",
+                    "Bold": "Bold",
+                    "Italic": "Italic",
+                    "InlineCode": "InlineCode"
+                },
+                tools: {
+                    "warning": {
+                        "Title": "Title",
+                        "Message": "Message"
+                    },
+                    "link": {
+                        "Add a link": "Add a link"
+                    },
+                    "stub": {
+                        "The block can not be displayed correctly.": "The block can not be displayed correctly."
+                    }
+                },
+                blockTunes: {
+                    "delete": {
+                        "Delete": "Delete"
+                    },
+                    "moveUp": {
+                        "Move up": "Move up"
+                    },
+                    "moveDown": {
+                        "Move down": "Move down"
+                    }
+                }
+            }
+        }
+    });
+
+    // Function to set data into Editor.js
+    function setEditorData(data) {
+        editor.isReady.then(() => {
+            editor.render(data).catch(error => {
+                console.error('Failed to set editor data:', error);
+            });
+        });
+    }
+
+    // Example JSON data
+    const jsonData = {
+        "time": 1725887318383,
+        "blocks": [
+            {
+                "id": "EZ9Uc3xQ4z",
+                "type": "paragraph",
+                "data": {
+                    "text": "sdsdfsdf"
+                }
+            },
+            {
+                "id": "esbbNbJYL6",
+                "type": "paragraph",
+                "data": {
+                    "text": "<b>dsfsdf</b>"
+                }
+            }
+        ],
+        "version": "2.30.5"
+    };
+
+    // Set data into the editor
+    setEditorData(jsonData);
+
+    // Handle form submission
+    document.getElementById('managePost').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        editor.save().then((outputData) => {
+            // Set the Editor.js content to the hidden textarea
+            document.getElementById('editor-content').value = JSON.stringify(outputData);
+
+            // Optionally show a loading spinner or disable the button
+            publishBtn.classList.add('hidden');
+            publishBtnLoading.classList.remove('hidden');
+
+            // Submit the form after a short delay
+            setTimeout(() => {
+                this.submit();
+            }, 500); // Adjust delay as needed
+        }).catch((error) => {
+            console.error('Saving failed: ', error);
+        });
+    });
 });

@@ -118,9 +118,9 @@
                         <div class="mb-5 md:w-1/2 px-4">
                             <label for="post-status" class="block font-semibold"> Status </label>
                             <select name="status" id="post-status" class="w-full h-[51px] px-4 border-0 border-b border-b-cyan-500 placeholder-gray-400 bg-transparent text-gray-600 dark:text-white outline-0">
+                                <option value="published">Published</option>
                                 <option value="archived">Archived</option>
                                 <option value="draft">Draft</option>
-                                <option value="published">Published</option>
                             </select>
                             @error('status')
                                 <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>

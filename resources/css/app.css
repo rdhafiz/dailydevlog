@@ -391,7 +391,15 @@ rte-toolbar-dropdown-item {
 }
 
 .ce-block__content {
-    max-width: 90% !important;
+    max-width: 85% !important;
+}
+
+.ce-toolbar__plus {
+    background: #ffffff !important;
+}
+
+.ce-toolbar__settings-btn {
+    background: #ffffff !important;
 }
 
 .ce-toolbar__actions {

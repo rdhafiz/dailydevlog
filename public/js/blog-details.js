@@ -46,9 +46,9 @@ function convertToHTML(data) {
                 html += `<a href="${block.data.link}" target="_blank">${block.data.title || block.data.link}</a>`;
                 break;
             case 'checklist':
-                html += '<ul>';
+                html += '<ul style="list-style: none; padding: 10px 0 !important;">';
                 block.data.items.forEach(item => {
-                    html += `<li><input type="checkbox" ${item.checked ? 'checked' : ''} disabled /> ${item.text}</li>`;
+                    html += `<li style="list-style: none" class="flex justify-start items-center"><input type="checkbox" ${item.checked ? 'checked' : ''} disabled />  <span style="margin-left: 6px"> ${item.text} </span> </li>`;
                 });
                 html += '</ul>';
                 break;

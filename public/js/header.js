@@ -12,7 +12,7 @@ window.onload = function () {
     }
 };
 
-/*function to search data*/
+// function to search data*/
 function searchData(){
     const globalSearchParam = document.getElementById('keyword');
     const params = new URLSearchParams();
@@ -32,18 +32,16 @@ let menuShow = false;
 function toggleMenu() {
     const menu = document.getElementById('menu');
     if (!menuShow) {
-        // If menuShow is true, apply the "visible" styles
         menu.classList.add('left-0', 'z-[9999]');
         menu.classList.remove('left-[-100%]', '-z-[10]');
     } else {
-        // If menuShow is false, apply the "hidden" styles
         menu.classList.add('left-[-100%]', '-z-[10]');
         menu.classList.remove('left-0', 'z-[9999]');
     }
     menuShow = !menuShow;
 }
 
-/* Function of search dropdown */
+// function of search dropdown
 function searchDropdown() {
     let searchDropDownMenu = document.querySelector('#search-dropdown-menu #search-dropdown');
     if(searchDropDownMenu) {
@@ -59,7 +57,7 @@ function searchDropdown() {
     }
 }
 
-/* Function of mode dropdown */
+// function of mode dropdown
 function userDropdown() {
     let userDropDownMenu = document.querySelector('#user-menu #user-dropdown');
     if(userDropDownMenu) {
@@ -75,7 +73,7 @@ function userDropdown() {
     }
 }
 
-/* Function of scrolling header */
+// Function of scrolling header
 function onscroll() {
     const header = document.querySelector('.header');
     if(header){
@@ -91,7 +89,7 @@ window.addEventListener('scroll', onscroll)
 
 window.addEventListener('mouseup', (e) => {
 
-    /*hide search container*/
+    // hide search container
     const searchBtn = document.querySelector('#searchBtn');
     const searchDropDown = document.querySelector('#search-dropdown');
     if(searchBtn && searchDropDown) {
@@ -100,7 +98,7 @@ window.addEventListener('mouseup', (e) => {
         }
     }
 
-    /*hide theme container*/
+    // hide theme container
     const userBtn = document.querySelector('#userToggle');
     const userDropDown = document.querySelector('#user-dropdown');
     if(userBtn && userDropDown) {
@@ -108,4 +106,5 @@ window.addEventListener('mouseup', (e) => {
             userDropDown.classList.add('hidden');
         }
     }
+
 })

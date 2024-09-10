@@ -21,12 +21,10 @@
                 </a>
             </div>
         @endif
-
         @foreach ($elements as $element)
             @if (is_string($element))
                 <button type="button" class="disabled p-3 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg"><span>{{ $element }}</span></button>
             @endif
-
             @if (is_array($element))
                 @foreach ($element as $page => $url)
                     @if ($page == $paginator->currentPage())
@@ -37,7 +35,6 @@
                 @endforeach
             @endif
         @endforeach
-
         @if ($paginator->hasMorePages())
             <div>
                 <a class="border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg" href="{{ $paginator->nextPageUrl() }}" rel="next">

@@ -1,7 +1,6 @@
 @extends('user-panel.layout.layout')
 @section('title', 'Daily Dev Log | Insights & Tutorials on Web and Mobile App Development')
 @section('content')
-
     <div id="reset">
         <section class="w-full flex justify-center items-center px-4">
             <div class="w-[450px] h-auto min-h-[455px] rounded-[16px] bg-white dark:bg-[#222222] p-[35px] mt-[36px]">
@@ -15,9 +14,7 @@
                 </div>
                 <div class="sm:flex justify-center">
                     <form id="reset-form" action="{{ route('API.USER.RESET') }}" method="POST">
-
                         @csrf
-
                         @if (session('email'))
                             <div class="mb-[15px]">
                                 <input type="email" name="email" placeholder="Email Address *"
@@ -42,7 +39,6 @@
                                 @enderror
                             </div>
                         @endif
-
                         {{-- Reset Code --}}
                         <div class="mb-[15px]">
                             <input type="text" name="code" placeholder="Reset Code *"
@@ -54,7 +50,6 @@
                             </div>
                             @enderror
                         </div>
-
                         {{-- Password --}}
                         <div class="mb-[15px]">
                             <input type="password" name="password" placeholder="Password *"
@@ -65,7 +60,6 @@
                             </div>
                             @enderror
                         </div>
-
                         {{-- Password Confirmation --}}
                         <div class="mb-[15px]">
                             <input type="password" name="password_confirmation" placeholder="Password Confirmation *"
@@ -76,7 +70,6 @@
                             </div>
                             @enderror
                         </div>
-
                         <div class="w-full mb-[15px]">
                             <button type="submit"
                                     class="btn h-[45px] w-full flex justify-center items-center border border-[#0000003F] rounded-[50px] bg-gradient-to-r from-15% from-[#85A41C] via-50% via-[#AED725] to-85% to-[#85A41C]"
@@ -103,14 +96,10 @@
                                 Login Now!
                             </a>
                         </div>
-
                     </form>
-
                 </div>
             </div>
         </section>
     </div>
-
     <script src="{{asset('/js/reset.js')}}"></script>
-
 @endsection

@@ -14,15 +14,8 @@ function setParams() {
     const keyword = document.getElementById('searchKey').value.trim();
     const status = document.getElementById('selectData').value;
     const params = new URLSearchParams();
-
-    if (keyword) {
-        params.append('keyword', keyword);
-    }
-
-    if (status) {
-        params.append('status', status);
-    }
-
+    if (keyword) { params.append('keyword', keyword); }
+    if (status) { params.append('status', status); }
     const queryString = params.toString();
     window.location.href = `/my-blogs?${queryString}`;
 }

@@ -53,4 +53,5 @@
     </script>
 
     <script src="{{asset('/js/blog-details.js')}}"></script>
+
 @endsection

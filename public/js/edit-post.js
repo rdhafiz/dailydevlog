@@ -36,6 +36,7 @@ setTimeout(() => {
     runningFunction();
 }, 300);
 
+// featured image upload
 uploadFileInput.addEventListener('change', function () {
     if (this.files && this.files[0]) {
         let reader = new FileReader();
@@ -49,6 +50,7 @@ uploadFileInput.addEventListener('change', function () {
     }
 });
 
+// resize image of content description
 function resizeImage(file, maxWidth, maxHeight, quality = 0.7) {
     return new Promise((resolve, reject) => {
         const img = new Image();
@@ -101,6 +103,7 @@ function resizeImage(file, maxWidth, maxHeight, quality = 0.7) {
     });
 }
 
+// editor define
 const editor = new EditorJS({
     holder: 'editorjs',
     tools: {

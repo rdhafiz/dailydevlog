@@ -1,4 +1,4 @@
-/* Function to light mode */
+// function to light mode
 function lightMode() {
     console.log(1)
     const htmlElement = document.documentElement;
@@ -8,7 +8,7 @@ function lightMode() {
     }
 }
 
-/* Function to dark mode */
+// function to dark mode
 function darkMode() {
     console.log(2)
     const savedTheme = localStorage.getItem('theme') || 'light';
@@ -18,7 +18,7 @@ function darkMode() {
     }
 }
 
-/* Set initial theme based on localStorage */
+// Set initial theme based on localStorage
 document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme') || 'dark';
     if (savedTheme === 'dark') {

@@ -1,6 +1,5 @@
 function convertToHTML(data) {
     let html = '';
-
     data.blocks.forEach((block, index) => {
         switch (block.type) {
             case 'paragraph':
@@ -63,13 +62,11 @@ function convertToHTML(data) {
                 });
                 html += '</table>';
                 break;
-            // Handle additional block types if needed
             default:
                 html += `<div>Unsupported block type: ${block.type}</div>`;
                 break;
         }
 
-        // Add spacing between blocks
         if (index < data.blocks.length - 1) {
             html += '<br>'; // or any other spacer, e.g., a <hr> or margin CSS
         }
@@ -77,7 +74,6 @@ function convertToHTML(data) {
 
     return html;
 }
-
 
 const htmlContent = convertToHTML(window.editorContent);
 document.getElementById('editor-content').innerHTML = htmlContent;

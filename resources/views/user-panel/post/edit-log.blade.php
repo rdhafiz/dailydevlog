@@ -1,13 +1,7 @@
 @extends('user-panel.layout.layout')
 @section('title', 'Daily Dev Log | Insights & Tutorials on Web and Mobile App Development')
 @section('content')
-
-    @php
-
-        $content_description = $post['content'];
-
-    @endphp
-
+    @php  $content_description = $post['content']; @endphp
     <div id="post" class="p-2 md:p-4 mt-[50px]">
         <div class="fixed-container">
             <div
@@ -172,11 +166,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        window.content_description = {!! $content_description !!}
-    </script>
-
+    <script> window.content_description = {!! $content_description !!} </script>
     <script src="{{asset('/js/edit-post.js')}}"></script>
-
 @endsection

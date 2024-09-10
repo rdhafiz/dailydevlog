@@ -55,6 +55,7 @@ uploadFileInput.addEventListener('change', function () {
     }
 });
 
+// resize image
 function resizeImage(file, maxWidth, maxHeight, quality = 0.7) {
     return new Promise((resolve, reject) => {
         const img = new Image();

@@ -1,24 +1,19 @@
 @extends('user-panel.layout.layout')
 @section('title', 'Daily Dev Log | Insights & Tutorials on Web and Mobile App Development')
 @section('content')
-
     @php
         $date = function ($publishDate){
             $date = new DateTime($publishDate);
            return $date->format('M d Y');
         }
     @endphp
-
     <div>
         <section class="fixed-container mt-[85px]">
-
             <form id="searchDataForm">
             <div class="w-full flex justify-between flex-wrap sm:flex-nowrap items-center px-3 gap-2 sm:gap-5 mb-10">
                 <div class="w-full sm:w-1/3 py-2 sm:py-3">
                     <!-- Search input -->
-
-                        <input type="text" name="keyword" id="searchKey"
-                               value="{{old('keyword')}}"
+                        <input type="text" name="keyword" id="searchKey" value="{{old('keyword')}}"
                                class="p-3 bg-transparent border-0 outline-0 border-b-cyan-400 border-b-2 w-full"
                                autocomplete="off" placeholder="Search Here">
                 </div>
@@ -33,16 +28,13 @@
                     </div>
                 </div>
                 <div class="w-full sm:w-1/3 flex justify-end py-3">
-
                     <!-- New -->
                     <a href="{{route('user.panel.create.post')}}" class="outline-0 border-0 btn-theme w-[120px] rounded-lg">
                         New Blog
                     </a>
-
                 </div>
             </div>
             </form>
-
             @if(count($result) > 0)
                 <div class="px-3 min-h-[500px]">
                     <div class="w-full max-[768px]:overflow-x-scroll">
@@ -156,7 +148,5 @@
             @endif
         </section>
     </div>
-
     <script src="{{asset('/js/my-post.js')}}"></script>
-
 @endsection

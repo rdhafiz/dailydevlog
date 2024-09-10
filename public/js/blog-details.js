@@ -25,10 +25,10 @@ function convertToHTML(data) {
                 }
                 break;
             case 'quote':
-                html += `<blockquote><p>${block.data.text}</p><footer>${block.data.caption || ''}</footer></blockquote>`;
+                html += `<div class="border-theme-start flex justify-center"><q class="flex justify-start items-center gap-2"><p>${block.data.text}</p><footer>${block.data.caption || ''}</footer></q></div>`;
                 break;
             case 'image':
-                html += `<div style="text-align:center;"><img src="${block.data.file.url}" alt="${block.data.caption || 'Editor.js image'}" style="max-width:100%; height:auto;" /></div>`;
+                html += `<div style="text-align:center;"><img src="${block.data.file.url}" alt="${block.data.caption || 'Editor.js image'}" style="max-width:100%; height:auto; object-fit: cover;" /></div>`;
                 break;
             case 'code':
                 html += `<pre><code>${block.data.code}</code></pre>`;

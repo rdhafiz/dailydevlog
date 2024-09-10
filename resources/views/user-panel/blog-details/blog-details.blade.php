@@ -6,11 +6,8 @@
            $date = new DateTime($publishDate);
           return $date->format('M d Y');
        };
-
        $content = $post['content'];
-
-    @endphp
-
+       @endphp
     <div class="mt-[50px] fixed-container" id="single-details">
         <div class="max-w-[735px] mx-auto">
             <div
@@ -55,9 +52,7 @@
         let content = `{!! $content !!}`;
         content = JSON.parse(content);
         window.editorContent = content;
-        console.log(content)
     </script>
 
     <script src="{{asset('/js/blog-details.js')}}"></script>
-
 @endsection

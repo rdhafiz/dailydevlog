@@ -146,9 +146,11 @@
                         <div class="w-full flex justify-end items-center px-4">
 
                             {{-- Submit Button --}}
-                            <button type="submit" class="btn-theme rounded-md w-[120px] flex justify-center items-center h-[45px] text-white" id="publishBtnSubmit">
-                                Update
-                            </button>
+                            <div id="publishBtnSubmit">
+                                <button type="submit" class="btn-theme rounded-md w-[120px] flex justify-center items-center h-[45px] text-white">
+                                    Update
+                                </button>
+                            </div>
 
                             {{-- Btn loading --}}
                             <div class="hidden" id="publishBtnLoading">

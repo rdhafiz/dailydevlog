@@ -55,12 +55,95 @@ uploadFileInput.addEventListener('change', function () {
     }
 });
 
+function resizeImage(file, maxWidth, maxHeight, quality = 0.7) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+            img.onload = () => {
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+
+                let width = img.width;
+                let height = img.height;
+
+                // Calculate the new dimensions
+                if (width > height) {
+                    if (width > maxWidth) {
+                        height *= maxWidth / width;
+                        width = maxWidth;
+                    }
+                } else {
+                    if (height > maxHeight) {
+                        width *= maxHeight / height;
+                        height = maxHeight;
+                    }
+                }
+
+                canvas.width = width;
+                canvas.height = height;
+
+                ctx.drawImage(img, 0, 0, width, height);
+
+                canvas.toBlob((blob) => {
+                    const newFile = new File([blob], file.name, {
+                        type: file.type,
+                        lastModified: file.lastModified
+                    });
+
+                    const newReader = new FileReader();
+                    newReader.onloadend = () => {
+                        resolve(newReader.result);
+                    };
+                    newReader.onerror = reject;
+                    newReader.readAsDataURL(newFile);
+                }, file.type, quality);
+            };
+            img.src = e.target.result;
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+    });
+}
+
 // Editor JS setup
 const editor = new EditorJS({
     holder: 'editorjs',
     tools: {
         header: Header,
-        image: SimpleImage,
+        image: {
+            class: ImageTool,
+            config: {
+                // Override the default behavior to handle base64 images
+                endpoints: {
+                    byFile: '', // No endpoint required
+                    byUrl: ''
+                },
+                uploader: {
+                    // Use a custom uploader to handle base64 image conversion
+                    uploadByFile(file) {
+                        return resizeImage(file, 800, 800) // Adjust max width and height as needed
+                            .then((base64Image) => {
+                                return {
+                                    success: 1,
+                                    file: {
+                                        url: base64Image
+                                    }
+                                };
+                            });
+                    },
+                    uploadByUrl(url) {
+                        return Promise.resolve({
+                            success: 1,
+                            file: {
+                                url: url
+                            }
+                        });
+                    }
+                }
+            }
+        },
         list: List,
         checklist: Checklist,
         quote: Quote,
@@ -139,6 +222,8 @@ const editor = new EditorJS({
 });
 
 document.addEventListener('DOMContentLoaded', function() {
+
+    // Handle form submission
     form.addEventListener('submit', function (event) {
         event.preventDefault();
         publishBtn.classList.add('hidden');
@@ -152,4 +237,5 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('Saving failed: ', error);
         });
     });
+
 });

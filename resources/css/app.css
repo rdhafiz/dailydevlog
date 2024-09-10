@@ -390,8 +390,12 @@ rte-toolbar-dropdown-item {
     padding: 0 !important;
 }
 
-.ce-block__content {
+#post .ce-block__content {
     max-width: 85% !important;
+}
+
+#single-details  .ce-block__content {
+    max-width: 100% !important;
 }
 
 .ce-toolbar__plus {

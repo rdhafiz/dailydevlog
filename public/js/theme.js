@@ -1,6 +1,5 @@
 // function to light mode
 function lightMode() {
-    console.log(1)
     const htmlElement = document.documentElement;
     if (htmlElement.classList.contains('dark')) {
         htmlElement.classList.remove('dark');
@@ -10,7 +9,6 @@ function lightMode() {
 
 // function to dark mode
 function darkMode() {
-    console.log(2)
     const savedTheme = localStorage.getItem('theme') || 'light';
     if(savedTheme === 'light') {
         document.documentElement.classList.add('dark');

@@ -20,21 +20,11 @@ function initializeSelect2() {
 // Switch handler for "Is Featured"
 function changeIsFeatured(event) {
     const isChecked = event.target.checked;
-    if(isChecked) {
-        console.log(isChecked)
-    }else {
-        console.log(isChecked)
-    }
 }
 
 // Switch handler for "Allow Comments"
 function changeAllowComments(event) {
     const isChecked = event.target.checked;
-    if(isChecked) {
-        console.log(isChecked)
-    }else {
-        console.log(isChecked)
-    }
 }
 
 setTimeout(() => {

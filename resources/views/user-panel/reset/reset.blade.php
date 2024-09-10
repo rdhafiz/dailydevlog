@@ -52,7 +52,7 @@
                         </div>
                         {{-- Password --}}
                         <div class="mb-[15px]">
-                            <input type="password" name="password" placeholder="Password *"
+                            <input type="password" name="password" placeholder="Password *" autocomplete="off"
                                    class="w-full sm:w-[330px] border border-[#0000003F] bg-[#ECEBF7] dark:bg-[#333333] placeholder-[#A0A0A0] dark:placeholder-[#ECEBF780] h-[45px] px-[20px] rounded-[50px] d-flex justify-start items-center outline-0 text-[14px]">
                             @error('password')
                             <div class="text-[12px] font-[600] text-red mt-2">
@@ -62,7 +62,7 @@
                         </div>
                         {{-- Password Confirmation --}}
                         <div class="mb-[15px]">
-                            <input type="password" name="password_confirmation" placeholder="Password Confirmation *"
+                            <input type="password" name="password_confirmation" placeholder="Password Confirmation *" autocomplete="off"
                                    class="w-full sm:w-[330px] border border-[#0000003F] bg-[#ECEBF7] dark:bg-[#333333] placeholder-[#A0A0A0] dark:placeholder-[#ECEBF780] h-[45px] px-[20px] rounded-[50px] d-flex justify-start items-center outline-0 text-[14px]">
                             @error('password_confirmation')
                             <div class="text-[12px] font-[600] text-red mt-2">

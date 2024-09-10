@@ -19,7 +19,7 @@
                         @csrf
                         {{-- Email --}}
                         <div class="mb-[12px]">
-                            <input type="email" name="email" value="{{ old('email') }}" placeholder="Email Address *"
+                            <input type="email" name="email" value="{{ old('email') }}" placeholder="Email Address *" autocomplete="off"
                                    class="w-full sm:w-[330px] border border-[#0000003F] bg-[#ECEBF7] dark:bg-[#333333] placeholder-[#A0A0A0] dark:placeholder-[#ECEBF780] h-[45px] px-[20px] rounded-[50px] d-flex justify-start items-center outline-0 text-[14px]">
                             @error('email')
                             <div class="text-[12px] font-[600] text-red mt-2">{{ $message }}</div>
@@ -28,7 +28,7 @@
 
                         {{-- Password --}}
                         <div class="mb-[12px]">
-                            <input type="password" name="password" value="{{ old('password') }}" placeholder="Password *"
+                            <input type="password" name="password" value="{{ old('password') }}" placeholder="Password *" autocomplete="off"
                                    class="w-full sm:w-[330px] border border-[#0000003F] bg-[#ECEBF7] dark:bg-[#333333] placeholder-[#A0A0A0] dark:placeholder-[#ECEBF780] h-[45px] px-[20px] rounded-[50px] d-flex justify-start items-center outline-0 text-[14px]">
                             @error('password')
                             <div class="text-[12px] font-[600] text-red mt-2">{{ $message }}</div>
@@ -44,7 +44,7 @@
                                            for="check-vertical-list-group">
                                         <input type="checkbox"
                                                class="peer h-5 w-5 cursor-pointer transition-all appearance-none rounded shadow hover:shadow-md border border-[#0000003F] bg-[#ECEBF7] checked:bg-slate-800 checked:border-slate-800"
-                                               id="check-vertical-list-group" onchange="isRemember()" />
+                                               id="check-vertical-list-group" onchange="isRemember(event)" />
                                         <span
                                             class="absolute text-white opacity-0 peer-checked:opacity-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                                           <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor"

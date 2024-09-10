@@ -1,18 +1,14 @@
 @extends('user-panel.layout.layout')
 @section('title', 'Daily Dev Log | Insights & Tutorials on Web and Mobile App Development')
 @section('content')
-
     @php
         $date = function ($publishDate){
             $date = new DateTime($publishDate);
            return $date->format('M d Y');
         }
     @endphp
-
     <div class="fixed-container mt-[50px]">
-
         @if(count($most_views) > 0)
-
             <div class="grid grid-cols-1 sm:grid-cols-2 min-[917px]:grid-cols-3 gap-[15px]">
                 @foreach($most_views as $index => $p)
                     <div
@@ -61,18 +57,14 @@
                     </div>
                 @endforeach
             </div>
-
             <div class="mt-[85px]">
                 {{ $most_views->links('vendor.pagination.custom') }}
             </div>
-
         @else
             <div
                 class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
                 <div class="font-medium text-cyan-600 dark:text-gray-500 text-2xl">No blog has found.</div>
             </div>
         @endif
-
     </div>
-
 @endsection

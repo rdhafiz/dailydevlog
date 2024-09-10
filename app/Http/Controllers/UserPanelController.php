@@ -29,7 +29,6 @@ class UserPanelController extends BaseController
             'post' => $post,
             'related_posts' => Post::where('user_id', $post['user_id'])->where('id', '!=', $id)->where('status', 'published')->take(3)->get(),
         ];
-
         if ($post->views_count == 0) {
             $post->views_count = 1;
         } else {

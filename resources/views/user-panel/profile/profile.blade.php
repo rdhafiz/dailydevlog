@@ -1,20 +1,17 @@
 @extends('user-panel.layout.layout')
 @section('title', 'Daily Dev Log | Insights & Tutorials on Web and Mobile App Development')
 @section('content')
-
     @php
         use Illuminate\Support\Facades\Auth;
         $user = Auth::user();
         $userName = $user['name'];
     @endphp
-
     <div id="profile">
         <section class="fixed-container mt-[85px]">
             <div class="flex flex-wrap">
                 <div class="w-full lg:w-1/3 px-3 mb-5">
                     <div
                         class="px-5 py-10 w-full border border-cyan-100 dark:border-cyan-900 bg-gray-100 dark:bg-gray-800 rounded-3xl flex justify-center items-center flex-col">
-
                         {{-- Show avatar --}}
                         @if($user['avatar'])
                             <form action="{{ route('API.USER.UPDATE.AVATAR') }}" id="update-avatar" method="post"
@@ -47,7 +44,6 @@
                                 </label>
                             </form>
                         @endif
-
                         {{-- Upload loading --}}
                         <div id="changeAvatarLoader" class="hidden">
                             <div class="w-[200px] lg:w-[250px] h-[200px] lg:h-[250px] dark:bg-cyan-600 bg-gray-400 rounded-full text-5xl lg:text-7xl flex justify-center items-center">
@@ -60,25 +56,20 @@
                                 </svg>
                             </div>
                         </div>
-
                         <div class="text-3xl font-bold text-center pt-5 pb-2">
                             {{ $user['name'] }}
                         </div>
-
                         <div class="font-medium text-center text-sm pb-2">
                             {{ $user['email'] }}
                         </div>
-
                         <div class="text-gray-600 dark:text-gray-400 text-sm">
                             {{ $user['bio'] }}
                         </div>
-
                     </div>
                 </div>
                 <div class="w-full lg:w-2/3 px-3">
                     <div
                         class="p-10 w-full border border-cyan-100 dark:border-cyan-900 bg-gray-100 dark:bg-gray-800 rounded-3xl mb-5">
-
                         <form id="profile-update" method="post" action="{{ route('API.USER.UPDATE.PROFILE') }}">
                             @csrf
                             <section class="w-full mb-7">
@@ -145,12 +136,9 @@
                                 </span>
                             </div>
                         </form>
-
                     </div>
-
                     <div
                         class="p-10 w-full border border-cyan-100 dark:border-cyan-900 bg-gray-100 dark:bg-gray-800 rounded-3xl">
-
                         <form id="change-password" method="post" action="{{ route('API.USER.CHANGE.PASSWORD') }}">
                             @csrf
                             <section class="w-full mb-7">
@@ -211,19 +199,13 @@
                                 </span>
                             </div>
                         </form>
-
                     </div>
                 </div>
             </div>
         </section>
-
     </div>
-
     @if($user['avatar'] === null)
-        <script>
-            window.userName = "{{$userName}}";
-        </script>
+        <script>window.userName = "{{$userName}}";</script>
     @endif
     <script src="{{asset('/js/profile.js')}}"></script>
-
 @endsection

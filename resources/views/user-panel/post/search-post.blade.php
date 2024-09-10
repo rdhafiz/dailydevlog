@@ -7,15 +7,11 @@
            return $date->format('M d Y');
         }
     @endphp
-
     <div class="fixed-container mt-[50px]">
-
         <div
             class="mb-5 text-secondary dark:text-white block font-bold text-[16px] leading-[24px] dark:hover:text-second hover:text-second duration-500 text-truncate-line-2">
             Showing blogs matching the search for <span class="text-second" id="global-data-show"> </span></div>
-
         @if(count($posts) > 0)
-
             <div class="grid grid-cols-1 sm:grid-cols-2 min-[917px]:grid-cols-3 gap-[15px]">
                 @foreach($posts as $index => $p)
                     <div
@@ -64,18 +60,14 @@
                     </div>
                 @endforeach
             </div>
-
             <div class="mt-[85px]">
                 {{ $posts->links('vendor.pagination.custom') }}
             </div>
-
         @else
             <div
                 class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
                 <div class="font-medium text-cyan-600 dark:text-gray-500 text-2xl">No blog has found.</div>
             </div>
         @endif
-
     </div>
-
 @endsection

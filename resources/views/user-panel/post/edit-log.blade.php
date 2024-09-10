@@ -1,13 +1,7 @@
 @extends('user-panel.layout.layout')
 @section('title', 'Daily Dev Log | Insights & Tutorials on Web and Mobile App Development')
 @section('content')
-
-    @php
-
-        $content_description = $post['content'];
-
-    @endphp
-
+    @php  $content_description = $post['content']; @endphp
     <div id="post" class="p-2 md:p-4 mt-[50px]">
         <div class="fixed-container">
             <div
@@ -134,9 +128,9 @@
                         <div class="mb-5 md:w-1/2 px-4">
                             <label for="post-status" class="block font-semibold"> Status </label>
                             <select name="status" id="post-status" class="w-full h-[51px] px-4 border-0 border-b border-b-cyan-500 placeholder-gray-400 bg-transparent text-gray-600 dark:text-white outline-0" value="{{$post['status']}}">
-                                <option value="published">Published</option>
-                                <option value="archived">Archived</option>
-                                <option value="draft">Draft</option>
+                                <option value="published" class="text-dark2">Published</option>
+                                <option value="archived" class="text-dark2">Archived</option>
+                                <option value="draft" class="text-dark2">Draft</option>
                             </select>
                             @error('status')
                                 <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>
@@ -146,9 +140,11 @@
                         <div class="w-full flex justify-end items-center px-4">
 
                             {{-- Submit Button --}}
-                            <button type="submit" class="btn-theme rounded-md w-[120px] flex justify-center items-center h-[45px] text-white" id="publishBtnSubmit">
-                                Update
-                            </button>
+                            <div id="publishBtnSubmit">
+                                <button type="submit" class="btn-theme rounded-md w-[120px] flex justify-center items-center h-[45px] text-white">
+                                    Update
+                                </button>
+                            </div>
 
                             {{-- Btn loading --}}
                             <div class="hidden" id="publishBtnLoading">
@@ -170,11 +166,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        window.content_description = {!! $content_description !!}
-    </script>
-
+    <script> window.content_description = {!! $content_description !!} </script>
     <script src="{{asset('/js/edit-post.js')}}"></script>
-
 @endsection

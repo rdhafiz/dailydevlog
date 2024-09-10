@@ -6,11 +6,8 @@
            $date = new DateTime($publishDate);
           return $date->format('M d Y');
        };
-
        $content = $post['content'];
-
-    @endphp
-
+       @endphp
     <div class="mt-[50px] fixed-container" id="single-details">
         <div class="max-w-[735px] mx-auto">
             <div
@@ -44,7 +41,7 @@
                         @endforeach
                     </div>
                     <div class="mt-[25px] text-[13px] leading-[19.5px] text-black dark:!text-white" id="content_description">
-                        <div id="editorjs"></div>
+                        <div id="editor-content"></div>
                     </div>
                 </div>
             </div>
@@ -52,10 +49,7 @@
     </div>
 
     <script>
-        let content = `{!! $content !!}`;
-        content = JSON.parse(content);
-        window.editorContent = content;
-        console.log(content)
+        window.editorContent = {!! $content !!}
     </script>
 
     <script src="{{asset('/js/blog-details.js')}}"></script>

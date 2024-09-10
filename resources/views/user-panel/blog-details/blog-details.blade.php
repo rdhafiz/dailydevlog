@@ -41,7 +41,8 @@
                         @endforeach
                     </div>
                     <div class="mt-[25px] text-[13px] leading-[19.5px] text-black dark:!text-white" id="content_description">
-                        <div id="editorjs"></div>
+{{--                        <div id="editorjs"></div>--}}
+                        <div id="editor-content"></div>
                     </div>
                 </div>
             </div>
@@ -49,9 +50,12 @@
     </div>
 
     <script>
-        let content = `{!! $content !!}`;
-        content = JSON.parse(content);
-        window.editorContent = content;
+        {{--let content = `{!! $content !!}`;--}}
+        {{--content = JSON.parse(content);--}}
+        {{--window.editorContent = content;--}}// Function to convert Editor.js data to HTML
+
+
+        window.editorContent = {!! $content !!}
     </script>
 
     <script src="{{asset('/js/blog-details.js')}}"></script>

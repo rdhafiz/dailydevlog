@@ -15,42 +15,26 @@
                             <div class="w-full">
                                 {{-- Upload file --}}
                                 <div class="relative">
-
-                                    <div id="new-upload">
+                                    <div>
                                         <label for="upload-file" class="w-full h-[250px] flex justify-center items-center cursor-pointer border border-cyan-400 rounded-lg duration-500 bg-transparent hover:bg-gray-400 dark:hover:bg-gray-600 fw-medium">
                                             <a class="flex items-center justify-center relative h-full w-full text-gray-600 dark:text-gray-400 duration-500">
-                                                <input type="file" id="upload-file" name="featured_image" class="hidden" accept="image/*" onchange="changeUploadFile(event)">
+                                                <input type="file" id="upload-file" name="featured_image" class="hidden" accept="image/*" value="{{old('featured_image')}}">
                                                 Upload Featured Image
-                                                @if($post['featured_image'] !== null)
-                                                    <div class="absolute top-0 bottom-0 start-0 end-0">
-                                                        <div class="w-full h-[250px] bg-white rounded-lg overflow-hidden">
-                                                            <img src="/storage/media/{{$post['featured_image']}}" class="w-full h-[250px] object-cover cursor-pointer border border-cyan-400 rounded-lg duration-500" alt="featured-image">
-                                                        </div>
-                                                    </div>
-                                                @endif
                                             </a>
+                                            @if($post['featured_image'] !== null)
+                                                <div class="absolute top-0 bottom-0 start-0 end-0">
+                                                    <div class="w-full h-[250px] bg-white rounded-lg">
+                                                        <img src="/storage/media/{{$post['featured_image']}}" id="featured_preview" class="w-full h-[250px] object-cover cursor-pointer border border-cyan-400 rounded-lg duration-500" alt="featured-image">
+                                                    </div>
+                                                </div>
+                                            @else
+                                                <div class="absolute top-0 bottom-0 start-0 end-0 hidden" id="featured_preview_parent">
+                                                    <div class="w-full h-[250px] bg-white rounded-lg">
+                                                        <img src="" id="featured_preview" class="hidden w-full h-[250px] object-cover cursor-pointer border border-cyan-400 rounded-lg duration-500" alt="featured-image">
+                                                    </div>
+                                                </div>
+                                            @endif
                                         </label>
-                                    </div>
-
-                                    <label class="w-full" id="preview-upload-file">
-                                        <img src="" id="featured_preview" class="hidden w-full h-[250px] object-cover cursor-pointer border border-cyan-400 rounded-lg duration-500" alt="featured-image">
-                                        <input type="file" id="upload-file" name="featured_image" class="hidden" accept="image/*" onchange="changeUploadFile(event)">
-                                    </label>
-
-                                </div>
-
-                                {{-- Upload Loading --}}
-                                <div class="hidden" id="uploadLoading">
-                                    <div
-                                        class="w-full h-[250px] flex justify-center items-center cursor-pointer border border-cyan-400 rounded-lg bg-transparent duration-500 hover:bg-gray-400 dark:hover:bg-gray-400 hover:text-black fw-medium">
-                                        <svg class="h-[35px] mx-auto w-[35px] animate-spin text-white"
-                                             xmlns="http://www.w3.org/2000/svg"
-                                             fill="none" viewBox="0 0 24 24">
-                                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                                    stroke-width="4"></circle>
-                                            <path class="opacity-75" fill="currentColor"
-                                                  d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                        </svg>
                                     </div>
                                 </div>
 
@@ -132,11 +116,12 @@
 
                         <div class="mb-5 md:w-1/2 px-4">
                             <label for="post-status" class="block font-semibold"> Status </label>
-                            <select name="status" id="post-status" class="w-full h-[51px] px-4 border-0 border-b border-b-cyan-500 placeholder-gray-400 bg-transparent text-gray-600 dark:text-white outline-0" value="{{$post['status']}}">
-                                <option value="published" class="text-dark2">Published</option>
-                                <option value="archived" class="text-dark2">Archived</option>
-                                <option value="draft" class="text-dark2">Draft</option>
+                            <select name="status" id="post-status" class="w-full h-[51px] px-4 border-0 border-b border-b-cyan-500 placeholder-gray-400 bg-transparent text-gray-600 dark:text-white outline-0">
+                                <option value="published" {{ (old('status', $post['status']) == 'published') ? 'selected' : '' }} class="text-dark2">Published</option>
+                                <option value="archived" {{ (old('status', $post['status']) == 'archived') ? 'selected' : '' }} class="text-dark2">Archived</option>
+                                <option value="draft" {{ (old('status', $post['status']) == 'draft') ? 'selected' : '' }} class="text-dark2">Draft</option>
                             </select>
+
                             @error('status')
                                 <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>
                             @enderror
@@ -171,6 +156,10 @@
             </div>
         </div>
     </div>
-    <script> window.content_description = {!! $content_description !!} </script>
+    <script>
+        window.content_description = {!! $content_description !!};
+        window.featured_image = '{{$post['featured_image']}}';
+        console.log('{{$post['featured_image']}}')
+    </script>
     <script src="{{asset('/js/edit-post.js')}}"></script>
 @endsection

@@ -116,10 +116,10 @@ class PostController extends Controller
             'is_featured' => 'nullable',
             'allow_comments' => 'nullable',
         ]);
-
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+
         $data = $this->getData($data);
         if ($request->hasFile('featured_image')) {
             $path = $request->file('featured_image')->store('public/media');
@@ -128,6 +128,7 @@ class PostController extends Controller
             $featured_image = null;
         }
         $data['featured_image'] = $featured_image;
+
         $post = $this->postService->createPost($data);
         return redirect()->route('user.panel.my.post')->with('success', 'Post has been updated');
     }

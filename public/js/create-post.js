@@ -1,7 +1,6 @@
 const uploadFileInput = document.getElementById('upload-file');
 const featuredImagePreview = document.getElementById('featured_preview');
-const beforeUpload = document.getElementById('before-upload');
-const uploadLoading = document.getElementById('uploadLoading');
+const uploadText = document.getElementById('upload-text');
 const publishBtn = document.getElementById('publishBtnSubmit');
 const publishBtnLoading = document.getElementById('publishBtnLoading');
 const form = document.getElementById('managePost');
@@ -37,25 +36,12 @@ uploadFileInput.addEventListener('change', function () {
         let reader = new FileReader();
         reader.onload = function (e) {
             featuredImagePreview.src = e.target.result;
-            beforeUpload.classList.add('hidden');
             featuredImagePreview.classList.remove('hidden');
-            uploadLoading.classList.add('hidden');
+            uploadText.classList.add('hidden');
         };
         reader.readAsDataURL(this.files[0]);
     }
 });
-
-// change preview and hide loading spinner
-function uploadFile(event) {
-    let reader = new FileReader();
-    reader.onload = function (e) {
-    featuredImagePreview.src = e.target.result;
-    beforeUpload.classList.add('hidden');
-    featuredImagePreview.classList.remove('hidden');
-    uploadLoading.classList.add('hidden');
-    };
-    reader.readAsDataURL(event.target.files[0]);
-}
 
 // resize image
 function resizeImage(file, maxWidth, maxHeight, quality = 0.7) {

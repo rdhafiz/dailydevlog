@@ -19,17 +19,16 @@
                                         <label for="upload-file" class="w-full h-[250px] flex justify-center items-center cursor-pointer border border-cyan-400 rounded-lg duration-500 bg-transparent hover:bg-gray-400 dark:hover:bg-gray-600 fw-medium">
                                             <a class="flex items-center justify-center relative h-full w-full text-gray-600 dark:text-gray-400 duration-500">
                                                 <input type="file" id="upload-file" name="featured_image" class="hidden" accept="image/*" value="{{old('featured_image')}}">
-                                                Upload Featured Image
+                                                <span id="upload-text">Upload Featured Image</span>
+                                                <img src="" id="featured_preview" class="hidden w-full h-[250px] object-cover cursor-pointer border border-cyan-400 rounded-lg duration-500" alt="featured-image">
                                             </a>
                                         </label>
                                     </div>
-
                                 </div>
 
-                                <label for="change-file">
-                                    <img src="" id="featured_preview" class="hidden w-full h-[250px] object-cover cursor-pointer border border-cyan-400 rounded-lg duration-500" alt="featured-image">
-                                    <input type="file" id="change-file" name="featured_image" class="hidden" accept="image/*" value="{{old('featured_image')}}" onchange="uploadFile(event)">
-                                </label>
+{{--                                <label for="change-file">--}}
+{{--                                    <input type="file" id="change-file" name="featured_image" class="hidden" accept="image/*" value="{{old('featured_image')}}" onchange="uploadFile(event)">--}}
+{{--                                </label>--}}
 
                                 {{-- Upload Loading --}}
                                 <div class="hidden" id="uploadLoading">
@@ -56,7 +55,7 @@
                                    class="h-[51px] px-4 border-0 border-b border-b-cyan-500 placeholder-gray-400 bg-transparent text-gray-600 dark:text-white w-full outline-0"
                                    placeholder="Enter your post title">
                             @error('title')
-                                <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>
+                            <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>
                             @enderror
                         </div>
 
@@ -68,7 +67,7 @@
                                 {{ old('short_description') }}
                             </textarea>
                             @error('short_description')
-                                <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>
+                            <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>
                             @enderror
                         </div>
 
@@ -78,7 +77,7 @@
                             <div id="editorjs" class="resize-0 py-5 pe-5 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white"></div>
                             <textarea id="editor-content" name="content" hidden></textarea>
                             @error('content')
-                                <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>
+                            <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>
                             @enderror
                             <div class="text-rose-600 text-sm mt-2 hidden" id="content-error"></div>
                         </div>
@@ -122,7 +121,7 @@
                                 </select>
                             </div>
                             @error('tags')
-                                <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>
+                            <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>
                             @enderror
                         </div>
 
@@ -134,7 +133,7 @@
                                 <option value="draft" class="text-dark2">Draft</option>
                             </select>
                             @error('status')
-                                <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>
+                            <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>
                             @enderror
                         </div>
 

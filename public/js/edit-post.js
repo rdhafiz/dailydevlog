@@ -1,10 +1,9 @@
 const uploadFileInput = document.getElementById('upload-file');
 const featuredImagePreview = document.getElementById('featured_preview');
-const beforeUpload = document.getElementById('before-upload');
-const uploadLoading = document.getElementById('uploadLoading');
+const featuredImagePreviewParent = document.getElementById('featured_preview_parent');
 const publishBtn = document.getElementById('publishBtnSubmit');
 const publishBtnLoading = document.getElementById('publishBtnLoading');
-const newUploadImage =document.getElementById('new-upload');
+const form = document.getElementById('managePost');
 
 // Switch handler for "Is Featured"
 function changeIsFeatured(event) {
@@ -37,30 +36,21 @@ setTimeout(() => {
     runningFunction();
 }, 300);
 
-// // Show preview and hide loading spinner
-// uploadFileInput.addEventListener('change', function () {
-//     if (this.files && this.files[0]) {
-//         let reader = new FileReader();
-//         reader.onload = function (e) {
-//             featuredImagePreview.src = e.target.result;
-//             featuredImagePreview.classList.remove('hidden');
-//             uploadLoading.classList.add('hidden');
-//         };
-//         reader.readAsDataURL(this.files[0]);
-//     }
-// });
-
-// change preview and hide loading spinner
-function changeUploadFile(event) {
-    let reader = new FileReader();
-    reader.onload = function (e) {
-        featuredImagePreview.src = e.target.result;
-        newUploadImage.classList.add('hidden');
+// featured image upload
+uploadFileInput.addEventListener('change', function () {
+    if(!window.featured_image){
+        console.log(234)
+        featuredImagePreviewParent.classList.remove('hidden');
+    }
+    if (this.files && this.files[0]) {
+        let reader = new FileReader();
+        reader.onload = function (e) {
+            featuredImagePreview.src = e.target.result;
+        };
+        reader.readAsDataURL(this.files[0]);
         featuredImagePreview.classList.remove('hidden');
-        uploadLoading.classList.add('hidden');
-    };
-    reader.readAsDataURL(event.target.files[0]);
-}
+    }
+});
 
 // resize image of content description
 function resizeImage(file, maxWidth, maxHeight, quality = 0.7) {

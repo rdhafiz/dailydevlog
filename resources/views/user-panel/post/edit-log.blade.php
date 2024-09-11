@@ -19,7 +19,7 @@
                                     <div>
                                         <label for="upload-file" class="w-full h-[250px] flex justify-center items-center cursor-pointer border border-cyan-400 rounded-lg duration-500 bg-transparent hover:bg-gray-400 dark:hover:bg-gray-600 fw-medium">
                                             <a class="flex items-center justify-center relative h-full w-full text-gray-600 dark:text-gray-400 duration-500">
-                                                <input type="file" id="upload-file" name="featured_image" class="hidden" accept="image/*" value="{{old('featured_image')}}">
+                                                <input type="file" id="upload-file" name="featured_image" class="hidden" accept="image/*" value="{{old('featured_image')}}" onchange="uploadFile(event)">
                                                 Upload Featured Image
                                             </a>
                                             @if($post['featured_image'] !== null)

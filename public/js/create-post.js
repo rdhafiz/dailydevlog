@@ -45,6 +45,18 @@ uploadFileInput.addEventListener('change', function () {
     }
 });
 
+// change preview and hide loading spinner
+function uploadFile(event) {
+    let reader = new FileReader();
+    reader.onload = function (e) {
+    featuredImagePreview.src = e.target.result;
+    beforeUpload.classList.add('hidden');
+    featuredImagePreview.classList.remove('hidden');
+    uploadLoading.classList.add('hidden');
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
+
 // resize image
 function resizeImage(file, maxWidth, maxHeight, quality = 0.7) {
     return new Promise((resolve, reject) => {

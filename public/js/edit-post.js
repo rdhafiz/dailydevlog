@@ -36,19 +36,29 @@ setTimeout(() => {
     runningFunction();
 }, 300);
 
-// featured image upload
+// Show preview and hide loading spinner
 uploadFileInput.addEventListener('change', function () {
     if (this.files && this.files[0]) {
         let reader = new FileReader();
         reader.onload = function (e) {
             featuredImagePreview.src = e.target.result;
+            featuredImagePreview.classList.remove('hidden');
+            uploadLoading.classList.add('hidden');
         };
         reader.readAsDataURL(this.files[0]);
-        beforeUpload.classList.add('hidden');
-        featuredImagePreview.classList.remove('hidden');
-        uploadLoading.classList.add('hidden');
     }
 });
+
+// change preview and hide loading spinner
+function uploadFile(event) {
+    let reader = new FileReader();
+    reader.onload = function (e) {
+    featuredImagePreview.src = e.target.result;
+    featuredImagePreview.classList.remove('hidden');
+    uploadLoading.classList.add('hidden');
+    };
+    reader.readAsDataURL(event.target.files[0]);
+}
 
 // resize image of content description
 function resizeImage(file, maxWidth, maxHeight, quality = 0.7) {

@@ -26,7 +26,10 @@
 
                                 </div>
 
-                                <img src="" id="featured_preview" class="hidden w-full h-[250px] object-cover cursor-pointer border border-cyan-400 rounded-lg duration-500" alt="featured-image">
+                                <label for="change-file">
+                                    <img src="" id="featured_preview" class="hidden w-full h-[250px] object-cover cursor-pointer border border-cyan-400 rounded-lg duration-500" alt="featured-image">
+                                    <input type="file" id="change-file" name="featured_image" class="hidden" accept="image/*" value="{{old('featured_image')}}" onchange="uploadFile(event)">
+                                </label>
 
                                 {{-- Upload Loading --}}
                                 <div class="hidden" id="uploadLoading">

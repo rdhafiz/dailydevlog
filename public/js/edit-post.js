@@ -4,6 +4,7 @@ const beforeUpload = document.getElementById('before-upload');
 const uploadLoading = document.getElementById('uploadLoading');
 const publishBtn = document.getElementById('publishBtnSubmit');
 const publishBtnLoading = document.getElementById('publishBtnLoading');
+const newUploadImage =document.getElementById('new-upload');
 
 // Switch handler for "Is Featured"
 function changeIsFeatured(event) {
@@ -50,12 +51,13 @@ uploadFileInput.addEventListener('change', function () {
 });
 
 // change preview and hide loading spinner
-function uploadFile(event) {
+function changeUploadFile(event) {
     let reader = new FileReader();
     reader.onload = function (e) {
-    featuredImagePreview.src = e.target.result;
-    featuredImagePreview.classList.remove('hidden');
-    uploadLoading.classList.add('hidden');
+        featuredImagePreview.src = e.target.result;
+        newUploadImage.classList.add('hidden');
+        featuredImagePreview.classList.remove('hidden');
+        uploadLoading.classList.add('hidden');
     };
     reader.readAsDataURL(event.target.files[0]);
 }

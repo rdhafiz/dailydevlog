@@ -238,10 +238,34 @@ document.addEventListener('DOMContentLoaded', function() {
         publishBtn.classList.add('hidden');
         publishBtnLoading.classList.remove('hidden');
         editor.save().then((outputData) => {
-            document.getElementById('editor-content').value = JSON.stringify(outputData);
+            editorContent.value = JSON.stringify(outputData);
+            const formData = new FormData(form);
+            const title = document.getElementById('title').value;
+            const shortDesc = document.getElementById('short-description').value;
+            const tags = document.getElementById('selectTag').value;
+            const titleError = document.getElementById('title-error');
+            const shortDescError = document.getElementById('short-description-error');
+            const tagsError = document.getElementById('tags-error');
+            const content = document.getElementById('content-error');
             publishBtn.classList.add('hidden');
             publishBtnLoading.classList.remove('hidden');
             setTimeout(() => {
+                if (JSON.parse(formData.get('content'))?.blocks.length === 0 && title && shortDesc && tags) {
+                    if(title) {
+                        titleError.textContent = ''
+                    }
+                    if(shortDesc) {
+                        shortDescError.textContent = ''
+                    }
+                    if(tags) {
+                        tagsError.textContent = ''
+                    }
+                    content.classList.remove('hidden');
+                    publishBtn.classList.remove('hidden');
+                    publishBtnLoading.classList.add('hidden');
+                    content.textContent = 'The content field is required';
+                    return;
+                }
                 this.submit();
             }, 2000);
         }).catch((error) => {

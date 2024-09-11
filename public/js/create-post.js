@@ -232,9 +232,21 @@ document.addEventListener('DOMContentLoaded', function() {
             const title = document.getElementById('title').value;
             const shortDesc = document.getElementById('short-description').value;
             const tags = document.getElementById('selectTag').value;
+            const titleError = document.getElementById('title-error');
+            const shortDescError = document.getElementById('short-description-error');
+            const tagsError = document.getElementById('tags-error');
+            const content = document.getElementById('content-error');
             setTimeout(() => {
                 if (JSON.parse(formData.get('content'))?.blocks.length === 0 && title && shortDesc && tags) {
-                    const content = document.getElementById('content-error');
+                    if(title) {
+                        titleError.textContent = ''
+                    }
+                    if(shortDesc) {
+                        shortDescError.textContent = ''
+                    }
+                    if(tags) {
+                        tagsError.textContent = ''
+                    }
                     content.classList.remove('hidden');
                     publishBtn.classList.remove('hidden');
                     publishBtnLoading.classList.add('hidden');

@@ -1,17 +1,22 @@
 @extends('user-panel.layout.layout')
 @section('title', 'Daily Dev Log | Insights & Tutorials on Web and Mobile App Development')
 @section('content')
+
     @php
         $date = function ($publishDate){
             $date = new DateTime($publishDate);
            return $date->format('M d Y');
         }
     @endphp
+
     <div class="fixed-container">
+
         <div class="mt-[50px]">
+
             <div class="text-center text-secondary dark:text-white text-[36px] font-bold mb-[6px] leading-[54px]">
                 Featured Articles
             </div>
+
             @if(count($featured_posts) > 0)
                 <div class="grid grid-cols-1 sm:grid-cols-2 min-[917px]:grid-cols-3 gap-[20px]">
                     @foreach($featured_posts as $index => $p)
@@ -68,11 +73,15 @@
                     </div>
                 </div>
             @endif
+
         </div>
+
         <div class="mt-[50px]">
+
             <div class="text-center text-secondary dark:text-white text-[36px] font-bold mb-[6px] leading-[54px]">
                 Latest Articles
             </div>
+
             @if(count($latest_posts) > 0)
                 <div class="grid grid-cols-1 sm:grid-cols-2 min-[917px]:grid-cols-3 gap-[15px]">
                     @foreach($latest_posts as $index => $p)
@@ -129,11 +138,15 @@
                     </div>
                 </div>
             @endif
+
         </div>
+
         <div class="mt-[50px]">
+
             <div class="text-center text-secondary dark:text-white text-[36px] font-bold mb-[6px] leading-[54px]">
                 Most Viewed
             </div>
+
             @if(count($most_viewed_posts) > 0)
                 <div class="grid grid-cols-1 sm:grid-cols-2 min-[917px]:grid-cols-3 gap-[15px]">
                     @foreach($most_viewed_posts as $index => $p)
@@ -190,7 +203,9 @@
                     </div>
                 </div>
             @endif
+
         </div>
+        
     </div>
 
 @endsection

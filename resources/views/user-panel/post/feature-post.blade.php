@@ -1,6 +1,7 @@
 @extends('user-panel.layout.layout')
 @section('title', 'Daily Dev Log | Insights & Tutorials on Web and Mobile App Development')
 @section('content')
+
     @php
         $date = function ($publishDate){
             $date = new DateTime($publishDate);
@@ -68,5 +69,7 @@
                 </div>
             </div>
         @endif
+
     </div>
+    
 @endsection

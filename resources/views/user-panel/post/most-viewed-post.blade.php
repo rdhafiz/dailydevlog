@@ -1,12 +1,14 @@
 @extends('user-panel.layout.layout')
 @section('title', 'Daily Dev Log | Insights & Tutorials on Web and Mobile App Development')
 @section('content')
+
     @php
         $date = function ($publishDate){
             $date = new DateTime($publishDate);
            return $date->format('M d Y');
         }
     @endphp
+
     <div class="fixed-container mt-[50px]">
         @if(count($most_views) > 0)
             <div class="grid grid-cols-1 sm:grid-cols-2 min-[917px]:grid-cols-3 gap-[15px]">
@@ -67,5 +69,7 @@
                 </div>
             </div>
         @endif
+
     </div>
+    
 @endsection

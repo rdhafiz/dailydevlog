@@ -1,16 +1,20 @@
 @extends('user-panel.layout.layout')
 @section('title', 'Daily Dev Log | Insights & Tutorials on Web and Mobile App Development')
 @section('content')
+
     @php
         use Illuminate\Support\Facades\Auth;
         $user = Auth::user();
         $userName = $user['name'];
         $userAvatar = $user['avatar'];
     @endphp
+
     <div id="profile">
         <section class="fixed-container mt-[85px]">
             <div class="flex flex-wrap">
+
                 <div class="w-full lg:w-1/3 px-3 mb-5">
+
                     <div class="px-5 py-10 w-full border border-cyan-100 dark:border-cyan-900 bg-gray-100 dark:bg-gray-800 rounded-3xl flex justify-center items-center flex-col">
                         {{-- Show avatar --}}
                         @if($user['avatar'])
@@ -60,10 +64,12 @@
                             {{ $user['bio'] }}
                         </div>
                     </div>
+                    
                 </div>
+
                 <div class="w-full lg:w-2/3 px-3">
-                    <div
-                        class="p-10 w-full border border-cyan-100 dark:border-cyan-900 bg-gray-100 dark:bg-gray-800 rounded-3xl mb-5">
+
+                    <div class="p-10 w-full border border-cyan-100 dark:border-cyan-900 bg-gray-100 dark:bg-gray-800 rounded-3xl mb-5">
                         <form id="profile-update" method="post" action="{{ route('API.USER.UPDATE.PROFILE') }}">
                             @csrf
                             <section class="w-full mb-7">
@@ -117,8 +123,8 @@
                             </div>
                         </form>
                     </div>
-                    <div
-                        class="p-10 w-full border border-cyan-100 dark:border-cyan-900 bg-gray-100 dark:bg-gray-800 rounded-3xl">
+
+                    <div class="p-10 w-full border border-cyan-100 dark:border-cyan-900 bg-gray-100 dark:bg-gray-800 rounded-3xl">
                         <form id="change-password" method="post" action="{{ route('API.USER.CHANGE.PASSWORD') }}">
                             @csrf
                             <section class="w-full mb-7">
@@ -167,15 +173,22 @@
                             </div>
                         </form>
                     </div>
+
                 </div>
+
             </div>
+
         </section>
+
     </div>
+
     <script> 
         window.userInfo = {
             name: '{{$userName}}',
             avatar: '{{$userAvatar}}',
         }
     </script>
+
     <script src="{{asset('/js/profile.js')}}"></script>
+
 @endsection

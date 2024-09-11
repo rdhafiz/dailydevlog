@@ -16,21 +16,26 @@
                                 {{-- Upload file --}}
                                 <div class="relative">
 
-                                    <div>
+                                    <div id="new-upload">
                                         <label for="upload-file" class="w-full h-[250px] flex justify-center items-center cursor-pointer border border-cyan-400 rounded-lg duration-500 bg-transparent hover:bg-gray-400 dark:hover:bg-gray-600 fw-medium">
                                             <a class="flex items-center justify-center relative h-full w-full text-gray-600 dark:text-gray-400 duration-500">
-                                                <input type="file" id="upload-file" name="featured_image" class="hidden" accept="image/*" value="{{old('featured_image')}}">
+                                                <input type="file" id="upload-file" name="featured_image" class="hidden" accept="image/*" onchange="changeUploadFile(event)">
                                                 Upload Featured Image
-                                            </a>
-                                            @if($post['featured_image'] !== null)
-                                                <div class="absolute top-0 bottom-0 start-0 end-0">
-                                                    <div class="w-full h-[250px] bg-white">
-                                                        <img src="/storage/media/{{$post['featured_image']}}" id="featured_preview" class="w-full h-[250px] object-cover cursor-pointer border border-cyan-400 rounded-lg duration-500" alt="featured-image">
+                                                @if($post['featured_image'] !== null)
+                                                    <div class="absolute top-0 bottom-0 start-0 end-0">
+                                                        <div class="w-full h-[250px] bg-white rounded-lg overflow-hidden">
+                                                            <img src="/storage/media/{{$post['featured_image']}}" class="w-full h-[250px] object-cover cursor-pointer border border-cyan-400 rounded-lg duration-500" alt="featured-image">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            @endif
+                                                @endif
+                                            </a>
                                         </label>
                                     </div>
+
+                                    <label class="w-full" id="preview-upload-file">
+                                        <img src="" id="featured_preview" class="hidden w-full h-[250px] object-cover cursor-pointer border border-cyan-400 rounded-lg duration-500" alt="featured-image">
+                                        <input type="file" id="upload-file" name="featured_image" class="hidden" accept="image/*" onchange="changeUploadFile(event)">
+                                    </label>
 
                                 </div>
 

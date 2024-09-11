@@ -44,8 +44,10 @@ function toggleMenu() {
 // function of search dropdown
 function searchDropdown() {
     let searchDropDownMenu = document.querySelector('#search-dropdown-menu #search-dropdown');
+    let searchKeyword = document.getElementById('keyword');
     if(searchDropDownMenu) {
         searchDropDownMenu.classList.toggle('hidden');
+        searchKeyword.focus();
     }
     let dropDownMenu = document.querySelector('#dropdown-menu #dropdown');
     if(dropDownMenu) {

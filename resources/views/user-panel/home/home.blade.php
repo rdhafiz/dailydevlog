@@ -1,17 +1,22 @@
 @extends('user-panel.layout.layout')
 @section('title', 'Daily Dev Log | Insights & Tutorials on Web and Mobile App Development')
 @section('content')
+
     @php
         $date = function ($publishDate){
             $date = new DateTime($publishDate);
            return $date->format('M d Y');
         }
     @endphp
+
     <div class="fixed-container">
+
         <div class="mt-[50px]">
+
             <div class="text-center text-secondary dark:text-white text-[36px] font-bold mb-[6px] leading-[54px]">
                 Featured Articles
             </div>
+
             @if(count($featured_posts) > 0)
                 <div class="grid grid-cols-1 sm:grid-cols-2 min-[917px]:grid-cols-3 gap-[20px]">
                     @foreach($featured_posts as $index => $p)
@@ -36,8 +41,7 @@
                                        class="text-secondary dark:text-white block font-bold dark:hover:text-second hover:text-second duration-500 {{$index === 0 ? 'text-truncate-line-3 text-[20px] leading-[30px]' : 'text-truncate-line-2 text-[17px] leading-[25.5px]'}}">
                                         {{$p['title']}}
                                     </a>
-                                    <div
-                                        class="flex flex-wrap items-center {{$index === 0 ? 'gap-[9px] justify-center sm:justify-start mb-[10px]' : 'gap-[8px] justify-center'}} pt-1 pb-[12px]">
+                                    <div class="flex flex-wrap items-center mt-2 {{$index === 0 ? 'gap-[9px] justify-center sm:justify-start mb-[10px]' : 'gap-[8px] justify-center'}} mb-[12px]">
                                         @foreach(collect(explode(",", $p['tags']))->take(4) as $i => $tag)
                                             <div
                                                 class="{{$i === 0 ? 'bg-primary' : '' }} {{$i === 1 ? 'bg-first !text-[#333333]' : '' }} {{$i === 2 ? 'bg-dark3' : '' }} {{$i === 3 ? 'bg-red' : '' }}  {{$i === 1 ? 'text-secondary' : 'text-white' }} rounded-2xl leading-[14px] font-[400] text-center {{$index === 0 ? 'w-[65px] h-[20px] text-[12px]' : 'w-[50px] h-[16px] text-[11px]'}} flex justify-center items-center capitalize">{{$tag}}</div>
@@ -62,16 +66,21 @@
                     @endforeach
                 </div>
             @else
-                <div
-                    class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
-                    <div class="font-medium text-cyan-600 dark:text-gray-500 text-2xl">No featured blog has found.</div>
+                <div class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
+                    <div class="text-secondary dark:text-white block font-[500] text-[19px] dark:hover:text-second hover:text-second duration-500">
+                        No featured blog has found.
+                    </div>
                 </div>
             @endif
+
         </div>
+
         <div class="mt-[50px]">
+
             <div class="text-center text-secondary dark:text-white text-[36px] font-bold mb-[6px] leading-[54px]">
                 Latest Articles
             </div>
+
             @if(count($latest_posts) > 0)
                 <div class="grid grid-cols-1 sm:grid-cols-2 min-[917px]:grid-cols-3 gap-[15px]">
                     @foreach($latest_posts as $index => $p)
@@ -96,8 +105,7 @@
                                        class="text-secondary dark:text-white block font-bold dark:hover:text-second hover:text-second duration-500 {{$index === 0 ? 'text-truncate-line-3 text-[20px] leading-[30px]' : 'text-truncate-line-2 text-[17px] leading-[25.5px]'}}">
                                         {{$p['title']}}
                                     </a>
-                                    <div
-                                        class="flex flex-wrap items-center {{$index === 0 ? ' mb-[10px] gap-[9px] justify-center sm:justify-start' : 'gap-[8px] justify-center'}} pt-1 pb-[12px]">
+                                    <div class="flex flex-wrap items-center mt-2 {{$index === 0 ? 'gap-[9px] justify-center sm:justify-start mb-[10px]' : 'gap-[8px] justify-center'}} mb-[12px]">
                                         @foreach(collect(explode(",", $p['tags']))->take(4) as $i => $tag)
                                             <div
                                                 class="{{$i === 0 ? 'bg-primary' : '' }} {{$i === 1 ? 'bg-first !text-[#333333]' : '' }} {{$i === 2 ? 'bg-dark3' : '' }} {{$i === 3 ? 'bg-red' : '' }}  {{$i === 1 ? 'text-secondary' : 'text-white' }} rounded-2xl leading-[14px] font-[400] text-center {{$index === 0 ? 'w-[65px] h-[20px] text-[12px]' : 'w-[50px] h-[16px] text-[11px]'}} flex justify-center items-center capitalize">{{$tag}}</div>
@@ -122,16 +130,21 @@
                     @endforeach
                 </div>
             @else
-                <div
-                    class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
-                    <div class="font-medium text-cyan-600 dark:text-gray-500 text-2xl">No blog has found.</div>
+                <div class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
+                    <div class="text-secondary dark:text-white block font-[500] text-[19px] dark:hover:text-second hover:text-second duration-500">
+                        No latest article blog has found.
+                    </div>
                 </div>
             @endif
+
         </div>
+
         <div class="mt-[50px]">
+
             <div class="text-center text-secondary dark:text-white text-[36px] font-bold mb-[6px] leading-[54px]">
                 Most Viewed
             </div>
+
             @if(count($most_viewed_posts) > 0)
                 <div class="grid grid-cols-1 sm:grid-cols-2 min-[917px]:grid-cols-3 gap-[15px]">
                     @foreach($most_viewed_posts as $index => $p)
@@ -156,8 +169,7 @@
                                        class="text-secondary dark:text-white block font-bold dark:hover:text-second hover:text-second duration-500 {{$index === 0 ? 'text-truncate-line-3 text-[20px] leading-[30px]' : 'text-truncate-line-2 text-[17px] leading-[25.5px]'}}">
                                         {{$p['title']}}
                                     </a>
-                                    <div
-                                        class="flex flex-wrap items-center {{$index === 0 ? 'mb-[10px] gap-x-[9px] justify-center sm:justify-start' : 'gap-x-[8px] justify-center'}} pt-1 pb-[12px]">
+                                    <div class="flex flex-wrap items-center mt-2 {{$index === 0 ? 'gap-[9px] justify-center sm:justify-start mb-[10px]' : 'gap-[8px] justify-center'}} mb-[12px]">
                                         @foreach(collect(explode(",", $p['tags']))->take(4) as $i => $tag)
                                             <div
                                                 class="{{$i === 0 ? 'bg-primary' : '' }} {{$i === 1 ? 'bg-first !text-[#333333]' : '' }} {{$i === 2 ? 'bg-dark3' : '' }} {{$i === 3 ? 'bg-red' : '' }}  {{$i === 1 ? 'text-secondary' : 'text-white' }} rounded-2xl leading-[14px] font-[400] text-center {{$index === 0 ? 'w-[65px] h-[20px] text-[12px]' : 'w-[50px] h-[16px] text-[11px]'}} flex justify-center items-center capitalize">{{$tag}}</div>
@@ -182,12 +194,15 @@
                     @endforeach
                 </div>
             @else
-                <div
-                    class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
-                    <div class="font-medium text-cyan-600 dark:text-gray-500 text-2xl">No blog has found.</div>
+                <div class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
+                    <div class="text-secondary dark:text-white block font-[500] text-[19px] dark:hover:text-second hover:text-second duration-500">
+                        No most viewd blog has found.
+                    </div>
                 </div>
             @endif
+
         </div>
+        
     </div>
 
 @endsection

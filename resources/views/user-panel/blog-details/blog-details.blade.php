@@ -1,13 +1,15 @@
 @extends('user-panel.layout.layout')
 @section('title', 'Daily Dev Log | Insights & Tutorials on Web and Mobile App Development')
 @section('content')
+
     @php
         $date = function ($publishDate){
            $date = new DateTime($publishDate);
           return $date->format('M d Y');
        };
        $content = $post['content'];
-       @endphp
+    @endphp
+
     <div class="mt-[50px] fixed-container" id="single-details">
         <div class="max-w-[735px] mx-auto">
             <div
@@ -48,9 +50,7 @@
         </div>
     </div>
 
-    <script>
-        window.editorContent = {!! $content !!}
-    </script>
+    <script> window.editorContent = {!! $content !!} </script>
 
     <script src="{{asset('/js/blog-details.js')}}"></script>
 

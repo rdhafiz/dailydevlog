@@ -21,12 +21,13 @@ if(uploadProfileAvatar) {
     });
 }
 
-function nameControl(userName) {
-    let words = userName.split(' ');
-    return `${words[0][0].toUpperCase()}${words[words.length - 1][0].toUpperCase()}`;
+if(!window.userInfo.avatar) {
+    document.addEventListener('DOMContentLoaded', function () {
+        let name = window.userInfo.name;
+        document.getElementById('profile-initials').textContent = nameControl(name);
+    });
+    function nameControl(name) {
+        let words = name.split(' ');
+        return `${words[0][0].toUpperCase()}${words[words.length - 1][0].toUpperCase()}`;
+    }
 }
-
-document.addEventListener('DOMContentLoaded', function () {
-    let userName = window.userName;
-    document.getElementById('profile-initials').textContent = nameControl(userName);
-});

@@ -4,6 +4,7 @@ const featuredImagePreviewParent = document.getElementById('featured_preview_par
 const publishBtn = document.getElementById('publishBtnSubmit');
 const publishBtnLoading = document.getElementById('publishBtnLoading');
 const form = document.getElementById('managePost');
+const editorContent = document.getElementById('editor-content');
 
 // Switch handler for "Is Featured"
 function changeIsFeatured(event) {
@@ -251,13 +252,13 @@ document.addEventListener('DOMContentLoaded', function() {
             publishBtnLoading.classList.remove('hidden');
             setTimeout(() => {
                 if (JSON.parse(formData.get('content'))?.blocks.length === 0 && title && shortDesc && tags) {
-                    if(title) {
+                    if(title && titleError) {
                         titleError.textContent = ''
                     }
-                    if(shortDesc) {
+                    if(shortDesc && shortDescError) {
                         shortDescError.textContent = ''
                     }
-                    if(tags) {
+                    if(tags && tagsError) {
                         tagsError.textContent = ''
                     }
                     content.classList.remove('hidden');

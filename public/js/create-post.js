@@ -238,13 +238,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const content = document.getElementById('content-error');
             setTimeout(() => {
                 if (JSON.parse(formData.get('content'))?.blocks.length === 0 && title && shortDesc && tags) {
-                    if(title) {
+                    if(title && titleError) {
                         titleError.textContent = ''
                     }
-                    if(shortDesc) {
+                    if(shortDesc && shortDescError) {
                         shortDescError.textContent = ''
                     }
-                    if(tags) {
+                    if(tags && tagsError) {
                         tagsError.textContent = ''
                     }
                     content.classList.remove('hidden');

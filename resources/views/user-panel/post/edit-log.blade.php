@@ -48,7 +48,7 @@
                                    class="h-[51px] px-4 border-0 border-b border-b-cyan-500 placeholder-gray-400 bg-transparent text-gray-600 dark:text-white w-full outline-0"
                                    placeholder="Enter your post title">
                             @error('title')
-                            <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>
+                            <div class="text-rose-600 text-sm mt-2" id="title-error"> {{$message}} </div>
                             @enderror
                         </div>
 
@@ -58,7 +58,7 @@
                             <textarea id="short-description" name="short_description" placeholder="Enter short description"
                                       class="resize-none py-5 px-4 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white">{{$post['short_description']}}</textarea>
                             @error('short_description')
-                            <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>
+                            <div class="text-rose-600 text-sm mt-2" id="short-description-error"> {{$message}} </div>
                             @enderror
                         </div>
 
@@ -67,9 +67,7 @@
                             <label for="editor-content" class="block font-semibold mb-5"> Content </label>
                             <div id="editorjs" class="resize-0 py-5 pe-5 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white"></div>
                             <textarea id="editor-content" name="content" hidden></textarea>
-                            @error('content')
-                            <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>
-                            @enderror
+                            <div class="text-rose-600 text-sm mt-2 hidden" id="content-error"></div>
                         </div>
 
                         {{-- Is featured --}}
@@ -110,7 +108,7 @@
                                 </select>
                             </div>
                             @error('tags')
-                                <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>
+                                <div class="text-rose-600 text-sm mt-2" id="tags-error"> {{$message}} </div>
                             @enderror
                         </div>
 

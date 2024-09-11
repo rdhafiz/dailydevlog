@@ -26,7 +26,7 @@
                                         <div class="rounded-full w-[200px] lg:w-[250px] h-[200px] bg-cover object-cover lg:h-[250px] overflow-hidden group relative">
                                             <img src="{{ asset('storage/media/'.$user['avatar']) }}" class="w-[200px] lg:w-[250px] h-[200px] bg-cover object-cover lg:h-[250px] rounded-full" alt="profile-avatar">
                                             <div class="font-[500] absolute top-0 bottom-0 start-0 end-0 flex justify-center items-center w-[200px] lg:w-[250px] h-[200px] lg:h-[250px] opacity-0 duration-500 hover:opacity-100 bg-[#00000040] h-full cursor-pointer">
-                                                Change
+
                                             </div>
                                         </div>
                                         <input id="upload-profile-avatar" type="file" name="avatar" hidden="hidden">

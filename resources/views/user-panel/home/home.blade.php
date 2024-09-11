@@ -62,9 +62,10 @@
                     @endforeach
                 </div>
             @else
-                <div
-                    class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
-                    <div class="font-medium text-cyan-600 dark:text-gray-500 text-2xl">No featured blog has found.</div>
+                <div class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
+                    <div class="text-secondary dark:text-white block font-[500] text-[19px] dark:hover:text-second hover:text-second duration-500">
+                        No featured blog has found.
+                    </div>
                 </div>
             @endif
         </div>
@@ -122,9 +123,10 @@
                     @endforeach
                 </div>
             @else
-                <div
-                    class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
-                    <div class="font-medium text-cyan-600 dark:text-gray-500 text-2xl">No blog has found.</div>
+                <div class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
+                    <div class="text-secondary dark:text-white block font-[500] text-[19px] dark:hover:text-second hover:text-second duration-500">
+                        No latest article blog has found.
+                    </div>
                 </div>
             @endif
         </div>
@@ -182,9 +184,10 @@
                     @endforeach
                 </div>
             @else
-                <div
-                    class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
-                    <div class="font-medium text-cyan-600 dark:text-gray-500 text-2xl">No blog has found.</div>
+                <div class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
+                    <div class="text-secondary dark:text-white block font-[500] text-[19px] dark:hover:text-second hover:text-second duration-500">
+                        No most viewd blog has found.
+                    </div>
                 </div>
             @endif
         </div>

@@ -124,7 +124,7 @@ use Illuminate\Support\Facades\Auth;
                                         </defs>
                                     </svg>
                                 @else
-                                    <img src="/storage/media/{{$user['avatar']}}" class="w-[30px] h-[30px] rounded-full" alt="profile-avatar" id="header_avatar">
+                                    <img src="/storage/media/{{$user['avatar']}}" class="w-[30px] h-[30px] rounded-full object-cover" alt="profile-avatar" id="header_avatar">
                                 @endif
                             </a>
                             <div
@@ -148,7 +148,7 @@ use Illuminate\Support\Facades\Auth;
                                         </svg>
                                         @else
                                         <img src="/storage/media/{{$user['avatar']}}"
-                                             class="w-[30px] h-[30px] rounded-full"
+                                             class="w-[30px] h-[30px] rounded-full object-cover"
                                              alt="profile-avtar" id="header_avatar">
                                         @endif
                                         <span class="ms-[8px]">

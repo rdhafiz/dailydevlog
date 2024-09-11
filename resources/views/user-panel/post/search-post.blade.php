@@ -72,7 +72,7 @@
         @else
             <div class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
                 <div class="text-secondary dark:text-white block font-[500] text-[19px] dark:hover:text-second hover:text-second duration-500">
-                    No search blog has found.
+                    No search blog has been found.
                 </div>
             </div>
         @endif

@@ -51,6 +51,10 @@
         color: #9ca3af !important;
     }
 
+    .dark .select2-search__field, .dark .select2-selection__choice__display {
+        color: #fff !important;
+    }
+
     .dark rte-toolbar-button svg {
         stroke: #06b6d4 !important;
     }

@@ -66,10 +66,6 @@ function convertToHTML(data) {
                 html += `<div>Unsupported block type: ${block.type}</div>`;
                 break;
         }
-
-        if (index < data.blocks.length - 1) {
-            html += '<br>'; // or any other spacer, e.g., a <hr> or margin CSS
-        }
     });
 
     return html;

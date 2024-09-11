@@ -1,12 +1,14 @@
 @extends('user-panel.layout.layout')
 @section('title', 'Daily Dev Log | Insights & Tutorials on Web and Mobile App Development')
 @section('content')
+
     @php
         $date = function ($publishDate){
             $date = new DateTime($publishDate);
            return $date->format('M d Y');
         }
     @endphp
+
     <div>
         <section class="fixed-container mt-[85px]">
             <form id="searchDataForm">
@@ -148,5 +150,7 @@
             @endif
         </section>
     </div>
+
     <script src="{{asset('/js/my-post.js')}}"></script>
+    
 @endsection

@@ -8,138 +8,6 @@
         @apply border border-gray-100 shadow-2xl dark:border transition-all duration-500 z-50 sticky;
     }
 
-    .dark .select2 {
-        width: 100% !important;
-    }
-
-    .dark .select2-search__field, .select2-selection__choice__display {
-        color: #fff;
-    }
-
-    .dark #selectTagParent span {
-        color: #000;
-    }
-
-    .dark .select2-selection {
-        background: transparent !important;
-        border: none !important;
-        border-bottom: 1px solid #22d3ee !important;
-        border-radius: 0 !important;
-        padding: 10px 11px !important;
-        min-height: auto;
-    }
-
-    .dark .select2-selection__clear {
-        display: flex;
-        align-items: center;
-    }
-
-    .dark .select2-selection__clear span {
-        color: #fff !important;
-    }
-
-    .dark .select2-search__field {
-        height: 25px !important;
-    }
-
-    .dark .select2-selection ::placeholder {
-        color: #9ca3af !important;
-        opacity: 1 !important; /* Firefox */
-    }
-
-    .dark .select2-selection ::-ms-input-placeholder { /* Edge 12-18 */
-        color: #9ca3af !important;
-    }
-
-    .dark .select2-search__field, .dark .select2-selection__choice__display {
-        color: #fff !important;
-    }
-
-    .dark rte-toolbar-button svg {
-        stroke: #06b6d4 !important;
-    }
-
-    .dark rte-toolbar-splitbutton-direct svg {
-        stroke: #06b6d4 !important;
-    }
-
-    .dark rte-toolbar-arrowbutton svg {
-        stroke: #06b6d4 !important;
-    }
-
-    .dark rte-content p {
-        color: #FFFFFF !important;
-    }
-
-    .dark .fb-comments ._ohe ._50f7 {
-        color: #fff !important;
-    }
-
-    .dark .fb-comments ._5mdd {
-        color: #fff !important;
-    }
-
-    .dark #single-details #content_description h1 {
-        color: #fff !important;
-    }
-
-    .dark #single-details #content_description h2 {
-        color: #fff !important;
-    }
-
-    .dark #single-details #content_description h3 {
-        color: #fff !important;
-    }
-
-    .dark #single-details #content_description h4 {
-        color: #fff !important;
-    }
-
-    .dark #single-details #content_description h5 {
-        color: #fff !important;
-    }
-
-    .dark #single-details #content_description h6 {
-        color: #fff !important;
-    }
-
-    /* Paragraph */
-    .dark #single-details #content_description p {
-        background: transparent !important;
-        color: #fff !important;
-    }
-
-    .dark #single-details #content_description p span {
-        background: transparent !important;
-        color: #fff !important;
-    }
-
-    .dark #single-details #content_description li {
-        color: #fff !important;
-    }
-
-    /* Anchor */
-    .dark #single-details #content_description a {
-        color: #fff !important;
-    }
-
-    .dark #single-details #content_description td, .dark #single-details #content_description th {
-        color: #fff !important;
-    }
-
-    /* Forms */
-    .dark #single-details #content_description input, #single-details #content_description textarea, #single-details #content_description select, #single-details #content_description button {
-        color: #fff !important;
-    }
-
-    .dark rte-menuitem {
-        color: #000 !important;
-    }
-
-    .dark rte-dialog-input-label {
-        color: #000 !important;
-    }
-
 }
 
 body {
@@ -345,6 +213,10 @@ body {
 
 .select2-selection__choice__remove {
     border-right: 1px solid #dedede !important;
+}
+
+.dark .select2-search__field, .dark .select2-selection__choice__display {
+    color: #fff !important;
 }
 
 .select2-selection__choice__remove:hover {
@@ -634,3 +506,4 @@ input:checked + .slider:before {
     border-left: 5px solid #AED725;
     background: #CDCACAB2;
 }
+

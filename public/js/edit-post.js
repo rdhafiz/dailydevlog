@@ -37,18 +37,18 @@ setTimeout(() => {
     runningFunction();
 }, 300);
 
-// Show preview and hide loading spinner
-uploadFileInput.addEventListener('change', function () {
-    if (this.files && this.files[0]) {
-        let reader = new FileReader();
-        reader.onload = function (e) {
-            featuredImagePreview.src = e.target.result;
-            featuredImagePreview.classList.remove('hidden');
-            uploadLoading.classList.add('hidden');
-        };
-        reader.readAsDataURL(this.files[0]);
-    }
-});
+// // Show preview and hide loading spinner
+// uploadFileInput.addEventListener('change', function () {
+//     if (this.files && this.files[0]) {
+//         let reader = new FileReader();
+//         reader.onload = function (e) {
+//             featuredImagePreview.src = e.target.result;
+//             featuredImagePreview.classList.remove('hidden');
+//             uploadLoading.classList.add('hidden');
+//         };
+//         reader.readAsDataURL(this.files[0]);
+//     }
+// });
 
 // change preview and hide loading spinner
 function changeUploadFile(event) {

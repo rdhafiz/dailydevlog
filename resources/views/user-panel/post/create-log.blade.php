@@ -60,8 +60,10 @@
                         {{-- Short description --}}
                         <div class="mb-5 w-full px-4">
                             <label for="short-description" class="block font-semibold"> Short Description </label>
-                            <textarea id="short-description" name="short_description" placeholder="Enter short description" value="{{old('short_description')}}"
-                                      class="resize-none py-5 px-4 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white"></textarea>
+                            <textarea id="short-description" name="short_description" placeholder="Enter short description"
+                                      class="resize-none py-5 px-4 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white">
+                                {{ old('short_description') }}
+                            </textarea>
                             @error('short_description')
                                 <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>
                             @enderror
@@ -75,6 +77,7 @@
                             @error('content')
                                 <div class="text-rose-600 text-sm mt-2"> {{$message}} </div>
                             @enderror
+                            <div class="text-rose-600 text-sm mt-2 hidden" id="content-error"></div>
                         </div>
 
                         {{-- Is featured --}}
@@ -108,7 +111,9 @@
                                 <select id="selectTag" class="w-100" name="tags[]" multiple="multiple" value="{{old('tags[]')}}">
                                     <option></option>
                                     @foreach($tags as $tag)
-                                        <option value="{{$tag['title']}}"> {{$tag['title']}} </option>
+                                        <option value="{{$tag['title']}}" {{ in_array($tag['title'], old('tags', [])) ? 'selected' : '' }}>
+                                            {{$tag['title']}}
+                                        </option>
                                     @endforeach
                                     <option id="tagArray"></option>
                                 </select>

@@ -213,6 +213,15 @@ const editor = new EditorJS({
 });
 
 document.addEventListener('DOMContentLoaded', function() {
+    let textarea = document.getElementById('short-description');
+    // Function to clean up the textarea content
+    function cleanUpTextarea() {
+        // Replace multiple spaces with a single space
+        textarea.value = textarea.value.replace(/\s+/g, ' ').trim();
+    }
+
+    // Clean up on page load
+    cleanUpTextarea();
 
     // Handle form submission
     form.addEventListener('submit', function (event) {
@@ -221,7 +230,19 @@ document.addEventListener('DOMContentLoaded', function() {
         publishBtnLoading.classList.remove('hidden');
         editor.save().then((outputData) => {
             editorContent.value = JSON.stringify(outputData);
+            const formData = new FormData(form);
+            const title = document.getElementById('title').value;
+            const shortDesc = document.getElementById('short-description').value;
+            const tags = document.getElementById('selectTag').value;
             setTimeout(() => {
+                if (JSON.parse(formData.get('content'))?.blocks.length === 0 && title && shortDesc && tags) {
+                    const content = document.getElementById('content-error');
+                    content.classList.remove('hidden');
+                    publishBtn.classList.remove('hidden');
+                    publishBtnLoading.classList.add('hidden');
+                    content.textContent = 'The content field is required';
+                    return;
+                }
                 form.submit();
             }, 2000);
         }).catch((error) => {

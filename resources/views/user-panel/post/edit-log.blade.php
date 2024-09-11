@@ -24,7 +24,7 @@
                                                 @if($post['featured_image'] !== null)
                                                     <div class="absolute top-0 bottom-0 start-0 end-0">
                                                         <div class="w-full h-[250px] bg-white rounded-lg overflow-hidden">
-                                                            <img src="/storage/media/{{$post['featured_image']}}" id="featured_preview" class="w-full h-[250px] object-cover cursor-pointer border border-cyan-400 rounded-lg duration-500" alt="featured-image">
+                                                            <img src="/storage/media/{{$post['featured_image']}}" class="w-full h-[250px] object-cover cursor-pointer border border-cyan-400 rounded-lg duration-500" alt="featured-image">
                                                         </div>
                                                     </div>
                                                 @endif

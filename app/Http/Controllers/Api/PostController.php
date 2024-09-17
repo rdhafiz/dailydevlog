@@ -130,7 +130,7 @@ class PostController extends Controller
         $data['featured_image'] = $featured_image;
 
         $post = $this->postService->createPost($data);
-        return redirect()->route('user.panel.my.post')->with('success', 'Post has been updated');
+        return redirect()->route('user.panel.my.post')->with('success', 'Post has been created');
     }
 
     public function update(Request $request, $id)
@@ -179,7 +179,7 @@ class PostController extends Controller
         $post = $this->postService->getPostById($id);
 
         if (!$post) {
-            return redirect()->back()->withErrors(['message' => 'Blog not found']);
+            return redirect()->back()->withErrors(['message' => 'Post not found']);
         }
 
         $this->postService->deletePost($post);

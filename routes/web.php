@@ -20,8 +20,6 @@ Route::get('/search-blogs', [UserPanelController::class, 'search_post'])->name('
 Route::get('/featured-blogs', [UserPanelController::class, 'feature_post'])->name('user.panel.feature.post');
 Route::get('/latest-blogs', [UserPanelController::class, 'latest_post'])->name('user.panel.latest.post');
 Route::get('/most-viewed-blogs', [UserPanelController::class, 'most_viewed_post'])->name('user.panel.most.viewed.post');
-Route::get('/categories', [UserPanelController::class, 'categories'])->name('user.panel.categories');
-Route::get('/categories/{id}', [UserPanelController::class, 'manageCategory'])->name('user.panel.manage.category');
 Route::get('/blogs', [UserPanelController::class, 'post'])->name('user.panel.post');
 
 Route::group(

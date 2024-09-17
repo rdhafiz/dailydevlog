@@ -40,12 +40,12 @@ class UserPanelController extends BaseController
 
     public function login()
     {
-        return view('user-panel.new_login.login');
+        return view('user-panel.login.login');
     }
 
     public function forgotPassword()
     {
-        return view('user-panel.new_forgot.forgot');
+        return view('user-panel.forgot-password.forgot');
     }
 
     public function resetPassword()
@@ -222,21 +222,6 @@ class UserPanelController extends BaseController
     {
         $tags = Tag::all();
         return view('user-panel.post.create-log', ['tags' => $tags]);
-    }
-
-
-    public function categories()
-    {
-        return view('user-panel.categories.categories');
-    }
-
-    public function manageCategory(Request $request, $id)
-    {
-        $rv = [
-            'id' => $id
-        ];
-
-        return view('user-panel.categories.manage', $rv);
     }
 
 }

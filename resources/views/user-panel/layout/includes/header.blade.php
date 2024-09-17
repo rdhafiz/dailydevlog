@@ -386,10 +386,6 @@ use Illuminate\Support\Facades\Auth;
                    class="px-3 text-gray-600 dark:text-gray-400 font-medium mt-3 hover:text-cyan-400 dark:hover:text-cyan-400 duration-500 block mb-3">Blogs</a>
             </li>
             <li>
-                <a href="{{route('user.panel.categories')}}"
-                   class="px-3 text-gray-600 dark:text-gray-400 font-medium mt-3 hover:text-cyan-400 dark:hover:text-cyan-400 duration-500 block mb-3">Categories</a>
-            </li>
-            <li>
                 <a href="{{route('user.panel.profile')}}"
                    class="px-3 text-gray-600 dark:text-gray-400 font-medium mt-3 hover:text-cyan-400 dark:hover:text-cyan-400 duration-500 block mb-3">Profile
                     Settings</a>

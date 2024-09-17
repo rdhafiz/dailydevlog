@@ -230,7 +230,7 @@ use Illuminate\Support\Facades\Auth;
                                                 My Logs
                                             </span>
                                             </a>
-                                            <a href="javascript:void(0)" class="flex justify-start items-center decoration-0 w-full font-[500] text-[12px] text-[#000000] dark:text-[#ECEBF7] px-[10px] py-[6px] duration-300 hover:bg-white dark:hover:bg-[#222222] rounded-[12px] leading-[18px] mb-[2px]">
+                                            <a href="javascript:void(0)" class="flex justify-start items-center decoration-0 w-full font-[500] text-[12px] text-[#000000] dark:text-[#ECEBF7] px-[10px] py-[6px] duration-300 hover:bg-gray-200 dark:hover:bg-[#222222] rounded-[12px] leading-[18px] mb-[2px]">
                                                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg"
                                                      xmlns:xlink="http://www.w3.org/1999/xlink" class="dark:hidden">
@@ -264,7 +264,7 @@ use Illuminate\Support\Facades\Auth;
                                             </span>
                                             </a>
                                             <a href="javascript:void(0)"
-                                               class="flex justify-start items-center decoration-0 w-full font-[500] text-[12px] text-[#000000] dark:text-[#ECEBF7] px-[10px] py-[6px] duration-300 hover:bg-white dark:hover:bg-[#222222] rounded-[12px] leading-[18px] mb-[2px]">
+                                               class="flex justify-start items-center decoration-0 w-full font-[500] text-[12px] text-[#000000] dark:text-[#ECEBF7] px-[10px] py-[6px] duration-300 hover:bg-gray-200 dark:hover:bg-[#222222] rounded-[12px] leading-[18px] mb-[2px]">
                                                 <svg width="15" height="15" viewBox="0 0 15 15" fill="none"
                                                      xmlns="http://www.w3.org/2000/svg"
                                                      xmlns:xlink="http://www.w3.org/1999/xlink" class="dark:hidden">

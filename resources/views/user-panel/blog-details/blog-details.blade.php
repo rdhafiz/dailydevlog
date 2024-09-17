@@ -28,7 +28,7 @@
                 </div>
                 <div class="py-[25px] px-[22px]">
                     <div
-                        class="flex items-center text-secondary dark:!text-light2 text-[8px] font-[400] leading-[12px] mb-[8px] gap-1">
+                        class="flex items-center text-secondary dark:!text-light2 text-[10px] font-[400] leading-[12px] mb-[8px] gap-1">
                         <span>{{$date($post['publish_date'])}}</span>
                         <span>•</span>
                         <span>3m Read</span>
@@ -39,7 +39,7 @@
                         class="flex flex-wrap items-center gap-[3px]">
                         @foreach(collect(explode(",", $post['tags']))->take(4) as $i => $tag)
                             <div
-                                class="{{$i === 0 ? 'bg-primary' : '' }} {{$i === 1 ? 'bg-first' : '' }} {{$i === 2 ? 'bg-dark3' : '' }} {{$i === 3 ? 'bg-red' : '' }}  {{$i === 1 ? 'text-secondary' : 'text-white' }} {{$i > 3 ? 'bg-primary' : '' }} rounded-2xl text-[7px] leading-[14px] h-[14px] text-center w-[50px] capitalize">{{$tag}}</div>
+                                class="{{$i === 0 ? 'bg-primary' : '' }} {{$i === 1 ? 'bg-first' : '' }} {{$i === 2 ? 'bg-dark3' : '' }} {{$i === 3 ? 'bg-red' : '' }}  {{$i === 1 ? 'text-secondary' : 'text-white' }} {{$i > 3 ? 'bg-primary' : '' }} rounded-2xl text-[9px] leading-[16px] h-[16px] text-center w-[50px] capitalize">{{$tag}}</div>
                         @endforeach
                     </div>
                     <div class="mt-[25px] text-[13px] leading-[19.5px] text-black dark:!text-white" id="content_description">

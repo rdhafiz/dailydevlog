@@ -31,7 +31,7 @@
                 </div>
                 <div class="w-full sm:w-1/3 flex justify-end py-3">
                     <!-- New -->
-                    <a href="{{route('user.panel.create.post')}}" class="btn h-[45px] flex justify-center text-white items-center border border-[#0000003F] bg-gradient-to-r from-15% from-[#85A41C] via-50% via-[#AED725] to-85% to-[#85A41C] rounded-md w-[120px]">
+                    <a href="{{route('user.panel.create.post')}}" class="btn h-[45px] flex justify-center text-black items-center border border-[#0000003F] custom-gradient rounded-md w-[120px]">
                         New Blog
                     </a>
                 </div>

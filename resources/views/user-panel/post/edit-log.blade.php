@@ -16,8 +16,8 @@
                                 {{-- Upload file --}}
                                 <div class="relative">
                                     <div>
-                                        <label for="upload-file" class="w-full h-[250px] flex justify-center items-center cursor-pointer border border-[#AED725] rounded-lg duration-500 bg-transparent hover:bg-gray-300 dark:hover:bg-gray-500 fw-medium">
-                                            <a class="flex items-center justify-center relative h-full w-full text-gray-600 dark:text-gray-400 duration-500">
+                                        <label for="upload-file" class="w-full h-[250px] flex justify-center items-center cursor-pointer border border-[#AED725] rounded-lg duration-500 bg-transparent hover:bg-gray-300 dark:hover:bg-gray-500 fw-medium group">
+                                            <a class="flex items-center justify-center relative h-full w-full text-gray-600 dark:text-gray-400 duration-500 dark:group-hover:text-white">
                                                 <input type="file" id="upload-file" name="featured_image" class="hidden" accept="image/*" value="{{old('featured_image')}}">
                                                 Upload Featured Image
                                             </a>
@@ -129,14 +129,14 @@
 
                             {{-- Submit Button --}}
                             <div id="publishBtnSubmit">
-                                <button type="submit" class="btn h-[45px] flex justify-center text-white items-center border border-[#0000003F] bg-gradient-to-r from-15% from-[#85A41C] via-50% via-[#AED725] to-85% to-[#85A41C] rounded-md w-[120px]">
+                                <button type="submit" class="btn h-[45px] flex justify-center text-black items-center border border-[#0000003F] custom-gradient rounded-md w-[120px]">
                                     Update
                                 </button>
                             </div>
 
                             {{-- Btn loading --}}
                             <div class="hidden" id="publishBtnLoading">
-                                <button type="button" class="btn h-[45px] flex justify-center text-white items-center border border-[#0000003F] bg-gradient-to-r from-15% from-[#85A41C] via-50% via-[#AED725] to-85% to-[#85A41C] rounded-md w-[120px]" disabled>
+                                <button type="button" class="btn h-[45px] flex justify-center text-black items-center border border-[#0000003F] custom-gradient rounded-md w-[120px]" disabled>
                                     <svg class="h-5 mx-auto w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg"
                                          fill="none" viewBox="0 0 24 24">
                                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
@@ -157,7 +157,6 @@
     <script>
         window.content_description = {!! $content_description !!};
         window.featured_image = '{{$post['featured_image']}}';
-        console.log('{{$post['featured_image']}}')
     </script>
     <script src="{{asset('/js/edit-post.js')}}"></script>
 @endsection

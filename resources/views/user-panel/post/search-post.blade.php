@@ -12,7 +12,7 @@
     <div class="fixed-container mt-[50px]">
 
         @if(count($posts) > 0)
-        <div class="mb-5 text-secondary dark:text-white block font-bold text-[16px] leading-[24px] dark:hover:text-second hover:text-second duration-500 text-truncate-line-2">
+        <div class="mb-5 text-secondary dark:text-white block font-bold text-[16px] leading-[24px] duration-500 text-truncate-line-2">
             Showing blogs matching the search for <span class="text-second" id="global-data-show"> </span>
         </div>
         @endif
@@ -78,5 +78,5 @@
         @endif
 
     </div>
-    
+
 @endsection

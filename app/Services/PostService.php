@@ -55,12 +55,6 @@ class PostService
     public function deletePost(Post $post)
     {
         $post->delete();
-        self::deletePostCategories([$post['id']]);
-    }
-
-    public function deletePostCategories(array $ids)
-    {
-        return PostCategory::whereIn('post_id', $ids)->delete();
     }
 
     public function getAllPost(array $filter)

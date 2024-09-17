@@ -68,7 +68,7 @@
                         {{-- Submit Button --}}
                         <div class="w-full mb-[12px]">
                             <button type="submit"
-                                    class="btn h-[45px] w-full flex justify-center items-center border border-[#0000003F] rounded-[50px] bg-gradient-to-r from-15% from-[#85A41C] via-50% via-[#AED725] to-85% to-[#85A41C]"
+                                    class="btn h-[45px] w-full flex justify-center items-center border border-[#0000003F] rounded-[50px] custom-gradient"
                                     id="submitBtn">
                                     <span class="font-[500] dark:text-black light:text-black text-[14px]">
                                         LOGIN NOW
@@ -76,7 +76,7 @@
                             </button>
                             <button type="button" disabled
                                     id="loader"
-                                    class="btn h-[45px] w-full flex justify-center items-center border border-[#0000003F] rounded-[50px] bg-gradient-to-r from-15% from-[#85A41C] via-50% via-[#AED725] to-85% to-[#85A41C] hidden">
+                                    class="btn h-[45px] w-full flex justify-center items-center border border-[#0000003F] rounded-[50px] custom-gradient hidden">
                                     <span class="font-[500] dark:text-black light:text-black text-[14px]">
                                         <svg class="h-5 mx-auto w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                                             <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>

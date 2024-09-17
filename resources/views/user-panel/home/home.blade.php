@@ -66,7 +66,7 @@
                     @endforeach
                 </div>
             @else
-                <div class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
+                <div class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-[#AED725] flex-col">
                     <div class="text-secondary dark:text-white block font-[500] text-[19px] dark:hover:text-second hover:text-second duration-500">
                         No featured blog has been found.
                     </div>
@@ -130,7 +130,7 @@
                     @endforeach
                 </div>
             @else
-                <div class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
+                <div class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-[#AED725] flex-col">
                     <div class="text-secondary dark:text-white block font-[500] text-[19px] dark:hover:text-second hover:text-second duration-500">
                         No latest blog has been found.
                     </div>
@@ -194,7 +194,7 @@
                     @endforeach
                 </div>
             @else
-                <div class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
+                <div class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-[#AED725] flex-col">
                     <div class="text-secondary dark:text-white block font-[500] text-[19px] dark:hover:text-second hover:text-second duration-500">
                         No blog has been found.
                     </div>

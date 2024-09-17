@@ -16,12 +16,12 @@
                 <div class="w-full sm:w-1/3 py-2 sm:py-3">
                     <!-- Search input -->
                         <input type="text" name="keyword" id="searchKey" value="{{old('keyword')}}"
-                               class="p-3 bg-transparent border-0 outline-0 border-b-cyan-400 border-b-2 w-full"
+                               class="p-3 bg-transparent border-0 outline-0 border-b-[#AED725] border-b-2 w-full"
                                autocomplete="off" placeholder="Search Here">
                 </div>
                 <div class="w-full sm:w-1/3 flex gap-2 sm:gap-5">
                     <div class="from-group w-full lg:w-1/2">
-                        <select name="status" id="selectData" class="p-3 bg-transparent border-0 outline-0 border-b-cyan-400 border-b-2 w-full">
+                        <select name="status" id="selectData" class="p-3 bg-transparent border-0 outline-0 border-b-[#AED725] border-b-2 w-full">
                             <option value="" class="text-black">Status</option>
                             <option value="published" class="text-black">Published</option>
                             <option value="draft" class="text-black">Draft</option>
@@ -31,7 +31,7 @@
                 </div>
                 <div class="w-full sm:w-1/3 flex justify-end py-3">
                     <!-- New -->
-                    <a href="{{route('user.panel.create.post')}}" class="outline-0 border-0 btn-theme w-[120px] rounded-lg">
+                    <a href="{{route('user.panel.create.post')}}" class="btn h-[45px] flex justify-center text-white items-center border border-[#0000003F] bg-gradient-to-r from-15% from-[#85A41C] via-50% via-[#AED725] to-85% to-[#85A41C] rounded-md w-[120px]">
                         New Blog
                     </a>
                 </div>
@@ -42,7 +42,7 @@
                     <div class="w-full max-[768px]:overflow-x-scroll">
                         @foreach($result as $index => $p)
                             <div
-                                class="group bg-gray-100 dark:bg-gray-800 w-full py-3 px-4 rounded-lg mb-3 flex items-center justify-between min-w-[744px]">
+                                class="group bg-white dark:bg-[#222222] w-full py-3 px-4 rounded-lg mb-3 flex items-center justify-between min-w-[744px]">
                                 <div class="grow-0">
                                     @if($p['featured_image'])
                                         <img src="{{asset('/storage/media/' .$p['featured_image'])}}"
@@ -56,7 +56,7 @@
                                 </div>
                                 <div class="grow text-start mx-8">
                                     <div
-                                        class="font-bold text-lg dark:text-cyan-600 duration-500 dark:group-hover:text-cyan-400 text-gray-600 group-hover:text-cyan-400 text-truncate-line-2">
+                                        class="font-bold text-lg dark:text-white duration-500 dark:group-hover:text-second text-secondary group-hover:text-second text-truncate-line-2">
                                         {{$p['title']}}
                                     </div>
                                     <div
@@ -143,7 +143,7 @@
                     </div>
                 </div>
             @else
-                <div class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-cyan-500 flex-col">
+                <div class="w-full overflow-hidden rounded-3xl h-[500px] flex justify-center items-center border-2 border-[#AED725] flex-col">
                     <div class="text-secondary dark:text-white block font-[500] text-[19px] dark:hover:text-second hover:text-second duration-500">
                         No blog has been found.
                     </div>
@@ -153,5 +153,5 @@
     </div>
 
     <script src="{{asset('/js/my-post.js')}}"></script>
-    
+
 @endsection

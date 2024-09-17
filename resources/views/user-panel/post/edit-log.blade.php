@@ -5,7 +5,7 @@
     <div id="post" class="p-2 md:p-4 mt-[50px]">
         <div class="fixed-container">
             <div
-                class="border border-cyan-100 dark:border-cyan-900 bg-gray-100 dark:bg-gray-800 rounded-3xl py-5 px-0 md:p-10">
+                class="border border-[#AED725] dark:border-[#AED725] bg-white dark:bg-[#222222] rounded-3xl py-5 px-0 md:p-10">
                 <form id="managePost" enctype='multipart/form-data' action="{{ route('posts.update', ['id' => $post['id']]) }}" method="post">
 
                     @csrf
@@ -16,7 +16,7 @@
                                 {{-- Upload file --}}
                                 <div class="relative">
                                     <div>
-                                        <label for="upload-file" class="w-full h-[250px] flex justify-center items-center cursor-pointer border border-cyan-400 rounded-lg duration-500 bg-transparent hover:bg-gray-400 dark:hover:bg-gray-600 fw-medium">
+                                        <label for="upload-file" class="w-full h-[250px] flex justify-center items-center cursor-pointer border border-[#AED725] rounded-lg duration-500 bg-transparent hover:bg-gray-300 dark:hover:bg-gray-500 fw-medium">
                                             <a class="flex items-center justify-center relative h-full w-full text-gray-600 dark:text-gray-400 duration-500">
                                                 <input type="file" id="upload-file" name="featured_image" class="hidden" accept="image/*" value="{{old('featured_image')}}">
                                                 Upload Featured Image
@@ -24,13 +24,13 @@
                                             @if($post['featured_image'] !== null)
                                                 <div class="absolute top-0 bottom-0 start-0 end-0">
                                                     <div class="w-full h-[250px] bg-white rounded-lg">
-                                                        <img src="/storage/media/{{$post['featured_image']}}" id="featured_preview" class="w-full h-[250px] object-cover cursor-pointer border border-cyan-400 rounded-lg duration-500" alt="featured-image">
+                                                        <img src="/storage/media/{{$post['featured_image']}}" id="featured_preview" class="w-full h-[250px] object-cover cursor-pointer border border-[#AED725] rounded-lg duration-500" alt="featured-image">
                                                     </div>
                                                 </div>
                                             @else
                                                 <div class="absolute top-0 bottom-0 start-0 end-0 hidden" id="featured_preview_parent">
                                                     <div class="w-full h-[250px] bg-white rounded-lg">
-                                                        <img src="" id="featured_preview" class="hidden w-full h-[250px] object-cover cursor-pointer border border-cyan-400 rounded-lg duration-500" alt="featured-image">
+                                                        <img src="" id="featured_preview" class="hidden w-full h-[250px] object-cover cursor-pointer border border-[#AED725] rounded-lg duration-500" alt="featured-image">
                                                     </div>
                                                 </div>
                                             @endif
@@ -45,7 +45,7 @@
                         <div class="mb-5 w-full px-4">
                             <label for="title" class="block font-semibold"> Title </label>
                             <input id="title" type="text" name="title" value="{{$post['title']}}"
-                                   class="h-[51px] px-4 border-0 border-b border-b-cyan-500 placeholder-gray-400 bg-transparent text-gray-600 dark:text-white w-full outline-0"
+                                   class="h-[51px] px-4 border-0 border-b border-b-[#AED725] placeholder-gray-400 bg-transparent text-gray-600 dark:text-white w-full outline-0"
                                    placeholder="Enter your post title">
                             @error('title')
                             <div class="text-rose-600 text-sm mt-2" id="title-error"> {{$message}} </div>
@@ -56,7 +56,7 @@
                         <div class="mb-5 w-full px-4">
                             <label for="short-description" class="block font-semibold"> Short Description </label>
                             <textarea id="short-description" name="short_description" placeholder="Enter short description"
-                                      class="resize-none py-5 px-4 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white">{{$post['short_description']}}</textarea>
+                                      class="resize-none py-5 px-4 border-0 border-b border-b-[#AED725] bg-transparent text-black w-full outline-0 dark:text-white">{{$post['short_description']}}</textarea>
                             @error('short_description')
                             <div class="text-rose-600 text-sm mt-2" id="short-description-error"> {{$message}} </div>
                             @enderror
@@ -65,7 +65,7 @@
                         {{-- content description --}}
                         <div class="mb-5 w-full px-4">
                             <label for="editor-content" class="block font-semibold mb-5"> Content </label>
-                            <div id="editorjs" class="resize-0 py-5 pe-5 border-0 border-b border-b-cyan-400 bg-transparent text-black w-full outline-0 dark:text-white"></div>
+                            <div id="editorjs" class="resize-0 py-5 pe-5 border-0 border-b border-b-[#AED725] bg-transparent text-black w-full outline-0 dark:text-white"></div>
                             <textarea id="editor-content" name="content" hidden></textarea>
                             <div class="text-rose-600 text-sm mt-2 hidden" id="content-error"></div>
                         </div>
@@ -114,7 +114,7 @@
 
                         <div class="mb-5 md:w-1/2 px-4">
                             <label for="post-status" class="block font-semibold"> Status </label>
-                            <select name="status" id="post-status" class="w-full h-[51px] px-4 border-0 border-b border-b-cyan-500 placeholder-gray-400 bg-transparent text-gray-600 dark:text-white outline-0">
+                            <select name="status" id="post-status" class="w-full h-[51px] px-4 border-0 border-b border-b-[#AED725] placeholder-gray-400 bg-transparent text-gray-600 dark:text-white outline-0">
                                 <option value="published" {{ (old('status', $post['status']) == 'published') ? 'selected' : '' }} class="text-dark2">Published</option>
                                 <option value="archived" {{ (old('status', $post['status']) == 'archived') ? 'selected' : '' }} class="text-dark2">Archived</option>
                                 <option value="draft" {{ (old('status', $post['status']) == 'draft') ? 'selected' : '' }} class="text-dark2">Draft</option>
@@ -129,14 +129,14 @@
 
                             {{-- Submit Button --}}
                             <div id="publishBtnSubmit">
-                                <button type="submit" class="btn-theme rounded-md w-[120px] flex justify-center items-center h-[45px] text-white">
+                                <button type="submit" class="btn h-[45px] flex justify-center text-white items-center border border-[#0000003F] bg-gradient-to-r from-15% from-[#85A41C] via-50% via-[#AED725] to-85% to-[#85A41C] rounded-md w-[120px]">
                                     Update
                                 </button>
                             </div>
 
                             {{-- Btn loading --}}
                             <div class="hidden" id="publishBtnLoading">
-                                <button type="button" class="btn-theme rounded-md w-[120px] flex justify-center items-center h-[45px] text-white" disabled>
+                                <button type="button" class="btn h-[45px] flex justify-center text-white items-center border border-[#0000003F] bg-gradient-to-r from-15% from-[#85A41C] via-50% via-[#AED725] to-85% to-[#85A41C] rounded-md w-[120px]" disabled>
                                     <svg class="h-5 mx-auto w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg"
                                          fill="none" viewBox="0 0 24 24">
                                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"

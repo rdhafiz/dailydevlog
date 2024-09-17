@@ -1,7 +1,7 @@
 @if ($paginator->hasPages())
     <div class="flex gap-[0.25rem] justify-center items-center">
         @if ($paginator->onFirstPage())
-            <button type="button" class="disabled border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg">
+            <button type="button" class="disabled border border-[#AED725] outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 20 20" fill="none"
                      stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
                      class="acorn-icons acorn-icons-chevron-left undefined">
@@ -10,7 +10,7 @@
                 </svg>
             </button>
         @else
-            <div class="border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg">
+            <div class="border border-[#AED725] outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg">
                 <a href="{{ $paginator->previousPageUrl() }}" rel="prev">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 20 20" fill="none"
                          stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
@@ -23,21 +23,21 @@
         @endif
         @foreach ($elements as $element)
             @if (is_string($element))
-                <button type="button" class="disabled p-3 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg"><span>{{ $element }}</span></button>
+                <button type="button" class="disabled p-3 border border-[#AED725] outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg"><span>{{ $element }}</span></button>
             @endif
             @if (is_array($element))
                 @foreach ($element as $page => $url)
                     @if ($page == $paginator->currentPage())
-                        <button type="button" class="active p-3 border border-cyan-400 bg-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg"><span>{{ $page }}</span></button>
+                        <button type="button" class="active p-3 border border-[#AED725] bg-second outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg"><span>{{ $page }}</span></button>
                     @else
-                        <a href="{{ $url }}" class=" p-3 border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg">{{ $page }}</a>
+                        <a href="{{ $url }}" class=" p-3 border border-[#AED725] outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg">{{ $page }}</a>
                     @endif
                 @endforeach
             @endif
         @endforeach
         @if ($paginator->hasMorePages())
             <div>
-                <a class="border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg" href="{{ $paginator->nextPageUrl() }}" rel="next">
+                <a class="border border-[#AED725] outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg" href="{{ $paginator->nextPageUrl() }}" rel="next">
                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 20 20"
                          fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                          stroke-linejoin="round" class="acorn-icons acorn-icons-chevron-right undefined">
@@ -47,7 +47,7 @@
                 </a>
             </div>
         @else
-            <div class="disabled border border-cyan-400 outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg">
+            <div class="disabled border border-[#AED725] outline-0 w-[35px] h-[35px] flex justify-center items-center rounded-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 20 20"
                      fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
                      stroke-linejoin="round" class="acorn-icons acorn-icons-chevron-right undefined">

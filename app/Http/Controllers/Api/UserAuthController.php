@@ -16,6 +16,12 @@ use Illuminate\Support\Facades\Validator;
 
 class UserAuthController extends Controller
 {
+ /*   public function __construct()
+    {
+        # By default we are using here auth:api middleware
+//        $this->middleware('auth:api');
+    }*/
+
     public function Login(Request $request)
     {
         try {
@@ -68,6 +74,67 @@ class UserAuthController extends Controller
             return redirect()->back()->withErrors(['error' => 'An error occurred during login. Please try again later.'])->withInput();
         }
     }
+    public function LoginNew(Request $request)
+    {
+        $input = $request->input();
+        $validator = Validator::make($input, [
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return ['status' => 500, 'error' => $validator->errors()];
+        }
+        $credentials = request(['email', 'password']);
+
+        if (! $token = auth()->attempt($credentials)) {
+            return response()->json(['error' => 'Invalid credentials'], 401);
+        }
+
+        return $this->respondWithToken($token); # If all credentials are correct - we are going to generate a new access token and send it back on response
+    }
+
+    /**
+     * Get the authenticated User.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function me()
+    {
+        # Here we just get information about current user
+        return response()->json(auth()->user());
+    }
+
+    /**
+     * Refresh a token.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function refresh()
+    {
+        # When access token will be expired, we are going to generate a new one wit this function
+        # and return it here in response
+        return $this->respondWithToken(auth()->refresh());
+    }
+
+    /**
+     * Get the token array structure.
+     *
+     * @param  string $token
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function respondWithToken($token)
+    {
+        # This function is used to make JSON response with new
+        # access token of current user
+        return response()->json([
+            'access_token' => $token,
+            'token_type' => 'bearer',
+            'expires_in' => auth()->factory()->getTTL() * 60
+        ]);
+    }
+
+
     public function Registration(Request $request)
     {
         $rv = UserAuthRepository::Registration($request);
@@ -231,6 +298,62 @@ class UserAuthController extends Controller
             return redirect()->back()->with('error', 'Something went wrong: ' . $e->getMessage());
         }
     }
+
+    public function UpdateProfileNew(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+
+            $input = $request->all(); // Use all() for better clarity
+            $validator = Validator::make($input, [
+                'name' => 'required|string|max:255',
+                'email' => 'required|email',
+                'website' => 'nullable|url',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'success' => false,
+                    'errors' => $validator->errors(),
+                ], 422); // Unprocessable Entity status
+            }
+
+
+            $user_id = Auth::id();
+            $user = User::find($user_id);
+
+            if ($user == null) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Invalid Request!',
+                ], 404); // Not Found status
+            }
+
+            // Update user fields
+            $user->name = $input['name'];
+            $user->email = $input['email'];
+            $user->avatar = $input['avatar'] ?? null;
+            $user->bio = $input['bio'] ?? null;
+            $user->website = $input['website'] ?? null;
+            $user->updated_at = Carbon::now('UTC');
+            $user->save();
+
+            DB::commit();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'The profile has been updated successfully.',
+                'data' => $user // Optionally return the updated user data
+            ], 200); // OK status
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong: ' . $e->getMessage(),
+            ], 500); // Internal Server Error status
+        }
+    }
+
     public function ChangePassword(Request $request)
     {
         try {
@@ -264,6 +387,65 @@ class UserAuthController extends Controller
             return redirect()->back()->with('error', 'Something went wrong: ' . $e->getMessage());
         }
     }
+
+    public function ChangePasswordNew(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            $input = $request->all();
+            $validator = Validator::make($input, [
+                'current_password' => 'required|min:8',
+                'password' => 'required|min:8|confirmed',
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'success' => false,
+                    'errors' => $validator->errors(),
+                ], 422);
+            }
+
+            $user_id = Auth::id();
+            $user = User::find($user_id);
+            if ($user == null) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Invalid Request!',
+                ], 400);
+            }
+
+            if (!Hash::check($input['current_password'], $user->password)) {
+                return response()->json([
+                    'success' => false,
+                    'errors' => ['current_password' => 'Please enter the current correct password.'],
+                ], 403);
+            }
+
+            if (Hash::check($input['password'], $user->password)) {
+                return response()->json([
+                    'success' => false,
+                    'errors' => ['password' => 'Your new password must be different from your previous password.'],
+                ], 409);
+            }
+
+            $user->password = bcrypt($input['password']);
+            $user->updated_at = Carbon::now('UTC');
+            $user->save();
+
+            DB::commit();
+            return response()->json([
+                'success' => true,
+                'message' => 'The password has been changed successfully.',
+            ], 200);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json([
+                'success' => false,
+                'message' => 'Something went wrong: ' . $e->getMessage(),
+            ], 500);
+        }
+    }
+
 
     public function UpdateAvatar(Request $request)
     {

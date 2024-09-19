@@ -24,12 +24,18 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('login', [UserAuthController::class, 'Login'])->name('API.USER.LOGIN');
     Route::post('forgot', [UserAuthController::class, 'Forgot'])->name('API.USER.FORGOT');
     Route::post('reset', [UserAuthController::class, 'Reset'])->name('API.USER.RESET');
+
+    Route::post('login-new', [UserAuthController::class, 'LoginNew'])->name('API.USER.LOGIN.NEW');
+    Route::post('refresh', [UserAuthController::class, 'refresh'])->name('API.USER.REFRESH.TOKEN');
 });
 
 Route::group(['prefix' => 'user'], function () {
+    Route::post('me', [UserAuthController::class, 'me'])->name('API.USER.ME');
     Route::post('get-profile', [UserAuthController::class, 'GetProfile'])->name('API.USER.GET.PROFILE');
     Route::post('update-profile', [UserAuthController::class, 'UpdateProfile'])->name('API.USER.UPDATE.PROFILE');
+    Route::post('update-profile-new', [UserAuthController::class, 'UpdateProfileNew'])->name('API.USER.UPDATE.PROFILE.NEW');
     Route::post('change-password', [UserAuthController::class, 'ChangePassword'])->name('API.USER.CHANGE.PASSWORD');
+    Route::post('change-password-new', [UserAuthController::class, 'ChangePasswordNew'])->name('API.USER.CHANGE.PASSWORD.New');
     Route::post('update-avatar', [UserAuthController::class, 'UpdateAvatar'])->name('API.USER.UPDATE.AVATAR');
     Route::get('logout', [UserAuthController::class, 'Logout'])->name('API.USER.LOGOUT');
 });

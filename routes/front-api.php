@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\PostNewController;
 use App\Http\Controllers\Api\TagController;
 use App\Http\Controllers\Api\UserAuthController;
 use App\Http\Controllers\Media\MediaController;
@@ -26,6 +27,8 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('reset', [UserAuthController::class, 'Reset'])->name('API.USER.RESET');
 
     Route::post('login-new', [UserAuthController::class, 'LoginNew'])->name('API.USER.LOGIN.NEW');
+    Route::post('forgot-new', [UserAuthController::class, 'ForgotNew'])->name('API.USER.FORGOT.NEW');
+    Route::post('reset-new', [UserAuthController::class, 'ResetNew'])->name('API.USER.RESET.NEW');
     Route::post('refresh', [UserAuthController::class, 'refresh'])->name('API.USER.REFRESH.TOKEN');
 });
 
@@ -37,11 +40,13 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('change-password', [UserAuthController::class, 'ChangePassword'])->name('API.USER.CHANGE.PASSWORD');
     Route::post('change-password-new', [UserAuthController::class, 'ChangePasswordNew'])->name('API.USER.CHANGE.PASSWORD.New');
     Route::post('update-avatar', [UserAuthController::class, 'UpdateAvatar'])->name('API.USER.UPDATE.AVATAR');
+    Route::post('update-avatar-new', [UserAuthController::class, 'UpdateAvatarNew'])->name('API.USER.UPDATE.AVATAR.NEW');
     Route::get('logout', [UserAuthController::class, 'Logout'])->name('API.USER.LOGOUT');
 });
 
 /*Post API*/
 Route::apiResource('posts', PostController::class );
+Route::apiResource('posts-new', PostNewController::class );
 Route::post('posts/store', [PostController::class, 'store'] )->name('posts.store');
 Route::post('posts/update/{id}', [PostController::class, 'update'] )->name('posts.update');
 

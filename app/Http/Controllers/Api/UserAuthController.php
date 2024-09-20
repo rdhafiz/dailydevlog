@@ -130,8 +130,9 @@ class UserAuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
-        ]);
+            'expires_in' => auth()->factory()->getTTL() * 60,
+            'message' => 'Login successful!',
+        ], 200);
     }
 
 
@@ -144,7 +145,7 @@ class UserAuthController extends Controller
     public function Logout(Request $request)
     {
         Auth::logout();
-        return redirect(route('user.panel.login'));
+        return redirect(url('/login'));
     }
     public function Forgot(Request $request)
     {
@@ -199,6 +200,67 @@ class UserAuthController extends Controller
             ]);
         }
     }
+    public function ForgotNew(Request $request)
+    {
+        DB::beginTransaction();
+
+        try {
+            $input = $request->all();
+
+            // Validate input
+            $validator = Validator::make($input, [
+                'email' => 'required|email'
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'success' => false,
+                    'errors' => $validator->errors()
+                ], 422); // Unprocessable Entity
+            }
+            // Check if user exists
+            $userInfo = User::where('email', $input['email'])->first();
+            if ($userInfo === null) {
+                return response()->json([
+                    'success' => false,
+                    'errors' => ['email' => ['Email not found. Please double-check your email address.']]
+                ], 404); // Not Found
+            }
+
+            // Generate reset code
+            $reset_code = rand(100000, 999999);
+            $userInfo->reset_code = $reset_code;
+            $userInfo->save();
+
+            // Send email
+            Mail::send('emails.forgot', ['userInfo' => $userInfo], function ($message) use ($userInfo) {
+                $message->to($userInfo->email, $userInfo->name)
+                    ->subject(env('MAIL_FROM_NAME') . ': Password reset code');
+                $message->from(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+            });
+
+            // Commit transaction
+            DB::commit();
+
+            // Return success response
+            return response()->json([
+                'success' => true,
+                'message' => 'A reset code has been sent to your email. Please check your email.',
+                'email' => $input['email']
+            ], 200); // OK
+
+        } catch (\Exception $e) {
+            // Rollback transaction
+            DB::rollBack();
+
+            // Return error response
+            return response()->json([
+                'success' => false,
+                'error' => 'An error occurred while processing your request.'
+            ], 500); // Internal Server Error
+        }
+    }
+
     public function Reset(Request $request)
     {
         DB::beginTransaction();
@@ -255,6 +317,76 @@ class UserAuthController extends Controller
             ])->withInput();
         }
     }
+    public function ResetNew(Request $request)
+    {
+        DB::beginTransaction();
+
+        try {
+            // Validate input
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|email',
+                'code' => 'required',
+                'password' => 'required|confirmed'
+            ]);
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'success' => false,
+                    'errors' => $validator->errors()
+                ], 422); // Unprocessable Entity
+            }
+
+            // Find the user
+            $userInfo = User::where([
+                'email' => $request->input('email'),
+                'reset_code' => $request->input('code')
+            ])->first();
+
+            if ($userInfo === null) {
+                return response()->json([
+                    'success' => false,
+                    'errors' => [
+                        'code' => ['Invalid request. Please check your reset code.']
+                    ]
+                ], 404); // Not Found
+            }
+
+            // Check if the new password is the same as the current password
+            if (Hash::check($request->input('password'), $userInfo->password)) {
+                return response()->json([
+                    'success' => false,
+                    'errors' => [
+                        'password' => ['Repetition of password is not allowed. Try another password, please.']
+                    ]
+                ], 422); // Unprocessable Entity
+            }
+
+            // Update the user's password
+            $userInfo->password = Hash::make($request->input('password'));
+            $userInfo->reset_code = null; // Clear the reset code
+            $userInfo->save();
+
+            // Commit transaction
+            DB::commit();
+
+            // Return success response
+            return response()->json([
+                'success' => true,
+                'message' => 'The password has been reset successfully.'
+            ], 200); // OK
+
+        } catch (\Exception $e) {
+            // Rollback transaction
+            DB::rollBack();
+
+            // Return error response
+            return response()->json([
+                'success' => false,
+                'error' => 'An error occurred while resetting the password.'
+            ], 500); // Internal Server Error
+        }
+    }
+
 
     public function GetProfile(Request $request)
     {
@@ -469,5 +601,11 @@ class UserAuthController extends Controller
             // Redirect with error message
             return redirect()->back()->with('error', 'An error occurred: ' . $e->getMessage());
         }
+    }
+
+    public function UpdateAvatarNew(Request $request)
+    {
+        $rv = UserAuthRepository::UpdateAvatar($request);
+        return response()->json($rv, 200);
     }
 }

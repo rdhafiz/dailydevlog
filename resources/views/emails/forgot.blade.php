@@ -86,7 +86,7 @@
                 <tr>
                     <th class="column" width="640" style="padding-left: 30px; padding-right: 30px; text-align: left;">
                         <a href="https://dailydevblog.thethemeai.com" style="text-decoration: none;">
-                            <img class="mobile-center" src="https://dailydevblog.thethemeai.com/images/logo-dark.svg" alt="Header Logo" width="105">
+                            <img class="mobile-center" src="https://dailydevblog.thethemeai.com/images/logo.svg" alt="Header Logo" width="105">
                         </a>
                     </th>
                 </tr>

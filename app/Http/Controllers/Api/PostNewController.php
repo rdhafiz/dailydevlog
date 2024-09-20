@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
-class PostController extends Controller
+class PostNewController extends Controller
 {
     private PostService $postService;
 
@@ -174,16 +174,16 @@ class PostController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy($id): JsonResponse
     {
         $post = $this->postService->getPostById($id);
 
         if (!$post) {
-            return redirect()->back()->withErrors(['message' => 'Post not found']);
+            return response()->json(['message' => 'Blog not found'], 404);
         }
 
         $this->postService->deletePost($post);
 
-        return redirect()->route('user.panel.my.post')->with('success', 'Post has been deleted successfully.');
+        return response()->json(['message' => 'Blog has been deleted successfully'], 200);
     }
 }

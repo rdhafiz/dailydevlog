@@ -42,6 +42,7 @@ Route::group(['prefix' => 'user'], function () {
     Route::post('update-avatar', [UserAuthController::class, 'UpdateAvatar'])->name('API.USER.UPDATE.AVATAR');
     Route::post('update-avatar-new', [UserAuthController::class, 'UpdateAvatarNew'])->name('API.USER.UPDATE.AVATAR.NEW');
     Route::get('logout', [UserAuthController::class, 'Logout'])->name('API.USER.LOGOUT');
+    Route::post('logout-new', [UserAuthController::class, 'LogoutNew'])->name('API.USER.LOGOUT.NEW');
 });
 
 /*Post API*/

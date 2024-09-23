@@ -145,7 +145,19 @@ class UserAuthController extends Controller
     public function Logout(Request $request)
     {
         Auth::logout();
-        return redirect(url('/login'));
+        return redirect(route('user.panel.login'));
+    }
+
+    public function LogoutNew(Request $request)
+    {
+        try {
+            Auth::logout();
+            return response()->json(['message' => 'Logout successfully.'], 200);
+        } catch (\Exception $e) {
+            Log::error('Logout error: ' . $e->getMessage());
+            return response()->json(['message' => 'Logout failed.'], 500);
+        }
+
     }
     public function Forgot(Request $request)
     {

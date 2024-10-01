@@ -51,10 +51,9 @@ Route::apiResource('posts-new', PostNewController::class );
 Route::post('posts/store', [PostController::class, 'store'] )->name('posts.store');
 Route::post('posts/update/{id}', [PostController::class, 'update'] )->name('posts.update');
 
-
 /*Tags API*/
 Route::apiResource('tags', TagController::class );
-
+Route::get('increment-views/{id}', [PostController::class, 'views_increment'])->name('post.single.increment.views');
 
 /*media api*/
 Route::prefix('media')->group(function () {

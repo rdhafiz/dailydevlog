@@ -5,12 +5,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
+use App\Models\Post;
 use App\Services\PostService;
 use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -145,5 +145,14 @@ class PostNewController extends Controller
         $this->postService->deletePost($post);
 
         return response()->json(['message' => 'Blog has been deleted successfully'], 200);
+    }
+
+
+
+    public function views_increment(Request $request, $id)
+    {
+        $post = Post::find($id);
+        $post->increment('views_count');
+        return response()->json(['message' => 'Blog fetched successfully', 'data' => $post]);
     }
 }

@@ -255,10 +255,10 @@ body {
     padding-left: 40px;
 }
 
-#single-details #content_description h1 {
-    font-size: 2em; /* Example size, actual size may vary by browser */
-    margin: 0.67em 0; /* Default top and bottom margins */
-}
+/*#single-details #content_description h1 {*/
+/*    font-size: 2em; !* Example size, actual size may vary by browser *!*/
+/*    margin: 0.67em 0; !* Default top and bottom margins *!*/
+/*}*/
 
 #single-details #content_description h2 {
     font-size: 1.75em;

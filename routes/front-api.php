@@ -48,12 +48,12 @@ Route::group(['prefix' => 'user'], function () {
 /*Post API*/
 Route::apiResource('posts', PostController::class );
 Route::apiResource('posts-new', PostNewController::class );
+Route::get('increment-views/{id}', [PostNewController::class, 'views_increment'])->name('post.single.increment.views');
 Route::post('posts/store', [PostController::class, 'store'] )->name('posts.store');
 Route::post('posts/update/{id}', [PostController::class, 'update'] )->name('posts.update');
 
 /*Tags API*/
 Route::apiResource('tags', TagController::class );
-Route::get('increment-views/{id}', [PostController::class, 'views_increment'])->name('post.single.increment.views');
 
 /*media api*/
 Route::prefix('media')->group(function () {

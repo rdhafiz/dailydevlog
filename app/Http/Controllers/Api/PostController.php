@@ -186,11 +186,4 @@ class PostController extends Controller
         return redirect()->route('user.panel.my.post')->with('success', 'Post has been deleted successfully.');
     }
 
-    public function views_increment(Request $request, $id)
-    {
-        $post = Post::find($id);
-        $post->increment('views_count');
-        return response()->json(['message' => 'Blog fetched successfully', 'data' => $post]);
-    }
-
 }

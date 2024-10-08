@@ -152,7 +152,8 @@ class PostNewController extends Controller
     public function views_increment(Request $request, $id)
     {
         $post = Post::find($id);
-        $post->increment('views_count');
+        $post->views_count = $post->views_count + 1;
+        $post->save();
         return response()->json(['message' => 'Blog fetched successfully', 'data' => $post]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\AuthenticateJWT;
 use App\Http\Middleware\LoginCheck;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -69,5 +70,6 @@ class Kernel extends HttpKernel
 
     protected $routeMiddleware = [
         'LoginCheck' => LoginCheck::class,
+        'auth.jwt' => AuthenticateJWT::class,
     ];
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Repository\UserAuthRepository;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -101,6 +102,7 @@ class UserAuthController extends Controller
     public function me()
     {
         # Here we just get information about current user
+//        dd(auth()->user());
         return response()->json(auth()->user());
     }
 
@@ -113,6 +115,12 @@ class UserAuthController extends Controller
     {
         # When access token will be expired, we are going to generate a new one wit this function
         # and return it here in response
+//        $token = $request->bearerToken();
+////        dd($token);
+//        if(!$token){
+//            return response()->json(['success' => false, 'error' => 'Token not provided'], 401 );
+//        }
+
         return $this->respondWithToken(auth()->refresh());
     }
 
@@ -130,7 +138,7 @@ class UserAuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60,
+            'expires_in' => auth()->factory()->getTTL(),
             'message' => 'Login successful!',
         ], 200);
     }

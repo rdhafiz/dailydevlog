@@ -27,28 +27,28 @@ Route::group(['prefix' => 'auth'], function () {
     Route::post('reset', [UserAuthController::class, 'Reset'])->name('API.USER.RESET');
 
     Route::post('login-new', [UserAuthController::class, 'LoginNew'])->name('API.USER.LOGIN.NEW');
-    Route::post('forgot-new', [UserAuthController::class, 'ForgotNew'])->name('API.USER.FORGOT.NEW');
-    Route::post('reset-new', [UserAuthController::class, 'ResetNew'])->name('API.USER.RESET.NEW');
-    Route::get('refresh', [UserAuthController::class, 'refresh'])->name('API.USER.REFRESH.TOKEN');
+    Route::post('forgot-new', [UserAuthController::class, 'ForgotNew'])->name('API.USER.FORGOT.NEW')->middleware('auth:api');
+    Route::post('reset-new', [UserAuthController::class, 'ResetNew'])->name('API.USER.RESET.NEW')->middleware('auth:api');
+    Route::get('refresh', [UserAuthController::class, 'refresh'])->name('API.USER.REFRESH.TOKEN')->middleware('auth:api');
 });
 
 Route::group(['prefix' => 'user'], function () {
     Route::post('me', [UserAuthController::class, 'me'])->name('API.USER.ME')->middleware('auth:api');
     Route::post('get-profile', [UserAuthController::class, 'GetProfile'])->name('API.USER.GET.PROFILE');
     Route::post('update-profile', [UserAuthController::class, 'UpdateProfile'])->name('API.USER.UPDATE.PROFILE');
-    Route::post('update-profile-new', [UserAuthController::class, 'UpdateProfileNew'])->name('API.USER.UPDATE.PROFILE.NEW');
+    Route::post('update-profile-new', [UserAuthController::class, 'UpdateProfileNew'])->name('API.USER.UPDATE.PROFILE.NEW')->middleware('auth:api');
     Route::post('change-password', [UserAuthController::class, 'ChangePassword'])->name('API.USER.CHANGE.PASSWORD');
-    Route::post('change-password-new', [UserAuthController::class, 'ChangePasswordNew'])->name('API.USER.CHANGE.PASSWORD.New');
+    Route::post('change-password-new', [UserAuthController::class, 'ChangePasswordNew'])->name('API.USER.CHANGE.PASSWORD.New')->middleware('auth:api');
     Route::post('update-avatar', [UserAuthController::class, 'UpdateAvatar'])->name('API.USER.UPDATE.AVATAR');
-    Route::post('update-avatar-new', [UserAuthController::class, 'UpdateAvatarNew'])->name('API.USER.UPDATE.AVATAR.NEW');
+    Route::post('update-avatar-new', [UserAuthController::class, 'UpdateAvatarNew'])->name('API.USER.UPDATE.AVATAR.NEW')->middleware('auth:api');
     Route::get('logout', [UserAuthController::class, 'Logout'])->name('API.USER.LOGOUT');
-    Route::post('logout-new', [UserAuthController::class, 'LogoutNew'])->name('API.USER.LOGOUT.NEW');
+    Route::post('logout-new', [UserAuthController::class, 'LogoutNew'])->name('API.USER.LOGOUT.NEW')->middleware('auth:api');
 });
 
 /*Post API*/
 Route::apiResource('posts', PostController::class );
-Route::apiResource('posts-new', PostNewController::class );
-Route::get('increment-views/{id}', [PostNewController::class, 'views_increment'])->name('post.single.increment.views');
+Route::apiResource('posts-new', PostNewController::class )->middleware('auth:api');
+Route::get('increment-views/{id}', [PostNewController::class, 'views_increment'])->name('post.single.increment.views')->middleware('auth:api');
 Route::post('posts/store', [PostController::class, 'store'] )->name('posts.store');
 Route::post('posts/update/{id}', [PostController::class, 'update'] )->name('posts.update');
 

@@ -17,11 +17,11 @@ use Illuminate\Support\Facades\Validator;
 
 class UserAuthController extends Controller
 {
- /*   public function __construct()
+    public function __construct()
     {
         # By default we are using here auth:api middleware
-//        $this->middleware('auth:api');
-    }*/
+        $this->middleware('auth:api', ['except' => ['LoginNew']]);
+    }
 
     public function Login(Request $request)
     {
@@ -87,7 +87,7 @@ class UserAuthController extends Controller
         }
         $credentials = request(['email', 'password']);
 
-        if (! $token = auth()->attempt($credentials)) {
+        if (! $token = auth('api')->attempt($credentials)) {
             return response()->json(['error' => 'Invalid credentials'], 401);
         }
 
@@ -102,7 +102,6 @@ class UserAuthController extends Controller
     public function me()
     {
         # Here we just get information about current user
-//        dd(auth()->user());
         return response()->json(auth()->user());
     }
 
@@ -138,7 +137,7 @@ class UserAuthController extends Controller
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL(),
+            'expires_in' => auth('api')->factory()->getTTL(),
             'message' => 'Login successful!',
         ], 200);
     }
